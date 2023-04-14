@@ -3,7 +3,12 @@ import { type NextPage } from "next";
 import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
 import MainNavigation from "~/components/navigation/main.navigation";
+import dynamic from "next/dynamic";
 import local_date from "~/utils/local_date";
+// const local_date = dynamic(() => import("~/utils/local_date"), {
+//   // loading: () => <p>Loading...</p>,
+//   ssr: false,
+// });
 
 const TILS = [
   {
@@ -59,7 +64,7 @@ const TILPage: NextPage = () => {
                   className="prose prose-sm prose-invert lg:prose-lg"
                 >
                   <div className="border-l-2 py-0 pl-5">
-                    <p className="prose-md">{data.content}</p>
+                    <div className="prose-md">{data.content}</div>
                   </div>
                   <span className="prose-sm">{local_date(data.date)}</span>
                 </div>
