@@ -4,9 +4,26 @@ import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
 import MainNavigation from "~/components/navigation/main.navigation";
 import Redacted from "~/components/text/redacted";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const MePage: NextPage = () => {
+  const [dilateRadius, setDilateRadius] = useState(3);
+  const cycleDilateRadius = () => {
+    setDilateRadius((dilateRadius) => {
+      return dilateRadius <= 8 ? dilateRadius + 2 : 0;
+    });
+  };
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      cycleDilateRadius();
+    }, 3000);
+
+    return () => {
+      clearInterval(t);
+    };
+  }, []);
+
   return (
     <>
       <HeadSEO />
@@ -14,19 +31,34 @@ const MePage: NextPage = () => {
         <main
           className={`flex min-h-screen grow flex-col items-center justify-start p-10`}
         >
-          <h1 className="text-7xl">{"<Me/>"}</h1>
+          <h1 className="text-5xl">{"<Me/>"}</h1>
           <MainNavigation />
 
           <div className="prose prose-invert mt-10 lg:prose-lg">
             <h3>Tentangku</h3>
 
-            <div className="relative mx-auto h-96 w-96">
-              <Image
+            <div className="relative mx-auto h-96 w-auto">
+              <svg className="h-full w-full ">
+                <filter id="blur">
+                  <feMorphology
+                    in="SourceGraphic"
+                    operator="dilate"
+                    radius={dilateRadius}
+                  ></feMorphology>
+                </filter>
+                <image
+                  xlinkHref="/images/lorong-1.jpg"
+                  filter="url(#blur)"
+                  onClick={cycleDilateRadius}
+                  className="h-full w-full cursor-pointer object-contain object-center"
+                ></image>
+              </svg>
+              {/* <Image
                 src={"/images/lorong-1.jpg"}
                 alt="lorong-1"
                 className="object-contain"
                 fill
-              />
+              /> */}
             </div>
 
             <p>
@@ -57,7 +89,10 @@ const MePage: NextPage = () => {
             <p>
               Tidak memiliki ketergantungan kepada rokok, alkohol, maupun
               obat-obatan. Tujuanku saat ini adalah menyelesaikan web ini{" "}
-              <span className="cursor-wait" title="Disclaimer: Semua yang kutulis disini hanyalah roleplay semata">
+              <span
+                className="cursor-wait"
+                title="Disclaimer: Semua yang kutulis disini hanyalah roleplay semata"
+              >
                 :D
               </span>
             </p>

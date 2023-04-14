@@ -11,12 +11,12 @@ const MainNavigation = () => {
   return (
     <div className="mt-8 flex gap-x-2 text-xl">
       {LINKS.map((link, idx) => (
-        <>
-          <Link key={link.href} href={link.href} className="hover:underline">
+        <div key={link.href}>
+          <Link href={link.href} className="hover:underline">
             {link.label}
           </Link>
           {idx < LINKS.length - 1 && <span> . </span>}
-        </>
+        </div>
       ))}
     </div>
   );
