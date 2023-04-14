@@ -8,39 +8,24 @@ import Link from "next/link";
 
 const source_Code_Pro = Source_Code_Pro({ subsets: ["latin", "cyrillic"] });
 
-const Home: NextPage = () => {
+const BlogDetailPage: NextPage = () => {
   const [greating, setGreating] = useState("");
-
-  useEffect(() => {
-    const newGreating = "Haalo Dunia";
-    let letterIndex = 0;
-    const t = setInterval(() => {
-      if (letterIndex < newGreating.length - 1) {
-        setGreating((s) => `${s}${newGreating[letterIndex] ?? ""}`);
-        letterIndex++;
-      }
-    }, 200);
-
-    return () => {
-      clearInterval(t);
-    };
-  }, []);
 
   return (
     <>
       <HeadSEO />
       <MainLayout>
         <main
-          className={`flex flex-col min-h-screen grow items-center justify-center ${source_Code_Pro.className}`}
+          className={`flex min-h-screen grow items-center justify-center ${source_Code_Pro.className}`}
         >
           <h1 className="text-5xl">
             {"<"}
-            {greating}
+            Blog
             {"/>"}
           </h1>
 
           <div className="mt-8">
-            <Link href={"/blog"}>Blog</Link>
+            <Link href={"/"}>Home</Link>
           </div>
         </main>
       </MainLayout>
@@ -48,4 +33,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default BlogDetailPage;
