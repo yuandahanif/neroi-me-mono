@@ -12,16 +12,20 @@ const Home: NextPage = () => {
   const [greating, setGreating] = useState("");
 
   useEffect(() => {
-    const newGreating = "Haalo Dunia";
-    let letterIndex = 0;
+    const newGreating = "< Halo Dunia/>";
+    let letterIndex = -1;
     const t = setInterval(() => {
       if (letterIndex < newGreating.length - 1) {
         setGreating((s) => `${s}${newGreating[letterIndex] ?? ""}`);
-        letterIndex++;
+        ++letterIndex;
+      } else {
+        clearInterval(t);
       }
     }, 200);
 
     return () => {
+      setGreating("");
+      letterIndex = -1;
       clearInterval(t);
     };
   }, []);
@@ -33,11 +37,7 @@ const Home: NextPage = () => {
         <main
           className={`flex min-h-screen grow flex-col items-center justify-center ${source_Code_Pro.className}`}
         >
-          <h1 className="text-5xl">
-            {"<"}
-            {greating}
-            {"/>"}
-          </h1>
+          <h1 className="text-7xl">{greating}</h1>
 
           <div className="mt-8">
             <Link href={"/blog"}>Blog</Link>
