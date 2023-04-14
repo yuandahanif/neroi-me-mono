@@ -19,6 +19,23 @@ const TILS = [
     content:
       "CNAME is to point a domain to subdomain. And A record is to point a domain name to v4 Ip address.",
   },
+  {
+    id: "3",
+    date: "2023-04-13T17:57:36.397Z",
+    content: `Bagaimana rasanya terperangkap didalam kepalamu? sendiri`,
+  },
+  {
+    id: "4",
+    date: "2023-04-13T17:57:36.397Z",
+    content:
+      "CNAME is to point a domain to subdomain. And A record is to point a domain name to v4 Ip address.",
+  },
+  {
+    id: "5",
+    date: "2023-04-13T17:57:36.397Z",
+    content:
+      "CNAME is to point a domain to subdomain. And A record is to point a domain name to v4 Ip address.",
+  },
 ];
 
 const TILPage: NextPage = () => {
@@ -33,11 +50,14 @@ const TILPage: NextPage = () => {
           <MainNavigation />
 
           <div className="mt-10 flex w-full flex-col gap-7">
-            <h3 className="text-2xl">Hari Ini Aku Belajar</h3>
+            <h3 className="mx-auto text-2xl">Hari Ini Aku Belajar</h3>
 
-            <div className="prose prose-sm prose-invert lg:prose-lg">
+            <div className="mx-auto flex-col">
               {TILS.map((data) => (
-                <div key={data.id} className="mb-12">
+                <div
+                  key={data.id}
+                  className="prose prose-sm prose-invert lg:prose-lg"
+                >
                   <div className="border-l-2 py-0 pl-5">
                     <p className="prose-md">{data.content}</p>
                   </div>
