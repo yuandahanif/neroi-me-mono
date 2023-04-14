@@ -3,12 +3,7 @@ import { type NextPage } from "next";
 import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
 import MainNavigation from "~/components/navigation/main.navigation";
-import dynamic from "next/dynamic";
 import local_date from "~/utils/local_date";
-// const local_date = dynamic(() => import("~/utils/local_date"), {
-//   // loading: () => <p>Loading...</p>,
-//   ssr: false,
-// });
 
 const TILS = [
   {
@@ -57,12 +52,9 @@ const TILPage: NextPage = () => {
           <div className="mt-10 flex w-full flex-col gap-7">
             <h3 className="mx-auto text-2xl">Hari Ini Aku Belajar</h3>
 
-            <div className="mx-auto flex-col">
+            <div className="prose prose-sm prose-invert mx-auto flex-col gap-y-20 lg:prose-lg">
               {TILS.map((data) => (
-                <div
-                  key={data.id}
-                  className="prose prose-sm prose-invert lg:prose-lg"
-                >
+                <div key={data.id} className="mb-8">
                   <div className="border-l-2 py-0 pl-5">
                     <div className="prose-md">{data.content}</div>
                   </div>
