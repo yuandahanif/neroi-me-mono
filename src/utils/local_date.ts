@@ -1,9 +1,10 @@
 const local_date = (date: string) => {
   const d = new Date(date);
-  return new Intl.DateTimeFormat("id", {
+  const formater = new Intl.DateTimeFormat("id", {
     dateStyle: "full",
-    timeStyle: "short",
-  }).format(d);
+    // timeStyle: "short",
+  });
+  return formater.format(d);
 };
 
 export default local_date;

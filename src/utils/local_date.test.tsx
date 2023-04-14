@@ -1,0 +1,25 @@
+import { render, screen } from "@testing-library/react";
+import local_date from "./local_date";
+
+describe("local_date function", () => {
+  it("should return the same value from the same input", () => {
+    const { container } = render(
+      <span>{local_date("2023-04-13T17:57:36.397Z")}</span>
+    );
+
+    expect(local_date("2023-04-13T17:57:36.397Z")).toBe(
+      "Jumat, 14 April 2023 00.57"
+    );
+
+    expect(local_date("2023-04-14T17:57:36.397Z")).toBe(
+      "Sabtu, 15 April 2023 00.57"
+    );
+
+    expect(local_date("2023-04-13T17:57:36.397Z")).toBe(
+      "Jumat, 14 April 2023 00.57"
+    );
+
+    // screen.debug();
+    expect(container).toMatchSnapshot();
+  });
+});
