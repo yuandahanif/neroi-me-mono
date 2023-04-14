@@ -4,6 +4,7 @@ import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
 import MainNavigation from "~/components/navigation/main.navigation";
 import Redacted from "~/components/text/redacted";
+import Image from "next/image";
 
 const MePage: NextPage = () => {
   return (
@@ -18,6 +19,15 @@ const MePage: NextPage = () => {
 
           <div className="prose prose-invert mt-10 lg:prose-lg">
             <h3>Tentangku</h3>
+
+            <div className="relative mx-auto h-96 w-96">
+              <Image
+                src={"/images/lorong-1.jpg"}
+                alt="lorong-1"
+                className="object-contain"
+                fill
+              />
+            </div>
 
             <p>
               Halo, Namaku Yuanda <Redacted>Hanif Hisyam</Redacted>, seorang
@@ -46,7 +56,10 @@ const MePage: NextPage = () => {
 
             <p>
               Tidak memiliki ketergantungan kepada rokok, alkohol, maupun
-              obat-obatan. Tujuanku saat ini adalah menyelesaikan web ini :D
+              obat-obatan. Tujuanku saat ini adalah menyelesaikan web ini{" "}
+              <span className="cursor-wait" title="Disclaimer: Semua yang kutulis disini hanyalah roleplay semata">
+                :D
+              </span>
             </p>
           </div>
 
@@ -75,6 +88,16 @@ const MePage: NextPage = () => {
                     className="hover:underline"
                   >
                     yuan.nanode@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="http://discordapp.com/users/378907976267726859"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    Discord
                   </a>
                 </li>
               </ul>
