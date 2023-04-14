@@ -2,6 +2,9 @@ import { type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useRouter } from "next/router";
 
+import { Source_Code_Pro } from "next/font/google";
+const source_Code_Pro = Source_Code_Pro({ subsets: ["latin", "cyrillic"] });
+
 interface Props {
   children: ReactNode;
   title?: string;
@@ -31,7 +34,9 @@ const MainLayout: React.FC<Props> = ({ children }) => {
   };
 
   return (
-    <div className="w-full overflow-hidden bg-main-600">
+    <div
+      className={`w-full overflow-hidden bg-main-600 ${source_Code_Pro.className}`}
+    >
       <motion.div
         key={asPath}
         variants={!shouldReduceMotion ? variants : undefined}
