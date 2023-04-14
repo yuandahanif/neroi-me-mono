@@ -53,23 +53,17 @@ const MePage: NextPage = () => {
                   className="h-full w-full cursor-pointer object-contain object-center"
                 ></image>
               </svg>
-              {/* <Image
-                src={"/images/lorong-1.jpg"}
-                alt="lorong-1"
-                className="object-contain"
-                fill
-              /> */}
             </div>
 
             <p>
-              Halo, Namaku Yuanda <Redacted>Hanif Hisyam</Redacted>, seorang
+              Halo, Namaku <Redacted>Yuanda Hanif Hisyam</Redacted>, seorang
               yang mencintai dan terlalu bergantung pada internet. Mahasiswa
-              jurusan Informatika di salah satu kampus swasta di Yogyakarta.
-              Mencintai teknologi terutama internet sebagai salah satu
-              pencapaian terbaik dari umat manusia. Tidak terlalu menyukain
-              keramaian dan hampir mengurung diri 24/7 di dalam kosnya.
-              Didiagnosa depresi pada usia 20 tahun dan punya kesulitan
-              berinteraksi dengan manusia lain.
+              jurusan Informatika di salah satu kampus swasta di{" "}
+              <Redacted>Yogyakarta</Redacted>. Mencintai teknologi terutama
+              internet sebagai salah satu pencapaian terbaik dari umat manusia.
+              Tidak terlalu menyukain keramaian dan hampir mengurung diri 24/7
+              di dalam kosnya. Didiagnosa depresi pada usia 20 tahun dan punya
+              kesulitan berinteraksi dengan manusia lain.
             </p>
 
             <p>
@@ -83,7 +77,7 @@ const MePage: NextPage = () => {
               Hobiku adalah bermain internet, duduk mendengarkan orang lain
               berbicara, dan menulis. Setidaknya itu yang boleh kutulis,
               selebihnya adalah rahasia. Seperti <Redacted>Crossdress</Redacted>{" "}
-              dan <Redacted>Stalking(OSINT)</Redacted>.
+              dan <Redacted>Stalking</Redacted>.
             </p>
 
             <p>
@@ -105,7 +99,7 @@ const MePage: NextPage = () => {
             </h3>
             <div className="mt-5">
               <ul className="flex gap-5">
-                <li>
+                {/* <li>
                   <a
                     href="https://www.linkedin.com/in/yuanda-hanif-hisyam-1432701aa/"
                     target="_blank"
@@ -114,7 +108,7 @@ const MePage: NextPage = () => {
                   >
                     LinkedIn
                   </a>
-                </li>
+                </li> */}
                 <li>
                   <a
                     href="mailto:yuan.nanode@gmail.com"
