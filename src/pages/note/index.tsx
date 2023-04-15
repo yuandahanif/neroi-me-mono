@@ -46,11 +46,11 @@ const TILPage: NextPage = () => {
         <main
           className={`flex min-h-screen grow flex-col items-center justify-start p-10`}
         >
-          <h1 className="text-5xl">{"<Me/>"}</h1>
+          <h1 className="text-5xl">{"<Note/>"}</h1>
           <MainNavigation />
 
           <div className="mt-10 flex w-full flex-col gap-7">
-            <h3 className="mx-auto text-2xl">Hari Ini Aku Belajar</h3>
+            <h3 className="mx-auto text-2xl">Catatan singkat</h3>
 
             <div className="prose prose-sm prose-invert mx-auto flex-col gap-y-20 lg:prose-lg">
               {TILS.map((data) => (

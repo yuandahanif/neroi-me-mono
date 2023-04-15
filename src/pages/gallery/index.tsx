@@ -4,46 +4,27 @@ import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
 import MainNavigation from "~/components/navigation/main.navigation";
 import Redacted from "~/components/text/redacted";
-import React, { useEffect, useState } from "react";
+import React, { type ReactNode } from "react";
+import Image from "next/image";
 
 interface Props {
   imageSrc: string;
   imageAlt?: string;
-  description: string;
+  description: ReactNode;
 }
 
-const CustomImage: React.FC<Props> = ({ imageSrc, description }) => {
-  const [dilateRadius, setDilateRadius] = useState(0);
-  const cycleDilateRadius = () => {
-    setDilateRadius((dilateRadius) => {
-      return dilateRadius <= 8 ? dilateRadius + 1 : 0;
-    });
-  };
-
+const CustomImage: React.FC<Props> = ({
+  imageSrc,
+  imageAlt = "",
+  description,
+}) => {
   return (
-    <div className="relative mx-auto h-96 w-auto">
-      <svg className="h-full relative w-full bg-slate-400 flex justify-center items-center">
-        <filter id={imageSrc}>
-          <feMorphology
-            in="SourceGraphic"
-            operator="dilate"
-            radius={dilateRadius}
-          ></feMorphology>
-        </filter>
-        <image
-          xlinkHref={imageSrc}
-          filter={`url(#${imageSrc})`}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            cycleDilateRadius();
-          }}
-          className="h-full w-auto cursor-pointer object-contain object-center"
-        ></image>
-      </svg>
-
-      <div className="prose prose-sm prose-invert mx-auto mt-2 text-center">
-        <p>{description}</p>
+    <div className="">
+      <div className="relative mx-auto h-96 w-96">
+        <Image src={imageSrc} alt={imageAlt} fill className="object-contain object-bottom" />
+      </div>
+      <div className="prose prose-sm prose-invert mx-auto text-center">
+        <div>{description}</div>
       </div>
     </div>
   );
@@ -68,11 +49,11 @@ const MePage: NextPage = () => {
             </p>
           </div>
 
-          <div className="mt-10  w-full space-y-12">
+          <div className="mt-10  w-full space-y-8">
             <CustomImage
               imageSrc="/images/stair.jpg"
               imageAlt="Lorong"
-              description="Pandemi, 2020, kupikir dunia akan berakhir, mehh."
+              description="Kita ingin melakukanya."
             />
             <CustomImage
               imageSrc="/images/lorong-1.jpg"
@@ -82,7 +63,9 @@ const MePage: NextPage = () => {
             <CustomImage
               imageSrc="/images/sunset.jpg"
               imageAlt="Lorong"
-              description="Saat hidup semudah mengerjakan tugas."
+              description={
+                <Redacted>Saat hidup semudah mengerjakan tugas.</Redacted>
+              }
             />
           </div>
         </main>

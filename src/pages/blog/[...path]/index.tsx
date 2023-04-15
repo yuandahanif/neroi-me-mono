@@ -1,10 +1,10 @@
 import { MDX } from "~/components/mdx/mdx";
 
-import { fetchMDXContent } from "~/libs/mdx";
-import { fetchFile, fetchPaths } from "~/libs/fs";
+import { fetchMDXContent } from "~/utils/mdx";
+import type { MDXContent } from "~/utils/mdx";
+import { fetchFile, fetchPaths } from "~/utils/fs";
 
 import type { NextPage, GetStaticProps } from "next";
-import type { MDXContent } from "~/libs/mdx";
 import MainLayout from "~/layouts/main.layout";
 
 type PageProps = {

@@ -3,7 +3,7 @@ title: how to create project using frontmatter
 description: ""
 date: 2023-04-14T17:57:36.397Z
 preview: ""
-draft: true
+draft: false
 tags: []
 categories: []
 ---

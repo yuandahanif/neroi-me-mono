@@ -88,8 +88,11 @@ const MePage: NextPage = () => {
                 title="Disclaimer: Semua yang kutulis disini hanyalah roleplay semata"
               >
                 :D
-              </span>
+              </span>{" "}
+              Oh, apakah ini termasuk.
             </p>
+
+            <p>Also Suka ARG, so lets mimic one.</p>
           </div>
 
           <div className="mt-10">
@@ -99,7 +102,17 @@ const MePage: NextPage = () => {
             </h3>
             <div className="mt-5">
               <ul className="flex gap-5">
-                {/* <li>
+                <li>
+                  <a
+                    href="https://github.com/yuandahanif"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    Github
+                  </a>
+                </li>
+                <li>
                   <a
                     href="https://www.linkedin.com/in/yuanda-hanif-hisyam-1432701aa/"
                     target="_blank"
@@ -108,7 +121,7 @@ const MePage: NextPage = () => {
                   >
                     LinkedIn
                   </a>
-                </li> */}
+                </li>
                 <li>
                   <a
                     href="mailto:yuan.nanode@gmail.com"
