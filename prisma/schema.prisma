@@ -64,3 +64,28 @@ model VerificationToken {
 
     @@unique([identifier, token])
 }
+
+model Blog {
+    id        String   @id @default(cuid())
+    title     String
+    slug      String
+    content   String   @db.Text
+    Tags      Tag[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Tag {
+    id        String   @id @default(cuid())
+    title     String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    Blogs     Blog[]
+}
+
+model Note {
+    id        String   @id @default(cuid())
+    content   String   @db.Text
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}

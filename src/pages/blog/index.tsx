@@ -12,11 +12,11 @@ const BlogDetailPage: NextPage = () => {
         <main
           className={`flex min-h-screen grow flex-col items-center justify-start p-10`}
         >
-          <h1 className="text-5xl">{"<Gallery/>"}</h1>
+          <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
 
           <div className="prose prose-invert mt-10 lg:prose-lg">
-            <h3 className="text-center">Tulisan acak dariku</h3>
+            <h3 className="text-center">Tulisan acak</h3>
 
             {/* <p>
               Tulisan panjang dariku.
