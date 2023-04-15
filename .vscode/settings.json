@@ -1,9 +1,10 @@
 {
-    "frontMatter.content.pageFolders": [
-        {
-            "path": "[[workspace]]/src/contents"
-        }
-    ],
-    "frontMatter.taxonomy.tags": [],
-    "frontMatter.taxonomy.categories": []
+  "frontMatter.content.pageFolders": [
+    {
+      "path": "[[workspace]]/src/contents"
+    }
+  ],
+  "frontMatter.content.defaultFileType": "mdx",
+  "frontMatter.taxonomy.tags": [],
+  "frontMatter.taxonomy.categories": []
 }

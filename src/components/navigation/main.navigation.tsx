@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { twMerge } from "tailwind-merge";
 
 const LINKS = [
   { id: "home-index", href: "/", label: "Home" },
@@ -9,11 +11,19 @@ const LINKS = [
 ];
 
 const MainNavigation = () => {
+  const router = useRouter();
+
   return (
     <div className="mt-8 flex gap-x-2 text-xl">
       {LINKS.map((link, idx) => (
         <div key={link.href}>
-          <Link href={link.href} className="hover:underline">
+          <Link
+            href={link.href}
+            className={twMerge(
+              `hover:underline`,
+              router.asPath == link.href && "underline"
+            )}
+          >
             {link.label}
           </Link>
           {idx < LINKS.length - 1 && <span> . </span>}

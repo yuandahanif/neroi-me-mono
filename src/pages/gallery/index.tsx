@@ -4,31 +4,8 @@ import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
 import MainNavigation from "~/components/navigation/main.navigation";
 import Redacted from "~/components/text/redacted";
-import React, { type ReactNode } from "react";
-import Image from "next/image";
-
-interface Props {
-  imageSrc: string;
-  imageAlt?: string;
-  description: ReactNode;
-}
-
-const CustomImage: React.FC<Props> = ({
-  imageSrc,
-  imageAlt = "",
-  description,
-}) => {
-  return (
-    <div className="">
-      <div className="relative mx-auto h-96 w-96">
-        <Image src={imageSrc} alt={imageAlt} fill className="object-contain object-bottom" />
-      </div>
-      <div className="prose prose-sm prose-invert mx-auto text-center">
-        <div>{description}</div>
-      </div>
-    </div>
-  );
-};
+import React from "react";
+import GalleryImage from "~/components/gallery/image";
 
 const MePage: NextPage = () => {
   return (
@@ -50,17 +27,17 @@ const MePage: NextPage = () => {
           </div>
 
           <div className="mt-10  w-full space-y-8">
-            <CustomImage
+            <GalleryImage
               imageSrc="/images/stair.jpg"
               imageAlt="Lorong"
               description="Kita ingin melakukanya."
             />
-            <CustomImage
+            <GalleryImage
               imageSrc="/images/lorong-1.jpg"
               imageAlt="Lorong"
               description="Pandemi, 2020, kupikir dunia akan berakhir, mehh."
             />
-            <CustomImage
+            <GalleryImage
               imageSrc="/images/sunset.jpg"
               imageAlt="Lorong"
               description={

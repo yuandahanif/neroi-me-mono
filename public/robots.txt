@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://neroi.space
+
+# Sitemaps
+Sitemap: https://neroi.space/sitemap.xml
