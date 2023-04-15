@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`local_date function should return the same value from the same input 1`] = `
-<div>
-  <span>
-    Jumat, 14 April 2023 00.57
-  </span>
-</div>
-`;
