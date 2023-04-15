@@ -22,7 +22,7 @@ const GalleryImage: React.FC<Props> = ({
           className="object-contain object-bottom"
         />
       </div>
-      <div className="prose prose-sm prose-invert mx-auto text-center">
+      <div className="prose prose-sm prose-invert mx-auto text-center mt-3">
         <div>{description}</div>
       </div>
     </div>

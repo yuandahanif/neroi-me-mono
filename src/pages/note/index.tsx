@@ -54,11 +54,16 @@ const TILPage: NextPage = () => {
 
             <div className="prose prose-sm prose-invert mx-auto flex-col gap-y-20 lg:prose-lg">
               {TILS.map((data) => (
-                <div key={data.id} className="mb-8">
-                  <div className="border-l-2 py-0 pl-5">
+                <div key={data.id} className="mb-8 flex w-full flex-col">
+                  <div className="py-0">
                     <div className="prose-md">{data.content}</div>
                   </div>
-                  <span className="prose-sm">{local_date(data.date)}</span>
+                  <div className="flex items-center gap-2">
+                    <div className="h-px bg-white w-full"/>
+                    <span className="prose-sm ml-auto inline-flex whitespace-nowrap">
+                      {local_date(data.date)}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>

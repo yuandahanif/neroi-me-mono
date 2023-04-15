@@ -21,7 +21,7 @@ const MainNavigation = () => {
             href={link.href}
             className={twMerge(
               `hover:underline`,
-              router.asPath == link.href && "underline"
+              router.asPath == link.href && "underline underline-offset-4"
             )}
           >
             {link.label}
