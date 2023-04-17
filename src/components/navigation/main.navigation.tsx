@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { twMerge } from "tailwind-merge";
+import Redacted from "~/components/text/redacted";
 
 const LINKS = [
   { id: "home-index", href: "/", label: "Home" },
@@ -17,15 +18,13 @@ const MainNavigation = () => {
     <div className="mt-8 flex gap-x-2 text-xl">
       {LINKS.map((link, idx) => (
         <div key={link.href}>
-          <Link
-            href={link.href}
-            className={twMerge(
-              `hover:underline`,
-              router.asPath == link.href && "underline underline-offset-4"
-            )}
-          >
-            {link.label}
-          </Link>
+          {router.asPath == link.href ? (
+            <Redacted> {link.label}</Redacted>
+          ) : (
+            <Link href={link.href} className={twMerge(`hover:underline`)}>
+              {link.label}
+            </Link>
+          )}
           {idx < LINKS.length - 1 && <span> . </span>}
         </div>
       ))}
