@@ -53,37 +53,31 @@ const MePage: NextPage = () => {
                   className="h-full w-full cursor-pointer object-contain object-center"
                 ></image>
               </svg>
-              {/* <Image
-                src={"/images/lorong-1.jpg"}
-                alt="lorong-1"
-                className="object-contain"
-                fill
-              /> */}
             </div>
 
             <p>
-              Halo, Namaku Yuanda <Redacted>Hanif Hisyam</Redacted>, seorang
+              Halo, Namaku <Redacted>Yuanda Hanif Hisyam</Redacted>, seorang
               yang mencintai dan terlalu bergantung pada internet. Mahasiswa
-              jurusan Informatika di salah satu kampus swasta di Yogyakarta.
-              Mencintai teknologi terutama internet sebagai salah satu
-              pencapaian terbaik dari umat manusia. Tidak terlalu menyukain
-              keramaian dan hampir mengurung diri 24/7 di dalam kosnya.
-              Didiagnosa depresi pada usia 20 tahun dan punya kesulitan
-              berinteraksi dengan manusia lain.
+              jurusan Informatika di salah satu kampus swasta di{" "}
+              <Redacted>Yogyakarta</Redacted>. Mencintai teknologi terutama
+              internet sebagai salah satu pencapaian terbaik dari umat manusia.
+              Tidak terlalu menyukain keramaian dan hampir mengurung diri 24/7
+              di dalam kosnya. Didiagnosa depresi pada usia 20 tahun dan punya
+              kesulitan berinteraksi dengan manusia lain.
             </p>
 
             <p>
               Tidak berencana untuk memiliki hubungan dengan manusia lain, dan
-              tidak memiliki rencana untuk memiliki keturunan. Memiliki
-              keinginan untuk hidup tidak lebih dari 25 tahun dengan akhir yang
-              tanpa penyesalan.
+              tidak berencana untuk memiliki keturunan. Memiliki keinginan untuk
+              hidup tidak lebih dari 25 tahun dengan akhir yang tanpa
+              penyesalan.
             </p>
 
             <p>
               Hobiku adalah bermain internet, duduk mendengarkan orang lain
               berbicara, dan menulis. Setidaknya itu yang boleh kutulis,
               selebihnya adalah rahasia. Seperti <Redacted>Crossdress</Redacted>{" "}
-              dan <Redacted>Stalking(OSINT)</Redacted>.
+              dan <Redacted>Stalking</Redacted>.
             </p>
 
             <p>
@@ -94,8 +88,29 @@ const MePage: NextPage = () => {
                 title="Disclaimer: Semua yang kutulis disini hanyalah roleplay semata"
               >
                 :D
-              </span>
+              </span>{" "}
+              Oh, apakah ini termasuk.
             </p>
+
+            <p>
+              Also Suka{" "}
+              <a
+                href="https://en.wikipedia.org/wiki/Alternate_reality_game"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                ARG
+              </a>
+              , so lets mimic one. Liminal Space, Weird Core, brrrr.
+            </p>
+
+            <blockquote className="prose-sm">
+              Bagaimana kau menjelaskan tentang dirimu? diantara jutaan manusia
+              apa yang membuat dirimu berbeda? Kurasa itu tidaklah penting, usia
+              kita terlalu pendek untuk menjawab ini. Kebanyakan dari kita semua
+              akan mati lalu dilupakan.
+            </blockquote>
           </div>
 
           <div className="mt-10">
@@ -105,6 +120,16 @@ const MePage: NextPage = () => {
             </h3>
             <div className="mt-5">
               <ul className="flex gap-5">
+                <li>
+                  <a
+                    href="https://github.com/yuandahanif"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    Github
+                  </a>
+                </li>
                 <li>
                   <a
                     href="https://www.linkedin.com/in/yuanda-hanif-hisyam-1432701aa/"
