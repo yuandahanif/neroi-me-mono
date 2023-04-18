@@ -76,6 +76,7 @@ model Blog {
     slug      String
     content   String   @db.Text
     Tags      Tag[]
+    visit     Int      @default(0)
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
