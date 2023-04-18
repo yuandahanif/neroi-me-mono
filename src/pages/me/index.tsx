@@ -104,6 +104,13 @@ const MePage: NextPage = () => {
               </a>
               , so lets mimic one. Liminal Space, Weird Core, brrrr.
             </p>
+
+            <blockquote className="prose-sm">
+              Bagaimana kau menjelaskan tentang dirimu? diantara jutaan manusia
+              apa yang membuat dirimu berbeda? Kurasa itu tidaklah penting, usia
+              kita terlalu pendek untuk menjawab ini. Kebanyakan dari kita semua
+              akan mati lalu dilupakan.
+            </blockquote>
           </div>
 
           <div className="mt-10">
