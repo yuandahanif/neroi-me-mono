@@ -28,19 +28,59 @@ const MePage: NextPage = () => {
 
           <div className="mt-10  w-full space-y-8">
             <GalleryImage
+              imageSrc="/images/laptop.jpg"
+              imageAlt="Laptop"
+              description="I use ubuntu BTW"
+            />
+
+            <GalleryImage
+              imageSrc="/images/reimu.jpg"
+              imageAlt="hakurei reimu"
+              description=">\\\<"
+            />
+
+            <GalleryImage
+              imageSrc="/images/classroom.jpg"
+              imageAlt="classroom"
+              description="Tempat untuk banyak orang, namun rasanya selalu sendiri."
+            />
+
+            <GalleryImage
+              imageSrc="/images/fortune.jpg"
+              imageAlt="fortune"
+              description="bando kucing"
+            />
+
+            <GalleryImage
+              imageSrc="/images/book.jpg"
+              imageAlt="book"
+              description="IRL"
+            />
+
+            <GalleryImage
+              imageSrc="/images/blahaj.jpg"
+              imageAlt="Blåhaj"
+              description="My beloved sharkkkk."
+            />
+
+            <GalleryImage
               imageSrc="/images/stair.jpg"
               imageAlt="Lorong"
-              description="pernah berpikir untuk melakukanya?"
+              description="pernah berpikir untuk melakukanya? - (The call of the void)"
             />
+
             <GalleryImage
               imageSrc="/images/lorong-1.jpg"
               imageAlt="Lorong"
-              description="Pandemi, 2020, kupikir dunia akan berakhir, mehh."
+              description="2020, kupikir dunia akan berakhir, mehh."
             />
+
             <GalleryImage
               imageSrc="/images/sunset.jpg"
               imageAlt="Lorong"
-              description={<Redacted>tekan &apos;/&apos; di halaman home. </Redacted>}
+              description={
+                <Redacted>tekan &apos;/&apos; di halaman home. </Redacted>
+              }
             />
           </div>
         </main>
