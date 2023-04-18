@@ -88,9 +88,16 @@ const MainNavigation = () => {
             <div className="fixed  left-0 top-0 z-40 h-full w-full bg-main-600 bg-opacity-80 backdrop-blur-sm"></div>
             <div
               ref={navigationref}
-              className="fixed left-1/2 top-1/2 z-50 m-auto h-96 w-full max-w-screen-md -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5"
+              className="min-h-96 fixed left-1/2 top-1/2 z-50 m-auto w-full max-w-screen-md -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5"
             >
-              <span></span>
+              <span>Navigasi</span>
+              <div>
+                <ul>
+                  <li>
+                    <span>Todo: the navigation</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </>
         )}

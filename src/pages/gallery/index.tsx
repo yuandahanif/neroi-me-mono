@@ -6,6 +6,7 @@ import MainNavigation from "~/components/navigation/main.navigation";
 import Redacted from "~/components/text/redacted";
 import React from "react";
 import GalleryImage from "~/components/gallery/image";
+import Link from "next/link";
 
 const MePage: NextPage = () => {
   return (
@@ -22,7 +23,11 @@ const MePage: NextPage = () => {
             <h3 className="text-center">Gambar dariku</h3>
 
             <p>
-              Hai, Bolehkah Aku mengambil <Redacted>gambar</Redacted>mu.
+              Hai, Bolehkah Aku mengambil{" "}
+              <Link href={"/art/avatar"} className="no-underline">
+                <Redacted>gambar</Redacted>
+              </Link>
+              mu.
             </p>
           </div>
 

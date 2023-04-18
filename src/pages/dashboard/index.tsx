@@ -7,23 +7,6 @@ import Redacted from "~/components/text/redacted";
 import { useEffect, useState } from "react";
 
 const DashboardindexPage: NextPage = () => {
-  const [dilateRadius, setDilateRadius] = useState(3);
-  const cycleDilateRadius = () => {
-    setDilateRadius((dilateRadius) => {
-      return dilateRadius <= 8 ? dilateRadius + 2 : 0;
-    });
-  };
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      cycleDilateRadius();
-    }, 3000);
-
-    return () => {
-      clearInterval(t);
-    };
-  }, []);
-
   return (
     <>
       <HeadSEO />
