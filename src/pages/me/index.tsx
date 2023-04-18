@@ -76,8 +76,8 @@ const MePage: NextPage = () => {
             <p>
               Hobiku adalah bermain internet, duduk mendengarkan orang lain
               berbicara, dan menulis. Setidaknya itu yang boleh kutulis,
-              selebihnya adalah rahasia. Seperti <Redacted>Crossdress</Redacted>{" "}
-              dan <Redacted>Stalking</Redacted>.
+              selebihnya adalah rahasia. Seperti <Redacted>cosplay</Redacted>{" "}
+              dan <Redacted>Stalking(OSINT)</Redacted>.
             </p>
 
             <p>

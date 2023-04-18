@@ -17,7 +17,7 @@ const Home: NextPage = () => {
     const t = setInterval(() => {
       if (letterIndex < newGreating.length - 1) {
         setGreating((s) => `${s}${newGreating[letterIndex] ?? ""}`);
-        ++letterIndex;
+        letterIndex++;
       } else {
         clearInterval(t);
       }
@@ -60,7 +60,11 @@ const Home: NextPage = () => {
                 <span>Welcome to nextOS v0.0.1</span>
                 <span>
                   Please enter the password to{" "}
-                  <button type="button" onClick={() => void signIn()} className="hover:underline">
+                  <button
+                    type="button"
+                    onClick={() => void signIn()}
+                    className="hover:underline"
+                  >
                     continue
                   </button>
                   .{" "}
