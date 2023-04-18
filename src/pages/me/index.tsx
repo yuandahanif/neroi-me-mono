@@ -68,9 +68,9 @@ const MePage: NextPage = () => {
 
             <p>
               Tidak berencana untuk memiliki hubungan dengan manusia lain, dan
-              tidak memiliki rencana untuk memiliki keturunan. Memiliki
-              keinginan untuk hidup tidak lebih dari 25 tahun dengan akhir yang
-              tanpa penyesalan.
+              tidak berencana untuk memiliki keturunan. Memiliki keinginan untuk
+              hidup tidak lebih dari 25 tahun dengan akhir yang tanpa
+              penyesalan.
             </p>
 
             <p>
@@ -92,7 +92,18 @@ const MePage: NextPage = () => {
               Oh, apakah ini termasuk.
             </p>
 
-            <p>Also Suka ARG, so lets mimic one.</p>
+            <p>
+              Also Suka{" "}
+              <a
+                href="https://en.wikipedia.org/wiki/Alternate_reality_game"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                ARG
+              </a>
+              , so lets mimic one.
+            </p>
           </div>
 
           <div className="mt-10">
