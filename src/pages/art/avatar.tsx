@@ -11,9 +11,19 @@ const ArtAvatar: NextPage = () => {
   useEffect(() => {
     let ittr = 0;
     const t = setInterval(() => {
-      setErrorMesagesAmount((s) => [...s, s[s.length - 1] ?? 0 + 1]);
+      setErrorMesagesAmount((s) => {
+        const temp = s;
+        const lastindex = s[s.length - 1];
+        if (lastindex != undefined) {
+          temp.push(lastindex + 1);
+        } else {
+          temp.push(1);
+        }
 
-      if (ittr >= 200) {
+        return [...temp];
+      });
+
+      if (ittr >= 500) {
         clearInterval(t);
       }
 
@@ -30,7 +40,7 @@ const ArtAvatar: NextPage = () => {
       <HeadSEO />
       <MainLayout>
         <div className="relative flex">
-          <div className="flex max-h-[70vh] gap-x-5 flex-col flex-wrap">
+          <div className="flex max-h-[70vh] flex-col flex-wrap gap-x-5">
             {errorMessagesAmount.map((e) => (
               <span key={e} className="text-red-500">
                 ERROR: can&apos;t find boot media.

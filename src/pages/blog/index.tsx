@@ -4,6 +4,7 @@ import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
 import MainNavigation from "~/components/navigation/main.navigation";
 import { api } from "~/utils/api";
+import local_date from "~/utils/local_date";
 
 const BlogDetailPage: NextPage = () => {
   const blog = api.blog.getAll.useQuery({});
@@ -33,7 +34,20 @@ const BlogDetailPage: NextPage = () => {
                   className="prose-sm line-clamp-3"
                 />
 
-                <div>{}</div>
+                <div className="flex flex-wrap gap-3 items-center">
+                  {blog.Tags.map((tag) => (
+                    <span
+                      key={tag.title}
+                      className="mt-3 bg-main-300 p-px px-2"
+                    >
+                      {tag.title}
+                    </span>
+                  ))}
+
+                  <span className="ml-auto inline-flex text-sm">
+                    {local_date(blog.createdAt)}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
