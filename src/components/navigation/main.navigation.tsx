@@ -40,9 +40,14 @@ const MainNavigation = () => {
       ))}
 
       <nav>
-        <div className="fixed bottom-10 right-10 z-50 flex flex-col items-center justify-center gap-2">
+        <div className="fixed bottom-10 right-10 z-30 flex flex-col items-center justify-center gap-2">
           {status == "authenticated" && (
-            <button>
+            <button
+              type="button"
+              onClick={() => {
+                void router.push("/dashboard");
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -80,7 +85,7 @@ const MainNavigation = () => {
 
         {isNavVisible && (
           <>
-            <div className="fixed bottom-0 left-0 right-0 top-0 z-40 bg-main-600 bg-opacity-80 blur-sm"></div>
+            <div className="fixed  left-0 top-0 z-40 h-full w-full bg-main-600 bg-opacity-80 blur-lg"></div>
             <div
               ref={navigationref}
               className="fixed left-1/2 top-1/2 z-50 m-auto h-96 w-full max-w-screen-md -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5"

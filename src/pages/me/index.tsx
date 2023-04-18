@@ -102,7 +102,7 @@ const MePage: NextPage = () => {
               >
                 ARG
               </a>
-              , so lets mimic one.
+              , so lets mimic one. Liminal Space, Weird Core, brrrr.
             </p>
           </div>
 

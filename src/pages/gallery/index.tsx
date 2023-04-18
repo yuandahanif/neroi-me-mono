@@ -40,9 +40,7 @@ const MePage: NextPage = () => {
             <GalleryImage
               imageSrc="/images/sunset.jpg"
               imageAlt="Lorong"
-              description={
-                <Redacted>Saat hidup semudah mengerjakan tugas.</Redacted>
-              }
+              description={<Redacted>tekan &apos;/&apos; di halaman home. </Redacted>}
             />
           </div>
         </main>
