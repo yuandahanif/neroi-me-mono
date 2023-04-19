@@ -19,4 +19,30 @@ export const blogRouter = createTRPCRouter({
         include: { Tags: { select: { title: true } } },
       });
     }),
+  getBySlug: publicProcedure
+    .input(
+      z.object({
+        slug: z.string(),
+      })
+    )
+    .query(({ ctx, input }) => {
+      return ctx.prisma.blog.findFirst({
+        orderBy: { createdAt: "desc" },
+        include: { Tags: { select: { title: true } } },
+        where: { slug: input.slug },
+      });
+    }),
+
+  incrementVisitById: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.blog.update({
+        data: { visit: { increment: 1 } },
+        where: { id: input.id },
+      });
+    }),
 });
