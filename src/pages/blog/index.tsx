@@ -26,14 +26,13 @@ const BlogIndexPage: NextPage = () => {
           <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
 
-          <div className="prose prose-invert mt-10 lg:prose-lg">
-            {/* <h3 className="text-center">Tulisan acak</h3> */}
-          </div>
-
-          <div className="flex flex-col gap-y-5">
+          <div className="mt-10 flex flex-col gap-y-5">
             {blog.data?.map((blog) => (
               <div key={blog.id} className=" prose prose-invert ">
-                <Link href={`/blog/${blog.slug}`}>
+                <Link
+                  href={`/blog/${blog.slug}`}
+                  className="no-underline hover:underline"
+                >
                   <span className="prose-2xl line-clamp-2 font-semibold">
                     {blog.title}
                   </span>

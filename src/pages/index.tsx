@@ -53,7 +53,7 @@ const Home: NextPage = () => {
       <HeadSEO />
       <MainLayout>
         {isLoginWindowVisible && (
-          <div className="fixed left-1/2 top-1/2 m-auto h-96 w-full max-w-screen-md -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5">
+          <div className="fixed left-1/2 top-1/2 m-auto h-96 md: md:w-full w-5/6 max-w-screen-sm md:max-w-screen-md -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5">
             <div className="flex">
               <span>root@user:</span>
               <div className="flex flex-col">
@@ -86,7 +86,7 @@ const Home: NextPage = () => {
         <main
           className={`flex min-h-screen grow flex-col items-center justify-center`}
         >
-          <h1 className=" text-7xl ">{greating}</h1>
+          <h1 className=" text-3xl md:text-7xl ">{greating}</h1>
 
           <MainNavigation />
         </main>

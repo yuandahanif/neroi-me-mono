@@ -59,7 +59,7 @@ const MePage: NextPage = () => {
             <GalleryImage
               imageSrc="/images/book.jpg"
               imageAlt="book"
-              description="IRL"
+              description="me-IRL"
             />
 
             <GalleryImage
