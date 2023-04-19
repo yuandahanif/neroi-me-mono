@@ -28,7 +28,7 @@ const ArtAvatar: NextPage = () => {
       }
 
       ittr++;
-    }, 100);
+    }, 200);
 
     return () => {
       clearInterval(t);
