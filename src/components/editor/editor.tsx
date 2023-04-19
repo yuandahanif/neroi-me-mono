@@ -13,7 +13,7 @@ const Editor: React.FC<Props> = ({ onChange, defaultValue }) => {
 
   useEffect(() => {
     if (quill) {
-      quill.on("text-change", (delta, oldDelta, source) => {
+      quill.on("text-change", () => {
         // console.log("Text change!");
         // console.log(quill.getText()); // Get text only
         // console.log(quill.getContents()); // Get delta contents
