@@ -66,11 +66,11 @@ const MePage: NextPage = () => {
               kesulitan berinteraksi dengan manusia lain.
             </p>
 
-            <p>
+            <p className="hidden">
               Tidak berencana untuk memiliki hubungan dengan manusia lain, dan
               tidak berencana untuk memiliki keturunan. Memiliki keinginan untuk
               hidup tidak lebih dari 25 tahun dengan akhir yang tanpa
-              penyesalan.
+              penyesalan. Setidaknya itu yang ku inginkan untuk saat ini.
             </p>
 
             <p>

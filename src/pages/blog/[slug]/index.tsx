@@ -36,15 +36,16 @@ const BlogDetailPage: NextPage = () => {
 
           <div className="mt-10 flex flex-col gap-y-5">
             <div className=" prose prose-invert ">
-              <span className="prose-2xl line-clamp-2 font-semibold">
+              <span className="prose-2xl line-clamp-2 font-semibold mb-5">
                 {blog.data?.title}
               </span>
+
               <div
                 dangerouslySetInnerHTML={{ __html: blog.data?.content ?? "" }}
                 className="prose-sm "
               />
 
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="mt-4 flex flex-wrap items-center gap-3">
                 {blog.data?.Tags.map((tag) => (
                   <span key={tag.title} className="mt-3 bg-main-300 p-px px-2">
                     {tag.title}
