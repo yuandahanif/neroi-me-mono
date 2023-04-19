@@ -73,7 +73,7 @@ model VerificationToken {
 model Blog {
     id        String   @id @default(cuid())
     title     String
-    slug      String
+    slug      String   @unique
     content   String   @db.Text
     Tags      Tag[]
     visit     Int      @default(0)
