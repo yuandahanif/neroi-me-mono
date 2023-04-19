@@ -37,7 +37,7 @@ const MePage: NextPage = () => {
           <div className="prose prose-invert mt-10 lg:prose-lg">
             <h3>Tentangku</h3>
 
-            <div className="relative mx-auto h-96 w-auto">
+            <div className="relative mx-auto h-96 md:w-auto">
               <svg className="h-full w-full ">
                 <filter id="blur">
                   <feMorphology
@@ -66,18 +66,18 @@ const MePage: NextPage = () => {
               kesulitan berinteraksi dengan manusia lain.
             </p>
 
-            <p>
+            <p className="hidden">
               Tidak berencana untuk memiliki hubungan dengan manusia lain, dan
               tidak berencana untuk memiliki keturunan. Memiliki keinginan untuk
               hidup tidak lebih dari 25 tahun dengan akhir yang tanpa
-              penyesalan.
+              penyesalan. Setidaknya itu yang ku inginkan untuk saat ini.
             </p>
 
             <p>
               Hobiku adalah bermain internet, duduk mendengarkan orang lain
               berbicara, dan menulis. Setidaknya itu yang boleh kutulis,
-              selebihnya adalah rahasia. Seperti <Redacted>Crossdress</Redacted>{" "}
-              dan <Redacted>Stalking</Redacted>.
+              selebihnya adalah rahasia. Seperti <Redacted>cosplay</Redacted>{" "}
+              dan <Redacted>Stalking(OSINT)</Redacted>.
             </p>
 
             <p>
@@ -116,10 +116,10 @@ const MePage: NextPage = () => {
           <div className="mt-10">
             <h3 className="text-center">
               Kontak <br />
-              (profesional)
+              <span className="text-sm">(profesional)</span>
             </h3>
             <div className="mt-5">
-              <ul className="flex gap-5">
+              <ul className="flex flex-wrap justify-center gap-5">
                 <li>
                   <a
                     href="https://github.com/yuandahanif"

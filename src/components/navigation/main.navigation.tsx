@@ -27,7 +27,7 @@ const MainNavigation = () => {
   return (
     <div className="mt-8 flex gap-x-2 text-xl">
       {LINKS.map((link, idx) => (
-        <div key={link.href}>
+        <div key={link.href} className="text-sm md:text-base">
           {router.asPath == link.href ? (
             <Redacted> {link.label}</Redacted>
           ) : (

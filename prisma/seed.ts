@@ -14,8 +14,31 @@ const NOTES = [
   { content: "Jam tidur yang rutin itu penting!" },
 ];
 
+const TAGS = [{ title: "tect" }, { title: "personal" }, { title: "CMS" }];
+
+const BLOGS = [
+  {
+    content: `<p>React changed how developers build for the web, popularizing breaking down UI into reusable components and emphasizing incremental adoption.
+While it's certainly still a library that can be sprinkled into any webpage, the React architecture is a blueprint for frameworks to follow to create interactive, resilient, and performant frontend patterns.
+<p/>`,
+    slug: "react-change",
+    title: "Why react is change, and its better",
+    visit: 100,
+  },
+  {
+    content: `<p>React changed how developers build for the web, popularizing breaking down UI into reusable components and emphasizing incremental adoption.
+While it's certainly still a library that can be sprinkled into any webpage, the React architecture is a blueprint for frameworks to follow to create interactive, resilient, and performant frontend patterns.
+<p/>`,
+    slug: "react-evolving",
+    title: "Why react is change, and its better 2",
+    visit: 100,
+  },
+];
+
 async function main() {
   await prisma.note.createMany({ data: NOTES });
+  await prisma.tag.createMany({ data: TAGS });
+  await prisma.blog.createMany({ data: BLOGS });
 }
 
 main()
