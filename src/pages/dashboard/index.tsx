@@ -11,10 +11,11 @@ import {
   Title,
   Tooltip,
   Legend,
-  ChartData,
+  type ChartData,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { useState } from "react";
+import AdminLayout from "~/layouts/admin.layout";
 
 ChartJS.register(
   CategoryScale,
@@ -71,7 +72,7 @@ const DashboardindexPage: NextPage = () => {
   return (
     <>
       <HeadSEO />
-      <MainLayout>
+      <AdminLayout>
         <main
           className={`flex min-h-screen grow flex-col items-center justify-start p-10`}
         >
@@ -85,7 +86,7 @@ const DashboardindexPage: NextPage = () => {
             </div>
           </div>
         </main>
-      </MainLayout>
+      </AdminLayout>
     </>
   );
 };
