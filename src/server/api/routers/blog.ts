@@ -19,6 +19,7 @@ export const blogRouter = createTRPCRouter({
         include: { Tags: { select: { title: true } } },
       });
     }),
+
   getBySlug: publicProcedure
     .input(
       z.object({
@@ -45,4 +46,11 @@ export const blogRouter = createTRPCRouter({
         where: { id: input.id },
       });
     }),
+
+  getBlogVisitorStatistic: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.blog.findMany({
+      take: 10,
+      orderBy: { visit: "desc" },
+    });
+  }),
 });
