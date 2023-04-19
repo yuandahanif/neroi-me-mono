@@ -1,4 +1,4 @@
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
@@ -16,7 +16,6 @@ const LINKS = [
 
 const AdminNavigation = () => {
   const router = useRouter();
-  const { status } = useSession({ required: true });
   const navigationref = useRef<null | HTMLDivElement>(null);
   const [isNavVisible, setIsNavVisible] = useState(false);
 
