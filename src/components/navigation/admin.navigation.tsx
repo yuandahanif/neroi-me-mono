@@ -10,8 +10,6 @@ const LINKS = [
   { id: "home-index", href: "/dashboard", label: "Home" },
   { id: "blog-index", href: "/dashboard/blog", label: "Blog" },
   { id: "note-index", href: "/dashboard/note", label: "Note" },
-  { id: "gallery-index", href: "/dashboard/gallery", label: "Gallery" },
-  { id: "me-index", href: "/dashboard/me", label: "Me" },
 ];
 
 const AdminNavigation = () => {

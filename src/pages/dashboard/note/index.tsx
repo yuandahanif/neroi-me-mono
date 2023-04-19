@@ -1,27 +1,25 @@
 import { type NextPage } from "next";
-
 import HeadSEO from "~/components/head/headSEO";
-import MainLayout from "~/layouts/main.layout";
-import MainNavigation from "~/components/navigation/main.navigation";
-import local_date from "~/utils/local_date";
+import AdminNavigation from "~/components/navigation/admin.navigation";
 import { api } from "~/utils/api";
+import AdminLayout from "~/layouts/admin.layout";
+import local_date from "~/utils/local_date";
 
-const TILPage: NextPage = () => {
-  const notes = api.note.getAll.useQuery({});
+const NoteIndexPage: NextPage = () => {
+  const notes = api.note.getAll.useQuery({}, {});
 
   return (
     <>
       <HeadSEO />
-      <MainLayout>
+      <AdminLayout>
         <main
           className={`flex min-h-screen grow flex-col items-center justify-start p-10`}
         >
-          <h1 className="text-5xl">{"<Note/>"}</h1>
-          <MainNavigation />
+          <h1 className="text-4xl">{"<Dashboard/>"}</h1>
 
-          <div className="mt-10 flex w-full flex-col gap-7">
-            <h3 className="mx-auto text-2xl">Catatan singkat</h3>
+          <AdminNavigation />
 
+          <div className="mt-10 flex w-full">
             <div className="prose prose-sm prose-invert mx-auto flex-col gap-y-20 lg:prose-lg">
               {notes.isSuccess &&
                 notes.data.map((data) => (
@@ -40,9 +38,9 @@ const TILPage: NextPage = () => {
             </div>
           </div>
         </main>
-      </MainLayout>
+      </AdminLayout>
     </>
   );
 };
 
-export default TILPage;
+export default NoteIndexPage;
