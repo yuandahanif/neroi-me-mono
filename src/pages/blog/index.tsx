@@ -6,6 +6,7 @@ import MainNavigation from "~/components/navigation/main.navigation";
 import { api } from "~/utils/api";
 import local_date from "~/utils/local_date";
 import Link from "next/link";
+import Loading from "~/components/loading/loading";
 
 const BlogIndexPage: NextPage = () => {
   const blog = api.blog.getAll.useQuery(
@@ -26,38 +27,46 @@ const BlogIndexPage: NextPage = () => {
           <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
 
-          <div className="mt-10 flex flex-col gap-y-5">
-            {blog.data?.map((blog) => (
-              <div key={blog.id} className=" prose prose-invert ">
-                <Link
-                  href={`/blog/${blog.slug}`}
-                  className="no-underline hover:underline"
-                >
-                  <span className="prose-2xl line-clamp-2 font-semibold">
-                    {blog.title}
-                  </span>
-                </Link>
-                <div
-                  dangerouslySetInnerHTML={{ __html: blog.content }}
-                  className="prose-sm line-clamp-3"
-                />
+          <div className="mt-10 flex flex-col gap-y-8">
+            {blog.isLoading && <Loading />}
 
-                <div className="flex flex-wrap items-center gap-3">
-                  {blog.Tags.map((tag) => (
-                    <span
-                      key={tag.title}
-                      className="mt-3 bg-main-300 p-px px-2"
-                    >
-                      {tag.title}
+            {blog.isSuccess &&
+              blog.data?.map((blog) => (
+                <div key={blog.id} className=" prose prose-invert ">
+                  <Link
+                    href={`/blog/${blog.slug}`}
+                    className="no-underline hover:underline"
+                  >
+                    <span className="prose-2xl line-clamp-2 font-semibold">
+                      {blog.title}
                     </span>
-                  ))}
+                  </Link>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: blog.content }}
+                    className="prose-sm line-clamp-3"
+                  />
 
-                  <span className="ml-auto inline-flex text-sm">
-                    {local_date(blog.createdAt)}
-                  </span>
+                  <div className="flex flex-wrap items-center gap-3">
+                    {blog.Tags.map((tag) => (
+                      <span
+                        key={tag.title}
+                        className="mt-3 bg-main-300 p-px px-2"
+                      >
+                        {tag.title}
+                      </span>
+                    ))}
+
+                    <div className="ml-auto flex items-center gap-1 text-sm">
+                      <span>{blog?.visit}</span>
+                      pembaca
+                    </div>
+
+                    <span className="ml-auto inline-flex text-sm">
+                      {local_date(blog.createdAt)}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </main>
       </MainLayout>

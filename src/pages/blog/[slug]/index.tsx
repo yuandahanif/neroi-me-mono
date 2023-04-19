@@ -6,6 +6,7 @@ import MainNavigation from "~/components/navigation/main.navigation";
 import { api } from "~/utils/api";
 import local_date from "~/utils/local_date";
 import { useRouter } from "next/router";
+import Loading from "~/components/loading/loading";
 
 const BlogDetailPage: NextPage = () => {
   const router = useRouter();
@@ -35,8 +36,10 @@ const BlogDetailPage: NextPage = () => {
           <MainNavigation />
 
           <div className="mt-10 flex flex-col gap-y-5">
+            {blog.isLoading && <Loading />}
+
             <div className=" prose prose-invert ">
-              <span className="prose-2xl line-clamp-2 font-semibold mb-5">
+              <span className="prose-2xl mb-5 line-clamp-2 font-semibold">
                 {blog.data?.title}
               </span>
 
@@ -52,7 +55,7 @@ const BlogDetailPage: NextPage = () => {
                   </span>
                 ))}
 
-                <div className="ml-auto flex items-center gap-1">
+                <div className="ml-auto flex items-center gap-1 text-sm">
                   <span>{blog.data?.visit}</span>
                   pembaca
                 </div>
