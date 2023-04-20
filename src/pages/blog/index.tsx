@@ -43,12 +43,12 @@ const BlogIndexPage: NextPage = () => {
 
             {blog.isSuccess &&
               blog.data?.map((blog) => (
-                <div key={blog.id} className=" prose prose-invert ">
+                <div key={blog.id} className=" prose prose-invert">
                   <Link
                     href={`/blog/${blog.slug}`}
                     className="no-underline hover:underline"
                   >
-                    <span className="prose-2xl line-clamp-2 font-semibold">
+                    <span className="prose-md md:prose-2xl line-clamp-2 font-semibold">
                       {blog.title}
                     </span>
                   </Link>

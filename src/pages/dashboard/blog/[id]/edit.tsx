@@ -164,7 +164,13 @@ const BlogAddPage: NextPage = () => {
                   <span>masukkan Draft?</span>
                 </label>
 
-                <div className="mt-8">
+                <div className="mt-8 flex">
+                  <button
+                    className="text-red-600 hover:underline"
+                    type="button"
+                  >
+                    Hapus
+                  </button>
                   <button className="hover:underline">Ubah</button>
                 </div>
               </div>
