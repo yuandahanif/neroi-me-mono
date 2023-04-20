@@ -6,6 +6,7 @@ import { api } from "~/utils/api";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import "highlight.js/styles/atom-one-dark.css";
 import "~/styles/globals.css";
 
 const MyApp: AppType<{ session: Session | null }> = ({

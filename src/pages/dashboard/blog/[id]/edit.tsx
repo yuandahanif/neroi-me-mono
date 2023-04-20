@@ -30,7 +30,7 @@ const BlogAddPage: NextPage = () => {
         if (result) {
           setTitle(result?.title);
           setSlug(result?.slug);
-          setIsDraft(result?.isDraft || true);
+          setIsDraft(result?.isDraft ?? true);
         }
       },
     }
@@ -41,7 +41,6 @@ const BlogAddPage: NextPage = () => {
   const [slug, setSlug] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const [isDraft, setIsDraft] = useState<boolean>(false);
-  const [fetchSlug, setFetchSlug] = useState<boolean>(false);
 
   const updateBlogmutation = api.blog.updateById.useMutation({
     onSuccess() {
@@ -53,15 +52,6 @@ const BlogAddPage: NextPage = () => {
       toast.error("Gagal");
     },
   });
-  const isSlugAvaliable = api.blog.checkSlugAvaliable.useQuery(
-    { slug },
-    {
-      enabled: fetchSlug,
-      onSuccess() {
-        setFetchSlug(false);
-      },
-    }
-  );
 
   const tag = api.tag.getAll.useQuery();
   const tagOptionMemo = useMemo(() => {
@@ -164,7 +154,13 @@ const BlogAddPage: NextPage = () => {
                   <span>masukkan Draft?</span>
                 </label>
 
-                <div className="mt-8">
+                <div className="mt-8 flex">
+                  <button
+                    className="text-red-600 hover:underline"
+                    type="button"
+                  >
+                    Hapus
+                  </button>
                   <button className="hover:underline">Ubah</button>
                 </div>
               </div>

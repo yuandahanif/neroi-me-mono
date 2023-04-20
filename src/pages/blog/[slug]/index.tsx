@@ -7,6 +7,8 @@ import { api } from "~/utils/api";
 import local_date from "~/utils/local_date";
 import { useRouter } from "next/router";
 import Loading from "~/components/loading/loading";
+import hljs from "highlight.js";
+import { useEffect } from "react";
 
 const BlogDetailPage: NextPage = () => {
   const router = useRouter();
@@ -24,6 +26,14 @@ const BlogDetailPage: NextPage = () => {
       },
     }
   );
+
+  useEffect(() => {
+    if (blog.isSuccess) {
+      document.querySelectorAll("pre.ql-syntax").forEach((el) => {
+        hljs.highlightElement(el as HTMLElement);
+      });
+    }
+  }, [blog.isSuccess]);
 
   return (
     <>
@@ -54,20 +64,22 @@ const BlogDetailPage: NextPage = () => {
                 className="prose-sm "
               />
 
-              <div className="mt-4 flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 {blog.data?.Tags.map((tag) => (
                   <span key={tag.title} className="mt-3 bg-main-300 p-px px-2">
                     {tag.title}
                   </span>
                 ))}
+              </div>
 
+              <div className="flex flex-wrap items-center gap-3">
                 <div className="ml-auto flex items-center gap-1 text-sm">
                   <span>{blog.data?.visit}</span>
                   pembaca
                 </div>
-
-                <span className="ml-auto inline-flex text-sm">
-                  {local_date(blog.data?.createdAt ?? new Date())}
+                <span>|</span>
+                <span className="inline-flex text-sm">
+                  {local_date(blog.data?.createdAt || new Date())}
                 </span>
               </div>
             </div>
