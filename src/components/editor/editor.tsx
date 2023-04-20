@@ -1,5 +1,6 @@
 import { useQuill } from "react-quilljs";
 import React, { useEffect } from "react";
+import hljs from "highlight.js";
 
 import "quill/dist/quill.snow.css";
 
@@ -8,8 +9,49 @@ interface Props {
   onChange: (value: string) => void;
 }
 
+hljs.configure({
+  languages: ["javascript", "ruby", "python", "rust"],
+});
+
 const Editor: React.FC<Props> = ({ onChange, defaultValue }) => {
-  const { quill, quillRef } = useQuill();
+  const { quill, quillRef } = useQuill({
+    formats: [
+      "header",
+      "font",
+      "size",
+      "bold",
+      "italic",
+      "underline",
+      "strike",
+      "blockquote",
+      "list",
+      "bullet",
+      "indent",
+      "link",
+      "image",
+      "video",
+      "code-block",
+    ],
+    modules: {
+      syntax: {
+        highlight: (text: string) => {
+          console.log(text);
+
+          return hljs.highlightAuto(text).value;
+        },
+      },
+      toolbar: [
+        ["bold", "italic", "underline", "blockquote"],
+        [{ list: "ordered" }, { list: "bullet" }],
+        ["link", "image", "video"],
+        ["clean"],
+        ["code-block"],
+      ],
+      clipboard: {
+        matchVisual: false,
+      },
+    },
+  });
 
   useEffect(() => {
     if (quill) {

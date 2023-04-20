@@ -7,6 +7,8 @@ import { api } from "~/utils/api";
 import local_date from "~/utils/local_date";
 import { useRouter } from "next/router";
 import Loading from "~/components/loading/loading";
+import hljs from "highlight.js";
+import { useEffect } from "react";
 
 const BlogDetailPage: NextPage = () => {
   const router = useRouter();
@@ -24,6 +26,14 @@ const BlogDetailPage: NextPage = () => {
       },
     }
   );
+
+  useEffect(() => {
+    if (blog.isSuccess) {
+      document.querySelectorAll("pre.ql-syntax").forEach((el) => {
+        hljs.highlightElement(el as HTMLElement);
+      });
+    }
+  }, [blog.isSuccess]);
 
   return (
     <>
