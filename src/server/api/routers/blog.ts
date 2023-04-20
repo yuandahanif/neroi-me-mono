@@ -11,16 +11,19 @@ export const blogRouter = createTRPCRouter({
     .input(
       z
         .object({
+          inDraft: z.boolean().default(false),
           page: z.number().default(1).optional().nullable(),
           amount: z.number().default(10).optional().nullable(),
           cursor: z.string().optional().nullable(),
         })
         .nullable()
     )
-    .query(({ ctx }) => {
+    .query(({ ctx, input }) => {
+      const inDraft = input?.inDraft ? undefined : input?.inDraft;
       return ctx.prisma.blog.findMany({
         orderBy: { createdAt: "desc" },
         include: { Tags: { select: { title: true } } },
+        where: { isDraft: inDraft },
       });
     }),
 
@@ -32,9 +35,21 @@ export const blogRouter = createTRPCRouter({
     )
     .query(({ ctx, input }) => {
       return ctx.prisma.blog.findFirst({
-        orderBy: { createdAt: "desc" },
         include: { Tags: { select: { title: true } } },
         where: { slug: input.slug },
+      });
+    }),
+
+  getById: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .query(({ ctx, input }) => {
+      return ctx.prisma.blog.findFirst({
+        include: { Tags: { select: { title: true } } },
+        where: { id: input.id },
       });
     }),
 
@@ -76,6 +91,7 @@ export const blogRouter = createTRPCRouter({
         slug: z.string(),
         content: z.string(),
         title: z.string(),
+        isDraft: z.boolean(),
         tags: z.array(z.string()),
       })
     )
@@ -88,7 +104,34 @@ export const blogRouter = createTRPCRouter({
           slug: input.slug,
           title: input.title,
           Tags: { connect: tags },
+          isDraft: input.isDraft,
         },
+      });
+    }),
+
+  updateById: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        slug: z.string(),
+        content: z.string(),
+        title: z.string(),
+        isDraft: z.boolean(),
+        tags: z.array(z.string()),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      const tags = input.tags.map((tag) => ({ id: tag }));
+
+      return ctx.prisma.blog.update({
+        data: {
+          content: input.content,
+          slug: input.slug,
+          title: input.title,
+          Tags: { connect: tags },
+          isDraft: input.isDraft,
+        },
+        where: { id: input.id },
       });
     }),
 });

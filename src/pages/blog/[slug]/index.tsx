@@ -38,6 +38,12 @@ const BlogDetailPage: NextPage = () => {
           <div className="mt-10 flex flex-col gap-y-5">
             {blog.isLoading && <Loading />}
 
+            {blog.isError && (
+              <div>
+                <span>Error</span>
+              </div>
+            )}
+
             <div className=" prose prose-invert ">
               <span className="prose-2xl mb-5 line-clamp-2 font-semibold">
                 {blog.data?.title}

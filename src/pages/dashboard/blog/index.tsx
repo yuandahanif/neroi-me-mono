@@ -5,9 +5,10 @@ import { api } from "~/utils/api";
 import AdminLayout from "~/layouts/admin.layout";
 import Link from "next/link";
 import local_date from "~/utils/local_date";
+import Loading from "~/components/loading/loading";
 
 const BlogIndexPage: NextPage = () => {
-  const blog = api.blog.getAll.useQuery({}, {});
+  const blogs = api.blog.getAll.useQuery({ inDraft: true }, {});
 
   return (
     <>
@@ -32,14 +33,32 @@ const BlogIndexPage: NextPage = () => {
               </Link>
             </div>
 
-            <div className="flex h-96 w-full flex-col items-center gap-y-5">
-              {blog.data?.map((blog) => (
-                <div key={blog.id} className=" prose prose-invert ">
+            {blogs.isLoading && <Loading />}
+            {blogs.isError && (
+              <div>
+                <span>Error</span>
+              </div>
+            )}
+
+            {blogs.isSuccess && blogs.data.length == 0 && (
+              <div>
+                <span>Tidak ada data</span>
+              </div>
+            )}
+
+            <div className="flex  w-full flex-col items-center gap-y-5 overflow-auto">
+              {blogs.data?.map((blog) => (
+                <div key={blog.id} className=" prose prose-invert w-full">
                   <Link
-                    href={`/dashboard/blog/${blog.slug}`}
-                    className="no-underline hover:underline"
+                    href={`/dashboard/blog/${blog.id}/edit`}
+                    className="inline-flex items-center gap-2 no-underline "
                   >
-                    <span className="prose-2xl line-clamp-2 font-semibold">
+                    {blog.isDraft && (
+                      <span className="text-xs hover:no-underline">
+                        [Draft]
+                      </span>
+                    )}
+                    <span className="prose-2xl line-clamp-2 font-semibold hover:underline">
                       {blog.title}
                     </span>
                   </Link>
@@ -57,6 +76,11 @@ const BlogIndexPage: NextPage = () => {
                         {tag.title}
                       </span>
                     ))}
+
+                    <div className="ml-auto flex items-center gap-1 text-sm">
+                      <span>{blog?.visit}</span>
+                      pembaca
+                    </div>
 
                     <span className="ml-auto inline-flex text-sm">
                       {local_date(blog.createdAt)}
