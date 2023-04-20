@@ -13,7 +13,6 @@ datasource db {
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url               = env("DATABASE_URL")
-    shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model Example {
@@ -77,6 +76,7 @@ model Blog {
     content   String   @db.Text
     Tags      Tag[]
     visit     Int      @default(0)
+    isDraft   Boolean? @default(true)
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }

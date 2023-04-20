@@ -29,6 +29,17 @@ const BlogIndexPage: NextPage = () => {
 
           <div className="mt-10 flex flex-col gap-y-8">
             {blog.isLoading && <Loading />}
+            {blog.isError && (
+              <div>
+                <span>Error</span>
+              </div>
+            )}
+
+            {blog.isSuccess && blog.data.length == 0 && (
+              <div>
+                <span>Tidak ada data</span>
+              </div>
+            )}
 
             {blog.isSuccess &&
               blog.data?.map((blog) => (

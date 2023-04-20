@@ -2,9 +2,6 @@ import { useEffect, type ReactNode } from "react";
 import { Source_Code_Pro } from "next/font/google";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { ToastContainer } from "react-toastify";
-
-import "react-toastify/dist/ReactToastify.css";
 
 const source_Code_Pro = Source_Code_Pro({ subsets: ["latin", "cyrillic"] });
 interface Props {
@@ -36,7 +33,6 @@ const AdminLayout: React.FC<Props> = ({ children }) => {
       <div className="mx-auto min-h-screen max-w-screen-2xl bg-main-600 text-white">
         {children}
       </div>
-      <ToastContainer theme="dark" position="top-center" />
     </div>
   );
 };

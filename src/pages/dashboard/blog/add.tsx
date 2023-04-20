@@ -14,6 +14,7 @@ import {
 import { twMerge } from "tailwind-merge";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import slugify from "slugify";
 
 const Editor = dynamic(() => import("~/components/editor/editor"), {
   ssr: false,
@@ -25,6 +26,7 @@ const BlogAddPage: NextPage = () => {
   const [title, setTitle] = useState<string>("");
   const [slug, setSlug] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
+  const [isDraft, setIsDraft] = useState<boolean>(false);
   const [fetchSlug, setFetchSlug] = useState<boolean>(false);
 
   const createBlogmutation = api.blog.create.useMutation({
@@ -55,12 +57,18 @@ const BlogAddPage: NextPage = () => {
 
   const onTitleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setTitle(e.target.value);
-    setSlug(e.target.value.replaceAll(" ", "-"));
+    setSlug(slugify(e.target.value));
   };
 
   const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    createBlogmutation.mutate({ title, content: editorDelta, slug, tags });
+    createBlogmutation.mutate({
+      title,
+      content: editorDelta,
+      slug,
+      tags,
+      isDraft,
+    });
   };
 
   return (
@@ -121,7 +129,7 @@ const BlogAddPage: NextPage = () => {
                     disabled
                     className={twMerge(
                       "w-full rounded-sm p-1 px-3",
-                      isSlugAvaliable.data != null
+                      !isSlugAvaliable.isSuccess || isSlugAvaliable.data != null
                         ? "border border-red-400"
                         : "border border-green-400"
                     )}
@@ -137,10 +145,21 @@ const BlogAddPage: NextPage = () => {
                 </div>
               </label>
 
+              <label className="mr-auto flex items-center gap-4">
+                <input
+                  type="checkbox"
+                  checked={isDraft}
+                  onChange={() => setIsDraft((s) => !s)}
+                />
+                <span>masukkan Draft?</span>
+              </label>
+
               <div className="mt-8">
                 <button
                   className="hover:underline"
-                  disabled={isSlugAvaliable.data != null}
+                  disabled={
+                    !isSlugAvaliable.isSuccess || isSlugAvaliable.data != null
+                  }
                 >
                   Buat
                 </button>
