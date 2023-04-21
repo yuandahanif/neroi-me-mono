@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 import Loading from "~/components/loading/loading";
 import hljs from "highlight.js";
 import { useEffect } from "react";
-import { NextSeo } from "next-seo";
 
 const BlogDetailPage: NextPage = () => {
   const router = useRouter();
