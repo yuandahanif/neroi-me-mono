@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Loading from "~/components/loading/loading";
 import hljs from "highlight.js";
 import { useEffect } from "react";
+import { NextSeo } from "next-seo";
 
 const BlogDetailPage: NextPage = () => {
   const router = useRouter();
@@ -37,7 +38,7 @@ const BlogDetailPage: NextPage = () => {
 
   return (
     <>
-      <HeadSEO />
+      <HeadSEO title={blog.data?.title} description={blog.data?.title} />
       <MainLayout>
         <main
           className={`flex min-h-screen grow flex-col items-center justify-start p-10`}
