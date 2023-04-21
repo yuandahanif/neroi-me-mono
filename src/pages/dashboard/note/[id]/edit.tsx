@@ -18,7 +18,7 @@ const NoteAddPage: NextPage = () => {
   const [editorDelta, setEditorDelta] = useState<string>("");
   const note = api.note.getById.useQuery({ id: String(id) });
 
-  const createNoteMutation = api.note.create.useMutation({
+  const createNoteMutation = api.note.updateById.useMutation({
     onSuccess() {
       toast.success("Berhasil");
       void router.push("/dashboard/note");
@@ -33,6 +33,7 @@ const NoteAddPage: NextPage = () => {
     e.preventDefault();
     createNoteMutation.mutate({
       content: editorDelta,
+      id: String(id),
     });
   };
 

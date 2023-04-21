@@ -10,6 +10,21 @@ import Loading from "~/components/loading/loading";
 const NoteIndexPage: NextPage = () => {
   const notes = api.note.getAll.useQuery({}, {});
 
+  const deleteNotemutation = api.note.deleteById.useMutation();
+
+  const onDelete = (id: string) => {
+    if (window.confirm("Are you sure you want to delete")) {
+      deleteNotemutation.mutate(
+        { id },
+        {
+          onSuccess() {
+            void notes.refetch();
+          },
+        }
+      );
+    }
+  };
+
   return (
     <>
       <HeadSEO />
@@ -58,10 +73,14 @@ const NoteIndexPage: NextPage = () => {
                     </div>
                     <div className=" flex w-full items-center gap-2">
                       <div>
-                        <button>Hapus</button>
+                        <button type="button" onClick={() => onDelete(data.id)}>
+                          Hapus
+                        </button>
                       </div>
                       <div>
-                        <Link href={`/dashboard/note/${data.id}/edit`}>Ubah</Link>
+                        <Link href={`/dashboard/note/${data.id}/edit`}>
+                          Ubah
+                        </Link>
                       </div>
                       <div className="h-px w-full bg-white" />
                       <span className="prose-sm ml-auto inline-flex whitespace-nowrap">
