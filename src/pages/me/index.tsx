@@ -62,8 +62,11 @@ const MePage: NextPage = () => {
               <Redacted>Yogyakarta</Redacted>. Mencintai teknologi terutama
               internet sebagai salah satu pencapaian terbaik dari umat manusia.
               Tidak terlalu menyukain keramaian dan hampir mengurung diri 24/7
-              di dalam kosnya. Didiagnosa depresi pada usia 20 tahun dan punya
-              kesulitan berinteraksi dengan manusia lain.
+              di dalam kosnya.{" "}
+              <span className="hidden">
+                Didiagnosa depresi pada usia 20 tahun dan punya kesulitan
+                berinteraksi dengan manusia lain.
+              </span>
             </p>
 
             <p className="hidden">
@@ -80,7 +83,7 @@ const MePage: NextPage = () => {
               dan <Redacted>Stalking(OSINT)</Redacted>.
             </p>
 
-            <p>
+            <p className="hidden">
               Tidak memiliki ketergantungan kepada rokok, alkohol, maupun
               obat-obatan. Tujuanku saat ini adalah menyelesaikan web ini{" "}
               <span
