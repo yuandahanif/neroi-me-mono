@@ -22,6 +22,11 @@ const Editor = dynamic(() => import("~/components/editor/editor"), {
 const BlogAddPage: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;
+  const [editorDelta, setEditorDelta] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [slug, setSlug] = useState<string>("");
+  const [tags, setTags] = useState<string[]>([]);
+  const [isDraft, setIsDraft] = useState<boolean>(false);
 
   const blog = api.blog.getById.useQuery(
     { id: String(id) },
@@ -35,12 +40,6 @@ const BlogAddPage: NextPage = () => {
       },
     }
   );
-
-  const [editorDelta, setEditorDelta] = useState<string>("");
-  const [title, setTitle] = useState<string>("");
-  const [slug, setSlug] = useState<string>("");
-  const [tags, setTags] = useState<string[]>([]);
-  const [isDraft, setIsDraft] = useState<boolean>(false);
 
   const updateBlogMutation = api.blog.updateById.useMutation({
     onSuccess() {
@@ -63,8 +62,8 @@ const BlogAddPage: NextPage = () => {
       toast.error("Gagal");
     },
   });
-
   const tag = api.tag.getAll.useQuery();
+
   const tagOptionMemo = useMemo(() => {
     if (!tag.data) return [];
     return tag.data.map((tag) => ({ value: tag.id, label: tag.title }));
@@ -131,6 +130,10 @@ const BlogAddPage: NextPage = () => {
                         primary: "black",
                       },
                     })}
+                    defaultValue={blog.data?.Tags.map((tag) => ({
+                      label: tag.title,
+                      value: tag.id,
+                    }))}
                     options={tagOptionMemo}
                   />
                 </label>

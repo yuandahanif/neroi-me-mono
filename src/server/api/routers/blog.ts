@@ -48,7 +48,7 @@ export const blogRouter = createTRPCRouter({
     )
     .query(({ ctx, input }) => {
       return ctx.prisma.blog.findFirst({
-        include: { Tags: { select: { title: true } } },
+        include: { Tags: true },
         where: { id: input.id },
       });
     }),
