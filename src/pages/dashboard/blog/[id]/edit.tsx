@@ -42,7 +42,18 @@ const BlogAddPage: NextPage = () => {
   const [tags, setTags] = useState<string[]>([]);
   const [isDraft, setIsDraft] = useState<boolean>(false);
 
-  const updateBlogmutation = api.blog.updateById.useMutation({
+  const updateBlogMutation = api.blog.updateById.useMutation({
+    onSuccess() {
+      toast.success("Berhasil");
+      void router.push("/dashboard/blog");
+    },
+    onError(err) {
+      console.error(err);
+      toast.error("Gagal");
+    },
+  });
+
+  const deleteBlogMutation = api.blog.deleteById.useMutation({
     onSuccess() {
       toast.success("Berhasil");
       void router.push("/dashboard/blog");
@@ -64,9 +75,15 @@ const BlogAddPage: NextPage = () => {
     setSlug(e.target.value.replaceAll(" ", "-"));
   };
 
+  const onDelete = () => {
+    if (window.confirm("Are you sure you want to delete")) {
+      void deleteBlogMutation.mutate({ id: String(id) });
+    }
+  };
+
   const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    updateBlogmutation.mutate({
+    updateBlogMutation.mutate({
       title,
       content: editorDelta,
       slug,
@@ -154,14 +171,15 @@ const BlogAddPage: NextPage = () => {
                   <span>masukkan Draft?</span>
                 </label>
 
-                <div className="mt-8 flex">
+                <div className="mt-8 flex w-full justify-between">
                   <button
-                    className="text-red-600 hover:underline"
+                    className="mr-auto text-red-600 hover:underline"
                     type="button"
+                    onClick={onDelete}
                   >
                     Hapus
                   </button>
-                  <button className="hover:underline">Ubah</button>
+                  <button className="hover:underline">Simpan</button>
                 </div>
               </div>
             </form>

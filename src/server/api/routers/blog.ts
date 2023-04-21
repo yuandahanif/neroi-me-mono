@@ -134,4 +134,16 @@ export const blogRouter = createTRPCRouter({
         where: { id: input.id },
       });
     }),
+
+  deleteById: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.blog.delete({
+        where: { id: input.id },
+      });
+    }),
 });
