@@ -35,7 +35,7 @@ const MePage: NextPage = () => {
           <MainNavigation />
 
           <div className="prose prose-invert mt-10 lg:prose-lg">
-            <h3>Tentangku</h3>
+            <h3 className="text-center">Tentangku</h3>
 
             <div className="relative mx-auto h-96 md:w-auto">
               <svg className="h-full w-full ">
@@ -161,6 +161,24 @@ const MePage: NextPage = () => {
                     className="hover:underline"
                   >
                     Discord
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-10">
+            <h3 className="text-center">Tambahan</h3>
+            <div className="mt-5">
+              <ul className="flex flex-wrap justify-center gap-5">
+                <li>
+                  <a
+                    href="/me/resume"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    Resume
                   </a>
                 </li>
               </ul>
