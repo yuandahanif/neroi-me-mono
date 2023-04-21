@@ -57,6 +57,12 @@ const NoteIndexPage: NextPage = () => {
                       ></div>
                     </div>
                     <div className=" flex w-full items-center gap-2">
+                      <div>
+                        <button>Hapus</button>
+                      </div>
+                      <div>
+                        <Link href={`/dashboard/note/${data.id}/edit`}>Ubah</Link>
+                      </div>
                       <div className="h-px w-full bg-white" />
                       <span className="prose-sm ml-auto inline-flex whitespace-nowrap">
                         {local_date(data.createdAt)}
