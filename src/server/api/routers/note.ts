@@ -1,6 +1,10 @@
 import { z } from "zod";
 
-import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "~/server/api/trpc";
 
 export const noteRouter = createTRPCRouter({
   getAll: publicProcedure
@@ -14,5 +18,14 @@ export const noteRouter = createTRPCRouter({
     )
     .query(({ ctx }) => {
       return ctx.prisma.note.findMany({ orderBy: { createdAt: "desc" } });
+    }),
+  create: protectedProcedure
+    .input(
+      z.object({
+        content: z.string(),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.note.create({ data: { content: input.content } });
     }),
 });

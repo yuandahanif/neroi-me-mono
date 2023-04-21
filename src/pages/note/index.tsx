@@ -30,7 +30,10 @@ const TILPage: NextPage = () => {
                 notes.data.map((data) => (
                   <div key={data.id} className="mb-8 flex w-full flex-col p-4">
                     <div className="py-0">
-                      <div className="prose-md">{data.content}</div>
+                      <div
+                        className="prose-md"
+                        dangerouslySetInnerHTML={{ __html: data.content }}
+                      ></div>
                     </div>
                     <div className=" flex w-full items-center gap-2">
                       <div className="h-px w-full bg-white" />
