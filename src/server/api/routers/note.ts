@@ -1,6 +1,10 @@
 import { z } from "zod";
 
-import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "~/server/api/trpc";
 
 export const noteRouter = createTRPCRouter({
   getAll: publicProcedure
@@ -14,5 +18,57 @@ export const noteRouter = createTRPCRouter({
     )
     .query(({ ctx }) => {
       return ctx.prisma.note.findMany({ orderBy: { createdAt: "desc" } });
+    }),
+
+  getById: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .query(({ ctx, input }) => {
+      return ctx.prisma.note.findFirst({
+        where: {
+          id: input.id,
+        },
+      });
+    }),
+
+  create: protectedProcedure
+    .input(
+      z.object({
+        content: z.string(),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.note.create({ data: { content: input.content } });
+    }),
+  updateById: protectedProcedure
+    .input(
+      z.object({
+        content: z.string(),
+        id: z.string(),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.note.update({
+        data: { content: input.content },
+        where: {
+          id: input.id,
+        },
+      });
+    }),
+  deleteById: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.note.delete({
+        where: {
+          id: input.id,
+        },
+      });
     }),
 });
