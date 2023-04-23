@@ -31,7 +31,7 @@ const MePage: NextPage = () => {
             </p>
           </div>
 
-          <div className="mt-10 w-full space-y-8 flex flex-col items-center">
+          <div className="mt-10 flex w-full flex-wrap items-center space-y-8 mx-auto justify-center">
             <GalleryImage
               imageSrc="/images/laptop.jpg"
               imageAlt="Laptop"
