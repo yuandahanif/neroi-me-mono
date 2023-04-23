@@ -32,21 +32,25 @@ const Editor: React.FC<Props> = ({ onChange, defaultValue }) => {
       "video",
       "code-block",
     ],
+
     modules: {
       syntax: {
         highlight: (text: string) => {
-          console.log(text);
-
           return hljs.highlightAuto(text).value;
         },
       },
-      toolbar: [
-        ["bold", "italic", "underline", "blockquote"],
-        [{ list: "ordered" }, { list: "bullet" }],
-        ["link", "image", "video"],
-        ["clean"],
-        ["code-block"],
-      ],
+      toolbar: {
+        handler: {},
+        container: [
+          ["bold", "italic", "underline"],
+          [{ header: [1, 2, 3, 4, 5, 6, false] }],
+          [{ list: "ordered" }, { list: "bullet" }],
+          ["link", "image", "video"],
+          ["clean"],
+          ["blockquote", "code-block"],
+          [{ color: [] }, { background: [] }],
+        ],
+      },
       clipboard: {
         matchVisual: false,
       },

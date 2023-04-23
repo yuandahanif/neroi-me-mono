@@ -63,9 +63,17 @@ const AdminNavigation = () => {
               ref={navigationref}
               className="min-h-96 fixed left-1/2 top-1/2 z-50 m-auto w-full max-w-screen-md -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5"
             >
-              <span>Navigasi</span>
-              <div className="flex w-full">
-                <ul className="flex w-full justify-center">
+              <span className="inline-flex w-full justify-center text-center">
+                Navigasi
+              </span>
+
+              <div className="mt-2 flex w-full border-t pt-5">
+                <ul className="flex w-full flex-col items-center justify-center">
+                  <li>
+                    <Link href={"/"}>
+                      <span>Home</span>
+                    </Link>
+                  </li>
                   <li>
                     <button
                       type="button"
