@@ -46,12 +46,12 @@ const BlogDetailPage: NextPage = () => {
       <HeadSEO title={blog.data?.title} description={blog.data?.title} />
       <MainLayout>
         <main
-          className={`flex min-h-screen grow flex-col items-center justify-start p-10 ${main_forn.className}`}
+          className={`flex min-h-screen grow flex-col items-center justify-start p-10 `}
         >
           <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
 
-          <div className="mt-10 flex flex-col gap-y-5">
+          <div className={`mt-10 flex flex-col gap-y-5 ${main_forn.className}`}>
             {blog.isLoading && <Loading />}
 
             {blog.isError && (
