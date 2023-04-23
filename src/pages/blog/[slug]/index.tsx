@@ -54,35 +54,46 @@ const BlogDetailPage: NextPage = () => {
               </div>
             )}
 
-            <div className=" prose prose-invert ">
-              <span className="prose-2xl mb-5 line-clamp-2 font-semibold">
-                {blog.data?.title}
-              </span>
-
-              <div
-                dangerouslySetInnerHTML={{ __html: blog.data?.content ?? "" }}
-                className="prose-sm "
-              />
-
-              <div className="flex flex-wrap items-center gap-3">
-                {blog.data?.Tags.map((tag) => (
-                  <span key={tag.title} className="mt-3 bg-main-300 p-px px-2">
-                    {tag.title}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap items-center gap-3">
-                <div className="ml-auto flex items-center gap-1 text-sm">
-                  <span>{blog.data?.visit}</span>
-                  pembaca
+            {blog.isSuccess && (
+              <div className="relative">
+                <div className="prose prose-invert relative flex h-auto justify-center">
+                  <h1 className="mb-5 text-2xl font-semibold leading-10 sm:text-3xl">
+                    {blog.data?.title}
+                  </h1>
                 </div>
-                <span>|</span>
-                <span className="inline-flex text-sm">
-                  {local_date(blog.data?.createdAt || new Date())}
-                </span>
+
+                <div className="relative z-20 w-fit rounded-md border border-main-400 bg-blog-500 p-2 sm:p-6 sm:mx-auto">
+                  <div
+                    className="prose prose-sm prose-invert prose-pre:rounded-sm prose-pre:bg-main-400"
+                    dangerouslySetInnerHTML={{
+                      __html: blog.data?.content ?? "",
+                    }}
+                  />
+                </div>
+
+                <div className="flex w-fit flex-wrap items-center gap-3">
+                  {blog.data?.Tags.map((tag) => (
+                    <span
+                      key={tag.title}
+                      className="mt-3 bg-main-300 p-px px-2"
+                    >
+                      {tag.title}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3">
+                  <div className="ml-auto flex items-center gap-1 text-sm">
+                    <span>{blog.data?.visit}</span>
+                    pembaca
+                  </div>
+                  <span>|</span>
+                  <span className="inline-flex text-sm">
+                    {local_date(blog.data?.createdAt || new Date())}
+                  </span>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </main>
       </MainLayout>
