@@ -83,6 +83,16 @@ const MePage: NextPage = () => {
               dan <Redacted>Stalking(OSINT)</Redacted>.
             </p>
 
+            <p>
+              Bersahabat dengan kesendirian membuatku bisa belajar banyak hal,
+              salah satunya adalah web development.{" "}
+              <span className="prose-sm">
+                *Aku nggak jago, tapi aku PD sama kemampuanku.
+              </span>{" "}
+              Punyaa Love-Hate Relationship sama JS dan TS, tapi tetep satu
+              bahasa untuk semua.
+            </p>
+
             <p className="hidden">
               Tidak memiliki ketergantungan kepada rokok, alkohol, maupun
               obat-obatan. Tujuanku saat ini adalah menyelesaikan web ini{" "}
@@ -110,9 +120,9 @@ const MePage: NextPage = () => {
 
             <blockquote className="prose-sm">
               Bagaimana kau menjelaskan tentang dirimu? diantara jutaan manusia
-              apa yang membuat dirimu berbeda? Kurasa itu tidaklah penting, usia
-              kita terlalu pendek untuk menjawab ini. Kebanyakan dari kita semua
-              akan mati lalu dilupakan.
+              apa yang membuat dirimu berbeda? Kurasa itu tidaklah penting,
+              waktu kita terlalu pendek untuk menjawab ini. Kebanyakan dari kita
+              semua akan mati lalu dilupakan.
             </blockquote>
           </div>
 
@@ -176,7 +186,7 @@ const MePage: NextPage = () => {
                     href="/me/resume"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex gap-1 hover:underline justify-center"
+                    className="flex justify-center gap-1 hover:underline"
                   >
                     <span>Resume</span>
                     <svg
