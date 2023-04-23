@@ -9,6 +9,12 @@ import { useRouter } from "next/router";
 import Loading from "~/components/loading/loading";
 import hljs from "highlight.js";
 import { useEffect } from "react";
+import { Lato } from "next/font/google";
+
+const main_forn = Lato({
+  subsets: ["latin-ext"],
+  weight: ["400", "900", "700"],
+});
 
 const BlogDetailPage: NextPage = () => {
   const router = useRouter();
@@ -40,7 +46,7 @@ const BlogDetailPage: NextPage = () => {
       <HeadSEO title={blog.data?.title} description={blog.data?.title} />
       <MainLayout>
         <main
-          className={`flex min-h-screen grow flex-col items-center justify-start p-10`}
+          className={`flex min-h-screen grow flex-col items-center justify-start p-10 ${main_forn.className}`}
         >
           <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
@@ -56,15 +62,15 @@ const BlogDetailPage: NextPage = () => {
 
             {blog.isSuccess && (
               <div className="relative">
-                <div className="prose prose-invert relative flex h-auto justify-center">
+                <div className="prose prose-invert relative flex h-auto">
                   <h1 className="mb-5 text-2xl font-semibold leading-10 sm:text-3xl">
                     {blog.data?.title}
                   </h1>
                 </div>
 
-                <div className="relative z-20 w-fit rounded-md border border-main-400 bg-blog-500 p-2 sm:p-6 sm:mx-auto">
+                <div className="bg-blog-500 relative z-20 w-fit rounded-md border border-main-400 p-2 sm:mx-auto sm:p-6">
                   <div
-                    className="prose prose-sm prose-invert prose-pre:rounded-sm prose-pre:bg-main-400"
+                    className="prose-md prose prose-invert prose-pre:rounded-sm prose-pre:bg-main-400"
                     dangerouslySetInnerHTML={{
                       __html: blog.data?.content ?? "",
                     }}
