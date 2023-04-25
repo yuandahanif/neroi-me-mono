@@ -20,10 +20,39 @@ export const blogRouter = createTRPCRouter({
     )
     .query(({ ctx, input }) => {
       const inDraft = input?.inDraft ? undefined : input?.inDraft;
+
       return ctx.prisma.blog.findMany({
         orderBy: { createdAt: "desc" },
         include: { Tags: { select: { title: true } } },
         where: { isDraft: inDraft },
+        take: input?.amount ?? undefined,
+      });
+    }),
+
+  getAll_withPagination: publicProcedure
+    .input(
+      z
+        .object({
+          page: z.number().default(1).optional().nullable(),
+          amount: z.number().default(10).optional().nullable(),
+        })
+        .nullable()
+    )
+    .query(({ ctx, input }) => {
+      return ctx.prisma.blog.findMany({
+        orderBy: { createdAt: "desc" },
+        select: {
+          id: true,
+          title: true,
+          Tags: { select: { title: true } },
+          slug: true,
+          visit: true,
+          createdAt: true,
+          updatedAt: true,
+        },
+        where: { isDraft: false },
+        take: input?.amount ?? undefined,
+        skip: input?.page ?? undefined,
       });
     }),
 

@@ -5,14 +5,12 @@ import local_date from "~/utils/local_date";
 interface Props {
   slug: string;
   title: string;
-  content: string;
   tags: { title: string }[];
   visit: number;
   createdAt: Date;
 }
 
 const BlogCard: React.FC<Props> = ({
-  content,
   createdAt,
   slug,
   tags,
@@ -26,10 +24,6 @@ const BlogCard: React.FC<Props> = ({
           {title}
         </span>
       </Link>
-      <div
-        dangerouslySetInnerHTML={{ __html: content }}
-        className="prose-sm line-clamp-3"
-      />
 
       <div className="flex flex-wrap items-center gap-3">
         {tags.map((tag) => (
