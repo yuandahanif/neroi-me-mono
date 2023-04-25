@@ -62,6 +62,7 @@ const BlogIndexPage: NextPage = () => {
                       {blog.title}
                     </span>
                   </Link>
+
                   <div
                     dangerouslySetInnerHTML={{ __html: blog.content }}
                     className="prose-sm line-clamp-3"

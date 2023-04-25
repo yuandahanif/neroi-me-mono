@@ -70,7 +70,7 @@ const BlogDetailPage: NextPage = () => {
 
                 <div className="bg-blog-500 relative z-20 w-fit rounded-md border border-main-400 p-2 sm:mx-auto sm:p-6">
                   <div
-                    className="prose-md prose prose-invert prose-pre:rounded-sm prose-pre:bg-main-400"
+                    className="prose-md w-max prose prose-invert prose-pre:rounded-sm prose-pre:bg-main-400"
                     dangerouslySetInnerHTML={{
                       __html: blog.data?.content ?? "",
                     }}

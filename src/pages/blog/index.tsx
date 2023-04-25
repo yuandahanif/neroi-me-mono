@@ -8,7 +8,7 @@ import Loading from "~/components/loading/loading";
 import BlogCard from "~/components/card/blog.card";
 
 const BlogIndexPage: NextPage = () => {
-  const blog = api.blog.getAll.useQuery(
+  const blog = api.blog.getAll_withPagination.useQuery(
     {},
     {
       refetchOnMount: false,
@@ -46,7 +46,6 @@ const BlogIndexPage: NextPage = () => {
                   key={blog.id}
                   slug={blog.slug}
                   title={blog.title}
-                  content={blog.content}
                   tags={blog.Tags}
                   visit={blog.visit}
                   createdAt={blog.createdAt}
