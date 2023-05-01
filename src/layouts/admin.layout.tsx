@@ -16,7 +16,7 @@ const AdminLayout: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (status == "authenticated") {
-      if (session.user.email != "kirishima699@admin.com") {
+      if (session.user.role != "ADMIN") {
         void router.replace("/not-admin");
       }
     }

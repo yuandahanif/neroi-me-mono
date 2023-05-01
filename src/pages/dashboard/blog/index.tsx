@@ -8,8 +8,13 @@ import local_date from "~/utils/local_date";
 import Loading from "~/components/loading/loading";
 
 const BlogIndexPage: NextPage = () => {
-  const blogs = api.blog.getAll.useQuery({ inDraft: true }, {});
-
+  const blogs = api.blog.getAll_withPagination.useQuery(
+    { inDraft: true },
+    {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    }
+  );
   return (
     <>
       <HeadSEO />
@@ -62,11 +67,6 @@ const BlogIndexPage: NextPage = () => {
                       {blog.title}
                     </span>
                   </Link>
-
-                  <div
-                    dangerouslySetInnerHTML={{ __html: blog.content }}
-                    className="prose-sm line-clamp-3"
-                  />
 
                   <div className="flex flex-wrap items-center gap-3">
                     {blog.Tags.map((tag) => (

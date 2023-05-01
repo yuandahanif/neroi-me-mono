@@ -31,7 +31,6 @@ const DashboardindexPage: NextPage = () => {
   >({ labels: [""], datasets: [] });
 
   api.blog.getBlogVisitorStatistic.useQuery(undefined, {
-    refetchOnMount: false,
     onSuccess(data) {
       if (data !== null) {
         const labels = data.map((blog) => blog.slug);

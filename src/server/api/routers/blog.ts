@@ -33,12 +33,15 @@ export const blogRouter = createTRPCRouter({
     .input(
       z
         .object({
+          inDraft: z.boolean().default(false),
           page: z.number().default(1).optional().nullable(),
           amount: z.number().default(10).optional().nullable(),
         })
         .nullable()
     )
     .query(({ ctx, input }) => {
+      const inDraft = input?.inDraft ? undefined : input?.inDraft;
+
       return ctx.prisma.blog.findMany({
         orderBy: { createdAt: "desc" },
         select: {
@@ -49,8 +52,9 @@ export const blogRouter = createTRPCRouter({
           visit: true,
           createdAt: true,
           updatedAt: true,
+          isDraft: true,
         },
-        where: { isDraft: false },
+        where: { isDraft: inDraft },
         take: input?.amount ?? undefined,
         skip: input?.page ?? undefined,
       });

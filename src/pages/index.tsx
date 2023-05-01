@@ -13,10 +13,11 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     const newGreating = "<​Halo Dunia/>";
-    let letterIndex = -1;
+    let letterIndex = 0;
+
     const t = setInterval(() => {
       if (letterIndex < newGreating.length - 1) {
-        setGreating((s) => `${s}${newGreating[letterIndex] ?? ""}`);
+        setGreating((s) => `${s}${String(newGreating[letterIndex])}`);
         letterIndex++;
       } else {
         clearInterval(t);
@@ -25,7 +26,7 @@ const Home: NextPage = () => {
 
     return () => {
       setGreating("");
-      letterIndex = -1;
+      letterIndex = 0;
       clearInterval(t);
     };
   }, []);
@@ -53,7 +54,7 @@ const Home: NextPage = () => {
       <HeadSEO />
       <MainLayout>
         {isLoginWindowVisible && (
-          <div className="fixed left-1/2 top-1/2 m-auto h-96 md: md:w-full w-5/6 max-w-screen-sm md:max-w-screen-md -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5">
+          <div className="md: fixed left-1/2 top-1/2 m-auto h-96 w-5/6 max-w-screen-sm -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5 md:w-full md:max-w-screen-md">
             <div className="flex">
               <span>root@user:</span>
               <div className="flex flex-col">
