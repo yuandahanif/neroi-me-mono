@@ -35,6 +35,7 @@ const BlogAddPage: NextPage = () => {
       onSuccess(result) {
         if (result) {
           setTitle(result?.title);
+          setDescription(result?.description);
           setSlug(result?.slug);
           setIsDraft(result?.isDraft ?? true);
         }
@@ -146,14 +147,13 @@ const BlogAddPage: NextPage = () => {
                     <span className="text-xs">[SEO]</span>
                   </div>
                   <textarea
-                    className="text-main-600 p-2 rounded-sm"
+                    className="rounded-sm p-2 text-main-600"
                     name="description"
                     cols={30}
                     rows={5}
                     onChange={(e) => setDescription(e.target.value)}
-                  >
-                    {description}
-                  </textarea>
+                    value={description}
+                  ></textarea>
                 </label>
 
                 <label className="flex w-full flex-col">

@@ -11,7 +11,7 @@ import Link from "next/link";
 const MePage: NextPage = () => {
   return (
     <>
-      <HeadSEO />
+      <HeadSEO description="Tempat gambar absurd" title="Gallery" />
       <MainLayout>
         <main
           className={`flex min-h-screen grow flex-col items-center justify-start p-10`}
@@ -31,7 +31,7 @@ const MePage: NextPage = () => {
             </p>
           </div>
 
-          <div className="mt-10 flex w-full flex-wrap items-center space-y-8 mx-auto justify-center">
+          <div className="mx-auto mt-10 flex w-full flex-wrap items-center justify-center space-y-8">
             <GalleryImage
               imageSrc="/images/laptop.jpg"
               imageAlt="Laptop"

@@ -121,8 +121,9 @@ const BlogAddPage: NextPage = () => {
                   cols={30}
                   rows={5}
                   onChange={(e) => setDescription(e.target.value)}
+                  value={description}
                 >
-                  {description}
+                  
                 </textarea>
               </label>
 

@@ -26,7 +26,7 @@ const MePage: NextPage = () => {
 
   return (
     <>
-      <HeadSEO />
+      <HeadSEO title="Me" description="" />
       <MainLayout>
         <main
           className={`flex min-h-screen grow flex-col items-center justify-start p-10`}
