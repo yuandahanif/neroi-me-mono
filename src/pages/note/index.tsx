@@ -12,7 +12,7 @@ const TILPage: NextPage = () => {
 
   return (
     <>
-      <HeadSEO />
+      <HeadSEO title="Note" description="Catatan singkat dan random." />
       <MainLayout>
         <main
           className={`flex min-h-screen grow flex-col items-center justify-start p-10`}

@@ -123,6 +123,7 @@ export const blogRouter = createTRPCRouter({
       z.object({
         slug: z.string(),
         content: z.string(),
+        description: z.string(),
         title: z.string(),
         isDraft: z.boolean(),
         tags: z.array(z.string()),
@@ -138,6 +139,7 @@ export const blogRouter = createTRPCRouter({
           title: input.title,
           Tags: { connect: tags },
           isDraft: input.isDraft,
+          description: input.description,
         },
       });
     }),
@@ -148,6 +150,7 @@ export const blogRouter = createTRPCRouter({
         id: z.string(),
         slug: z.string(),
         content: z.string(),
+        description: z.string(),
         title: z.string(),
         isDraft: z.boolean(),
         tags: z.array(z.string()),
@@ -163,6 +166,7 @@ export const blogRouter = createTRPCRouter({
           title: input.title,
           Tags: { connect: tags },
           isDraft: input.isDraft,
+          description: input.description,
         },
         where: { id: input.id },
       });
