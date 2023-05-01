@@ -23,6 +23,7 @@ const BlogAddPage: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const [editorDelta, setEditorDelta] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [slug, setSlug] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
@@ -89,6 +90,7 @@ const BlogAddPage: NextPage = () => {
       tags,
       isDraft,
       id: String(id),
+      description,
     });
   };
 
@@ -136,6 +138,22 @@ const BlogAddPage: NextPage = () => {
                     }))}
                     options={tagOptionMemo}
                   />
+                </label>
+
+                <label className="flex w-full flex-col">
+                  <div>
+                    <span>Deskripsi</span>
+                    <span className="text-xs">[SEO]</span>
+                  </div>
+                  <textarea
+                    className="text-main-600 p-2 rounded-sm"
+                    name="description"
+                    cols={30}
+                    rows={5}
+                    onChange={(e) => setDescription(e.target.value)}
+                  >
+                    {description}
+                  </textarea>
                 </label>
 
                 <label className="flex w-full flex-col">

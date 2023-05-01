@@ -25,6 +25,7 @@ const BlogAddPage: NextPage = () => {
   const [editorDelta, setEditorDelta] = useState<string>("");
   const [title, setTitle] = useState<string>("");
   const [slug, setSlug] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
   const [isDraft, setIsDraft] = useState<boolean>(false);
   const [fetchSlug, setFetchSlug] = useState<boolean>(false);
@@ -68,6 +69,7 @@ const BlogAddPage: NextPage = () => {
       slug,
       tags,
       isDraft,
+      description,
     });
   };
 
@@ -107,6 +109,21 @@ const BlogAddPage: NextPage = () => {
                   })}
                   options={tagOptionMemo}
                 />
+              </label>
+
+              <label className="flex w-full flex-col">
+                <div>
+                  <span>Deskripsi</span>
+                  <span className="text-xs">[SEO]</span>
+                </div>
+                <textarea
+                  name="description"
+                  cols={30}
+                  rows={5}
+                  onChange={(e) => setDescription(e.target.value)}
+                >
+                  {description}
+                </textarea>
               </label>
 
               <label className="flex w-full flex-col">

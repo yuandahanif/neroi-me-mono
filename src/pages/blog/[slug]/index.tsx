@@ -43,7 +43,7 @@ const BlogDetailPage: NextPage = () => {
 
   return (
     <>
-      <HeadSEO title={blog.data?.title} description={blog.data?.title} />
+      <HeadSEO title={blog.data?.title} description={blog.data?.description} />
       <MainLayout>
         <main
           className={`flex min-h-screen grow flex-col items-center justify-start p-10 `}
@@ -70,7 +70,7 @@ const BlogDetailPage: NextPage = () => {
 
                 <div className="bg-blog-500 relative z-20 w-fit rounded-md border border-main-400 p-2 sm:mx-auto sm:p-6">
                   <div
-                    className="prose-md w-max prose prose-invert prose-pre:rounded-sm prose-pre:bg-main-400"
+                    className="prose-md prose prose-invert w-max prose-pre:rounded-sm prose-pre:bg-main-400"
                     dangerouslySetInnerHTML={{
                       __html: blog.data?.content ?? "",
                     }}
@@ -88,13 +88,26 @@ const BlogDetailPage: NextPage = () => {
                   ))}
                 </div>
 
-                <div className="flex flex-wrap items-center gap-3">
-                  <div className="ml-auto flex items-center gap-1 text-sm">
+                <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
+                  <div className="text-sm">
+                    Ada saran atau koreksi? Kontak saya di{" "}
+                    <a
+                      href="http://discordapp.com/users/378907976267726859"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline"
+                    >
+                      Discord
+                    </a>
+                    .
+                  </div>
+
+                  <div className="ml-auto flex items-center gap-1 ">
                     <span>{blog.data?.visit}</span>
                     pembaca
                   </div>
                   <span>|</span>
-                  <span className="inline-flex text-sm">
+                  <span className="inline-flex">
                     {local_date(blog.data?.createdAt || new Date())}
                   </span>
                 </div>
