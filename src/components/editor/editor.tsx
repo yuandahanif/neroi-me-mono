@@ -77,8 +77,8 @@ const Editor: React.FC<Props> = ({ onChange, defaultValue }) => {
   }, [quill, defaultValue]);
 
   return (
-    <div className="h-[300px] min-w-[500px] text-2xl max-w-[60cm]">
-      <div ref={quillRef}  className="text-2xl"/>
+    <div className="min-h-[400px] w-full min-w-[500px] max-w-[60cm]">
+      <div ref={quillRef} className="h-full resize text-2xl" />
     </div>
   );
 };

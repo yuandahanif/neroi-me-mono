@@ -8,8 +8,9 @@ import local_date from "~/utils/local_date";
 import { useRouter } from "next/router";
 import Loading from "~/components/loading/loading";
 import hljs from "highlight.js";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Lato } from "next/font/google";
+import useReadTime from "~/hooks/useReadTime";
 
 const main_forn = Lato({
   subsets: ["latin-ext"],
@@ -18,8 +19,10 @@ const main_forn = Lato({
 
 const BlogDetailPage: NextPage = () => {
   const router = useRouter();
+  const articleRef = useRef<HTMLDivElement>(null);
   const { slug } = router.query;
   const visitmutation = api.blog.incrementVisitById.useMutation();
+  const readTime = useReadTime(articleRef);
   const blog = api.blog.getBySlug.useQuery(
     { slug: String(slug) },
     {
@@ -46,7 +49,7 @@ const BlogDetailPage: NextPage = () => {
       <HeadSEO title={blog.data?.title} description={blog.data?.description} />
       <MainLayout>
         <main
-          className={`flex  min-h-screen grow flex-col items-center justify-start p-2`}
+          className={`flex  min-h-screen grow flex-col items-center justify-start p-2 py-10`}
         >
           <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
@@ -77,6 +80,7 @@ const BlogDetailPage: NextPage = () => {
 
                 <div className="relative z-20 w-full rounded-md border border-main-300 bg-main-600 p-2 sm:mx-auto sm:p-6">
                   <div
+                    ref={articleRef}
                     className="prose-md prose prose-invert w-full prose-pre:rounded-sm prose-pre:bg-main-400"
                     dangerouslySetInnerHTML={{
                       __html: blog.data?.content ?? "",
@@ -84,7 +88,7 @@ const BlogDetailPage: NextPage = () => {
                   />
                 </div>
 
-                <div className="flex w-fit flex-wrap items-center gap-3">
+                <div className="flex w-full flex-wrap items-center justify-center gap-3">
                   {blog.data?.Tags.map((tag) => (
                     <span
                       key={tag.title}
@@ -93,6 +97,8 @@ const BlogDetailPage: NextPage = () => {
                       {tag.title}
                     </span>
                   ))}
+
+                  <span className="text-sm ml-auto">waktu baca {readTime} Menit</span>
                 </div>
 
                 <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
