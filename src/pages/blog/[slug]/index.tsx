@@ -67,7 +67,7 @@ const BlogDetailPage: NextPage = () => {
 
             {blog.isSuccess && (
               <div className="">
-                <div className="relative flex h-auto">
+                <div className="max-w-[600px] relative flex h-auto prose prose-2xl prose-invert w-fit">
                   <h1 className="mb-5 text-2xl font-semibold leading-10 sm:text-3xl">
                     {blog.data?.isDraft && (
                       <span className="my-auto mr-2 inline-flex bg-red-400 px-2 py-1 text-lg">
@@ -78,7 +78,7 @@ const BlogDetailPage: NextPage = () => {
                   </h1>
                 </div>
 
-                <div className="relative z-20 w-full rounded-md border border-main-300 bg-main-600 p-2 sm:mx-auto sm:p-6">
+                <div className="relative z-20 w-fit rounded-md border border-main-300 bg-main-600 p-2 sm:mx-auto sm:p-6">
                   <div
                     ref={articleRef}
                     className="prose-md prose prose-invert w-full prose-pre:rounded-sm prose-pre:bg-main-400"
@@ -88,7 +88,7 @@ const BlogDetailPage: NextPage = () => {
                   />
                 </div>
 
-                <div className="flex w-full flex-wrap items-center justify-center gap-3">
+                <div className="flex flex-wrap items-center justify-center gap-3">
                   {blog.data?.Tags.map((tag) => (
                     <span
                       key={tag.title}
@@ -98,7 +98,9 @@ const BlogDetailPage: NextPage = () => {
                     </span>
                   ))}
 
-                  <span className="text-sm ml-auto">waktu baca {readTime} Menit</span>
+                  <span className="ml-auto text-sm">
+                    waktu baca {readTime} Menit
+                  </span>
                 </div>
 
                 <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
