@@ -29,7 +29,7 @@ const MePage: NextPage = () => {
       <HeadSEO title="Me" description="" />
       <MainLayout>
         <main
-          className={`flex min-h-screen grow flex-col items-center justify-start p-10`}
+          className={`flex min-h-screen grow flex-col items-center justify-start p-2`}
         >
           <h1 className="text-5xl">{"<Me/>"}</h1>
           <MainNavigation />

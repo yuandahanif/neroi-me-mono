@@ -14,7 +14,7 @@ const MePage: NextPage = () => {
       <HeadSEO description="Tempat gambar absurd" title="Gallery" />
       <MainLayout>
         <main
-          className={`flex min-h-screen grow flex-col items-center justify-start p-10`}
+          className={`flex min-h-screen grow flex-col items-center justify-start p-2`}
         >
           <h1 className="text-5xl">{"<Gallery/>"}</h1>
           <MainNavigation />

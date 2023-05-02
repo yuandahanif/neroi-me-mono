@@ -46,12 +46,14 @@ const BlogDetailPage: NextPage = () => {
       <HeadSEO title={blog.data?.title} description={blog.data?.description} />
       <MainLayout>
         <main
-          className={`flex min-h-screen grow flex-col items-center justify-start p-10 `}
+          className={`flex  min-h-screen grow flex-col items-center justify-start p-2`}
         >
           <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
 
-          <div className={`mt-10 flex flex-col gap-y-5 ${main_forn.className}`}>
+          <div
+            className={`mt-10  flex flex-col gap-y-5 ${main_forn.className}`}
+          >
             {blog.isLoading && <Loading />}
 
             {blog.isError && (
@@ -61,7 +63,7 @@ const BlogDetailPage: NextPage = () => {
             )}
 
             {blog.isSuccess && (
-              <div className="relative">
+              <div className="">
                 <div className="relative flex h-auto">
                   <h1 className="mb-5 text-2xl font-semibold leading-10 sm:text-3xl">
                     {blog.data?.isDraft && (
@@ -73,9 +75,9 @@ const BlogDetailPage: NextPage = () => {
                   </h1>
                 </div>
 
-                <div className="bg-blog-500 relative z-20 w-fit rounded-md border border-main-400 p-2 sm:mx-auto sm:p-6">
+                <div className="relative z-20 w-full rounded-md border border-main-300 bg-main-600 p-2 sm:mx-auto sm:p-6">
                   <div
-                    className="prose-md prose prose-invert w-full prose-pre:rounded-sm prose-pre:bg-main-400 sm:w-max"
+                    className="prose-md prose prose-invert w-full prose-pre:rounded-sm prose-pre:bg-main-400"
                     dangerouslySetInnerHTML={{
                       __html: blog.data?.content ?? "",
                     }}

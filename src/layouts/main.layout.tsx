@@ -48,8 +48,9 @@ const MainLayout: React.FC<Props> = ({ children }) => {
           stiffness: 260,
           damping: 20,
         }}
+        className="flex w-full"
       >
-        <div className="mx-auto min-h-screen max-w-screen-2xl bg-main-600 text-white">
+        <div className="mx-auto min-h-screen w-full max-w-screen-2xl grow bg-main-600 text-white">
           {children}
         </div>
       </motion.div>
