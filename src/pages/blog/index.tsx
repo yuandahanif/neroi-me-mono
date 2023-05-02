@@ -21,7 +21,7 @@ const BlogIndexPage: NextPage = () => {
       <HeadSEO title="Blog" description="Tempat curhat dan tulisan acak." />
       <MainLayout>
         <main
-          className={`flex min-h-screen grow flex-col items-center justify-start p-10`}
+          className={`flex min-h-screen grow flex-col items-center justify-start p-2 py-10`}
         >
           <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
