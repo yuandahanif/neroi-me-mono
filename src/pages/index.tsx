@@ -5,31 +5,11 @@ import MainLayout from "~/layouts/main.layout";
 import { useEffect, useRef, useState } from "react";
 import MainNavigation from "~/components/navigation/main.navigation";
 import { signIn } from "next-auth/react";
+import Logo from "~/components/logo/logo";
 
 const Home: NextPage = () => {
-  const [greating, setGreating] = useState("");
   const inputRef = useRef<null | HTMLDivElement>(null);
   const [isLoginWindowVisible, setisLoginWindowVisible] = useState(false);
-
-  useEffect(() => {
-    const newGreating = "<​Halo Dunia/>";
-    let letterIndex = 0;
-
-    const t = setInterval(() => {
-      if (letterIndex < newGreating.length - 1) {
-        setGreating((s) => `${s}${String(newGreating[letterIndex])}`);
-        letterIndex++;
-      } else {
-        clearInterval(t);
-      }
-    }, 200);
-
-    return () => {
-      setGreating("");
-      letterIndex = 0;
-      clearInterval(t);
-    };
-  }, []);
 
   useEffect(() => {
     const ref = inputRef.current;
@@ -87,7 +67,9 @@ const Home: NextPage = () => {
         <main
           className={`flex min-h-screen grow flex-col items-center justify-center`}
         >
-          <h1 className=" text-3xl md:text-7xl ">{greating}</h1>
+          <div className="relative text-3xl md:text-7xl">
+            <Logo />
+          </div>
 
           <MainNavigation />
         </main>

@@ -64,6 +64,7 @@ const BlogDetailPage: NextPage = () => {
               <div className="relative">
                 <div className="prose prose-invert relative flex h-auto">
                   <h1 className="mb-5 text-2xl font-semibold leading-10 sm:text-3xl">
+                    {blog.data?.isDraft && <span className="inline-flex mr-2 text-lg my-auto bg-red-400 px-2 py-1">Draft</span>}
                     {blog.data?.title}
                   </h1>
                 </div>
