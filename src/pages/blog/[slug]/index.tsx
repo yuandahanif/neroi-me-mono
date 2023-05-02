@@ -62,16 +62,20 @@ const BlogDetailPage: NextPage = () => {
 
             {blog.isSuccess && (
               <div className="relative">
-                <div className="prose prose-invert relative flex h-auto">
+                <div className="relative flex h-auto">
                   <h1 className="mb-5 text-2xl font-semibold leading-10 sm:text-3xl">
-                    {blog.data?.isDraft && <span className="inline-flex mr-2 text-lg my-auto bg-red-400 px-2 py-1">Draft</span>}
+                    {blog.data?.isDraft && (
+                      <span className="my-auto mr-2 inline-flex bg-red-400 px-2 py-1 text-lg">
+                        Draft
+                      </span>
+                    )}
                     {blog.data?.title}
                   </h1>
                 </div>
 
                 <div className="bg-blog-500 relative z-20 w-fit rounded-md border border-main-400 p-2 sm:mx-auto sm:p-6">
                   <div
-                    className="prose-md prose prose-invert w-max prose-pre:rounded-sm prose-pre:bg-main-400"
+                    className="prose-md prose prose-invert w-full prose-pre:rounded-sm prose-pre:bg-main-400 sm:w-max"
                     dangerouslySetInnerHTML={{
                       __html: blog.data?.content ?? "",
                     }}
