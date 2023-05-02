@@ -8,13 +8,7 @@ import local_date from "~/utils/local_date";
 import Loading from "~/components/loading/loading";
 
 const BlogIndexPage: NextPage = () => {
-  const blogs = api.blog.getAll_withPagination.useQuery(
-    { inDraft: true },
-    {
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  const blogs = api.blog.getAll_withPagination.useQuery({ inDraft: true });
   return (
     <>
       <HeadSEO />
