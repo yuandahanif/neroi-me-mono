@@ -2,6 +2,8 @@ const local_date = (date: string | Date) => {
   let d;
   if (typeof date === "string") {
     d = new Date(date);
+  } else {
+    d = date;
   }
 
   const formater = new Intl.DateTimeFormat("id", {
