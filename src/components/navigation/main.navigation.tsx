@@ -9,7 +9,7 @@ import useOnClickOutside from "~/hooks/useClickOutside";
 const LINKS = [
   { id: "home-index", href: "/", label: "Home" },
   { id: "blog-index", href: "/blog", label: "Blog" },
-  { id: "note-index", href: "/note", label: "Note" },
+  // { id: "note-index", href: "/note", label: "Note" },
   { id: "gallery-index", href: "/gallery", label: "Gallery" },
   { id: "me-index", href: "/me", label: "Me" },
 ];
