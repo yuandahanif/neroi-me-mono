@@ -43,7 +43,7 @@ const ArtAvatar: NextPage = () => {
           <div className="flex max-h-[70vh] flex-col flex-wrap gap-x-5">
             {errorMessagesAmount.map((e) => (
               <span key={e} className="text-red-500">
-                ERROR: can&apos;t find boot media.
+                ERROR: 
               </span>
             ))}
           </div>
