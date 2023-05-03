@@ -39,6 +39,7 @@ const BlogDetailPage: NextPage = () => {
   useEffect(() => {
     if (blog.isSuccess) {
       document.querySelectorAll("pre.ql-syntax").forEach((el) => {
+        el.classList.add("language-typescript"); // is default to Typescript for now
         hljs.highlightElement(el as HTMLElement);
       });
     }
@@ -67,7 +68,7 @@ const BlogDetailPage: NextPage = () => {
 
             {blog.isSuccess && (
               <div className="">
-                <div className="max-w-[600px] relative flex h-auto prose prose-2xl prose-invert w-fit">
+                <div className="prose prose-2xl prose-invert relative flex h-auto w-fit max-w-[600px]">
                   <h1 className="mb-5 text-2xl font-semibold leading-10 sm:text-3xl">
                     {blog.data?.isDraft && (
                       <span className="my-auto mr-2 inline-flex bg-red-400 px-2 py-1 text-lg">
