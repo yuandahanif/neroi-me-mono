@@ -67,7 +67,7 @@ const Home: NextPage = () => {
         <main
           className={`flex min-h-screen grow flex-col items-center justify-center`}
         >
-          <div className="relative text-3xl md:text-7xl">
+          <div className="">
             <Logo />
           </div>
 
