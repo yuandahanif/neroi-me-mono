@@ -8,9 +8,10 @@ import local_date from "~/utils/local_date";
 import { useRouter } from "next/router";
 import Loading from "~/components/loading/loading";
 import hljs from "highlight.js";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lato } from "next/font/google";
 import useReadTime from "~/hooks/useReadTime";
+import Link from "next/link";
 
 const main_forn = Lato({
   subsets: ["latin-ext"],
@@ -19,10 +20,12 @@ const main_forn = Lato({
 
 const BlogDetailPage: NextPage = () => {
   const router = useRouter();
-  const articleRef = useRef<HTMLDivElement>(null);
   const { slug } = router.query;
-  const visitmutation = api.blog.incrementVisitById.useMutation();
+  const articleRef = useRef<HTMLDivElement>(null);
+  const [tableOfContent, setTableOfContent] = useState(new Set<string>());
   const readTime = useReadTime(articleRef);
+
+  const visitmutation = api.blog.incrementVisitById.useMutation();
   const blog = api.blog.getBySlug.useQuery(
     { slug: String(slug) },
     {
@@ -37,11 +40,21 @@ const BlogDetailPage: NextPage = () => {
   );
 
   useEffect(() => {
-    if (blog.isSuccess) {
-      document.querySelectorAll("pre.ql-syntax").forEach((el) => {
+    const ref = articleRef.current;
+    const contentTableSet = new Set<string>();
+    if (blog.isSuccess && ref) {
+      ref.querySelectorAll("pre.ql-syntax").forEach((el) => {
         el.classList.add("language-typescript"); // is default to Typescript for now
         hljs.highlightElement(el as HTMLElement);
       });
+
+      ref.querySelectorAll("h2").forEach((el, idx) => {
+        const id = el.textContent ?? "";
+        el.setAttribute("id", `${id?.replaceAll(" ", "-")}`);
+        contentTableSet.add(id);
+      });
+
+      setTableOfContent(contentTableSet);
     }
   }, [blog.isSuccess]);
 
@@ -50,7 +63,7 @@ const BlogDetailPage: NextPage = () => {
       <HeadSEO title={blog.data?.title} description={blog.data?.description} />
       <MainLayout>
         <main
-          className={`flex  min-h-screen grow flex-col items-center justify-start p-2 py-10`}
+          className={`flex grow flex-col items-center justify-start p-2 py-10`}
         >
           <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
@@ -68,8 +81,8 @@ const BlogDetailPage: NextPage = () => {
 
             {blog.isSuccess && (
               <div className="">
-                <div className="prose prose-2xl prose-invert relative flex h-auto w-fit max-w-[600px]">
-                  <h1 className="mb-5 text-2xl font-semibold leading-10 sm:text-3xl">
+                <div className="prose prose-2xl prose-invert flex h-auto w-fit max-w-[600px]">
+                  <h1 className="text-2xl font-semibold leading-10 sm:text-3xl">
                     {blog.data?.isDraft && (
                       <span className="my-auto mr-2 inline-flex bg-red-400 px-2 py-1 text-lg">
                         Draft
@@ -79,53 +92,76 @@ const BlogDetailPage: NextPage = () => {
                   </h1>
                 </div>
 
-                <div className="relative z-20 w-fit rounded-md border border-main-300 bg-main-600 p-2 sm:mx-auto sm:p-6">
-                  <div
-                    ref={articleRef}
-                    className="prose-md prose prose-invert w-full prose-pre:rounded-sm prose-pre:bg-main-400"
-                    dangerouslySetInnerHTML={{
-                      __html: blog.data?.content ?? "",
-                    }}
-                  />
-                </div>
+                <div className="mt-5 flex flex-col-reverse sm:flex-row">
+                  <div>
+                    <div className="z-20 w-fit rounded-md border border-main-300 bg-main-600 p-2 sm:mx-auto sm:p-6">
+                      <div
+                        ref={articleRef}
+                        className="prose-md prose prose-invert w-full prose-h2:text-lg prose-pre:rounded-sm prose-pre:bg-main-400"
+                        dangerouslySetInnerHTML={{
+                          __html: blog.data?.content ?? "",
+                        }}
+                      />
+                    </div>
 
-                <div className="flex flex-wrap items-center justify-center gap-3">
-                  {blog.data?.Tags.map((tag) => (
-                    <span
-                      key={tag.title}
-                      className="mt-3 bg-main-300 p-px px-2"
-                    >
-                      {tag.title}
-                    </span>
-                  ))}
+                    <div className="flex flex-wrap items-center justify-center gap-3">
+                      {blog.data?.Tags.map((tag) => (
+                        <span
+                          key={tag.title}
+                          className="mt-3 bg-main-300 p-px px-2"
+                        >
+                          {tag.title}
+                        </span>
+                      ))}
 
-                  <span className="ml-auto text-sm">
-                    waktu baca {readTime} Menit
-                  </span>
-                </div>
+                      <span className="ml-auto text-sm">
+                        waktu baca {readTime} Menit
+                      </span>
+                    </div>
 
-                <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
-                  <div className="text-sm">
-                    Ada saran atau koreksi? Kontak saya di{" "}
-                    <a
-                      href="http://discordapp.com/users/378907976267726859"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline"
-                    >
-                      Discord
-                    </a>
-                    .
+                    <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
+                      <div className="text-sm">
+                        Ada saran atau koreksi? Kontak saya di{" "}
+                        <a
+                          href="http://discordapp.com/users/378907976267726859"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline"
+                        >
+                          Discord
+                        </a>
+                        .
+                      </div>
+
+                      <div className="ml-auto flex items-center gap-1 ">
+                        <span>{blog.data?.visit}</span>
+                        pembaca
+                      </div>
+                      <span>|</span>
+                      <span className="inline-flex">
+                        {local_date(blog.data?.createdAt || new Date())}
+                      </span>
+                    </div>
                   </div>
 
-                  <div className="ml-auto flex items-center gap-1 ">
-                    <span>{blog.data?.visit}</span>
-                    pembaca
+                  <div className="sticky top-2 h-fit p-4">
+                    <h2 className="mb-2 inline-flex text-lg font-semibold">
+                      Daftar isi:
+                    </h2>
+
+                    <ul className="h-fit">
+                      {[...tableOfContent.values()].map((ctn) => (
+                        <li key={ctn} className="list-inside list-disc">
+                          <a
+                            className="hover:underline"
+                            href={`#${ctn.replaceAll(" ", "-")}`}
+                          >
+                            {ctn}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <span>|</span>
-                  <span className="inline-flex">
-                    {local_date(blog.data?.createdAt || new Date())}
-                  </span>
                 </div>
               </div>
             )}

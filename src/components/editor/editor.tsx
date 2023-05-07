@@ -43,7 +43,7 @@ const Editor: React.FC<Props> = ({ onChange, defaultValue }) => {
         handler: {},
         container: [
           ["bold", "italic", "underline"],
-          [{ header: [1, 2, 3, 4, 5, 6, false] }],
+          [{ header: [2, 3, 4, 5, 6, false] }],
           [{ list: "ordered" }, { list: "bullet" }],
           ["link", "image", "video"],
           ["clean"],
