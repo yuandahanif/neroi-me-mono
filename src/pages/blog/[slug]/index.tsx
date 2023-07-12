@@ -8,10 +8,11 @@ import local_date from "~/utils/local_date";
 import { useRouter } from "next/router";
 import Loading from "~/components/loading/loading";
 import hljs from "highlight.js";
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import { Lato } from "next/font/google";
 import useReadTime from "~/hooks/useReadTime";
-import Link from "next/link";
+import { twMerge } from "tailwind-merge";
+import TriggerWarning from "~/components/trigger_warning/trigger_warning";
 
 const main_forn = Lato({
   subsets: ["latin-ext"],
@@ -21,19 +22,31 @@ const main_forn = Lato({
 const BlogDetailPage: NextPage = () => {
   const router = useRouter();
   const { slug } = router.query;
+
+  const [firstVisit, setFirstVisit] = useState(true);
+
+  const [isRestrictedContent, setIsRestrictedContent] = useState(false);
+
   const articleRef = useRef<HTMLDivElement>(null);
   const [tableOfContent, setTableOfContent] = useState(new Set<string>());
   const readTime = useReadTime(articleRef);
 
   const visitmutation = api.blog.incrementVisitById.useMutation();
+
   const blog = api.blog.getBySlug.useQuery(
     { slug: String(slug) },
     {
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
       onSuccess(data) {
-        if (data?.id != null) {
-          visitmutation.mutate({ id: data?.id });
+        if (firstVisit && data?.Tags.find((tag) => tag.title == "Personal")) {
+          console.log("find");
+          setIsRestrictedContent(true);
+        }
+
+        if (firstVisit && data?.id != null) {
+          setFirstVisit(false);
+          setTimeout(() => {
+            visitmutation.mutate({ id: data?.id });
+          }, 10000);
         }
       },
     }
@@ -44,11 +57,11 @@ const BlogDetailPage: NextPage = () => {
     const contentTableSet = new Set<string>();
     if (blog.isSuccess && ref) {
       ref.querySelectorAll("pre.ql-syntax").forEach((el) => {
-        el.classList.add("language-typescript"); // is default to Typescript for now
+        el.classList.add("language-typescript"); // ! is default to Typescript for now
         hljs.highlightElement(el as HTMLElement);
       });
 
-      ref.querySelectorAll("h2").forEach((el, idx) => {
+      ref.querySelectorAll("h2").forEach((el) => {
         const id = el.textContent ?? "";
         el.setAttribute("id", `${id?.replaceAll(" ", "-")}`);
         contentTableSet.add(id);
@@ -60,6 +73,10 @@ const BlogDetailPage: NextPage = () => {
 
   return (
     <>
+      {isRestrictedContent && (
+        <TriggerWarning onAccept={() => setIsRestrictedContent(false)} />
+      )}
+
       <HeadSEO title={blog.data?.title} description={blog.data?.description} />
       <MainLayout>
         <main
@@ -81,7 +98,12 @@ const BlogDetailPage: NextPage = () => {
 
             {blog.isSuccess && (
               <div className="">
-                <div className="prose prose-2xl prose-invert flex h-auto w-fit max-w-[600px]">
+                <div
+                  className={twMerge(
+                    "prose prose-2xl prose-invert flex h-auto w-fit max-w-[600px]",
+                    isRestrictedContent && "blur-sm"
+                  )}
+                >
                   <h1 className="text-2xl font-semibold leading-10 sm:text-3xl">
                     {blog.data?.isDraft && (
                       <span className="my-auto mr-2 inline-flex bg-red-400 px-2 py-1 text-lg">
@@ -97,7 +119,10 @@ const BlogDetailPage: NextPage = () => {
                     <div className="z-20 w-fit rounded-md border border-main-300 bg-main-600 p-2 sm:mx-auto sm:p-6">
                       <div
                         ref={articleRef}
-                        className="prose-md prose prose-invert w-full prose-h2:text-lg prose-pre:rounded-sm prose-pre:bg-main-400"
+                        className={twMerge(
+                          "prose-md prose prose-invert w-full prose-h2:text-lg prose-pre:rounded-sm prose-pre:bg-main-400",
+                          isRestrictedContent && "blur-sm"
+                        )}
                         dangerouslySetInnerHTML={{
                           __html: blog.data?.content ?? "",
                         }}
@@ -149,7 +174,12 @@ const BlogDetailPage: NextPage = () => {
                       Daftar isi:
                     </h2>
 
-                    <ul className="h-fit">
+                    <ul
+                      className={twMerge(
+                        "h-fit",
+                        isRestrictedContent && "blur-sm"
+                      )}
+                    >
                       {[...tableOfContent.values()].map((ctn) => (
                         <li key={ctn} className="list-inside list-disc">
                           <a
