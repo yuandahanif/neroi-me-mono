@@ -24,6 +24,7 @@ const BlogDetailPage: NextPage = () => {
   const { slug } = router.query;
 
   const [firstVisit, setFirstVisit] = useState(true);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const [isRestrictedContent, setIsRestrictedContent] = useState(false);
 
@@ -31,7 +32,7 @@ const BlogDetailPage: NextPage = () => {
   const [tableOfContent, setTableOfContent] = useState(new Set<string>());
   const readTime = useReadTime(articleRef);
 
-  const visitmutation = api.blog.incrementVisitById.useMutation();
+  const visitMutation = api.blog.incrementVisitById.useMutation();
 
   const blog = api.blog.getBySlug.useQuery(
     { slug: String(slug) },
@@ -44,8 +45,8 @@ const BlogDetailPage: NextPage = () => {
 
         if (firstVisit && data?.id != null) {
           setFirstVisit(false);
-          setTimeout(() => {
-            visitmutation.mutate({ id: data?.id });
+          timeoutRef.current = setTimeout(() => {
+            visitMutation.mutate({ id: data?.id });
           }, 10000);
         }
       },
@@ -70,6 +71,14 @@ const BlogDetailPage: NextPage = () => {
       setTableOfContent(contentTableSet);
     }
   }, [blog.isSuccess]);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <>

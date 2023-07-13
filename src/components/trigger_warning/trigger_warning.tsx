@@ -12,7 +12,11 @@ const TriggerWarning: React.FC<{ onAccept?: () => void }> = ({ onAccept }) => {
         <p>
           Trigger Warning: Konten ini bukan untuk semua orang, terkadang ini
           berisi masalah teramat personal yang harus ku ungkapkan dan mungkin
-          berisi hal-hal yang tidak pantas untuk di baca <span className="bg-main-600 text-main-600 hover:text-white" >seperti krisis eksistensi</span>.
+          berisi hal-hal yang tidak pantas untuk di baca{" "}
+          <span className="bg-main-600 text-main-600 underline decoration-white hover:text-white">
+            seperti krisis eksistensi :D{" "}
+          </span>
+          .
         </p>
 
         <button className="mt-3 p-px px-2" type="button" onClick={onAccept}>
