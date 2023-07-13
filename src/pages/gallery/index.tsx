@@ -90,7 +90,7 @@ const MePage: NextPage = () => {
             <GalleryImage
               imageSrc="/images/comic/comic-1.png"
               imageAlt="Laptop"
-              description={<Link href={"/art/komik"}>01</Link>}
+              description={<Link href={"/art/komik"} className="animate-pulse">01</Link>}
             />
           </div>
         </main>

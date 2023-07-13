@@ -5,6 +5,7 @@ import MainLayout from "~/layouts/main.layout";
 import MainNavigation from "~/components/navigation/main.navigation";
 import Redacted from "~/components/text/redacted";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const MePage: NextPage = () => {
   const [dilateRadius, setDilateRadius] = useState(3);
@@ -61,15 +62,17 @@ const MePage: NextPage = () => {
               jurusan Informatika di salah satu kampus swasta di{" "}
               <Redacted>Yogyakarta</Redacted>. Mencintai teknologi terutama
               internet sebagai salah satu pencapaian terbaik dari umat manusia.
-              Tidak terlalu menyukain keramaian dan hampir mengurung diri 24/7
-              di dalam kosnya.{" "}
-              <span className="hidden">
-                Didiagnosa depresi pada usia 20 tahun dan punya kesulitan
-                berinteraksi dengan manusia lain.
+              <span
+                className="text-main-600 selection:text-white"
+                draggable={false}
+              >
+                Tidak terlalu menyukain keramaian dan hampir selalu mengurung
+                diri di dalam kosnya. Mendapat diagnosa depresi pada usia 20
+                tahun dan punya kesulitan berinteraksi dengan manusia lain.
               </span>
             </p>
 
-            <p className="hidden">
+            <p className="text-main-600 selection:text-white" draggable={false}>
               Tidak berencana untuk memiliki hubungan dengan manusia lain, dan
               tidak berencana untuk memiliki keturunan. Memiliki keinginan untuk
               hidup tidak lebih dari 25 tahun dengan akhir yang tanpa
@@ -89,8 +92,6 @@ const MePage: NextPage = () => {
               <span className="prose-sm">
                 *Aku nggak jago, tapi aku PD sama kemampuanku.
               </span>{" "}
-              Punyaa Love-Hate Relationship sama JS dan TS, tapi tetep satu
-              bahasa untuk semua.
             </p>
 
             <p className="hidden">
@@ -102,7 +103,7 @@ const MePage: NextPage = () => {
               >
                 :D
               </span>{" "}
-              Oh, apakah ini termasuk.
+              Oh, apakah ini termasuk ketergantungan.
             </p>
 
             <p>
@@ -115,7 +116,18 @@ const MePage: NextPage = () => {
               >
                 ARG
               </a>
-              , so lets mimic one. Liminal Space, Weird Core, brrrr.
+              , so lets mimic one. Liminal Space, Weird Core, brrrr.{" "}
+              <span className="prose-sm">
+                Terakhir, ada beberapa easter egg di web ini, mungkin kau bisa
+                cari jika waktu luangmu terlalu banyak{" "}
+                <Link
+                  className="text-main-600 selection:text-white"
+                  href={"/note"}
+                >
+                  seperti ini
+                </Link>
+                .
+              </span>
             </p>
 
             <blockquote className="prose-sm">
