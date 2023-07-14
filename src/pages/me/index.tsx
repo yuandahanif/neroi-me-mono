@@ -72,7 +72,7 @@ const MePage: NextPage = () => {
               </span>
             </p>
 
-            <p className="text-main-600 selection:text-white" draggable={false}>
+            <p className="text-main-600" draggable={false}>
               Tidak berencana untuk memiliki hubungan dengan manusia lain, dan
               tidak berencana untuk memiliki keturunan. Memiliki keinginan untuk
               hidup tidak lebih dari 25 tahun dengan akhir yang tanpa
