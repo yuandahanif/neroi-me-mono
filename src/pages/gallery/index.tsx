@@ -24,7 +24,7 @@ const MePage: NextPage = () => {
 
             <p>
               Hai, Bolehkah Aku mengambil{" "}
-              <Link href={"/art/avatar"} className="no-underline">
+              <Link href={"/art/avatar"} className="underline">
                 <Redacted>gambar</Redacted>
               </Link>
               mu.

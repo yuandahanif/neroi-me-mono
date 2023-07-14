@@ -8,7 +8,7 @@ import local_date from "~/utils/local_date";
 import { useRouter } from "next/router";
 import Loading from "~/components/loading/loading";
 import hljs from "highlight.js";
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lato } from "next/font/google";
 import useReadTime from "~/hooks/useReadTime";
 import { twMerge } from "tailwind-merge";

@@ -19,18 +19,17 @@ const Home: NextPage = () => {
       <MainLayout>
         <div className="flex h-screen flex-col items-center justify-center">
           <div className="flex justify-center">
-            <div className="mr-2">Are you</div>
+            <div className="mr-2">You dont have </div>
             <div>
-              <div>a</div>
               <div>a̶̱͝</div>
               <div>a̸͚͊</div>
               <div>ą̷̛̃̄̈</div>
               <div>á̷̡̼͍̩̼̈́̍</div>
               <div>ą̶̧̦͕̐͆̈́͊̚͠</div>
               <div>a̵</div>
-              <div className="text-red-800">a</div>
+              <div className="text-red-800">access</div>
             </div>
-            <div className="mt-auto text-red-800">dmin?</div>
+            <div className="mt-auto text-red-800">!</div>
           </div>
 
           <div className="mt-10 flex gap-20">

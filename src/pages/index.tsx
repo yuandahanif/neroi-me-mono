@@ -34,7 +34,7 @@ const Home: NextPage = () => {
       <HeadSEO />
       <MainLayout>
         {isLoginWindowVisible && (
-          <div className="md: fixed left-1/2 top-1/2 m-auto h-96 w-5/6 max-w-screen-sm -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5 md:w-full md:max-w-screen-md">
+          <div className="fixed left-1/2 top-1/2 m-auto hidden h-96 w-5/6 max-w-screen-sm -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5 md:w-full md:max-w-screen-md lg:block">
             <div className="flex">
               <span>root@user:</span>
               <div className="flex flex-col">
@@ -44,7 +44,7 @@ const Home: NextPage = () => {
                   <button
                     type="button"
                     onClick={() => void signIn()}
-                    className="hover:underline"
+                    className=""
                   >
                     continue
                   </button>
