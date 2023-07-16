@@ -26,6 +26,17 @@ const BlogIndexPage: NextPage = () => {
           <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
 
+          <div className="prose-md prose mt-10 font-semibold">
+            <p className="text-center text-red-500">
+              Maaf, konten saat ini sedang bersifat personal sebagai sarana
+              untuk terapi terkait masalah kesehatan mental yang sedang dimiliki
+              oleh penulis. Mohon untuk tidak terlalu serius dalam menaggapi
+              konten yang ada, Terimakasih.
+            </p>
+
+            <hr />
+          </div>
+
           <div className="mt-10 flex flex-col gap-y-8">
             {blog.isLoading && <Loading />}
             {blog.isError && (
