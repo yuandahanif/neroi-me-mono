@@ -10,6 +10,7 @@ import Logo from "~/components/logo/logo";
 const Home: NextPage = () => {
   const inputRef = useRef<null | HTMLDivElement>(null);
   const [isLoginWindowVisible, setisLoginWindowVisible] = useState(false);
+  const followMouseRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
     const ref = inputRef.current;
@@ -26,6 +27,34 @@ const Home: NextPage = () => {
     return () => {
       removeEventListener("keydown", listener);
       ref?.blur();
+    };
+  }, []);
+
+  useEffect(() => {
+    const ref = followMouseRef.current;
+    const listener = (e: MouseEvent) => {
+      if (ref != null) {
+        ref.animate(
+          [
+            {
+              top: `${e.clientY}px`,
+              left: `${e.clientX}px`,
+            },
+          ],
+          {
+            duration: 1000,
+            fill: "forwards",
+            easing: "ease-in-out",
+          }
+        );
+      }
+    };
+    if (window != null) {
+      window.addEventListener("mousemove", listener);
+    }
+
+    return () => {
+      removeEventListener("mousemove", listener);
     };
   }, []);
 
@@ -64,6 +93,12 @@ const Home: NextPage = () => {
             </div>
           </div>
         )}
+
+        <div
+          ref={followMouseRef}
+          className="backdrop-blur-sm pointer-events-none absolute -left-full -top-full z-auto h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white"
+        />
+
         <main
           className={`flex min-h-screen grow flex-col items-center justify-center`}
         >
