@@ -36,7 +36,7 @@ const MePage: NextPage = () => {
           <MainNavigation />
 
           <div className="prose prose-invert mt-10 lg:prose-lg">
-            <h3 className="text-center">
+            <h3 className="text-center" id="tentangku">
               Tentang
               <Link className="" href={"/static/note-to-all"}>
                 ku
@@ -85,7 +85,10 @@ const MePage: NextPage = () => {
               tidak berencana untuk memiliki keturunan. Memiliki keinginan untuk
               hidup tidak lebih dari 25 tahun dengan akhir yang tanpa
               penyesalan. Setidaknya itu yang ku inginkan untuk saat ini,{" "}
-              <Redacted>tambahan</Redacted>.
+              <Redacted>
+                <Link className="text-sm text-main-600 selection:text-red-500" href={"#tentangku"}>atas</Link>
+              </Redacted>
+              .
             </p>
 
             <p>

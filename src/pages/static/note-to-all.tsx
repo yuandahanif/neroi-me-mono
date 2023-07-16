@@ -3,8 +3,7 @@ import { type NextPage } from "next";
 import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
 import MainNavigation from "~/components/navigation/main.navigation";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Lato } from "next/font/google";
 import { twMerge } from "tailwind-merge";
 import TriggerWarning from "~/components/trigger_warning/trigger_warning";
@@ -13,6 +12,10 @@ const main_forn = Lato({
   subsets: ["latin-ext"],
   weight: ["400", "900", "700"],
 });
+
+const Heading: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return <span className="bg-main-300 p-1">{children}</span>;
+};
 
 const NoteToAll: NextPage = () => {
   const [isRestrictedContent, setIsRestrictedContent] = useState(true);
@@ -49,6 +52,8 @@ const NoteToAll: NextPage = () => {
                   *draft Catatan
                 </h1>
 
+                <Heading>Umum</Heading>
+
                 <p>
                   Pada saatnya hidup terkadang memang akan terasa berat hinggga
                   terkadang kita merasa ingin menyerah dan menangis, namun hari
@@ -69,7 +74,7 @@ const NoteToAll: NextPage = () => {
 
                 <p>
                   Aku tak lagi memiliki alasan untuk ada dan aku lelah dengan
-                  semua ini. Aku tak tau sejak kapan semua ini beawal, tapi aku
+                  semua ini. Aku tak tau sejak kapan semua ini bermula, tapi aku
                   tau aku tak ingin lagi melanjutkan hidup ini Aku ingin pergi
                   dan tak pernah kembali lagi.
                 </p>
@@ -81,6 +86,8 @@ const NoteToAll: NextPage = () => {
                 </p>
 
                 <hr />
+                <Heading>Profesional</Heading>
+
                 <p>
                   Aku sudah mencoba untuk menjadi lebih baik, aku sudah mencoba
                   untuk berbicara dengan profesional, aku sudah mencoba untuk
@@ -91,15 +98,16 @@ const NoteToAll: NextPage = () => {
 
                 <p>
                   Obatnya membantu, tapi itu tidak menyelesaikan masalah. Itu
-                  hanya membuatmu merasa mati rasa dan kosoong dan aku tak bisa
-                  merasakan apa-apa lagi.
+                  hanya membuatmu merasa mati rasa dan kosong hingga aku tak
+                  bisa merasakan apa-apa lagi.
                 </p>
 
                 <hr />
+                <Heading>Kebohongan</Heading>
 
                 <p>
                   Aku lelah untuk menangis, aku lelah untuk tertawa, pada
-                  akhirnya semua sama saja aku kembali merasa seperti jatuh
+                  akhirnya semua akan sama saja aku kembali merasa seperti jatuh
                   kedaam lubang yang tak berdasar di dalam hatiku.
                 </p>
 
@@ -110,15 +118,16 @@ const NoteToAll: NextPage = () => {
                 </p>
 
                 <hr />
+                <Heading>Iman</Heading>
 
                 <p>
                   Iman, mungkin itu yang kubutuhkan. Tapi aku sudah mencoba dan
                   aku muak dengan semuanya, rasanya aku tak memiliki tempat
-                  disana. Bukan aku tak percaya tuhan, tapi aku tak muak dengan
+                  disana. Bukan aku tak percaya tuhan, tapi aku muak dengan
                   semua ini. Dimanapun aku melihat, aku hanya melihat kepalsuan
                   dan kebohongan. Aku merasa agama bukan lagi tempat untuk
                   mencari ketenangan ataupun kebahagiaan. Aku merasa agama
-                  hanyalah alat sebagai tempat pelarian.
+                  hanyalah satu dari jutaan tempat pelarian.
                 </p>
 
                 <p>
@@ -128,6 +137,7 @@ const NoteToAll: NextPage = () => {
                 </p>
 
                 <hr />
+                <Heading>Perbandigan</Heading>
 
                 <p>
                   Aku yang kurang bersyukur, diluar sana banyak orang yang jauh
@@ -138,15 +148,22 @@ const NoteToAll: NextPage = () => {
                 </p>
 
                 <hr />
+                <Heading>Hubungan</Heading>
 
                 <p>
-                  Aku tak berencana memiliki hubungan dengan manusia lain.
-                  Bukannya aku membenci manusia, tapi aku tak bisa merasakan
-                  apa-apa lagi. Lagipula aku juga tak ingin membawa orang lain
-                  kedalam masalahku.
+                  Aku tak berencana memiliki hubungan dengan manusia lain. Bukan
+                  aku membenci manusia, aku hanya tak bisa merasakan apa-apa
+                  lagi. Lagipula aku juga tak ingin membawa orang lain kedalam
+                  masalahku.
+                </p>
+
+                <p>
+                  Mungkin aku akan sendiri hingga akhir, dan aku tak apa dengan
+                  itu. Lagipula siapa aku, aku hanya orang lain yang bermasalah.
                 </p>
 
                 <hr />
+                <Heading>Terakhir</Heading>
 
                 <p>
                   Terakhir, aku rasa aku akan melakukanya, saat aku menginjak 25
@@ -170,7 +187,14 @@ const NoteToAll: NextPage = () => {
                   dapat berbicara dan berpikir.
                 </p>
 
+                <p>
+                  Maaf untuk semua orang yang pernah mengenal diriku, maaf untuk
+                  apa yang akan kulakukan. Tapi kurasa dunia ini bukan tempat
+                  untukku.
+                </p>
+
                 <hr />
+                <Heading>Maaf</Heading>
 
                 <p>
                   Aku tak ingin menyalahkan siapapun untuk semua ini. ini semua
@@ -181,6 +205,26 @@ const NoteToAll: NextPage = () => {
                 <p>
                   Aku tak ingin orang lain merasakan apa yang kurasakan, tapi
                   apa yang bisa kulakukan.
+                </p>
+
+                <hr />
+                <Heading>Terimakasih</Heading>
+
+                <p>
+                  Terimakasih jika kau sudah membaca hingga titik ini, aku tak
+                  peduli apa dirimu tapi jika kau merasa kasihan kepadaku lebih
+                  baik lupakan saja. Aku tak ingin merepotkan dirimu, dan
+                  sebaiknya lupakan apa yang barusan kau baca.
+                </p>
+
+                <p>
+                  Sekali lagi maaf jika semua ini mengganggumu, tapi aku sudah
+                  memberi peringatan di awal dan sekarang ini semua salahmu :D
+                </p>
+
+                <p>
+                  Jika tulisan ini mengganggumu, mengkin ini saatnya kau untuk
+                  mulai tidak peduli dengan kehiduan orang lain.
                 </p>
               </div>
             </div>
