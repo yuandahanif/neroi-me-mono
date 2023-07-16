@@ -62,22 +62,40 @@ const MePage: NextPage = () => {
             </div>
 
             <p>
-              Halo, Namaku <Redacted>Yuanda Hanif Hisyam</Redacted>, seorang
-              yang mencintai dan terlalu bergantung pada internet. Mahasiswa
-              jurusan Informatika di salah satu kampus swasta di{" "}
-              <Redacted>Yogyakarta</Redacted>. Mencintai teknologi terutama
-              internet sebagai salah satu pencapaian terbaik dari umat manusia.
-              <span
+              Halo dan selamat datang di duniaku, Namaku Yuanda Hanif Hisyam,
+              seorang nihilis yang mencintai dan terlalu bergantung pada
+              internet. Mencintai filosofi dan teknologi terutama internet
+              sebagai salah satu pencapaian terbaik dari umat manusia.
+              {/* <span
                 className="text-main-600 selection:text-white"
                 draggable={false}
               >
                 Tidak terlalu menyukain keramaian dan hampir selalu mengurung
                 diri di dalam kosnya. Mendapat diagnosa depresi pada usia 20
                 tahun dan punya kesulitan berinteraksi dengan manusia lain.
-              </span>
+              </span> */}
             </p>
 
-            <p
+            <p>
+              Mengambil nilai dari{" "}
+              <span className="italic">kekosongan eksistensial</span> dan
+              kehampaan, menemukan perspektif unik yang memengaruhi pendekatan
+              dan cara untuk memandang kehidupan.
+            </p>
+
+            <p>
+              Nihilisme kulihat bukanlah sebagai sebuah doktrin keputusasaan,
+              melainkan sebuah katalist untuk mempertanyakan norma-norma dan
+              asumsi-asumsi tradisional.
+            </p>
+
+            <p>
+              Meski demikian, aku paham arti penting dari berkolaborasi. Mencoba
+              untuk saling memahami dan menjaga hubungan antar manusia amatlah
+              penting.
+            </p>
+
+            {/* <p
               className="text-sm text-main-600 selection:text-red-500"
               draggable={false}
             >
@@ -86,36 +104,29 @@ const MePage: NextPage = () => {
               hidup tidak lebih dari 25 tahun dengan akhir yang tanpa
               penyesalan. Setidaknya itu yang ku inginkan untuk saat ini,{" "}
               <Redacted>
-                <Link className="text-sm text-main-600 selection:text-red-500" href={"#tentangku"}>atas</Link>
+                <Link
+                  className="text-sm text-main-600 selection:text-red-500"
+                  href={"#tentangku"}
+                >
+                  atas
+                </Link>
               </Redacted>
               .
-            </p>
+            </p> */}
 
             <p>
-              Hobiku adalah bermain internet, duduk mendengarkan orang lain
-              berbicara, dan menulis. Setidaknya itu yang boleh kutulis,
-              selebihnya adalah rahasia. Seperti <Redacted>cosplay</Redacted>{" "}
-              dan <Redacted>Stalking(OSINT)</Redacted>.
+              Hobiku adalah bermain internet, duduk mendengarkan orang lain,
+              menulis, dan terjun kedaalam jurang kehampaan mencari makna dan
+              arti dari kehidupan
+              <span className="text-xs">(entah apapun itu)</span>.
             </p>
 
             <p>
               Bersahabat dengan kesendirian membuatku bisa belajar banyak hal,
               salah satunya adalah web development.{" "}
-              <span className="prose-sm">
-                *Aku nggak jago, tapi aku PD sama kemampuanku.
+              <span className="text-xs">
+                *Aku nggak jago-jago amat, tapi aku PD sama kemampuanku.
               </span>{" "}
-            </p>
-
-            <p className="hidden">
-              Tidak memiliki ketergantungan kepada rokok, alkohol, maupun
-              obat-obatan. Tujuanku saat ini adalah menyelesaikan web ini{" "}
-              <span
-                className="cursor-wait"
-                title="Disclaimer: Semua yang kutulis disini hanyalah roleplay semata"
-              >
-                :D
-              </span>{" "}
-              Oh, apakah ini termasuk ketergantungan.
             </p>
 
             <p>
@@ -129,7 +140,7 @@ const MePage: NextPage = () => {
                 ARG
               </a>
               , so lets mimic one. Liminal Space, Weird Core, brrrr.{" "}
-              <span className="prose-sm">
+              <span className="text-xs">
                 Terakhir, ada beberapa easter egg di web ini, mungkin kau bisa
                 cari jika waktu luangmu terlalu banyak{" "}
                 <Link
@@ -138,15 +149,14 @@ const MePage: NextPage = () => {
                 >
                   seperti ini
                 </Link>
-                .
+                . Tapi jangan terjun terlalu dalam :D
               </span>
             </p>
 
             <blockquote className="prose-sm">
-              Bagaimana kau menjelaskan tentang dirimu? diantara jutaan manusia
-              apa yang membuat dirimu berbeda? Kurasa itu tidaklah penting,
-              waktu kita terlalu pendek untuk menjawab ini. Kebanyakan dari kita
-              semua akan mati lalu dilupakan.
+              &quot;Let&apos;s embark on this digital journey together,
+              embracing the void and weaving meaningful experiences in the
+              ever-changing digital cosmos.&quot;
             </blockquote>
           </div>
 

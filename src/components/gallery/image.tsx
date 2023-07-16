@@ -14,15 +14,15 @@ const GalleryImage: React.FC<Props> = ({
 }) => {
   return (
     <div className="">
-      <div className="relative mx-auto h-96 w-96">
+      <div className="relative mx-auto h-fit min-h-[384px] w-96 ">
         <Image
           src={imageSrc}
           alt={imageAlt}
-          fill
           className="object-contain object-bottom"
+          fill
         />
       </div>
-      <div className="prose prose-sm prose-invert mx-auto text-center mt-3">
+      <div className="prose prose-sm prose-invert mx-auto mt-3 text-center">
         <div>{description}</div>
       </div>
     </div>

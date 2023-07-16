@@ -31,7 +31,7 @@ const MePage: NextPage = () => {
             </p>
           </div>
 
-          <div className="mx-auto mt-10 flex w-full flex-wrap items-center justify-center space-y-8">
+          <div className="mx-auto mt-10 flex w-full flex-wrap items-center justify-evenly space-y-8">
             <GalleryImage
               imageSrc="/images/laptop.jpg"
               imageAlt="Laptop"
@@ -71,7 +71,7 @@ const MePage: NextPage = () => {
             <GalleryImage
               imageSrc="/images/stair.jpg"
               imageAlt="Lorong"
-              description="pernah berpikir untuk melakukanya? - (The call of the void)"
+              description="pernah berpikir untuk melakukanya? - (call of the void)"
             />
 
             <GalleryImage
