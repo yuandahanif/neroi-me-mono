@@ -86,6 +86,15 @@ const NoteToAll: NextPage = () => {
                 </p>
 
                 <hr />
+                <Heading>Kesehatan Mental</Heading>
+
+                <p>
+                  Aku tau aku sedang tidak baik-baik saja. Aku tau itu, lagipula
+                  aku sudah mencobanya. Namun sejauh ini semuanya sia-sia, aku
+                  kembali merasa seperti ini. Aku kembali merasa kosong.
+                </p>
+
+                <hr />
                 <Heading>Profesional</Heading>
 
                 <p>
