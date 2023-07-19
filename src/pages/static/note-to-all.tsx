@@ -38,9 +38,22 @@ const NoteToAll: NextPage = () => {
           <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
 
-          <div
-            className={`mt-10  flex flex-col gap-y-5 ${main_forn.className}`}
-          >
+          <div className={`mt-10 flex flex-col gap-y-5 ${main_forn.className}`}>
+            <div className="rounded-md border-2 border-red-500 bg-red-50 p-2 sm:mx-auto sm:p-6">
+              <div className="prose-md prose ">
+                <p className="">
+                  Peringatan sekali lagi, tulisan ini tidak untuk semua orang.
+                  Jika kau punya masalah dengan depresi, kecemasan, atau masalah
+                  mental lainnya, lebih baik kau tinggalkan tulisan ini. Namun
+                  jika kau sepenasaran itu, inti dari semua omong kosong ini
+                  adalah aku ingin mengakhiri semua ini.
+                  <br /> karena kau sudah tau apa yang ada disini, sekarang
+                  saatnya untuk dirimu pergi dan lupakn semua ini. Chears :3
+                  Semoga harimu menyenangkan.
+                </p>
+              </div>
+            </div>
+
             <div className="z-20 w-fit rounded-md border border-main-300 bg-main-600 p-2 sm:mx-auto sm:p-6">
               <div
                 className={twMerge(
@@ -238,7 +251,7 @@ const NoteToAll: NextPage = () => {
               </div>
             </div>
             <div className="flex justify-end text-sm">
-              <span>Diubah 16/7/2023</span>
+              <span>Diubah 20/7/2023</span>
             </div>
           </div>
         </main>
