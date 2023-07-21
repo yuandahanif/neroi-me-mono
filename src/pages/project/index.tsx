@@ -6,6 +6,33 @@ import MainLayout from "~/layouts/main.layout";
 
 const projects = [
   {
+    title: "Neroi.space",
+    description: `Personal website yang dibuat untuk iseng karena udah beli domain dan belum sempat dipakai. Dibuat dengan stack yang semurah mungkin dengan menggunakan Vercel dan PlanetScale sebagai backbone dari berdirinya web ini. Selain itu sebagai tempat belajar mengembangkan CMS dari awal. Mencoba merefleksikan diri kedalam project ini dengan desain bertema minimalis dan juga sederhana.`,
+    image: "/images/project/neroi.jpg",
+    technologies: [
+      "NextJs",
+      "Typescript",
+      "Tailwind",
+      "tRPC",
+      "Prisma ORM",
+      "MYSQL",
+      "Vercel",
+      "CMS",
+      "PlanetScale",
+    ],
+    links: [
+      {
+        label: "Project",
+        link: "https://neroi.space/",
+      },
+
+      {
+        label: "Repository",
+        link: "https://github.com/yuandahanif/neroi-me-mono",
+      },
+    ],
+  },
+  {
     title: "Informatics-expo",
     description: `Tempat untuk archive dan vote project dari mahasiswa Informatika Universitas Islam Indonesia pada tiap akhir semester. Project ini merupakan bagian dari pekerjaan selama menjadi Student staff di jurusan Informatika Universitas Islam Indonesia. Menerapkan aksesibilitas dan multibahasa, serta menggunakan teknologi terbaru seperti NextJs, Typescript, Tailwind, dan Prisma ORM. Saya berperan sebagai front-end developer pada iterasi kedua dan sebagai lead developer pada iterasi ketiga project ini.`,
     image:
@@ -24,6 +51,30 @@ const projects = [
       {
         label: "Project",
         link: "https://expo.informatics-expo.id/en",
+      },
+    ],
+  },
+  {
+    title: "Sekawan",
+    description: `Sekawan merupakan sistem yang digunakan untuk menunjang kegiatan kuliah atau penjaluran tugas akhir pada tahun ke-empat jurusan Informatika Universitas Islam Indonesia. Saya berperan sebagai front-end developer sekaligus DevOps pada project ini.`,
+    image: "/images/project/sekawan.png",
+    technologies: [
+      "NextJs",
+      "Typescript",
+      "Tailwind",
+      "Go",
+      "PostgreSQL",
+      "Linux Server",
+      "AWS S3",
+    ],
+    links: [
+      {
+        label: "Project",
+        link: "https://sekawan.informatics.uii.ac.id",
+      },
+      {
+        label: "Figma",
+        link: "https://www.figma.com/file/Fmp5QSJYz1j6VSPy2mwrcc/Sekawan-Ver.2?type=design&node-id=2113-20996&mode=design&t=FVEnj6NPdxw88fDp-0",
       },
     ],
   },
@@ -132,12 +183,15 @@ const ProjectPage: NextPage = () => {
 
             <div className="flex w-full flex-col items-center gap-10">
               {projects.map((project) => (
-                <div className="flex gap-6 flex-wrap justify-center lg:justify-start" key={project.title}>
-                  <div className="relative aspect-square w-96">
+                <div
+                  className="flex flex-wrap justify-center gap-6 border-b pb-3 lg:justify-start"
+                  key={project.title}
+                >
+                  <div className="relative aspect-square h-auto w-96 ">
                     <Image
                       src={project.image}
                       fill
-                      className="h-full w-full object-contain object-center"
+                      className="object-contain object-center"
                       alt={project.title}
                     />
                   </div>
@@ -145,7 +199,10 @@ const ProjectPage: NextPage = () => {
                   <div className="prose prose-invert px-8 lg:px-0">
                     <h4 className="text-xl font-semibold">{project.title}</h4>
 
-                    <p>{project.description}</p>
+                    <div
+                      className="mb-6"
+                      dangerouslySetInnerHTML={{ __html: project.description }}
+                    />
 
                     <div className="mb-2">
                       <span>Teknologi: </span>{" "}

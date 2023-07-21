@@ -7,10 +7,16 @@ import MainNavigation from "~/components/navigation/main.navigation";
 import { signIn } from "next-auth/react";
 import Logo from "~/components/logo/logo";
 
+const quote =
+  '"Hidup dalam kehampaan sembari terus berjalan mencari makna dari kehidupan."';
+
 const Home: NextPage = () => {
   const inputRef = useRef<null | HTMLDivElement>(null);
   const [isLoginWindowVisible, setisLoginWindowVisible] = useState(false);
   const followMouseRef = useRef<null | HTMLDivElement>(null);
+
+  const quoteRef = useRef<null | HTMLParagraphElement>(null);
+  const quoteWordIntervalRef = useRef<null | NodeJS.Timer>(null);
 
   useEffect(() => {
     const ref = inputRef.current;
@@ -58,6 +64,31 @@ const Home: NextPage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const ref = quoteRef.current;
+    const words = quote.split(" ");
+    let index = 0;
+    quoteWordIntervalRef.current = setInterval(() => {
+      if (ref != null) {
+        ref.textContent += words[index] ?? "";
+        ref.textContent += " ";
+      }
+
+      if (index == words.length - 1) {
+        if (quoteWordIntervalRef.current != null) {
+          clearInterval(quoteWordIntervalRef.current);
+        }
+      }
+      index += 1;
+    }, 200);
+
+    return () => {
+      if (quoteWordIntervalRef.current != null) {
+        clearInterval(quoteWordIntervalRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
       <HeadSEO />
@@ -100,13 +131,17 @@ const Home: NextPage = () => {
         />
 
         <main
-          className={`flex min-h-screen grow flex-col items-center justify-center cursor-none`}
+          className={`flex min-h-screen grow cursor-none flex-col items-center justify-center`}
         >
           <div className="">
             <Logo />
           </div>
 
           <MainNavigation />
+
+          <div className="prose prose-sm prose-invert mt-10 text-center">
+            <p ref={quoteRef} />
+          </div>
         </main>
       </MainLayout>
     </>
