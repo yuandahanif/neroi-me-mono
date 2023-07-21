@@ -96,11 +96,11 @@ const Home: NextPage = () => {
 
         <div
           ref={followMouseRef}
-          className="backdrop-blur-sm pointer-events-none absolute -left-full -top-full z-auto h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white"
+          className="pointer-events-none absolute -left-full -top-full z-auto h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white backdrop-blur-sm"
         />
 
         <main
-          className={`flex min-h-screen grow flex-col items-center justify-center`}
+          className={`flex min-h-screen grow flex-col items-center justify-center cursor-none`}
         >
           <div className="">
             <Logo />
