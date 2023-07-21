@@ -132,7 +132,7 @@ const ProjectPage: NextPage = () => {
 
             <div className="flex w-full flex-col items-center gap-10">
               {projects.map((project) => (
-                <div className="flex gap-6" key={project.title}>
+                <div className="flex gap-6 flex-wrap justify-center lg:justify-start" key={project.title}>
                   <div className="relative aspect-square w-96">
                     <Image
                       src={project.image}
@@ -142,7 +142,7 @@ const ProjectPage: NextPage = () => {
                     />
                   </div>
 
-                  <div className="prose prose-invert">
+                  <div className="prose prose-invert px-8 lg:px-0">
                     <h4 className="text-xl font-semibold">{project.title}</h4>
 
                     <p>{project.description}</p>
