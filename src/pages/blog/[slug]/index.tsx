@@ -91,7 +91,7 @@ const BlogDetailPage: NextPage = () => {
         <main
           className={`flex grow flex-col items-center justify-start p-2 py-10`}
         >
-          <h1 className="text-5xl">{"<Blog/>"}</h1>
+          <h1 className="text-5xl">{"<B҈͍̗͔̯̟̩̗̭̥͚͎͚͕̠̙͑͋͌̈̃͑̀̏̿́̈̐̀͒̒̒̚̚l̸̝̲͎̤͈̬͈̣̪̩̯̫̯̞̪̤̘̃͗̾͂́̑́̐̂̉̈́̇ȍ̵̟͚̠͈̣̗̲̟̥̖̰̞̟̬̱͙̱͚͍̮̱͖̯̀̍̑́̒̾̇́̍̀̐̀́̉͛̅̈́̀̀ͅg҉̱͔̭͖͓̬̣̠͍̦̜͕̲̫͙̥̲̾̀͑̊͑͐̉͆͂͑͌̉͋̒̃/>"}</h1>
           <MainNavigation />
 
           <div

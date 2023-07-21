@@ -7,9 +7,10 @@ import Redacted from "~/components/text/redacted";
 
 const LINKS = [
   { id: "home-index", href: "/", label: "Home" },
-  { id: "blog-index", href: "/blog", label: "Blog" },
+  { id: "blog-index", href: "/blog", label: "B҈͍̗͔̯̟̩̗̭̥͚͎͚͕̠̙͑͋͌̈̃͑̀̏̿́̈̐̀͒̒̒̚̚l̸̝̲͎̤͈̬͈̣̪̩̯̫̯̞̪̤̘̃͗̾͂́̑́̐̂̉̈́̇ȍ̵̟͚̠͈̣̗̲̟̥̖̰̞̟̬̱͙̱͚͍̮̱͖̯̀̍̑́̒̾̇́̍̀̐̀́̉͛̅̈́̀̀ͅg҉̱͔̭͖͓̬̣̠͍̦̜͕̲̫͙̥̲̾̀͑̊͑͐̉͆͂͑͌̉͋̒̃" },
   // { id: "note-index", href: "/note", label: "Note" },
   { id: "gallery-index", href: "/gallery", label: "Gallery" },
+  { id: "project-index", href: "/project", label: "Project" },
   { id: "lab-index", href: "/lab", label: "Lab" },
   { id: "me-index", href: "/me", label: "Me" },
 ];

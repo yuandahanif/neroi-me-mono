@@ -3,7 +3,6 @@ import { type NextPage } from "next";
 import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
 import MainNavigation from "~/components/navigation/main.navigation";
-import Redacted from "~/components/text/redacted";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
