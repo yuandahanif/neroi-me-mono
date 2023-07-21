@@ -37,7 +37,7 @@ const MePage: NextPage = () => {
           <div className="prose prose-invert mt-10 lg:prose-lg">
             <h3 className="text-center" id="tentangku">
               Tentang
-              <Link className="" href={"/static/note-to-all"}>
+              <Link className="no-underline" href={"/static/note-to-all"}>
                 ku
               </Link>
             </h3>
