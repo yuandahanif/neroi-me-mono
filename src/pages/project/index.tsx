@@ -6,22 +6,6 @@ import MainLayout from "~/layouts/main.layout";
 
 const projects = [
   {
-    title: "Discord portfolio",
-    description: `Discord portfolio adalah sebuah web berisis portfolio project yang pernah ku kerjakan dengan tampilan menyerupai aplikasi Discord. Dibuat karena aku sangat menyukai discord, bukan sebagai alat komunikasi tapi sebagai CDN dan alat untuk sinkronisasi catatan atau file antar device yang kumiliki.`,
-    image: "/images/project/portfolio.png",
-    technologies: ["React", "Typescript", "Tailwind", "Github-pages"],
-    links: [
-      {
-        label: "Demo",
-        link: "https://yuandahanif.github.io/discord-theme-portfolio/",
-      },
-      {
-        label: "Repository",
-        link: "https://github.com/yuandahanif/discord-theme-portfolio",
-      },
-    ],
-  },
-  {
     title: "Informatics-expo",
     description: `Tempat untuk archive dan vote project dari mahasiswa Informatika Universitas Islam Indonesia pada tiap akhir semester. Project ini merupakan bagian dari pekerjaan selama menjadi Student staff di jurusan Informatika Universitas Islam Indonesia. Menerapkan aksesibilitas dan multibahasa, serta menggunakan teknologi terbaru seperti NextJs, Typescript, Tailwind, dan Prisma ORM. Saya berperan sebagai front-end developer pada iterasi kedua dan sebagai lead developer pada iterasi ketiga project ini.`,
     image:
@@ -44,6 +28,50 @@ const projects = [
     ],
   },
   {
+    title: "Qual-tech",
+    description: `Qual-tech adalah sebuah platform yang berfokus pada pengembangan kualitas sumber daya manusia terutama pengajar dengan berbasis AI. Merupakan bagian dari program UII Bussiness & Innovation Challenge (UBIC). Peran saya dalam project ini adalah sebagai hacker, memastikan produk yang dibuat sesuai dengan kebutuhan dan memastikan kualitas produk yang dibuat.`,
+    image: "/images/project/qual.png",
+    technologies: [
+      "NextJs",
+      "Typescript",
+      "Tailwind",
+      "tRPC",
+      "Prisma ORM",
+      "MYSQL",
+      "Docker",
+    ],
+    links: [
+      {
+        label: "Repository",
+        link: "https://github.com/Qual-tech/qual-mono",
+      },
+      {
+        label: "Seleksi",
+        link: "https://simpultumbuh.uii.ac.id/pengumuman-hasil-seleksi-proposal-ubic-2023/",
+      },
+    ],
+  },
+  {
+    title: "moo-space",
+    description: `moo-space adalah sebuah platform forum diskusi yang dibuat untuk memenuhi persyaratan Kelas Menjadi React Web Developer Expert pada platform Dicoding. Pada project ini saya belajar banyak hal dari React, React Router, React Context, Clean Code, React Redux, Automation Testing, hingga CI/CD menggunakan Github dan Vercel.`,
+    image: "/images/project/meme.jpg",
+    technologies: ["React", "Tailwind", "Typescript", "Vercel", "Redux"],
+    links: [
+      {
+        label: "Demo",
+        link: "https://moo-space.vercel.app/",
+      },
+      {
+        label: "Repository",
+        link: "https://github.com/yuandahanif/moo-space",
+      },
+      {
+        label: "Sertifikat",
+        link: "https://www.dicoding.com/certificates/L4PQG36K2ZO1",
+      },
+    ],
+  },
+  {
     title: "Res.to",
     description: `Res.to ini dibuat untuk memenuhi persyaratan Kelas Menjadi Front-End Web Developer Expert pada platform Dicoding. Dalam Project ini saya belajar banyak hal dari Web Accessibility, Clean Code, Testing, hingga Web Performance.`,
     image:
@@ -61,6 +89,22 @@ const projects = [
       {
         label: "Sertifikat",
         link: "https://www.dicoding.com/certificates/53XEEOMORXRN",
+      },
+    ],
+  },
+  {
+    title: "Discord portfolio",
+    description: `Discord portfolio adalah sebuah web berisis portfolio project yang pernah ku kerjakan dengan tampilan menyerupai aplikasi Discord. Dibuat karena aku sangat menyukai discord, bukan sebagai alat komunikasi tapi sebagai CDN dan alat untuk sinkronisasi catatan atau file antar device yang kumiliki.`,
+    image: "/images/project/portfolio.png",
+    technologies: ["React", "Typescript", "Tailwind", "Github-pages"],
+    links: [
+      {
+        label: "Demo",
+        link: "https://yuandahanif.github.io/discord-theme-portfolio/server/portfolio/portfolio-1",
+      },
+      {
+        label: "Repository",
+        link: "https://github.com/yuandahanif/discord-theme-portfolio",
       },
     ],
   },
