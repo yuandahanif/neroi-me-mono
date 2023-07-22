@@ -52,7 +52,7 @@ const MainNavigation = () => {
   });
 
   return (
-    <div className="sticky top-0 z-50 mt-1 w-full">
+    <div className="sticky top-0 z-40 mt-1 w-full">
       <nav className="flex w-full justify-center gap-x-2 py-6 text-xl backdrop-blur-lg">
         {LINKS.map((link, idx) => (
           <div key={link.href} className="text-sm md:text-base">

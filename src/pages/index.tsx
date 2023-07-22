@@ -13,7 +13,6 @@ const quote =
 const Home: NextPage = () => {
   const inputRef = useRef<null | HTMLDivElement>(null);
   const [isLoginWindowVisible, setisLoginWindowVisible] = useState(false);
-  const followMouseRef = useRef<null | HTMLDivElement>(null);
 
   const quoteRef = useRef<null | HTMLParagraphElement>(null);
   const quoteWordIntervalRef = useRef<null | NodeJS.Timer>(null);
@@ -33,34 +32,6 @@ const Home: NextPage = () => {
     return () => {
       removeEventListener("keydown", listener);
       ref?.blur();
-    };
-  }, []);
-
-  useEffect(() => {
-    const ref = followMouseRef.current;
-    const listener = (e: MouseEvent) => {
-      if (ref != null) {
-        ref.animate(
-          [
-            {
-              top: `${e.clientY}px`,
-              left: `${e.clientX}px`,
-            },
-          ],
-          {
-            duration: 1000,
-            fill: "forwards",
-            easing: "ease-in-out",
-          }
-        );
-      }
-    };
-    if (window != null) {
-      window.addEventListener("mousemove", listener);
-    }
-
-    return () => {
-      removeEventListener("mousemove", listener);
     };
   }, []);
 
@@ -125,13 +96,8 @@ const Home: NextPage = () => {
           </div>
         )}
 
-        <div
-          ref={followMouseRef}
-          className="pointer-events-none absolute -left-full -top-full z-auto h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white backdrop-blur-sm"
-        />
-
         <main
-          className={`flex min-h-screen grow cursor-none flex-col items-center justify-center`}
+          className={`flex min-h-screen grow flex-col items-center justify-center`}
         >
           <div className="">
             <Logo />
