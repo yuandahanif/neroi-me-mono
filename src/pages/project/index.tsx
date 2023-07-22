@@ -7,7 +7,7 @@ import MainLayout from "~/layouts/main.layout";
 const projects = [
   {
     title: "Neroi.space",
-    description: `Personal website yang dibuat untuk iseng karena udah beli domain dan belum sempat dipakai. Dibuat dengan stack yang semurah mungkin dengan menggunakan Vercel dan PlanetScale sebagai backbone dari berdirinya web ini. Selain itu sebagai tempat belajar mengembangkan CMS dari awal. Mencoba merefleksikan diri kedalam project ini dengan desain bertema minimalis dan juga sederhana.`,
+    description: `Personal website yang dibuat untuk iseng karena udah beli domain dan belum sempat dipakai. Dibuat dengan stack yang semurah mungkin dengan menggunakan Vercel dan PlanetScale sebagai backbone dari berdirinya web ini. Selain itu sebagai tempat <b>belajar mengembangkan CMS dari awal</b>. Mencoba merefleksikan diri kedalam project ini dengan desain bertema minimalis dan juga sederhana.`,
     image: "/images/project/neroi.jpg",
     technologies: [
       "NextJs",
@@ -104,7 +104,7 @@ const projects = [
   },
   {
     title: "moo-space",
-    description: `moo-space adalah sebuah platform forum diskusi yang dibuat untuk memenuhi persyaratan Kelas Menjadi React Web Developer Expert pada platform Dicoding. Pada project ini saya belajar banyak hal dari React, React Router, React Context, Clean Code, React Redux, Automation Testing, hingga CI/CD menggunakan Github dan Vercel.`,
+    description: `moo-space adalah sebuah platform forum diskusi yang dibuat untuk memenuhi persyaratan Kelas <b>Menjadi React Web Developer Expert</b> pada platform Dicoding. Pada project ini saya belajar banyak hal dari React, React Router, React Context, Clean Code, React Redux, Automation Testing, hingga CI/CD menggunakan Github dan Vercel.`,
     image: "/images/project/meme.jpg",
     technologies: ["React", "Tailwind", "Typescript", "Vercel", "Redux"],
     links: [
@@ -124,7 +124,7 @@ const projects = [
   },
   {
     title: "Res.to",
-    description: `Res.to ini dibuat untuk memenuhi persyaratan Kelas Menjadi Front-End Web Developer Expert pada platform Dicoding. Dalam Project ini saya belajar banyak hal dari Web Accessibility, Clean Code, Testing, hingga Web Performance.`,
+    description: `Res.to ini dibuat untuk memenuhi persyaratan Kelas <b>Menjadi Front-End Web Developer Expert</b> pada platform Dicoding. Dalam Project ini saya belajar banyak hal dari Web Accessibility, Clean Code, Testing, hingga Web Performance.`,
     image:
       "https://yuandahanif.github.io/portfolio/static/media/project-1.1a7023d3.png",
     technologies: ["HTML", "CSS", "Javascript", "Firebase"],
@@ -140,6 +140,27 @@ const projects = [
       {
         label: "Sertifikat",
         link: "https://www.dicoding.com/certificates/53XEEOMORXRN",
+      },
+    ],
+  },
+  {
+    title: "Shoot and Share(SnS)",
+    description: `Hasil dari bootcamp <b>React Native - Mobile App Development (Lanjutan, Batch Juli 2020)</b> di SanberCode, Aplikasi berbagi foto sederhana yang terinspirasi dari Instagram. Menggunakan Firebase sebagai Backend dengan beberapa fitur aplikasi diantaranya autentikasi(menggunakan akun google dan manual), kamera, upload foto, push notifikasi, dan chat.`,
+    image:
+      "https://yuandahanif.github.io/portfolio/static/media/project-7.e0037838.png",
+    technologies: ["React native", "Javascript", "Firebase", "One signal"],
+    links: [
+      {
+        label: "Demo",
+        link: "https://github.com/yuandahanif/shoot-and-share/releases",
+      },
+      {
+        label: "Repository",
+        link: "https://github.com/yuandahanif/shoot-and-share",
+      },
+      {
+        label: "Sertifikat",
+        link: "https://sanbercode.com/sertifikat/generate/40923602-db97-4ea0-a56e-311f87cbe4b1",
       },
     ],
   },
