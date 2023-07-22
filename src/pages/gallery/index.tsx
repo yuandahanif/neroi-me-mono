@@ -30,7 +30,7 @@ const MePage: NextPage = () => {
             </h3>
           </div>
 
-          <div className="mx-auto mt-10 flex w-full flex-wrap items-end justify-evenly space-y-8">
+          <div className="px-2 lg:px-0 mx-auto mt-10 flex w-full flex-wrap items-end justify-evenly gap-y-8">
             <GalleryImage
               imageSrc="/images/laptop.jpg"
               imageAlt="Laptop"

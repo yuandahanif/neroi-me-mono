@@ -105,7 +105,7 @@ const Home: NextPage = () => {
 
           <MainNavigation />
 
-          <div className="prose prose-sm prose-invert mt-10 text-center">
+          <div className="prose prose-sm prose-invert mt-10 text-center px-4 lg:px-0">
             <p ref={quoteRef} />
           </div>
         </main>

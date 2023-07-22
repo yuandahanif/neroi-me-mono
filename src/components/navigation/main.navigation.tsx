@@ -7,7 +7,7 @@ import Redacted from "~/components/text/redacted";
 
 const LINKS = [
   { id: "home-index", href: "/", label: "Home" },
-  { id: "blog-index", href: "/blog", label: "B҈͍̗͔̯̟̩̗̭̥͚͎͚͕̠̙͑͋͌̈̃͑̀̏̿́̈̐̀͒̒̒̚̚l̸̝̲͎̤͈̬͈̣̪̩̯̫̯̞̪̤̘̃͗̾͂́̑́̐̂̉̈́̇ȍ̵̟͚̠͈̣̗̲̟̥̖̰̞̟̬̱͙̱͚͍̮̱͖̯̀̍̑́̒̾̇́̍̀̐̀́̉͛̅̈́̀̀ͅg҉̱͔̭͖͓̬̣̠͍̦̜͕̲̫͙̥̲̾̀͑̊͑͐̉͆͂͑͌̉͋̒̃" },
+  { id: "blog-index", href: "/blog", label: "Blog" },
   // { id: "note-index", href: "/note", label: "Note" },
   { id: "gallery-index", href: "/gallery", label: "Gallery" },
   { id: "project-index", href: "/project", label: "Project" },
@@ -53,7 +53,7 @@ const MainNavigation = () => {
 
   return (
     <div className="sticky top-0 z-40 mt-1 w-full">
-      <nav className="flex w-full justify-center gap-x-2 py-6 text-xl backdrop-blur-lg">
+      <nav className="flex flex-wrap w-full justify-center gap-2 py-6 px-4 lg:px-0 text-xl backdrop-blur-lg">
         {LINKS.map((link, idx) => (
           <div key={link.href} className="text-sm md:text-base">
             {router.asPath == link.href ? (

@@ -24,10 +24,10 @@ const BlogIndexPage: NextPage = () => {
         <main
           className={`flex min-h-screen grow flex-col items-center justify-start p-2 py-10`}
         >
-          <h1 className="text-5xl">{"<B҈͍̗͔̯̟̩̗̭̥͚͎͚͕̠̙͑͋͌̈̃͑̀̏̿́̈̐̀͒̒̒̚̚l̸̝̲͎̤͈̬͈̣̪̩̯̫̯̞̪̤̘̃͗̾͂́̑́̐̂̉̈́̇ȍ̵̟͚̠͈̣̗̲̟̥̖̰̞̟̬̱͙̱͚͍̮̱͖̯̀̍̑́̒̾̇́̍̀̐̀́̉͛̅̈́̀̀ͅg҉̱͔̭͖͓̬̣̠͍̦̜͕̲̫͙̥̲̾̀͑̊͑͐̉͆͂͑͌̉͋̒̃/>"}</h1>
+          <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
 
-          <div className="prose-md prose prose-invert mt-10 font-semibold">
+          <div className="lg:prose-md prose prose-sm prose-invert mt-10 px-2 font-semibold lg:px-0">
             <p className="text-center text-red-500">
               Maaf, konten saat ini sedang bersifat personal sebagai sarana
               untuk terapi terkait masalah kesehatan mental yang sedang dimiliki
@@ -44,7 +44,7 @@ const BlogIndexPage: NextPage = () => {
             <hr />
           </div>
 
-          <div className="mt-10 flex flex-col gap-y-8">
+          <div className="mt-10 flex flex-col gap-y-8 px-2 lg:px-0">
             {blog.isLoading && <Loading />}
             {blog.isError && (
               <div>

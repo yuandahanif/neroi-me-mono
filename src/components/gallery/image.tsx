@@ -13,8 +13,8 @@ const GalleryImage: React.FC<Props> = ({
   description,
 }) => {
   return (
-    <div className="">
-      <div className="relative mx-auto h-fit min-h-[384px] w-96 ">
+    <div className="w-full sm:w-fit">
+      <div className="relative mx-auto h-fit w-full sm:w-96 sm:h-96 aspect-square ">
         <Image
           src={imageSrc}
           alt={imageAlt}

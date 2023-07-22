@@ -16,7 +16,7 @@ const LabPage: NextPage = () => {
             <h1 className="text-5xl">{"<Lab/>"}</h1>
             <MainNavigation />
 
-            <div className="prose prose-invert mb-10 mt-10 lg:prose-sm">
+            <div className="lg:prose-md prose prose-sm prose-invert mb-10 mt-10 lg:prose-sm">
               <h3 className="text-center" id="tentangku">
                 Selamat datang di <i>ground zero</i> tempat pengujian dan
                 eksperimen. Disini berisi <i>proof of concept</i> terkit
@@ -24,7 +24,7 @@ const LabPage: NextPage = () => {
               </h3>
             </div>
 
-            <div className="flex flex-col  items-center gap-10">
+            <div className="hidden flex-col flex-wrap items-center gap-10 md:flex">
               <div className="flex flex-wrap items-end gap-24">
                 <div className="flex h-auto flex-col gap-3">
                   <div className="relative flex h-[500px] w-[500px]">
@@ -75,6 +75,13 @@ const LabPage: NextPage = () => {
                   <p>RPG MAKER MV - (2022)</p>
                 </div>
               </div> */}
+            </div>
+
+            <div className="prose prose-invert flex h-full items-center px-4 text-center md:hidden">
+              <span>
+                Maaf, lab tidak tersedia di perangkat mobile. Silahkan gunakan
+                PC atau desktop mode.
+              </span>
             </div>
           </main>
         </div>

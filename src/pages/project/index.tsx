@@ -194,7 +194,7 @@ const ProjectPage: NextPage = () => {
             <h1 className="text-5xl">{"<Project/>"}</h1>
             <MainNavigation />
 
-            <div className="prose prose-invert mb-10 mt-10 lg:prose-sm">
+            <div className="lg:prose-md prose prose-sm prose-invert mb-10 mt-10 lg:prose-sm">
               <h3 className="text-center">
                 Selamat datang di project, disini berisi project yang sedang
                 atau sudah selesai ku kerjakan dan yang sekiranya boleh ku
@@ -209,7 +209,7 @@ const ProjectPage: NextPage = () => {
                   key={project.title}
                 >
                   <div className="relative border bg-main-600 p-1 before:absolute before:-z-0 before:h-full before:w-full before:border before:duration-300 before:content-[''] group-hover:before:translate-x-1 group-hover:before:translate-y-1">
-                    <div className="relative aspect-square h-auto w-96 ">
+                    <div className="relative aspect-square h-auto w-72 md:w-80 lg:w-96 ">
                       <Image
                         src={project.image}
                         fill
