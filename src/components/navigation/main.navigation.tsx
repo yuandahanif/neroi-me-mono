@@ -52,19 +52,21 @@ const MainNavigation = () => {
   });
 
   return (
-    <div className="mt-8 flex gap-x-2 text-xl">
-      {LINKS.map((link, idx) => (
-        <div key={link.href} className="text-sm md:text-base">
-          {router.asPath == link.href ? (
-            <Redacted> {link.label}</Redacted>
-          ) : (
-            <Link href={link.href} className={twMerge(`hover:underline`)}>
-              {link.label}
-            </Link>
-          )}
-          {idx < LINKS.length - 1 && <span> . </span>}
-        </div>
-      ))}
+    <div className="sticky top-0 z-50 mt-1 w-full">
+      <nav className="flex w-full justify-center gap-x-2 py-6 text-xl backdrop-blur-lg">
+        {LINKS.map((link, idx) => (
+          <div key={link.href} className="text-sm md:text-base">
+            {router.asPath == link.href ? (
+              <Redacted> {link.label}</Redacted>
+            ) : (
+              <Link href={link.href} className={twMerge(`hover:underline`)}>
+                {link.label}
+              </Link>
+            )}
+            {idx < LINKS.length - 1 && <span> . </span>}
+          </div>
+        ))}
+      </nav>
 
       <nav>
         <div className="fixed bottom-10 right-10 z-30 flex flex-col items-center justify-center gap-2">
@@ -110,42 +112,37 @@ const MainNavigation = () => {
           </button>
         </div>
 
-        {/* {isNavVisible && ( */}
-        <>
-          {/* <div className="fixed left-0 top-0 z-40 h-full w-full bg-main-600 bg-opacity-80 backdrop-blur-sm"></div> */}
-          <dialog
-            ref={navigationref}
-            className="min-h-96 w-full max-w-screen-md overflow-auto border bg-main-600 p-5  text-white backdrop:bg-opacity-80 backdrop:backdrop-blur-sm"
-          >
-            <ul className="flex flex-col gap-4">
-              <li>
-                <a
-                  href="https://github.com/yuandahanif/neroi-me-mono"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex justify-center gap-1 hover:underline"
+        <dialog
+          ref={navigationref}
+          className="min-h-96 w-full max-w-screen-md overflow-auto border bg-main-600 p-5  text-white backdrop:bg-opacity-80 backdrop:backdrop-blur-sm"
+        >
+          <ul className="flex flex-col gap-4">
+            <li>
+              <a
+                href="https://github.com/yuandahanif/neroi-me-mono"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex justify-center gap-1 hover:underline"
+              >
+                <span>View source code</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.2}
+                  stroke="currentColor"
+                  className="h-4 w-4"
                 >
-                  <span>View source code</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.2}
-                    stroke="currentColor"
-                    className="h-4 w-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                    />
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </dialog>
-        </>
-        {/* )} */}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </dialog>
       </nav>
     </div>
   );

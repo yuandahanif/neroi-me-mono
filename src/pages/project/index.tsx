@@ -34,7 +34,7 @@ const projects = [
   },
   {
     title: "Informatics-expo",
-    description: `Tempat untuk archive dan vote project dari mahasiswa Informatika Universitas Islam Indonesia pada tiap akhir semester. Project ini merupakan bagian dari pekerjaan selama menjadi Student staff di jurusan Informatika Universitas Islam Indonesia. Menerapkan aksesibilitas dan multibahasa, serta menggunakan teknologi terbaru seperti NextJs, Typescript, Tailwind, dan Prisma ORM. Saya berperan sebagai front-end developer pada iterasi kedua dan sebagai lead developer pada iterasi ketiga project ini.`,
+    description: `Tempat untuk archive dan vote project dari mahasiswa Informatika Universitas Islam Indonesia pada tiap akhir semester. Project ini merupakan <b>bagian dari pekerjaan selama menjadi Student staff di jurusan Informatika Universitas Islam Indonesia</b>. Menerapkan aksesibilitas dan multibahasa, serta menggunakan teknologi terbaru seperti NextJs, Typescript, Tailwind, dan Prisma ORM. Saya berperan sebagai front-end developer pada iterasi kedua dan sebagai lead developer pada iterasi ketiga project ini.`,
     image:
       "https://github.com/yuandahanif/discord-theme-portfolio/blob/main/src/assets/images/expo.png?raw=true",
     technologies: [
@@ -56,7 +56,7 @@ const projects = [
   },
   {
     title: "Sekawan",
-    description: `Sekawan merupakan sistem yang digunakan untuk menunjang kegiatan kuliah atau penjaluran tugas akhir pada tahun ke-empat jurusan Informatika Universitas Islam Indonesia. Saya berperan sebagai front-end developer sekaligus DevOps pada project ini.`,
+    description: `Sekawan merupakan sistem yang digunakan untuk menunjang kegiatan kuliah atau penjaluran tugas akhir pada tahun ke-empat jurusan Informatika Universitas Islam Indonesia. Saya berperan sebagai front-end developer yang bertugas menterjemahkan desain dari Figma ke dalam kode, dan juga sekaligus DevOps yag bertugas melakukan deployment dan maintenance server pada project ini.`,
     image: "/images/project/sekawan.png",
     technologies: [
       "NextJs",
@@ -80,7 +80,7 @@ const projects = [
   },
   {
     title: "Qual-tech",
-    description: `Qual-tech adalah sebuah platform yang berfokus pada pengembangan kualitas sumber daya manusia terutama pengajar dengan berbasis AI. Merupakan bagian dari program UII Bussiness & Innovation Challenge (UBIC). Peran saya dalam project ini adalah sebagai hacker, memastikan produk yang dibuat sesuai dengan kebutuhan dan memastikan kualitas produk yang dibuat.`,
+    description: `Qual-tech adalah sebuah platform yang berfokus pada pengembangan kualitas sumber daya manusia terutama pengajar dengan berbasis AI. Merupakan <b>bagian dari program UII Bussiness & Innovation Challenge (UBIC)</b>. Peran saya dalam project ini adalah sebagai hacker, memastikan produk yang dibuat sesuai dengan kebutuhan dan memastikan kualitas produk yang dibuat.`,
     image: "/images/project/qual.png",
     technologies: [
       "NextJs",
@@ -166,9 +166,9 @@ const projects = [
   },
   {
     title: "Discord portfolio",
-    description: `Discord portfolio adalah sebuah web berisis portfolio project yang pernah ku kerjakan dengan tampilan menyerupai aplikasi Discord. Dibuat karena aku sangat menyukai discord, bukan sebagai alat komunikasi tapi sebagai CDN dan alat untuk sinkronisasi catatan atau file antar device yang kumiliki.`,
+    description: `Discord portfolio adalah sebuah web berisis portfolio project yang pernah ku kerjakan dengan tampilan menyerupai aplikasi Discord. Dibuat karena aku sangat menyukai discord, bukan sebagai alat komunikasi tapi <b>sebagai CDN dan alat untuk sinkronisasi catatan atau file</b> antar device yang kumiliki.`,
     image: "/images/project/portfolio.png",
-    technologies: ["React", "Typescript", "Tailwind", "Github-pages"],
+    technologies: ["React", "Typescript", "Tailwind", "Github pages"],
     links: [
       {
         label: "Demo",
@@ -205,20 +205,24 @@ const ProjectPage: NextPage = () => {
             <div className="flex w-full flex-col items-center gap-10">
               {projects.map((project) => (
                 <div
-                  className="flex flex-wrap justify-center gap-6 border-b pb-3 lg:justify-start"
+                  className="group flex flex-wrap justify-center gap-6 pb-3 lg:justify-start"
                   key={project.title}
                 >
-                  <div className="relative aspect-square h-auto w-96 ">
-                    <Image
-                      src={project.image}
-                      fill
-                      className="object-contain object-center"
-                      alt={project.title}
-                    />
+                  <div className="relative border bg-main-600 p-1 before:absolute before:-z-0 before:h-full before:w-full before:border before:duration-300 before:content-[''] group-hover:before:translate-x-1 group-hover:before:translate-y-1">
+                    <div className="relative aspect-square h-auto w-96 ">
+                      <Image
+                        src={project.image}
+                        fill
+                        className="object-contain object-center"
+                        alt={project.title}
+                      />
+                    </div>
                   </div>
 
                   <div className="prose prose-invert px-8 lg:px-0">
-                    <h4 className="text-xl font-semibold">{project.title}</h4>
+                    <h4 className="relative inline-flex text-2xl font-semibold  before:absolute before:bottom-0 before:-z-0 before:h-0.5 before:w-2/3 before:origin-left before:scale-x-0 before:bg-white before:duration-300 before:content-[''] group-hover:before:scale-x-100">
+                      {project.title}
+                    </h4>
 
                     <div
                       className="mb-6"
