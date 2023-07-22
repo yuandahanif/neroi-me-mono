@@ -19,19 +19,18 @@ const MePage: NextPage = () => {
           <h1 className="text-5xl">{"<Gallery/>"}</h1>
           <MainNavigation />
 
-          <div className="prose prose-invert mt-10 lg:prose-lg">
-            <h3 className="text-center">Gambar dariku</h3>
-
-            <p>
-              Hai, Bolehkah Aku mengambil{" "}
-              <Link href={"/art/avatar"} className="underline">
-                <Redacted>gambar</Redacted>
+          <div className="prose prose-invert mt-10 lg:prose-sm">
+            <h3 className="text-center">
+              Selamat datang di gallery, tempatku berbagi gambar acak untuk
+              kesenangan{" "}
+              <Link href={"/art/avatar"} className="no-underline">
+                pribadi
               </Link>
-              mu.
-            </p>
+              .
+            </h3>
           </div>
 
-          <div className="mx-auto mt-10 flex w-full flex-wrap items-center justify-evenly space-y-8">
+          <div className="mx-auto mt-10 flex w-full flex-wrap items-end justify-evenly space-y-8">
             <GalleryImage
               imageSrc="/images/laptop.jpg"
               imageAlt="Laptop"
@@ -39,9 +38,21 @@ const MePage: NextPage = () => {
             />
 
             <GalleryImage
+              imageSrc="/images/one-room-of-happiness.jpg"
+              imageAlt="one room of happiness"
+              description="I, Anyway . . ."
+            />
+
+            <GalleryImage
               imageSrc="/images/reimu.jpg"
               imageAlt="hakurei reimu"
-              description=">\\\<"
+              description="re-reimu >\\\<"
+            />
+
+            <GalleryImage
+              imageSrc="/images/over-dose.jpg"
+              imageAlt="Needy Streamer Overload"
+              description="Over"
             />
 
             <GalleryImage
@@ -71,7 +82,7 @@ const MePage: NextPage = () => {
             <GalleryImage
               imageSrc="/images/stair.jpg"
               imageAlt="Lorong"
-              description="pernah berpikir untuk melakukanya? - (call of the void)"
+              description="Do it! - (call of the void)"
             />
 
             <GalleryImage
@@ -90,7 +101,11 @@ const MePage: NextPage = () => {
             <GalleryImage
               imageSrc="/images/comic/comic-1.png"
               imageAlt="Laptop"
-              description={<Link href={"/art/komik"} className="animate-pulse">01</Link>}
+              description={
+                <Link href={"/art/komik"} className="animate-pulse">
+                  01
+                </Link>
+              }
             />
           </div>
         </main>

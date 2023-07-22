@@ -83,7 +83,8 @@ const BlogDetailPage: NextPage = () => {
   return (
     <>
       {isRestrictedContent && (
-        <TriggerWarning onAccept={() => setIsRestrictedContent(false)} />
+        <TriggerWarning onAccept={() => setIsRestrictedContent(true)} />
+        //turn this on when my head ready
       )}
 
       <HeadSEO title={blog.data?.title} description={blog.data?.description} />

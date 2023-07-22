@@ -195,7 +195,7 @@ const ProjectPage: NextPage = () => {
             <MainNavigation />
 
             <div className="prose prose-invert mb-10 mt-10 lg:prose-sm">
-              <h3 className="text-center" id="tentangku">
+              <h3 className="text-center">
                 Selamat datang di project, disini berisi project yang sedang
                 atau sudah selesai ku kerjakan dan yang sekiranya boleh ku
                 tampilkan.
