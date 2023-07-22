@@ -25,7 +25,7 @@ const LabPage: NextPage = () => {
             </div>
 
             <div className="hidden flex-col flex-wrap items-center gap-10 md:flex">
-              <div className="flex flex-wrap items-end gap-24">
+              <div className="flex flex-wrap justify-center items-end gap-24">
                 <div className="flex h-auto flex-col gap-3">
                   <div className="relative flex h-[500px] w-[500px]">
                     <iframe
@@ -47,8 +47,8 @@ const LabPage: NextPage = () => {
                 </div>
               </div>
 
-              <div className="flex h-auto flex-col gap-3">
-                <div className="relative flex h-[750px] w-[1500px]">
+              <div className="flex h-auto w-full flex-col gap-3">
+                <div className="relative flex h-[750px] w-full 2xl:w-[1500px]">
                   <iframe
                     className="h-full w-full"
                     src="https://editor.p5js.org/yuandahanif/full/8d_NRegB3"
@@ -79,8 +79,8 @@ const LabPage: NextPage = () => {
 
             <div className="prose prose-invert flex h-full items-center px-4 text-center md:hidden">
               <span>
-                Maaf, lab tidak tersedia di perangkat mobile. Silahkan gunakan
-                PC atau desktop mode.
+                (Maaf, lab tidak tersedia di perangkat mobile. Silahkan gunakan
+                PC atau desktop mode.)
               </span>
             </div>
           </main>
