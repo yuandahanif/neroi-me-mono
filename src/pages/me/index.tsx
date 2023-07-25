@@ -3,33 +3,45 @@ import { type NextPage } from "next";
 import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
 import MainNavigation from "~/components/navigation/main.navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 const MePage: NextPage = () => {
-  const [dilateRadius, setDilateRadius] = useState(3);
-  const cycleDilateRadius = () => {
-    setDilateRadius((dilateRadius) => {
-      return dilateRadius <= 8 ? dilateRadius + 2 : 0;
-    });
-  };
+  const profileImageRef = useRef<SVGImageElement>(null);
+  const [rotateDeg, setRotateDeg] = useState(5);
 
   useEffect(() => {
-    const t = setInterval(() => {
-      cycleDilateRadius();
-    }, 3000);
+    if (profileImageRef.current) {
+      // profileImageRef.current.addEventListener("click", () => {
+      //   console.log("click");
+      // });
 
-    return () => {
-      clearInterval(t);
-    };
-  }, []);
+      profileImageRef.current.addEventListener("mouseover", () => {
+        profileImageRef.current?.animate(
+          [
+            { transform: `rotate(${rotateDeg - 5}deg)` },
+            { transform: `rotate(${rotateDeg}deg)` },
+          ],
+          {
+            duration: 1000,
+            iterations: 1,
+            easing: "ease-in-out",
+            endDelay: 1000,
+            fill: "forwards",
+          }
+        );
+
+        setRotateDeg((s) => s + 5);
+      });
+    }
+  }, [rotateDeg]);
 
   return (
     <>
       <HeadSEO title="Me" description="" />
       <MainLayout>
         <main
-          className={`flex min-h-screen grow flex-col items-center justify-start p-2 py-10`}
+          className={`flex min-h-screen grow flex-col items-center justify-start p-2 py-10 `}
         >
           <h1 className="text-5xl">{"<Me/>"}</h1>
           <MainNavigation />
@@ -43,19 +55,11 @@ const MePage: NextPage = () => {
             </h3>
 
             <div className="relative mx-auto h-96 md:w-auto">
-              <svg className="h-full w-full ">
-                <filter id="blur">
-                  <feMorphology
-                    in="SourceGraphic"
-                    operator="dilate"
-                    radius={dilateRadius}
-                  ></feMorphology>
-                </filter>
+              <svg className="h-full w-full">
                 <image
-                  xlinkHref="/images/lorong-1.jpg"
-                  filter="url(#blur)"
-                  onClick={cycleDilateRadius}
-                  className="h-full w-full cursor-pointer object-contain object-center"
+                  ref={profileImageRef}
+                  xlinkHref="/images/me.png"
+                  className="h-full w-full origin-center rotate-12 cursor-pointer object-contain object-center"
                 ></image>
               </svg>
             </div>
