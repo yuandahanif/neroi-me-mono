@@ -15,6 +15,18 @@ const MePage: NextPage = () => {
   const openUnimportantDetail = () => {
     if (nonImportantDetailRef.current) {
       nonImportantDetailRef.current.classList.toggle("hidden");
+      nonImportantDetailRef.current.animate(
+        [
+          { transform: "scaleY(0.5)", opacity: 0 },
+          { transform: "scaleY(1)", opacity: 1 },
+        ],
+        {
+          duration: 400,
+          iterations: 1,
+          easing: "ease-in-out",
+          fill: "forwards",
+        }
+      );
     }
   };
 
@@ -67,10 +79,10 @@ const MePage: NextPage = () => {
 
             <p>
               Halo dan selamat datang di duniaku, Namaku Yuanda{" "}
-              <Redacted>Hanif Hisyam</Redacted>, seorang nihilis yang mencintai
-              dan terlalu bergantung pada internet. Mencintai filosofi dan
-              teknologi terutama internet sebagai salah satu pencapaian terbaik
-              dari umat manusia.
+              <Redacted>Hanif Hisyam</Redacted>, seorang optimistik nihilis yang
+              mencintai dan terlalu bergantung pada internet. Mencintai filosofi
+              dan teknologi terutama internet sebagai salah satu pencapaian
+              terbaik dari umat manusia.
             </p>
 
             <p>
@@ -114,11 +126,12 @@ const MePage: NextPage = () => {
 
             <div className="flex flex-col">
               <button
+                type="button"
                 className="mx-auto text-center"
                 onClick={openUnimportantDetail}
               >
                 <span className="mx-auto text-center text-xs underline">
-                  Lihat detail yang kurang penting
+                  Tampilkan detail yang kurang penting
                 </span>
               </button>
 
@@ -138,7 +151,7 @@ const MePage: NextPage = () => {
                 </p>
 
                 <p>
-                  Vtuber favorit{" "}
+                  Vtuber favoritku{" "}
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
@@ -147,7 +160,21 @@ const MePage: NextPage = () => {
                   >
                     Ninomae Ina&apos;nis
                   </a>
-                  , cause she is talented, chearful and wholesome.
+                  , cause she is talented, chearful, and wholesome. Also
+                  eldritch/cosmic horror concept is soooo cool.
+                </p>
+
+                <p>
+                  Masih single pastinya, tapi bukan incel, karena tipeku memang
+                  agak rumit. Tapi kalau bisa ku kloning diriku sendiri, mungkin
+                  aku akan menikah dengan diriku sendiri \jk.
+                </p>
+
+                <p>
+                  Pengen suatu saat bisa kontribusi ke Linux kernel atau
+                  software open source lainnya. Usaha yang sedang dilakukan
+                  adalah belajar low level programming language (Rust) dan
+                  belajar buat berkomunikasi lebih baik.
                 </p>
 
                 <p>
@@ -175,8 +202,9 @@ const MePage: NextPage = () => {
                 </p>
 
                 <span className="text-center text-xs">
-                  I think thats enough info for you all to sociall engineer me.
-                  if need more feel free to DM me on Discord bellow.
+                  I think thats enough info for you all to social engineering
+                  me. If you need more info feel free to DM me on Discord
+                  bellow.
                 </span>
               </div>
             </div>
