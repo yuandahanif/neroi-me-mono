@@ -10,6 +10,13 @@ import Redacted from "~/components/text/redacted";
 const MePage: NextPage = () => {
   const profileImageRef = useRef<SVGImageElement>(null);
   const rotateDegRef = useRef(0);
+  const nonImportantDetailRef = useRef<HTMLDivElement>(null);
+
+  const openUnimportantDetail = () => {
+    if (nonImportantDetailRef.current) {
+      nonImportantDetailRef.current.classList.toggle("hidden");
+    }
+  };
 
   useEffect(() => {
     if (profileImageRef.current) {
@@ -69,7 +76,7 @@ const MePage: NextPage = () => {
             <p>
               Mengambil nilai dari{" "}
               <span className="italic">kekosongan eksistensial</span> dan
-              kehampaan, mencari perspektif berbeda tentang pendekatan dan cara
+              kehampaan, mencari perspektif berbeda dengan pendekatan dan cara
               untuk memandang kehidupan.
             </p>
 
@@ -86,34 +93,17 @@ const MePage: NextPage = () => {
             </p>
 
             <p>
+              Mempunyai ketertatikan pada bidang teknologi, filsafat, dan
+              psikologi. Mencintai konsep desain minimalis, absurd, dan
+              antimainstream. Selain itu suka menjelajah dan mencoba hal-hal
+              baru.
+            </p>
+
+            <p>
               Hobiku adalah bermain internet, duduk mendengarkan orang lain,
               menulis, dan terjun kedaalam jurang kehampaan mencari makna dan
               arti dari kehidupan
               <span className="text-xs">(entah apapun itu)</span>.
-            </p>
-
-            <p>
-              Also Suka Horor,{" "}
-              <a
-                href="https://en.wikipedia.org/wiki/Alternate_reality_game"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                ARG
-              </a>
-              , so lets mimic one. Liminal Space, Weird Core, brrrr.{" "}
-              <span className="text-xs">
-                Terakhir, ada beberapa easter egg di web ini, mungkin kau bisa
-                cari jika waktu luangmu terlalu banyak{" "}
-                <Link
-                  className="text-main-600 selection:text-white"
-                  href={"/note"}
-                >
-                  seperti ini
-                </Link>
-                . Tapi jangan terjun terlalu dalam :D
-              </span>
             </p>
 
             <blockquote className="prose-sm">
@@ -121,6 +111,75 @@ const MePage: NextPage = () => {
               embracing the void and weaving meaningful experiences in the
               ever-changing digital cosmos.&quot;
             </blockquote>
+
+            <div className="flex flex-col">
+              <button
+                className="mx-auto text-center"
+                onClick={openUnimportantDetail}
+              >
+                <span className="mx-auto text-center text-xs underline">
+                  Lihat detail yang kurang penting
+                </span>
+              </button>
+
+              <div
+                ref={nonImportantDetailRef}
+                className="hidden origin-top border-y duration-200"
+              >
+                <p>
+                  Kadang suka main CTF atau ngerjain soal-soal algoritma di
+                  Hackerrank. Juga suka main game, tapi bukan gamer. Genre film
+                  dan cerita kesukaan adalah Horor, Sci-Fi, Misteri, dan
+                  Psychological terutama yang bertema post apocalyptic.
+                </p>
+
+                <p>
+                  Suka kopi dan makanan pedes meski sering bikin sakit perut.
+                </p>
+
+                <p>
+                  Vtuber favorit{" "}
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                    href="https://www.youtube.com/channel/UCMwGHR0BTZuLsmjY_NT5Pwg"
+                  >
+                    Ninomae Ina&apos;nis
+                  </a>
+                  , cause she is talented, chearful and wholesome.
+                </p>
+
+                <p>
+                  Also Suka{" "}
+                  <a
+                    href="https://en.wikipedia.org/wiki/Alternate_reality_game"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    ARG
+                  </a>
+                  , so lets mimic one. Liminal Space, Weird Core, brrrr.{" "}
+                  <span className="text-xs">
+                    Terakhir, ada beberapa easter egg di web ini, mungkin kau
+                    bisa cari jika waktu luangmu terlalu banyak{" "}
+                    <Link
+                      className="text-main-600 selection:text-white"
+                      href={"/note"}
+                    >
+                      seperti ini
+                    </Link>
+                    . Tapi jangan terjun terlalu dalam :D
+                  </span>
+                </p>
+
+                <span className="text-center text-xs">
+                  I think thats enough info for you all to sociall engineer me.
+                  if need more feel free to DM me on Discord bellow.
+                </span>
+              </div>
+            </div>
           </div>
 
           <div className="mt-10">
