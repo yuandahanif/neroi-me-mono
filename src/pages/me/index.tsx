@@ -3,25 +3,19 @@ import { type NextPage } from "next";
 import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
 import MainNavigation from "~/components/navigation/main.navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
+import Redacted from "~/components/text/redacted";
 
 const MePage: NextPage = () => {
   const profileImageRef = useRef<SVGImageElement>(null);
-  const [rotateDeg, setRotateDeg] = useState(5);
+  const rotateDegRef = useRef(0);
 
   useEffect(() => {
     if (profileImageRef.current) {
-      // profileImageRef.current.addEventListener("click", () => {
-      //   console.log("click");
-      // });
-
       profileImageRef.current.addEventListener("mouseover", () => {
         profileImageRef.current?.animate(
-          [
-            { transform: `rotate(${rotateDeg - 5}deg)` },
-            { transform: `rotate(${rotateDeg}deg)` },
-          ],
+          [{ transform: `rotate(${rotateDegRef.current}deg)` }],
           {
             duration: 1000,
             iterations: 1,
@@ -31,10 +25,10 @@ const MePage: NextPage = () => {
           }
         );
 
-        setRotateDeg((s) => s + 5);
+        rotateDegRef.current += 30;
       });
     }
-  }, [rotateDeg]);
+  }, [rotateDegRef]);
 
   return (
     <>
@@ -65,25 +59,18 @@ const MePage: NextPage = () => {
             </div>
 
             <p>
-              Halo dan selamat datang di duniaku, Namaku Yuanda Hanif Hisyam,
-              seorang nihilis yang mencintai dan terlalu bergantung pada
-              internet. Mencintai filosofi dan teknologi terutama internet
-              sebagai salah satu pencapaian terbaik dari umat manusia.
-              {/* <span
-                className="text-main-600 selection:text-white"
-                draggable={false}
-              >
-                Tidak terlalu menyukain keramaian dan hampir selalu mengurung
-                diri di dalam kosnya. Mendapat diagnosa depresi pada usia 20
-                tahun dan punya kesulitan berinteraksi dengan manusia lain.
-              </span> */}
+              Halo dan selamat datang di duniaku, Namaku Yuanda{" "}
+              <Redacted>Hanif Hisyam</Redacted>, seorang nihilis yang mencintai
+              dan terlalu bergantung pada internet. Mencintai filosofi dan
+              teknologi terutama internet sebagai salah satu pencapaian terbaik
+              dari umat manusia.
             </p>
 
             <p>
               Mengambil nilai dari{" "}
               <span className="italic">kekosongan eksistensial</span> dan
-              kehampaan, menemukan perspektif unik yang memengaruhi pendekatan
-              dan cara untuk memandang kehidupan.
+              kehampaan, mencari perspektif berbeda tentang pendekatan dan cara
+              untuk memandang kehidupan.
             </p>
 
             <p>
@@ -98,25 +85,6 @@ const MePage: NextPage = () => {
               penting.
             </p>
 
-            {/* <p
-              className="text-sm text-main-600 selection:text-red-500"
-              draggable={false}
-            >
-              Tidak berencana untuk memiliki hubungan dengan manusia lain dan
-              tidak berencana untuk memiliki keturunan. Memiliki keinginan untuk
-              hidup tidak lebih dari 25 tahun dengan akhir yang tanpa
-              penyesalan. Setidaknya itu yang ku inginkan untuk saat ini,{" "}
-              <Redacted>
-                <Link
-                  className="text-sm text-main-600 selection:text-red-500"
-                  href={"#tentangku"}
-                >
-                  atas
-                </Link>
-              </Redacted>
-              .
-            </p> */}
-
             <p>
               Hobiku adalah bermain internet, duduk mendengarkan orang lain,
               menulis, dan terjun kedaalam jurang kehampaan mencari makna dan
@@ -125,15 +93,7 @@ const MePage: NextPage = () => {
             </p>
 
             <p>
-              Bersahabat dengan kesendirian membuatku bisa belajar banyak hal,
-              salah satunya adalah web development.{" "}
-              <span className="text-xs">
-                *Aku nggak jago-jago amat, tapi aku PD sama kemampuanku.
-              </span>{" "}
-            </p>
-
-            <p>
-              Also Suka{" "}
+              Also Suka Horor,{" "}
               <a
                 href="https://en.wikipedia.org/wiki/Alternate_reality_game"
                 target="_blank"
@@ -214,35 +174,65 @@ const MePage: NextPage = () => {
             </div>
           </div>
 
-          <div className="mt-10">
-            <h3 className="text-center">Tambahan</h3>
-            <div className="mt-5">
-              <ul className="flex flex-wrap justify-center gap-5">
-                <li>
-                  <a
-                    href="/me/resume"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex justify-center gap-1 hover:underline"
-                  >
-                    <span>Resume</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.2}
-                      stroke="currentColor"
-                      className="h-4 w-4"
+          <div className="flex flex-wrap justify-center gap-x-10">
+            <div className="mt-10">
+              <h3 className="text-center">Playground</h3>
+              <div className="mt-5">
+                <ul className="flex flex-wrap justify-center gap-5">
+                  <li>
+                    <a
+                      href="https://www.hackerrank.com/yuanda_Hanif?hr_r=1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                      />
-                    </svg>
-                  </a>
-                </li>
-              </ul>
+                      Hackerrank
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://play.picoctf.org/users/asobi-tea__"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline"
+                    >
+                      picoCTF
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <h3 className="text-center">Tambahan</h3>
+              <div className="mt-5">
+                <ul className="flex flex-wrap justify-center gap-5">
+                  <li>
+                    <a
+                      href="/me/resume"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex justify-center gap-1 hover:underline"
+                    >
+                      <span>CV dan Resume</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.2}
+                        stroke="currentColor"
+                        className="h-4 w-4"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                        />
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </main>

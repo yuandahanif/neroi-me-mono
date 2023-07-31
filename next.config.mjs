@@ -8,7 +8,13 @@
 const config = {
   reactStrictMode: true,
   images: {
-    domains: ["safebooru.org", "github.com", "yuandahanif.github.io"],
+    domains: [
+      "safebooru.org",
+      "github.com",
+      "yuandahanif.github.io",
+      "markdown-videos.vercel.app",
+      "cdn.discordapp.com",
+    ],
   },
   /**
    * If you have the "experimental: { appDir: true }" setting enabled, then you

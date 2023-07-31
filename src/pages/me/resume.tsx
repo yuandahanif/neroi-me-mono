@@ -15,9 +15,16 @@ const ResumePage: NextPage = () => {
               height="450"
               className=""
             ></embed>
-            <a href="/files/Yuanda-Hanif Hisyam-CV.pdf" download className="hover:underline">
-              Download my CV
-            </a>
+
+            <div className="flex justify-center pt-3">
+              <a
+                href="/files/Yuanda-Hanif Hisyam-CV.pdf"
+                download
+                className="hover:underline"
+              >
+                Download CV
+              </a>
+            </div>
           </div>
 
           <div className="flex h-screen w-full justify-center">

@@ -165,6 +165,27 @@ const projects = [
     ],
   },
   {
+    title: "Dekoor",
+    description: `Implementasi dari tes <b>Intern Frontend Developer</b> di Sekawan Media. Dibuat dengan HTML, CSS, JQuery, dan Typescript. Setelah lama tidak menggunakan jQuery saya harus membaca dokumentaasi jQuery lagi untuk menyelesaikan project ini :D Selain itu semua interaksi dan animasi di implementasikan tanpa menggunakan library tambahan.`,
+    image:
+      "https://cdn.discordapp.com/attachments/1130127766021472296/1135576729134579784/image.png",
+    technologies: ["HTML", "CSS", "JQuery", "Typescript"],
+    links: [
+      {
+        label: "Demo",
+        link: "https://yuandahanif.github.io/SkwnFrontendDev-1a-Yuanda/",
+      },
+      {
+        label: "Repository",
+        link: "https://github.com/yuandahanif/SkwnFrontendDev-1a-Yuanda",
+      },
+      {
+        label: "Figma",
+        link: "https://www.figma.com/file/Q3L1GRlgY60mOQJdcHw9LJ/Test-Front-End---Furniture-Landing-Page?node-id=0%3A1",
+      },
+    ],
+  },
+  {
     title: "Discord portfolio",
     description: `Discord portfolio adalah sebuah web berisis portfolio project yang pernah ku kerjakan dengan tampilan menyerupai aplikasi Discord. Dibuat karena aku sangat menyukai discord, bukan sebagai alat komunikasi tapi <b>sebagai CDN dan alat untuk sinkronisasi catatan atau file</b> antar device yang kumiliki.`,
     image: "/images/project/portfolio.png",
