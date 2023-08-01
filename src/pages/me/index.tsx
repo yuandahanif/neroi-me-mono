@@ -7,6 +7,14 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Redacted from "~/components/text/redacted";
 
+const Divider: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div className="not-prose flex items-center justify-center gap-4">
+    <hr className="w-full border-t" />
+    <span className="whitespace-nowrap text-sm">{children}</span>
+    <hr className="w-full border-t" />
+  </div>
+);
+
 const MePage: NextPage = () => {
   const profileImageRef = useRef<SVGImageElement>(null);
   const rotateDegRef = useRef(0);
@@ -44,7 +52,7 @@ const MePage: NextPage = () => {
           }
         );
 
-        rotateDegRef.current += 30;
+        rotateDegRef.current = (rotateDegRef.current + 30) % 360;
       });
     }
   }, [rotateDegRef]);
@@ -67,18 +75,62 @@ const MePage: NextPage = () => {
               </Link>
             </h3>
 
-            <div className="relative mx-auto h-96 md:w-auto">
-              <svg className="h-full w-full">
+            <div className="relative mx-auto mb-10 h-96 md:w-auto">
+              <svg className="h-full w-full" aria-label="silly me">
                 <image
                   ref={profileImageRef}
                   xlinkHref="/images/me.png"
-                  className="h-full w-full origin-center rotate-12 cursor-pointer object-contain object-center"
+                  className="h-full w-full origin-center rotate-12 object-contain object-center"
                 ></image>
               </svg>
             </div>
 
+            <Divider>Profesional</Divider>
+
             <p>
-              Halo dan selamat datang di duniaku, Namaku Yuanda{" "}
+              Halo, namaku Yuanda aku seorang web developer dengan dua tahun
+              pengalaman yang memiliki passion terkait desain minimalis dan
+              absurd. Memiliki pengalaman dalam membuat website dan aplikasi web
+              dengan menggunakan ekosistem teknologi modern seperti React, NextJS, dan
+              TailwindCSS.
+            </p>
+
+            <p>
+              Saat ini sedang bekerja sebagai <b>Part Time Web Developer</b> di{" "}
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+                href="https://informatics.uii.ac.id/student-staff/"
+              >
+                Student Staff Universitas Islam Indonesia
+              </a>{" "}
+              dan kadang melakukan freelance.
+            </p>
+
+            <p>
+              Punya semangat belajar yang tinggi terutama soal teknologi dan
+              hal-hal baru. Mudah beradaptasi dan berkolaborasi dengan
+              lingkungan baru. Dan suka berbagi tentang hal-hal yang ku sukai.
+            </p>
+
+            <p>
+              Tujuanku saat ini adalah untuk terus memperluas pengetahuan dan
+              keterampilanku untuk suatu saat dapat berkontribusi terhadap
+              kemajuan umat manusia.
+            </p>
+
+            <Link
+              href="/me#contact"
+              className="mx-auto mb-10 flex w-fit justify-center text-center text-base no-underline hover:underline"
+            >
+              &#8595; Contact, CV, and Resume down below &#8595;
+            </Link>
+
+            <Divider>Personal</Divider>
+
+            <p>
+              Halo dan selamat datang di duniaku, namaku Yuanda{" "}
               <Redacted>Hanif Hisyam</Redacted>, seorang optimistik nihilis yang
               mencintai dan terlalu bergantung pada internet. Mencintai filosofi
               dan teknologi terutama internet sebagai salah satu pencapaian
@@ -131,23 +183,31 @@ const MePage: NextPage = () => {
                 onClick={openUnimportantDetail}
               >
                 <span className="mx-auto text-center text-xs underline">
-                  Tampilkan detail yang kurang penting
+                  Tampilkan lebih banyak
                 </span>
               </button>
 
               <div
                 ref={nonImportantDetailRef}
-                className="hidden origin-top border-y duration-200"
+                className="hidden origin-top duration-200"
               >
+                <Divider>More Personal</Divider>
                 <p>
                   Kadang suka main CTF atau ngerjain soal-soal algoritma di
-                  Hackerrank. Juga suka main game, tapi bukan gamer. Genre film
-                  dan cerita kesukaan adalah Horor, Sci-Fi, Misteri, dan
-                  Psychological terutama yang bertema post apocalyptic.
+                  Hackerrank.
                 </p>
 
                 <p>
-                  Suka kopi dan makanan pedes meski sering bikin sakit perut.
+                  Suka main game, tapi bukan gamer, genre game favorit adalah
+                  RPG, Open World, dan FPS terutama yang ceritanya ribet atau
+                  multiple ending. Juga suka nonton film, genre film atau cerita
+                  favorit adalah Horor, Sci-Fi, Misteri, dan Psychological
+                  terutama yang bertema post apocalyptic.
+                </p>
+
+                <p>
+                  Hampir ngopi tiap hari, tapi bukan pecandu kopi. Juga suka
+                  makanan pedes meski sering bikin sakit perut.
                 </p>
 
                 <p>
@@ -172,7 +232,7 @@ const MePage: NextPage = () => {
 
                 <p>
                   Pengen suatu saat bisa kontribusi ke Linux kernel atau
-                  software open source lainnya. Usaha yang sedang dilakukan
+                  software Open Source lainnya. Usaha yang sedang dilakukan
                   adalah belajar low level programming language (Rust) dan
                   belajar buat berkomunikasi lebih baik.
                 </p>
@@ -210,7 +270,7 @@ const MePage: NextPage = () => {
             </div>
           </div>
 
-          <div className="mt-10">
+          <div className="mt-10" id="contact">
             <h3 className="text-center">
               Kontak <br />
               <span className="text-sm">(profesional)</span>
