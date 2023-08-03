@@ -114,7 +114,7 @@ const MainNavigation = () => {
 
         <dialog
           ref={navigationref}
-          className="min-h-96 w-full max-w-screen-md overflow-auto border bg-main-600 p-5  text-white backdrop:bg-opacity-80 backdrop:backdrop-blur-sm"
+          className="min-h-96 w-full max-w-screen-md overflow-auto border bg-main-600 p-5 text-white backdrop:bg-opacity-80 backdrop:backdrop-blur-sm"
         >
           <ul className="flex flex-col gap-4">
             <li>

@@ -14,6 +14,7 @@ const config = {
       "yuandahanif.github.io",
       "markdown-videos.vercel.app",
       "cdn.discordapp.com",
+      "media.discordapp.net",
     ],
   },
   /**

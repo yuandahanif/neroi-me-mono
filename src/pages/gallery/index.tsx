@@ -8,6 +8,104 @@ import React from "react";
 import GalleryImage from "~/components/gallery/image";
 import Link from "next/link";
 
+const images: {
+  src: string;
+  alt: string;
+  description: string | React.ReactElement;
+  slideshow?: {
+    src: string;
+    alt: string;
+    description: string | React.ReactElement;
+  }[];
+}[] = [
+  {
+    src: "/images/laptop.jpg",
+    alt: "Laptop",
+    description: "I use ubuntu BTW",
+  },
+  {
+    src: "/images/one-room-of-happiness.jpg",
+    alt: "one room of happiness",
+    description: "I, Anyway . . .",
+  },
+  {
+    src: "/images/reimu.jpg",
+    alt: "hakurei reimu",
+    description: "re-reimu >\\<",
+  },
+  {
+    src: "/images/over-dose.jpg",
+    alt: "Needy Streamer Overload",
+    description: "Over",
+  },
+  {
+    src: "/images/classroom.jpg",
+    alt: "classroom",
+    description: "Tempat untuk banyak orang, namun rasanya selalu sendiri.",
+  },
+  {
+    src: "/images/fortune.jpg",
+    alt: "fortune",
+    description: "bando kucing",
+  },
+  {
+    src: "/images/book.jpg",
+    alt: "book",
+    description: "me-IRL",
+  },
+  {
+    src: "/images/blahaj.jpg",
+    alt: "Blåhaj",
+    description: "My beloved sharkkkk.",
+  },
+  {
+    src: "/images/stair.jpg",
+    alt: "Lorong",
+    description: "Do it! - (call of the void)",
+  },
+  {
+    src: "/images/lorong-1.jpg",
+    alt: "Lorong",
+    description: "2020, kupikir dunia akan berakhir, mehh.",
+  },
+  {
+    src: "/images/sunset.jpg",
+    alt: "Lorong",
+    description: <Redacted>Tekan &apos;/&apos; di halaman home. </Redacted>,
+  },
+  {
+    src: "/images/comic/comic-1.png",
+    alt: "Entahlah",
+    description: (
+      <Link href={"/art/komik"} className="animate-pulse">
+        01
+      </Link>
+    ),
+  },
+  {
+    src: "https://media.discordapp.net/attachments/1130127766021472296/1136725296704397412/cover-b.jpg?width=598&height=449",
+    alt: "03-08-2023",
+    description: "03-08-2023",
+    slideshow: [
+      {
+        src: "https://media.discordapp.net/attachments/1130127766021472296/1136725296704397412/cover-b.jpg?width=598&height=449",
+        alt: "03-08-2023",
+        description: "03-08-2023",
+      },
+      {
+        src: "https://media.discordapp.net/attachments/1130127766021472296/1136724705466921020/hand-sand.jpg?width=336&height=449",
+        alt: "hand-sand",
+        description: "hand",
+      },
+      {
+        src: "https://media.discordapp.net/attachments/1130127766021472296/1136724706297397368/night-1.jpg?width=598&height=449",
+        alt: "night-1",
+        description: "night 1",
+      },
+    ],
+  },
+];
+
 const MePage: NextPage = () => {
   return (
     <>
@@ -30,83 +128,16 @@ const MePage: NextPage = () => {
             </h3>
           </div>
 
-          <div className="px-2 lg:px-0 mx-auto mt-10 flex w-full flex-wrap items-end justify-evenly gap-y-8">
-            <GalleryImage
-              imageSrc="/images/laptop.jpg"
-              imageAlt="Laptop"
-              description="I use ubuntu BTW"
-            />
-
-            <GalleryImage
-              imageSrc="/images/one-room-of-happiness.jpg"
-              imageAlt="one room of happiness"
-              description="I, Anyway . . ."
-            />
-
-            <GalleryImage
-              imageSrc="/images/reimu.jpg"
-              imageAlt="hakurei reimu"
-              description="re-reimu >\\\<"
-            />
-
-            <GalleryImage
-              imageSrc="/images/over-dose.jpg"
-              imageAlt="Needy Streamer Overload"
-              description="Over"
-            />
-
-            <GalleryImage
-              imageSrc="/images/classroom.jpg"
-              imageAlt="classroom"
-              description="Tempat untuk banyak orang, namun rasanya selalu sendiri."
-            />
-
-            <GalleryImage
-              imageSrc="/images/fortune.jpg"
-              imageAlt="fortune"
-              description="bando kucing"
-            />
-
-            <GalleryImage
-              imageSrc="/images/book.jpg"
-              imageAlt="book"
-              description="me-IRL"
-            />
-
-            <GalleryImage
-              imageSrc="/images/blahaj.jpg"
-              imageAlt="Blåhaj"
-              description="My beloved sharkkkk."
-            />
-
-            <GalleryImage
-              imageSrc="/images/stair.jpg"
-              imageAlt="Lorong"
-              description="Do it! - (call of the void)"
-            />
-
-            <GalleryImage
-              imageSrc="/images/lorong-1.jpg"
-              imageAlt="Lorong"
-              description="2020, kupikir dunia akan berakhir, mehh."
-            />
-
-            <GalleryImage
-              imageSrc="/images/sunset.jpg"
-              imageAlt="Lorong"
-              description={
-                <Redacted>Tekan &apos;/&apos; di halaman home. </Redacted>
-              }
-            />
-            <GalleryImage
-              imageSrc="/images/comic/comic-1.png"
-              imageAlt="Laptop"
-              description={
-                <Link href={"/art/komik"} className="animate-pulse">
-                  01
-                </Link>
-              }
-            />
+          <div className="mx-auto mt-10 flex w-full flex-wrap items-end justify-evenly gap-y-8 px-2 lg:px-0">
+            {images.map((image) => (
+              <GalleryImage
+                key={image.src}
+                imageSrc={image.src}
+                imageAlt={image.alt}
+                description={image.description}
+                slideshow={image.slideshow}
+              />
+            ))}
           </div>
         </main>
       </MainLayout>
