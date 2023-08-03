@@ -48,11 +48,11 @@ const images: {
     alt: "fortune",
     description: "bando kucing",
   },
-  {
-    src: "/images/book.jpg",
-    alt: "book",
-    description: "me-IRL",
-  },
+  // {
+  //   src: "/images/book.jpg",
+  //   alt: "book",
+  //   description: "me-IRL",
+  // },
   {
     src: "/images/blahaj.jpg",
     alt: "Blåhaj",
@@ -88,19 +88,34 @@ const images: {
     description: "03-08-2023",
     slideshow: [
       {
-        src: "https://media.discordapp.net/attachments/1130127766021472296/1136725296704397412/cover-b.jpg?width=598&height=449",
+        src: "https://media.discordapp.net/attachments/1130127766021472296/1136725296704397412/cover-b.jpg",
         alt: "03-08-2023",
         description: "03-08-2023",
       },
       {
-        src: "https://media.discordapp.net/attachments/1130127766021472296/1136724705466921020/hand-sand.jpg?width=336&height=449",
+        src: "https://media.discordapp.net/attachments/1130127766021472296/1136724705466921020/hand-sand.jpg",
         alt: "hand-sand",
         description: "hand",
       },
       {
-        src: "https://media.discordapp.net/attachments/1130127766021472296/1136724706297397368/night-1.jpg?width=598&height=449",
+        src: "https://media.discordapp.net/attachments/1130127766021472296/1136724707845079171/tree.jpg",
+        alt: "tree",
+        description: "tree",
+      },
+      {
+        src: "https://media.discordapp.net/attachments/1130127766021472296/1136724706297397368/night-1.jpg",
         alt: "night-1",
         description: "night 1",
+      },
+      {
+        src: "https://cdn.discordapp.com/attachments/1130127766021472296/1136724706997829692/night-2.jpg",
+        alt: "night-2",
+        description: "night 2",
+      },
+      {
+        src: "https://media.discordapp.net/attachments/1130127766021472296/1136724707446636665/night-3.jpg",
+        alt: "night-3",
+        description: "night 3",
       },
     ],
   },

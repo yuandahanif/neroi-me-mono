@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useRef, type ReactNode, useEffect } from "react";
+import { useRef, type ReactNode, useEffect, useState } from "react";
 
 interface Props {
   imageSrc: string;
@@ -14,11 +14,32 @@ const GalleryImage: React.FC<Props> = ({
   description,
   slideshow,
 }) => {
-  const largePreviewVisible = useRef(false);
+  const [imgIndex, setImageIndex] = useState(0);
   const largePreviewDialogRef = useRef<HTMLDialogElement>(null);
 
   const handleClick = () => {
+    setImageIndex(0);
     largePreviewDialogRef.current?.showModal();
+  };
+
+  const cycleSlideshow = (dir: "next" | "prev") => {
+    if (slideshow && slideshow.length > 0) {
+      setImageIndex((s) => {
+        if (dir == "next") {
+          s += 1;
+          if (s > slideshow.length - 1) {
+            s = 0;
+          }
+        } else {
+          s -= 1;
+          if (s <= 0) {
+            s = slideshow.length - 1;
+          }
+        }
+
+        return s;
+      });
+    }
   };
 
   useEffect(() => {
@@ -54,18 +75,30 @@ const GalleryImage: React.FC<Props> = ({
         ref={largePreviewDialogRef}
         className="max-h-[80vh] min-h-[60vh] w-auto max-w-screen-lg overflow-auto border bg-main-600 text-white backdrop:bg-opacity-80 backdrop:backdrop-blur-sm"
       >
-        <div className="flex flex-col">
+        {!slideshow && (
           <Image
             src={imageSrc}
             alt={imageAlt}
+            className="m-auto object-contain object-bottom duration-200 ease-in-out"
+            fill
+          />
+        )}
+
+        {slideshow && slideshow.length > 0 && (
+          <Image
+            src={slideshow[imgIndex]?.src ?? ""}
+            alt={slideshow[imgIndex]?.alt ?? ""}
             className="object-contain object-bottom"
             fill
           />
-        </div>
+        )}
 
-        <div className="prose prose-sm prose-invert mx-auto mt-3 text-center">
-          <div>{description}</div>
-        </div>
+        {slideshow && (
+          <div className="absolute left-0 top-1/2 z-10 flex h-80 w-full -translate-y-1/2 items-center justify-between bg-opacity-20 p-8">
+            <button onClick={() => cycleSlideshow("prev")}>back</button>
+            <button onClick={() => cycleSlideshow("next")}>next</button>
+          </div>
+        )}
       </dialog>
 
       <div className="w-full sm:w-fit">
