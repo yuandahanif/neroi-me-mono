@@ -32,7 +32,7 @@ const GalleryImage: React.FC<Props> = ({
           }
         } else {
           s -= 1;
-          if (s <= 0) {
+          if (s < 0) {
             s = slideshow.length - 1;
           }
         }
@@ -95,8 +95,8 @@ const GalleryImage: React.FC<Props> = ({
 
         {slideshow && (
           <div className="absolute left-0 top-1/2 z-10 flex h-80 w-full -translate-y-1/2 items-center justify-between bg-opacity-20 p-8">
-            <button onClick={() => cycleSlideshow("prev")}>back</button>
-            <button onClick={() => cycleSlideshow("next")}>next</button>
+            <button onClick={() => cycleSlideshow("prev")}>ba{"<"}k</button>
+            <button onClick={() => cycleSlideshow("next")}>n{">"}xt</button>
           </div>
         )}
       </dialog>
