@@ -14,7 +14,7 @@ import useReadTime from "~/hooks/useReadTime";
 import { twMerge } from "tailwind-merge";
 import TriggerWarning from "~/components/trigger_warning/trigger_warning";
 
-const main_forn = Lato({
+const main_font = Lato({
   subsets: ["latin-ext"],
   weight: ["400", "900", "700"],
 });
@@ -46,7 +46,7 @@ const BlogDetailPage: NextPage = () => {
         if (firstVisit && data?.id != null) {
           setFirstVisit(false);
           timeoutRef.current = setTimeout(() => {
-            visitMutation.mutate({ id: data?.id });
+            // visitMutation.mutate({ id: data?.id });
           }, 10000);
         }
       },
@@ -96,7 +96,8 @@ const BlogDetailPage: NextPage = () => {
           <MainNavigation />
 
           <div
-            className={`mt-10  flex flex-col gap-y-5 ${main_forn.className}`}
+            className={`mt-10  flex flex-col gap-y-5 ${main_font.className}`}
+            style={main_font.style}
           >
             {blog.isLoading && <Loading />}
 
@@ -125,7 +126,7 @@ const BlogDetailPage: NextPage = () => {
                 </div>
 
                 <div className="mt-5 flex flex-col-reverse sm:flex-row">
-                  <div>
+                  <div className="w-auto">
                     <div className="z-20 w-fit rounded-md border border-main-300 bg-main-600 p-2 sm:mx-auto sm:p-6">
                       <div
                         ref={articleRef}
@@ -179,7 +180,12 @@ const BlogDetailPage: NextPage = () => {
                     </div>
                   </div>
 
-                  <div className="sticky top-2 h-fit p-4">
+                  <div
+                    className="sticky top-16 h-fit p-4"
+                    style={{
+                      display: tableOfContent.size > 0 ? "block" : "none",
+                    }}
+                  >
                     <h2 className="mb-2 inline-flex text-lg font-semibold">
                       Daftar isi:
                     </h2>

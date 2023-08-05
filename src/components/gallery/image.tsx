@@ -110,8 +110,8 @@ const GalleryImage: React.FC<Props> = ({
             src={imageSrc}
             alt={imageAlt}
             className="object-contain object-bottom"
-            fill
             sizes="384px 384px"
+            fill
           />
 
           {slideshow && (

@@ -20,9 +20,13 @@ const TILPage: NextPage = () => {
           <h1 className="text-5xl">{"<Note/>"}</h1>
           <MainNavigation />
 
-          <div className="mt-10 flex w-full flex-col gap-7">
-            <h3 className="mx-auto text-2xl">Catatan singkat</h3>
+          <div className="lg:prose-md prose prose-sm prose-invert mb-10 mt-10 lg:prose-sm">
+            <h3 className="text-center">
+              Terlalu singkat unutuk jadi blog, tapi mungkin pas untuk jadi tweet.
+            </h3>
+          </div>
 
+          <div className="mt-10 flex w-full flex-col gap-7">
             <div className="prose prose-sm prose-invert mx-auto flex-col gap-y-20 lg:prose-lg">
               {notes.isLoading && <Loading />}
 

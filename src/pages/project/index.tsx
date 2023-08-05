@@ -236,6 +236,7 @@ const ProjectPage: NextPage = () => {
                         fill
                         className="object-contain object-center"
                         alt={project.title}
+                        sizes="320px 384px"
                       />
                     </div>
                   </div>

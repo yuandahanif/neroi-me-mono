@@ -8,7 +8,7 @@ const local_date = (date: string | Date) => {
 
   const formater = new Intl.DateTimeFormat("id", {
     dateStyle: "full",
-    // timeStyle: "short",
+    timeStyle: "short",
   });
   return formater.format(d);
 };

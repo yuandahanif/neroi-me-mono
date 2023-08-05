@@ -8,7 +8,7 @@ import { Lato } from "next/font/google";
 import { twMerge } from "tailwind-merge";
 import TriggerWarning from "~/components/trigger_warning/trigger_warning";
 
-const main_forn = Lato({
+const main_font = Lato({
   subsets: ["latin-ext"],
   weight: ["400", "900", "700"],
 });
@@ -38,7 +38,7 @@ const NoteToAll: NextPage = () => {
           <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
 
-          <div className={`mt-10 flex flex-col gap-y-5 ${main_forn.className}`}>
+          <div className={`mt-10 flex flex-col gap-y-5 ${main_font.className}`}>
             <div className="rounded-md border-2 border-red-500 bg-red-50 p-2 sm:mx-auto sm:p-6">
               <div className="prose-md prose ">
                 <p className="">
