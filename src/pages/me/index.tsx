@@ -254,7 +254,7 @@ const MePage: NextPage = () => {
                     Terakhir, ada beberapa easter egg di web ini, mungkin kau
                     bisa cari jika waktu luangmu terlalu banyak{" "}
                     <Link
-                      className="text-main-600 selection:text-white"
+                      className="text-main-600 selection:text-white hover:underline decoration-white"
                       href={"/note"}
                     >
                       seperti ini

@@ -107,6 +107,7 @@ const GalleryImage: React.FC<Props> = ({
           onClick={handleClick}
         >
           <Image
+            title={imageAlt}
             src={imageSrc}
             alt={imageAlt}
             className="object-contain object-bottom"

@@ -12,12 +12,16 @@ export const noteRouter = createTRPCRouter({
       z
         .object({
           page: z.number().default(1).optional().nullable(),
-          amount: z.number().default(10).optional().nullable(),
+          amount: z.number().default(5).optional().nullable(),
         })
         .nullable()
     )
-    .query(({ ctx }) => {
-      return ctx.prisma.note.findMany({ orderBy: { createdAt: "desc" } });
+    .query(({ ctx, input }) => {
+      return ctx.prisma.note.findMany({
+        orderBy: { createdAt: "desc" },
+        take: input?.amount ?? 5,
+        skip: ((input?.page ?? 1) - 1) * (input?.amount ?? 5),
+      });
     }),
 
   getById: protectedProcedure

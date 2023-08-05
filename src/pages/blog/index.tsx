@@ -6,7 +6,6 @@ import MainNavigation from "~/components/navigation/main.navigation";
 import { api } from "~/utils/api";
 import Loading from "~/components/loading/loading";
 import BlogCard from "~/components/card/blog.card";
-import Link from "next/link";
 
 const BlogIndexPage: NextPage = () => {
   const blog = api.blog.getAll_withPagination.useQuery(

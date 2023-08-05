@@ -94,7 +94,7 @@ const MainNavigation = () => {
             </button>
           )}
 
-          <button type="button" onClick={openDialog}>
+          <button type="button" onClick={openDialog} title="navigation">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
