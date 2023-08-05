@@ -130,7 +130,7 @@ const BlogDetailPage: NextPage = () => {
                       <div
                         ref={articleRef}
                         className={twMerge(
-                          "prose-md prose prose-invert w-full prose-h2:text-lg prose-pre:rounded-sm prose-pre:bg-main-400",
+                          "blog-content prose-md prose prose-invert w-full prose-h2:text-lg prose-pre:rounded-sm prose-pre:bg-main-400",
                           isRestrictedContent && "blur-sm"
                         )}
                         dangerouslySetInnerHTML={{

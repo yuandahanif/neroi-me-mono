@@ -21,3 +21,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.blog-content img {
+  width: 100%;
+  @apply object-contain;
+}

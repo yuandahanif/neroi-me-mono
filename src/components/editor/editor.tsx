@@ -1,5 +1,6 @@
-import { useQuill } from "react-quilljs";
 import React, { useEffect } from "react";
+import { useQuill } from "react-quilljs";
+import Quill from "quill";
 import hljs from "highlight.js";
 
 import "quill/dist/quill.snow.css";
@@ -10,8 +11,17 @@ interface Props {
 }
 
 hljs.configure({
-  languages: ["javascript", "ruby", "python", "rust"],
+  languages: ["language-typescript", "javascript", "ruby", "python", "rust"],
 });
+function imageHandler(this: { [x: string]: any; image: () => void }) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+  const range = this.quill.getSelection();
+  const value = prompt("What is the image URL");
+  if (value) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    this.quill?.insertEmbed(range.index, "image", value, Quill.sources.USER);
+  }
+}
 
 const Editor: React.FC<Props> = ({ onChange, defaultValue }) => {
   const { quill, quillRef } = useQuill({
@@ -40,7 +50,9 @@ const Editor: React.FC<Props> = ({ onChange, defaultValue }) => {
         },
       },
       toolbar: {
-        handler: {},
+        handlers: {
+          image: imageHandler,
+        },
         container: [
           ["bold", "italic", "underline"],
           [{ header: [2, 3, 4, 5, 6, false] }],
