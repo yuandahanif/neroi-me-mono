@@ -110,7 +110,7 @@ const GalleryImage: React.FC<Props> = ({
             title={imageAlt}
             src={imageSrc}
             alt={imageAlt}
-            className="object-contain object-bottom"
+            className="object-contain object-bottom cursor-pointer"
             sizes="384px 384px"
             fill
           />
