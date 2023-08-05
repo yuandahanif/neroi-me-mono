@@ -9,7 +9,7 @@ import Loading from "~/components/loading/loading";
 import { useEffect, useState } from "react";
 import { type Note } from "@prisma/client";
 
-const AMOUNT = 5;
+const AMOUNT = 10;
 
 const TILPage: NextPage = () => {
   const [page, setPage] = useState<number>(1);
