@@ -34,24 +34,23 @@ const BlogDetailPage: NextPage = () => {
 
   const visitMutation = api.blog.incrementVisitById.useMutation();
 
-  const blog = api.blog.getBySlug.useQuery(
-    { slug: String(slug) },
-    {
-      onSuccess(data) {
-        if (firstVisit && data?.Tags.find((tag) => tag.title == "Personal")) {
-          console.log("find");
-          setIsRestrictedContent(true);
-        }
+  const blog = api.blog.getBySlug.useQuery({ slug: String(slug) });
 
-        if (firstVisit && data?.id != null) {
-          setFirstVisit(false);
-          timeoutRef.current = setTimeout(() => {
-            // visitMutation.mutate({ id: data?.id });
-          }, 10000);
-        }
-      },
+  useEffect(() => {
+    if (blog.isSuccess) {
+      const data = blog.data;
+      if (firstVisit && data?.Tags.find((tag) => tag.title == "NSFW")) {
+        setIsRestrictedContent(true);
+      }
+
+      if (firstVisit && data?.id != null) {
+        setFirstVisit(false);
+        timeoutRef.current = setTimeout(() => {
+          visitMutation.mutate({ id: data?.id });
+        }, 10000);
+      }
     }
-  );
+  }, [blog.data, blog.isSuccess, firstVisit, visitMutation]);
 
   useEffect(() => {
     const ref = articleRef.current;

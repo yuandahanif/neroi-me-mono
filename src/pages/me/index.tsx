@@ -74,8 +74,10 @@ const MePage: NextPage = () => {
                 ku
               </Link>
             </h3>
-
-            <div className="relative mx-auto mb-10 h-96 md:w-auto">
+            <div
+              className="relative mx-auto mb-10 h-96 md:w-auto"
+              title="silly me"
+            >
               <svg className="h-full w-full" aria-label="silly me">
                 <image
                   ref={profileImageRef}
@@ -91,8 +93,8 @@ const MePage: NextPage = () => {
               Halo, namaku Yuanda aku seorang web developer dengan dua tahun
               pengalaman yang memiliki passion terkait desain minimalis dan
               absurd. Memiliki pengalaman dalam membuat website dan aplikasi web
-              dengan menggunakan ekosistem teknologi modern seperti React, NextJS, dan
-              TailwindCSS.
+              dengan menggunakan ekosistem teknologi modern seperti React,
+              NextJS, dan TailwindCSS.
             </p>
 
             <p>
@@ -105,7 +107,7 @@ const MePage: NextPage = () => {
               >
                 Student Staff Universitas Islam Indonesia
               </a>{" "}
-              dan kadang melakukan freelance.
+              dan kadang melakukan <b>freelance</b>.
             </p>
 
             <p>

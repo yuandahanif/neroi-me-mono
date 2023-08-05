@@ -27,7 +27,7 @@ const BlogIndexPage: NextPage = () => {
           <h1 className="text-5xl">{"<Blog/>"}</h1>
           <MainNavigation />
 
-          <div className="lg:prose-md prose prose-sm prose-invert mt-10 px-2 font-semibold lg:px-0">
+          {/* <div className="lg:prose-md prose prose-sm prose-invert mt-10 px-2 font-semibold lg:px-0">
             <p className="text-center text-red-500">
               Maaf, konten saat ini sedang bersifat personal sebagai sarana
               untuk terapi terkait masalah kesehatan mental yang sedang dimiliki
@@ -42,6 +42,13 @@ const BlogIndexPage: NextPage = () => {
             </p>
 
             <hr />
+          </div> */}
+
+          <div className="prose prose-invert mt-10 lg:prose-sm">
+            <h3 className="text-center">
+              Selamat datang di blog, tempatku berbagi apa yang ada di dalam
+              kepalaku.
+            </h3>
           </div>
 
           <div className="mt-10 flex flex-col gap-y-8 px-2 lg:px-0">

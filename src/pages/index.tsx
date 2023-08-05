@@ -65,17 +65,17 @@ const Home: NextPage = () => {
       <HeadSEO />
       <MainLayout>
         {isLoginWindowVisible && (
-          <div className="fixed left-1/2 top-1/2 m-auto hidden h-96 w-5/6 max-w-screen-sm -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5 md:w-full md:max-w-screen-md lg:block">
+          <div className="fixed left-1/2 top-1/2 z-50 m-auto hidden h-96 w-5/6 max-w-screen-sm -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5 md:w-full md:max-w-screen-md lg:block">
             <div className="flex">
               <span>root@user:</span>
               <div className="flex flex-col">
-                <span>Welcome to nextOS v0.0.1</span>
+                <span> Welcome to yume OS v0.0.1</span>
                 <span>
                   Please enter the password to{" "}
                   <button
                     type="button"
                     onClick={() => void signIn()}
-                    className=""
+                    className="cursor-text"
                   >
                     continue
                   </button>
@@ -105,7 +105,7 @@ const Home: NextPage = () => {
 
           <MainNavigation />
 
-          <div className="prose prose-sm prose-invert mt-10 text-center px-4 lg:px-0">
+          <div className="prose prose-sm prose-invert mt-10 px-4 text-center lg:px-0">
             <p ref={quoteRef} />
           </div>
         </main>
