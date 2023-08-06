@@ -5,7 +5,10 @@ import MainLayout from "~/layouts/main.layout";
 const ResumePage: NextPage = () => {
   return (
     <>
-      <HeadSEO />
+      <HeadSEO
+        title="CV & Resume"
+        description="CV & Resume dari pemilik web ini."
+      />
       <MainLayout>
         <div className="py-9">
           <div className="mx-auto mb-4 w-fit border p-4">

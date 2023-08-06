@@ -10,8 +10,11 @@ const HeadSEO: React.FC<Props> = ({ description, title }) => {
   return (
     <>
       <NextSeo
-        title={`${title ? `${title} | ` : ""} Neroi-space`}
-        description={`${description ?? "Gawrrrr . . ."}`}
+        title={`${title ? `${title} | ` : ""} Neroi.space`}
+        description={`${
+          description ??
+          "Selamat data di Neroi.space, web pribadi milik [Redacted]."
+        }`}
       />
       <Head>
         <link rel="icon" href="/icons/favicon.ico" />

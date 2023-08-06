@@ -11,7 +11,7 @@ interface Props {
 
 const MainLayout: React.FC<Props> = ({ children }) => {
   return (
-    <div className={`w-full bg-main-600 ${source_Code_Pro.className}`}>
+    <div className={`w-full bg-main-600`} style={source_Code_Pro.style}>
       <div className="mx-auto min-h-screen w-full max-w-screen-2xl grow bg-main-600 text-white">
         {children}
       </div>

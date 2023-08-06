@@ -7,7 +7,10 @@ import MainLayout from "~/layouts/main.layout";
 const LabPage: NextPage = () => {
   return (
     <>
-      <HeadSEO />
+      <HeadSEO
+        title="Lab"
+        description="Tempat apapun yaang terlalu sederhana untuk disebut project."
+      />
       <MainLayout>
         <div className="flex w-full justify-center">
           <main
@@ -25,7 +28,7 @@ const LabPage: NextPage = () => {
             </div>
 
             <div className="hidden flex-col flex-wrap items-center gap-10 md:flex">
-              <div className="flex flex-wrap justify-center items-end gap-24">
+              <div className="flex flex-wrap items-end justify-center gap-24">
                 <div className="flex h-auto flex-col gap-3">
                   <div className="relative flex h-[500px] w-[500px]">
                     <iframe

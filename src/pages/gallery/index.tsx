@@ -124,7 +124,11 @@ const images: {
 const MePage: NextPage = () => {
   return (
     <>
-      <HeadSEO description="Tempat gambar absurd" title="Gallery" />
+      <HeadSEO
+        description="Tempatku berbagi gambar acak untuk
+              kesenangan pribadi."
+        title="Gallery"
+      />
       <MainLayout>
         <main
           className={`flex min-h-screen grow flex-col items-center justify-start p-2  py-10`}

@@ -62,7 +62,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <HeadSEO />
+      <HeadSEO title="Home" />
       <MainLayout>
         {isLoginWindowVisible && (
           <div className="fixed left-1/2 top-1/2 z-50 m-auto hidden h-96 w-5/6 max-w-screen-sm -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5 md:w-full md:max-w-screen-md lg:block">

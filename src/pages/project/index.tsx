@@ -206,7 +206,10 @@ const projects = [
 const ProjectPage: NextPage = () => {
   return (
     <>
-      <HeadSEO />
+      <HeadSEO
+        title="Projects"
+        description="Tempat showcase project yang pernah ku kerjakan."
+      />
       <MainLayout>
         <div className="flex w-full justify-center">
           <main
