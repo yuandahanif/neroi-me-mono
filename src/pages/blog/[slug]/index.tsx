@@ -102,7 +102,7 @@ const BlogDetailPage: NextPage = () => {
 
             {blog.isError && (
               <div>
-                <span>Error</span>
+                <span>Blog tidak ditemukan</span>
               </div>
             )}
 

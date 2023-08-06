@@ -59,7 +59,7 @@ const MePage: NextPage = () => {
 
   return (
     <>
-      <HeadSEO title="Me" description="Profile dari pemilik web ini." />
+      <HeadSEO title="Me" description="" />
       <MainLayout>
         <main
           className={`flex min-h-screen grow flex-col items-center justify-start p-2 py-10 `}
@@ -254,7 +254,7 @@ const MePage: NextPage = () => {
                     Terakhir, ada beberapa easter egg di web ini, mungkin kau
                     bisa cari jika waktu luangmu terlalu banyak{" "}
                     <Link
-                      className="text-main-600 decoration-white selection:text-white hover:underline"
+                      className="text-main-600 selection:text-white hover:underline decoration-white"
                       href={"/note"}
                     >
                       seperti ini
