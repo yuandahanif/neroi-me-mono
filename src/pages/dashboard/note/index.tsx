@@ -6,9 +6,18 @@ import AdminLayout from "~/layouts/admin.layout";
 import local_date from "~/utils/local_date";
 import Link from "next/link";
 import Loading from "~/components/loading/loading";
+import { useEffect, useState } from "react";
+import { Note } from "@prisma/client";
+
+const AMOUNT = 10;
 
 const NoteIndexPage: NextPage = () => {
-  const notes = api.note.getAll.useQuery({}, {});
+  const [page, setPage] = useState<number>(1);
+  const notes = api.note.getAll.useQuery({ page, amount: AMOUNT });
+
+  const [isEnd, setIsEnd] = useState<boolean>(false);
+  const [paginateUnique, setPaginateUnique] = useState<Set<string>>(new Set());
+  const [paginateNotes, setPaginateNotes] = useState<Note[]>([]);
 
   const deleteNotemutation = api.note.deleteById.useMutation();
 
@@ -24,6 +33,27 @@ const NoteIndexPage: NextPage = () => {
       );
     }
   };
+
+  useEffect(() => {
+    if (notes.status == "success") {
+      if (notes.data?.length < AMOUNT) {
+        setIsEnd(true);
+      }
+
+      notes.data?.forEach((data) => {
+        if (!paginateUnique.has(data?.id)) {
+          setPaginateNotes((s) => {
+            return [...s, data];
+          });
+        }
+
+        setPaginateUnique((s) => {
+          s?.add(data?.id);
+          return s;
+        });
+      });
+    }
+  }, [notes, paginateUnique]);
 
   return (
     <>
@@ -63,7 +93,7 @@ const NoteIndexPage: NextPage = () => {
 
             <div className="prose prose-sm prose-invert mx-auto flex-col gap-y-20 lg:prose-lg">
               {notes.isSuccess &&
-                notes.data.map((data) => (
+                paginateNotes?.map((data) => (
                   <div key={data.id} className="mb-8 flex w-full flex-col p-4">
                     <div className="py-0">
                       <div
@@ -90,6 +120,17 @@ const NoteIndexPage: NextPage = () => {
                   </div>
                 ))}
             </div>
+
+            {!isEnd && (
+              <button
+                className="text-sm hover:underline"
+                onClick={() => {
+                  setPage((s) => ++s);
+                }}
+              >
+                Tampilkan Lainnya
+              </button>
+            )}
           </div>
         </main>
       </AdminLayout>
