@@ -7,14 +7,32 @@ import { api } from "~/utils/api";
 import Loading from "~/components/loading/loading";
 import BlogCard from "~/components/card/blog.card";
 
+import { motion, type Variants } from "framer-motion";
+import { useEffect, useState } from "react";
+
+const itemVariants: Variants = {
+  init: { opacity: 0, y: 20, transition: { duration: 0.2 } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 300, damping: 24 },
+  },
+};
+
 const BlogIndexPage: NextPage = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const blog = api.blog.getAll_withPagination.useQuery(
     {},
     {
       refetchOnMount: false,
-      refetchOnWindowFocus: false,
     }
   );
+
+  useEffect(() => {
+    if (blog.isSuccess) {
+      setIsOpen(true);
+    }
+  }, [blog]);
 
   return (
     <>
@@ -54,32 +72,48 @@ const BlogIndexPage: NextPage = () => {
             </h3>
           </div>
 
-          <div className="mt-10 flex flex-col gap-y-8 px-2 lg:px-0">
+          <div className="prose prose-invert mt-10 flex">
             {blog.isLoading && <Loading />}
             {blog.isError && (
               <div>
-                <span>Error</span>
+                <span>Oops! Gagal memuat data :(</span>
               </div>
             )}
+          </div>
 
-            {blog.isSuccess && blog.data.length == 0 && (
-              <div>
-                <span>Tidak ada data</span>
-              </div>
-            )}
-
+          <motion.div
+            className="flex flex-col gap-y-8 px-2 lg:px-0"
+            initial={false}
+            animate={isOpen ? "show" : "init"}
+            variants={{
+              show: {
+                transition: {
+                  type: "spring",
+                  bounce: 0,
+                  duration: 1,
+                  delayChildren: 0.3,
+                  staggerChildren: 0.3,
+                },
+              },
+            }}
+          >
             {blog.isSuccess &&
               blog.data?.map((blog) => (
-                <BlogCard
+                <motion.div
+                  className="w-full"
+                  variants={itemVariants}
                   key={blog.id}
-                  slug={blog.slug}
-                  title={blog.title}
-                  tags={blog.Tags}
-                  visit={blog.visit}
-                  createdAt={blog.createdAt}
-                />
+                >
+                  <BlogCard
+                    slug={blog.slug}
+                    title={blog.title}
+                    tags={blog.Tags}
+                    visit={blog.visit}
+                    createdAt={blog.createdAt}
+                  />
+                </motion.div>
               ))}
-          </div>
+          </motion.div>
         </main>
       </MainLayout>
     </>

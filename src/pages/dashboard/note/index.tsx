@@ -7,7 +7,7 @@ import local_date from "~/utils/local_date";
 import Link from "next/link";
 import Loading from "~/components/loading/loading";
 import { useEffect, useState } from "react";
-import { Note } from "@prisma/client";
+import { type Note } from "@prisma/client";
 
 const AMOUNT = 10;
 

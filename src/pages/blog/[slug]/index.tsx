@@ -46,7 +46,7 @@ const BlogDetailPage: NextPage = () => {
       if (firstVisit && data?.id != null) {
         setFirstVisit(false);
         timeoutRef.current = setTimeout(() => {
-          // visitMutation.mutate({ id: data?.id });
+          visitMutation.mutate({ id: data?.id });
         }, 10000);
       }
     }

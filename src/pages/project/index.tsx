@@ -19,6 +19,7 @@ const projects = [
       "Vercel",
       "CMS",
       "PlanetScale",
+      "Framer Motion",
     ],
     links: [
       {
