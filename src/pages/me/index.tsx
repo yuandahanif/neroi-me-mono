@@ -126,7 +126,7 @@ const MePage: NextPage = () => {
               href="/me#contact"
               className="mx-auto mb-10 flex w-fit justify-center text-center text-base no-underline hover:underline"
             >
-              &#8595; Contact, CV, and Resume down below &#8595;
+              &#8595; Contacts , CV, and Resume down below &#8595;
             </Link>
 
             <Divider>Personal</Divider>
@@ -254,7 +254,7 @@ const MePage: NextPage = () => {
                     Terakhir, ada beberapa easter egg di web ini, mungkin kau
                     bisa cari jika waktu luangmu terlalu banyak{" "}
                     <Link
-                      className="text-main-600 selection:text-white hover:underline decoration-white"
+                      className="text-main-600 decoration-white selection:text-white hover:underline"
                       href={"/note"}
                     >
                       seperti ini
