@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@next-auth/prisma-adapter':
     specifier: ^1.0.7
@@ -77,6 +73,9 @@ dependencies:
   tailwind-merge:
     specifier: ^1.13.2
     version: 1.13.2
+  typesafe-i18n:
+    specifier: ^5.26.0
+    version: 5.26.0(typescript@5.1.6)
   vfile-matter:
     specifier: ^4.0.1
     version: 4.0.1
@@ -5612,11 +5611,19 @@ packages:
       is-typed-array: 1.1.10
     dev: true
 
+  /typesafe-i18n@5.26.0(typescript@5.1.6):
+    resolution: {integrity: sha512-NQ+TuNhA0AWDlOuN46BNOM/Ci87oESMMDw8njiGxhx/jmdqhTedsgPg/eg2c0kwDkqF7YC+d31cNK1S001fEhg==}
+    hasBin: true
+    peerDependencies:
+      typescript: '>=3.5.1'
+    dependencies:
+      typescript: 5.1.6
+    dev: false
+
   /typescript@5.1.6:
     resolution: {integrity: sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==}
     engines: {node: '>=14.17'}
     hasBin: true
-    dev: true
 
   /unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
@@ -5912,3 +5919,7 @@ packages:
   /zod@3.21.4:
     resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

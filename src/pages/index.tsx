@@ -2,15 +2,18 @@ import { type NextPage } from "next";
 
 import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import MainNavigation from "~/components/navigation/main.navigation";
 import { signIn } from "next-auth/react";
 import Logo from "~/components/logo/logo";
+import getI18nProps from "~/i18n/getStaticPropsI18n.helper";
+import { I18nContext } from "~/i18n/i18n-react";
 
-const quote =
-  '"Hidup dalam kehampaan sembari terus berjalan mencari makna dari kehidupan."';
+export const getStaticProps = getI18nProps;
 
 const Home: NextPage = () => {
+  const { LL } = useContext(I18nContext);
+
   const inputRef = useRef<null | HTMLDivElement>(null);
   const [isLoginWindowVisible, setisLoginWindowVisible] = useState(false);
 
@@ -37,7 +40,12 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     const ref = quoteRef.current;
-    const words = quote.split(" ");
+    if (ref == null) return;
+
+    let word_attr = ref?.getAttribute("data-quote");
+    word_attr = `"${word_attr ?? ""}"`;
+    const words = word_attr?.split(" ") ?? "";
+
     let index = 0;
     quoteWordIntervalRef.current = setInterval(() => {
       if (ref != null) {
@@ -106,7 +114,7 @@ const Home: NextPage = () => {
           <MainNavigation />
 
           <div className="prose prose-sm prose-invert mt-10 px-4 text-center lg:px-0">
-            <p ref={quoteRef} />
+            <p ref={quoteRef} data-quote={LL.Quote()} />
           </div>
         </main>
       </MainLayout>
