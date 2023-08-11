@@ -48,11 +48,6 @@ const images: {
     alt: "fortune",
     description: "bando kucing",
   },
-  // {
-  //   src: "/images/book.jpg",
-  //   alt: "book",
-  //   description: "me-IRL",
-  // },
   {
     src: "/images/blahaj.jpg",
     alt: "Blåhaj",
@@ -116,6 +111,23 @@ const images: {
         src: "https://media.discordapp.net/attachments/1130127766021472296/1136724707446636665/night-3.jpg",
         alt: "night-3",
         description: "night 3",
+      },
+    ],
+  },
+  {
+    src: "https://media.discordapp.net/attachments/1130127766021472296/1139617780338020453/20230803_055803.png?width=599&height=449",
+    alt: "Simulation terminated.",
+    description: "Simulation terminated.",
+    slideshow: [
+      {
+        src: "https://media.discordapp.net/attachments/1130127766021472296/1139617780338020453/20230803_055803.png",
+        alt: "can\'t",
+        description: "can\'t",
+      },
+      {
+        src: "https://media.discordapp.net/attachments/1130127766021472296/1139617780023439390/20230802_170931.png",
+        alt: "can\'t",
+        description: "can\'t",
       },
     ],
   },

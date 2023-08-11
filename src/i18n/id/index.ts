@@ -138,6 +138,7 @@ const id = {
                   </span>
                 </p>`,
   Contacts: "Kontak",
+  
 } satisfies Translation;
 
 export default id;

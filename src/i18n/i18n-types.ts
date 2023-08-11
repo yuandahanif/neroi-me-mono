@@ -21,34 +21,6 @@ type RootTranslation = {
 	 */
 	Quote: string
 	/**
-	 * H​o​m​e
-	 */
-	TitleHome: string
-	/**
-	 * B​l​o​g
-	 */
-	TitleBlog: string
-	/**
-	 * G​a​l​l​e​r​y
-	 */
-	TitleGallery: string
-	/**
-	 * P​r​o​j​e​c​t​s
-	 */
-	TitleProjects: string
-	/**
-	 * N​o​t​e​s
-	 */
-	TitleNotes: string
-	/**
-	 * L​a​b​s
-	 */
-	TitleLab: string
-	/**
-	 * M​e
-	 */
-	TitleAbout: string
-	/**
 	 * A​b​o​u​t​ ​M​e
 	 */
 	AboutMe: string
@@ -100,34 +72,6 @@ export type TranslationFunctions = {
 	 * Walking inside the deep abyss of the emptiness in search of the meaning of life.
 	 */
 	Quote: () => LocalizedString
-	/**
-	 * Home
-	 */
-	TitleHome: () => LocalizedString
-	/**
-	 * Blog
-	 */
-	TitleBlog: () => LocalizedString
-	/**
-	 * Gallery
-	 */
-	TitleGallery: () => LocalizedString
-	/**
-	 * Projects
-	 */
-	TitleProjects: () => LocalizedString
-	/**
-	 * Notes
-	 */
-	TitleNotes: () => LocalizedString
-	/**
-	 * Labs
-	 */
-	TitleLab: () => LocalizedString
-	/**
-	 * Me
-	 */
-	TitleAbout: () => LocalizedString
 	/**
 	 * About Me
 	 */
