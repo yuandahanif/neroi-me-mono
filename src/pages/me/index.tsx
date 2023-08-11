@@ -149,8 +149,8 @@ const MePage: NextPage = () => {
 
           <div className="mt-10" id="contact">
             <h3 className="text-center">
-              Kontak <br />
-              <span className="text-sm">(profesional)</span>
+              {LL.Contacts()} <br />
+              <span className="text-sm">({LL.Professional()})</span>
             </h3>
             <div className="mt-5">
               <ul className="flex flex-wrap justify-center gap-5">

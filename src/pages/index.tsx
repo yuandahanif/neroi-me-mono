@@ -2,20 +2,14 @@ import { type NextPage } from "next";
 
 import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
-import {
-  ChangeEventHandler,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import MainNavigation from "~/components/navigation/main.navigation";
 import { signIn } from "next-auth/react";
 import Logo from "~/components/logo/logo";
 import getI18nProps from "~/i18n/getStaticPropsI18n.helper";
 import { I18nContext } from "~/i18n/i18n-react";
 import { useRouter } from "next/router";
-import { Locales } from "~/i18n/i18n-types";
+import { type Locales } from "~/i18n/i18n-types";
 import { locales } from "~/i18n/i18n-util";
 import { loadLocaleAsync } from "~/i18n/i18n-util.async";
 import { twMerge } from "tailwind-merge";
@@ -147,9 +141,8 @@ const Home: NextPage = () => {
             id="change_lang"
           >
             {locales.map((locale_, idx) => (
-              <>
+              <div key={locale_} className="flex gap-2">
                 <button
-                  key={locale_}
                   type="button"
                   className={twMerge("hover:underline")}
                   onClick={() => void chanegLanguage(locale_)}
@@ -158,7 +151,7 @@ const Home: NextPage = () => {
                   {locale_ == locale ? <Redacted>{locale_}</Redacted> : locale_}
                 </button>
                 {idx !== locales.length - 1 && <span>|</span>}
-              </>
+              </div>
             ))}
           </div>
         </main>

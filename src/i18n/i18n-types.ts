@@ -58,10 +58,13 @@ type RootTranslation = {
 ​ ​ ​<​p​>​I​ ​w​a​n​t​ ​t​o​ ​b​e​ ​a​b​l​e​ ​t​o​ ​c​o​n​t​r​i​b​u​t​e​ ​t​o​ ​t​h​e​ ​L​i​n​u​x​ ​k​e​r​n​e​l​ ​o​r​ ​o​t​h​e​r​ ​O​p​e​n​ ​S​o​u​r​c​e​ ​s​o​f​t​w​a​r​e​ ​o​n​e​ ​d​a​y​.​ ​O​n​g​o​i​n​g​ ​e​f​f​o​r​t​s​ ​a​r​e​ ​l​e​a​r​n​i​n​g​ ​l​o​w​ ​l​e​v​e​l​ ​p​r​o​g​r​a​m​m​i​n​g​ ​l​a​n​g​u​a​g​e​ ​(​R​u​s​t​)​ ​a​n​d​ ​l​e​a​r​n​i​n​g​ ​t​o​ ​c​o​m​m​u​n​i​c​a​t​e​ ​b​e​t​t​e​r​.​<​/​p​>​
 ​ ​ ​<​p​>​A​l​s​o​ ​l​i​k​e​ ​<​a​ ​h​r​e​f​=​"​h​t​t​p​s​:​/​/​e​n​.​w​i​k​i​p​e​d​i​a​.​o​r​g​/​w​i​k​i​/​A​l​t​e​r​n​a​t​e​_​r​e​a​l​i​t​y​_​g​a​m​e​"​ ​t​a​r​g​e​t​=​"​_​b​l​a​n​k​"​ ​r​e​l​=​"​n​o​o​p​e​n​e​r​ ​n​o​r​e​f​e​r​r​e​r​"​ ​c​l​a​s​s​=​"​h​o​v​e​r​:​u​n​d​e​r​l​i​n​e​"​>​A​R​G​<​/​a​>​,​ ​s​o​ ​l​e​t​s​ ​m​i​m​i​c​ ​o​n​e​.​ ​L​i​m​i​n​a​l​ ​S​p​a​c​e​,​ ​W​e​i​r​d​ ​C​o​r​e​,​ ​b​r​r​r​r​.​ ​<​s​p​a​n​ ​c​l​a​s​s​=​"​t​e​x​t​-​x​s​"​>​
 ​ ​ ​L​a​s​t​l​y​,​ ​t​h​e​r​e​ ​a​r​e​ ​s​o​m​e​ ​e​a​s​t​e​r​ ​e​g​g​s​ ​o​n​ ​t​h​i​s​ ​w​e​b​s​i​t​e​,​ ​m​a​y​b​e​ ​y​o​u​ ​c​a​n​ ​l​o​o​k​ ​f​o​r​ ​t​h​e​m​ ​i​f​ ​y​o​u​ ​h​a​v​e​ ​t​o​o​ ​m​u​c​h​ ​f​r​e​e​ ​t​i​m​e​.​
-​ ​ ​<​a​ ​c​l​a​s​s​=​"​t​e​x​t​-​m​a​i​n​-​6​0​0​ ​d​e​c​o​r​a​t​i​o​n​-​w​h​i​t​e​ ​s​e​l​e​c​t​i​o​n​:​t​e​x​t​-​w​h​i​t​e​ ​h​o​v​e​r​:​u​n​d​e​r​l​i​n​e​"​ ​h​r​e​f​=​"​/​n​o​t​e​"​>​s​e​p​e​r​t​i​ ​i​n​i​<​/​a​>​.​ ​B​u​t​ ​d​o​n​'​t​ ​g​o​ ​t​o​o​ ​d​e​e​p​ ​:​D​<​/​s​p​a​n​>​<​/​p​>​
-​ ​ 
+​ ​ ​<​a​ ​c​l​a​s​s​=​"​t​e​x​t​-​m​a​i​n​-​6​0​0​ ​d​e​c​o​r​a​t​i​o​n​-​w​h​i​t​e​ ​s​e​l​e​c​t​i​o​n​:​t​e​x​t​-​w​h​i​t​e​ ​h​o​v​e​r​:​u​n​d​e​r​l​i​n​e​"​ ​h​r​e​f​=​"​/​n​o​t​e​"​>​s​e​p​e​r​t​i​ ​i​n​i​<​/​a​>​.​ ​B​u​t​ ​d​o​n​'​t​ ​g​o​ ​t​o​o​ ​d​e​e​p​ ​:​D​<​/​s​p​a​n​>​<​/​p​>
 	 */
 	MorePersonalMotto: string
+	/**
+	 * C​o​n​t​a​c​t​s
+	 */
+	Contacts: string
 }
 
 export type TranslationFunctions = {
@@ -107,9 +110,12 @@ export type TranslationFunctions = {
   <p>Also like <a href="https://en.wikipedia.org/wiki/Alternate_reality_game" target="_blank" rel="noopener noreferrer" class="hover:underline">ARG</a>, so lets mimic one. Liminal Space, Weird Core, brrrr. <span class="text-xs">
   Lastly, there are some easter eggs on this website, maybe you can look for them if you have too much free time.
   <a class="text-main-600 decoration-white selection:text-white hover:underline" href="/note">seperti ini</a>. But don't go too deep :D</span></p>
-  
 	 */
 	MorePersonalMotto: () => LocalizedString
+	/**
+	 * Contacts
+	 */
+	Contacts: () => LocalizedString
 }
 
 export type Formatters = {}

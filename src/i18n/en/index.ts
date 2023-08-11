@@ -27,8 +27,8 @@ const en = {
   <p>I want to be able to contribute to the Linux kernel or other Open Source software one day. Ongoing efforts are learning low level programming language (Rust) and learning to communicate better.</p>
   <p>Also like <a href="https://en.wikipedia.org/wiki/Alternate_reality_game" target="_blank" rel="noopener noreferrer" class="hover:underline">ARG</a>, so lets mimic one. Liminal Space, Weird Core, brrrr. <span class="text-xs">
   Lastly, there are some easter eggs on this website, maybe you can look for them if you have too much free time.
-  <a class="text-main-600 decoration-white selection:text-white hover:underline" href="/note">seperti ini</a>. But don't go too deep :D</span></p>
-  `,
+  <a class="text-main-600 decoration-white selection:text-white hover:underline" href="/note">seperti ini</a>. But don't go too deep :D</span></p>`,
+  Contacts: "Contacts",
 } satisfies BaseTranslation;
 
 export default en;

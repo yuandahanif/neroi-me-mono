@@ -141,6 +141,14 @@ const MainNavigation = () => {
                 </svg>
               </a>
             </li>
+            <li>
+              <Link
+                href={"/#change_lang"}
+                className="flex justify-center gap-1 hover:underline"
+              >
+                <span>Change Language.</span>
+              </Link>
+            </li>
           </ul>
         </dialog>
       </nav>

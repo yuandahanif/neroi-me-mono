@@ -1,7 +1,8 @@
 import type { Translation } from "../i18n-types";
 
 const id = {
-  // this is an example Translation, just rename or delete this folder if you want
+  //! This Object reflect the original TSX file, if something goes wrong, we can refer to this file.
+
   Quote:
     "Hidup dalam kehampaan sembari terus berjalan mencari makna dari kehidupan",
   AboutMe: "Tentangku",
@@ -31,7 +32,6 @@ const id = {
                     keterampilanku untuk suatu saat dapat berkontribusi terhadap
                     kemajuan umat manusia.
                   </p>`,
-
   PersonalMotto: `<p>
                     Halo dan selamat datang di duniaku, namaku Yuanda {redacted}, seorang optimistik nihilis yang
                     mencintai dan terlalu bergantung pada internet. Mencintai filosofi
@@ -71,7 +71,6 @@ const id = {
                     arti dari kehidupan
                     <span class="text-xs">(entah apapun itu)</span>.
                   </p>`,
-
   ProfileMore: "Tampilkan lebih banyak",
   MorePersonalMotto: `<p>
                   Kadang suka main CTF atau ngerjain soal-soal algoritma di
@@ -137,8 +136,8 @@ const id = {
                     </Link>
                     . Tapi jangan terjun terlalu dalam :D
                   </span>
-                </p>
-                `,
+                </p>`,
+  Contacts: "Kontak",
 } satisfies Translation;
 
 export default id;
