@@ -10,8 +10,8 @@ const LINKS = [
   { id: "blog-index", href: "/blog", label: "Blog" },
   // { id: "note-index", href: "/note", label: "Note" },
   { id: "gallery-index", href: "/gallery", label: "Gallery" },
-  { id: "project-index", href: "/project", label: "Project" },
-  { id: "lab-index", href: "/lab", label: "Lab" },
+  { id: "project-index", href: "/project", label: "Projects" },
+  { id: "lab-index", href: "/lab", label: "Labs" },
   { id: "me-index", href: "/me", label: "Me" },
 ];
 

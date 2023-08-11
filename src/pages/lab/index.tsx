@@ -16,7 +16,7 @@ const LabPage: NextPage = () => {
           <main
             className={`flex min-h-screen grow flex-col items-center justify-start p-2 py-10`}
           >
-            <h1 className="text-5xl">{"<Lab/>"}</h1>
+            <h1 className="text-5xl">{"<Labs/>"}</h1>
             <MainNavigation />
 
             <div className="lg:prose-md prose prose-sm prose-invert mb-10 mt-10 lg:prose-sm">

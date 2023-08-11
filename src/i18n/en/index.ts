@@ -5,6 +5,15 @@ const en = {
   Quote:
     "Walking inside the deep abyss of the emptiness in search of the meaning of life.",
 
+  // Title
+  TitleHome: "Home",
+  TitleBlog: "Blog",
+  TitleGallery: "Gallery",
+  TitleProjects: "Projects",
+  TitleNotes: "Notes",
+  TitleLab: "Labs",
+  TitleAbout: "Me",
+
   // Profile
   AboutMe: "About Me",
   Professional: "Professional",
@@ -29,6 +38,8 @@ const en = {
   Lastly, there are some easter eggs on this website, maybe you can look for them if you have too much free time.
   <a class="text-main-600 decoration-white selection:text-white hover:underline" href="/note">seperti ini</a>. But don't go too deep :D</span></p>`,
   Contacts: "Contacts",
+
+  // Projects
 } satisfies BaseTranslation;
 
 export default en;
