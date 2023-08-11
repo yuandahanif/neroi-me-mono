@@ -3,9 +3,13 @@ import { type NextPage } from "next";
 import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
 import MainNavigation from "~/components/navigation/main.navigation";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import Link from "next/link";
 import Redacted from "~/components/text/redacted";
+import getI18nProps from "~/i18n/getStaticPropsI18n.helper";
+import { I18nContext } from "~/i18n/i18n-react";
+
+export const getStaticProps = getI18nProps;
 
 const Divider: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <div className="not-prose flex items-center justify-center gap-4">
@@ -16,6 +20,8 @@ const Divider: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 const MePage: NextPage = () => {
+  const { LL } = useContext(I18nContext);
+
   const profileImageRef = useRef<SVGImageElement>(null);
   const rotateDegRef = useRef(0);
   const nonImportantDetailRef = useRef<HTMLDivElement>(null);
@@ -69,10 +75,7 @@ const MePage: NextPage = () => {
 
           <div className="prose prose-invert mt-10 lg:prose-lg">
             <h3 className="text-center" id="tentangku">
-              Tentang
-              <Link className="no-underline" href={"/static/note-to-all"}>
-                ku
-              </Link>
+              {LL.AboutMe()}
             </h3>
             <div
               className="relative mx-auto mb-10 h-96 md:w-auto"
@@ -87,40 +90,9 @@ const MePage: NextPage = () => {
               </svg>
             </div>
 
-            <Divider>Profesional</Divider>
+            <Divider>{LL.Professional()}</Divider>
 
-            <p>
-              Halo, namaku Yuanda aku seorang web developer dengan dua tahun
-              pengalaman yang memiliki passion terkait desain minimalis dan
-              absurd. Memiliki pengalaman dalam membuat website dan aplikasi web
-              dengan menggunakan ekosistem teknologi modern seperti React,
-              NextJS, dan TailwindCSS.
-            </p>
-
-            <p>
-              Saat ini sedang bekerja sebagai <b>Part Time Web Developer</b> di{" "}
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-                href="https://informatics.uii.ac.id/student-staff/"
-              >
-                Student Staff Universitas Islam Indonesia
-              </a>{" "}
-              dan kadang melakukan <b>freelance</b>.
-            </p>
-
-            <p>
-              Punya semangat belajar yang tinggi terutama soal teknologi dan
-              hal-hal baru. Mudah beradaptasi dan berkolaborasi dengan
-              lingkungan baru. Dan suka berbagi tentang hal-hal yang ku sukai.
-            </p>
-
-            <p>
-              Tujuanku saat ini adalah untuk terus memperluas pengetahuan dan
-              keterampilanku untuk suatu saat dapat berkontribusi terhadap
-              kemajuan umat manusia.
-            </p>
+            <div dangerouslySetInnerHTML={{ __html: LL.ProfessionalMotto() }} />
 
             <Link
               href="/me#contact"
@@ -131,46 +103,13 @@ const MePage: NextPage = () => {
 
             <Divider>Personal</Divider>
 
-            <p>
-              Halo dan selamat datang di duniaku, namaku Yuanda{" "}
-              <Redacted>Hanif Hisyam</Redacted>, seorang optimistik nihilis yang
-              mencintai dan terlalu bergantung pada internet. Mencintai filosofi
-              dan teknologi terutama internet sebagai salah satu pencapaian
-              terbaik dari umat manusia.
-            </p>
-
-            <p>
-              Mengambil nilai dari{" "}
-              <span className="italic">kekosongan eksistensial</span> dan
-              kehampaan, mencari perspektif berbeda dengan pendekatan dan cara
-              untuk memandang kehidupan.
-            </p>
-
-            <p>
-              Nihilisme kulihat bukanlah sebagai sebuah doktrin keputusasaan,
-              melainkan sebuah katalist untuk mempertanyakan norma-norma dan
-              asumsi-asumsi tradisional.
-            </p>
-
-            <p>
-              Meski demikian, aku paham arti penting dari berkolaborasi. Mencoba
-              untuk saling memahami dan menjaga hubungan antar manusia amatlah
-              penting.
-            </p>
-
-            <p>
-              Mempunyai ketertatikan pada bidang teknologi, filsafat, dan
-              psikologi. Mencintai konsep desain minimalis, absurd, dan
-              antimainstream. Selain itu suka menjelajah dan mencoba hal-hal
-              baru.
-            </p>
-
-            <p>
-              Hobiku adalah bermain internet, duduk mendengarkan orang lain,
-              menulis, dan terjun kedaalam jurang kehampaan mencari makna dan
-              arti dari kehidupan
-              <span className="text-xs">(entah apapun itu)</span>.
-            </p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: LL.PersonalMotto({
+                  redacted: <Redacted>Hanif Hisyam</Redacted>,
+                }),
+              }}
+            ></div>
 
             <blockquote className="prose-sm">
               &quot;Let&apos;s embark on this digital journey together,
