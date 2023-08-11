@@ -1,6 +1,7 @@
 import type { BaseTranslation } from "../i18n-types";
 
 const en = {
+  // Home
   Quote:
     "Walking inside the deep abyss of the emptiness in search of the meaning of life.",
 
@@ -17,6 +18,17 @@ const en = {
   <p>However, I understand the importance of collaboration. Trying to understand each other and maintain human relationships is very important. </p>
   <p>Has an interest in technology, philosophy, and psychology. Loves minimalist, absurd, and anti-mainstream design concepts. Also loves to explore and try new things.</p>
   <p>My hobbies are surfing the internet, listening to others, writing, and plunging into the abyss of the void in search of the meaning and significance of life <span class="text-xs">(whatever that means)</span>.</p>`,
+  ProfileMore: "Show more",
+  MorePersonalMotto: `<p>Sometimes I like to play CTF or do algorithm problems on Hackerrank.</p>
+  <p>Like to play games, but not a gamer, favorite game genres are RPG, Open World, and FPS especially those with complex stories or multiple endings. Also like to watch movies, favorite movie genres or stories are  Horror, Sci-Fi, Mystery, and Psychological. especially those with post apocalyptic themes.</p>
+  <p>I enjoy coffee almost every day, but I'm not a coffee junkie. Also like spicy food even though it often makes my stomach hurt.</p>
+  <p>My favorite Vtuber is <a target="_blank" rel="noopener noreferrer" class="hover:underline" href="https://www.youtube.com/channel/UCMwGHR0BTZuLsmjY_NT5Pwg">Ninomae Ina&apos;nis</a>, cause she is talented, chearful, and wholesome. Also eldritch/cosmic horror concept is soooo cool.</p>
+  <p>I'm single for a fact, but I'm not an incel, because my type is a bit complex. But if I can clone myself, maybe I would marry myself \\jk.</p>
+  <p>I want to be able to contribute to the Linux kernel or other Open Source software one day. Ongoing efforts are learning low level programming language (Rust) and learning to communicate better.</p>
+  <p>Also like <a href="https://en.wikipedia.org/wiki/Alternate_reality_game" target="_blank" rel="noopener noreferrer" class="hover:underline">ARG</a>, so lets mimic one. Liminal Space, Weird Core, brrrr. <span class="text-xs">
+  Lastly, there are some easter eggs on this website, maybe you can look for them if you have too much free time.
+  <a class="text-main-600 decoration-white selection:text-white hover:underline" href="/note">seperti ini</a>. But don't go too deep :D</span></p>
+  `,
 } satisfies BaseTranslation;
 
 export default en;

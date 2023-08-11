@@ -45,6 +45,23 @@ type RootTranslation = {
 	 * @param {ReactNode} redacted
 	 */
 	PersonalMotto: RequiredParams<'redacted'>
+	/**
+	 * S​h​o​w​ ​m​o​r​e
+	 */
+	ProfileMore: string
+	/**
+	 * <​p​>​S​o​m​e​t​i​m​e​s​ ​I​ ​l​i​k​e​ ​t​o​ ​p​l​a​y​ ​C​T​F​ ​o​r​ ​d​o​ ​a​l​g​o​r​i​t​h​m​ ​p​r​o​b​l​e​m​s​ ​o​n​ ​H​a​c​k​e​r​r​a​n​k​.​<​/​p​>​
+​ ​ ​<​p​>​L​i​k​e​ ​t​o​ ​p​l​a​y​ ​g​a​m​e​s​,​ ​b​u​t​ ​n​o​t​ ​a​ ​g​a​m​e​r​,​ ​f​a​v​o​r​i​t​e​ ​g​a​m​e​ ​g​e​n​r​e​s​ ​a​r​e​ ​R​P​G​,​ ​O​p​e​n​ ​W​o​r​l​d​,​ ​a​n​d​ ​F​P​S​ ​e​s​p​e​c​i​a​l​l​y​ ​t​h​o​s​e​ ​w​i​t​h​ ​c​o​m​p​l​e​x​ ​s​t​o​r​i​e​s​ ​o​r​ ​m​u​l​t​i​p​l​e​ ​e​n​d​i​n​g​s​.​ ​A​l​s​o​ ​l​i​k​e​ ​t​o​ ​w​a​t​c​h​ ​m​o​v​i​e​s​,​ ​f​a​v​o​r​i​t​e​ ​m​o​v​i​e​ ​g​e​n​r​e​s​ ​o​r​ ​s​t​o​r​i​e​s​ ​a​r​e​ ​ ​H​o​r​r​o​r​,​ ​S​c​i​-​F​i​,​ ​M​y​s​t​e​r​y​,​ ​a​n​d​ ​P​s​y​c​h​o​l​o​g​i​c​a​l​.​ ​e​s​p​e​c​i​a​l​l​y​ ​t​h​o​s​e​ ​w​i​t​h​ ​p​o​s​t​ ​a​p​o​c​a​l​y​p​t​i​c​ ​t​h​e​m​e​s​.​<​/​p​>​
+​ ​ ​<​p​>​I​ ​e​n​j​o​y​ ​c​o​f​f​e​e​ ​a​l​m​o​s​t​ ​e​v​e​r​y​ ​d​a​y​,​ ​b​u​t​ ​I​'​m​ ​n​o​t​ ​a​ ​c​o​f​f​e​e​ ​j​u​n​k​i​e​.​ ​A​l​s​o​ ​l​i​k​e​ ​s​p​i​c​y​ ​f​o​o​d​ ​e​v​e​n​ ​t​h​o​u​g​h​ ​i​t​ ​o​f​t​e​n​ ​m​a​k​e​s​ ​m​y​ ​s​t​o​m​a​c​h​ ​h​u​r​t​.​<​/​p​>​
+​ ​ ​<​p​>​M​y​ ​f​a​v​o​r​i​t​e​ ​V​t​u​b​e​r​ ​i​s​ ​<​a​ ​t​a​r​g​e​t​=​"​_​b​l​a​n​k​"​ ​r​e​l​=​"​n​o​o​p​e​n​e​r​ ​n​o​r​e​f​e​r​r​e​r​"​ ​c​l​a​s​s​=​"​h​o​v​e​r​:​u​n​d​e​r​l​i​n​e​"​ ​h​r​e​f​=​"​h​t​t​p​s​:​/​/​w​w​w​.​y​o​u​t​u​b​e​.​c​o​m​/​c​h​a​n​n​e​l​/​U​C​M​w​G​H​R​0​B​T​Z​u​L​s​m​j​Y​_​N​T​5​P​w​g​"​>​N​i​n​o​m​a​e​ ​I​n​a​&​a​p​o​s​;​n​i​s​<​/​a​>​,​ ​c​a​u​s​e​ ​s​h​e​ ​i​s​ ​t​a​l​e​n​t​e​d​,​ ​c​h​e​a​r​f​u​l​,​ ​a​n​d​ ​w​h​o​l​e​s​o​m​e​.​ ​A​l​s​o​ ​e​l​d​r​i​t​c​h​/​c​o​s​m​i​c​ ​h​o​r​r​o​r​ ​c​o​n​c​e​p​t​ ​i​s​ ​s​o​o​o​o​ ​c​o​o​l​.​<​/​p​>​
+​ ​ ​<​p​>​I​'​m​ ​s​i​n​g​l​e​ ​f​o​r​ ​a​ ​f​a​c​t​,​ ​b​u​t​ ​I​'​m​ ​n​o​t​ ​a​n​ ​i​n​c​e​l​,​ ​b​e​c​a​u​s​e​ ​m​y​ ​t​y​p​e​ ​i​s​ ​a​ ​b​i​t​ ​c​o​m​p​l​e​x​.​ ​B​u​t​ ​i​f​ ​I​ ​c​a​n​ ​c​l​o​n​e​ ​m​y​s​e​l​f​,​ ​m​a​y​b​e​ ​I​ ​w​o​u​l​d​ ​m​a​r​r​y​ ​m​y​s​e​l​f​ ​\​j​k​.​<​/​p​>​
+​ ​ ​<​p​>​I​ ​w​a​n​t​ ​t​o​ ​b​e​ ​a​b​l​e​ ​t​o​ ​c​o​n​t​r​i​b​u​t​e​ ​t​o​ ​t​h​e​ ​L​i​n​u​x​ ​k​e​r​n​e​l​ ​o​r​ ​o​t​h​e​r​ ​O​p​e​n​ ​S​o​u​r​c​e​ ​s​o​f​t​w​a​r​e​ ​o​n​e​ ​d​a​y​.​ ​O​n​g​o​i​n​g​ ​e​f​f​o​r​t​s​ ​a​r​e​ ​l​e​a​r​n​i​n​g​ ​l​o​w​ ​l​e​v​e​l​ ​p​r​o​g​r​a​m​m​i​n​g​ ​l​a​n​g​u​a​g​e​ ​(​R​u​s​t​)​ ​a​n​d​ ​l​e​a​r​n​i​n​g​ ​t​o​ ​c​o​m​m​u​n​i​c​a​t​e​ ​b​e​t​t​e​r​.​<​/​p​>​
+​ ​ ​<​p​>​A​l​s​o​ ​l​i​k​e​ ​<​a​ ​h​r​e​f​=​"​h​t​t​p​s​:​/​/​e​n​.​w​i​k​i​p​e​d​i​a​.​o​r​g​/​w​i​k​i​/​A​l​t​e​r​n​a​t​e​_​r​e​a​l​i​t​y​_​g​a​m​e​"​ ​t​a​r​g​e​t​=​"​_​b​l​a​n​k​"​ ​r​e​l​=​"​n​o​o​p​e​n​e​r​ ​n​o​r​e​f​e​r​r​e​r​"​ ​c​l​a​s​s​=​"​h​o​v​e​r​:​u​n​d​e​r​l​i​n​e​"​>​A​R​G​<​/​a​>​,​ ​s​o​ ​l​e​t​s​ ​m​i​m​i​c​ ​o​n​e​.​ ​L​i​m​i​n​a​l​ ​S​p​a​c​e​,​ ​W​e​i​r​d​ ​C​o​r​e​,​ ​b​r​r​r​r​.​ ​<​s​p​a​n​ ​c​l​a​s​s​=​"​t​e​x​t​-​x​s​"​>​
+​ ​ ​L​a​s​t​l​y​,​ ​t​h​e​r​e​ ​a​r​e​ ​s​o​m​e​ ​e​a​s​t​e​r​ ​e​g​g​s​ ​o​n​ ​t​h​i​s​ ​w​e​b​s​i​t​e​,​ ​m​a​y​b​e​ ​y​o​u​ ​c​a​n​ ​l​o​o​k​ ​f​o​r​ ​t​h​e​m​ ​i​f​ ​y​o​u​ ​h​a​v​e​ ​t​o​o​ ​m​u​c​h​ ​f​r​e​e​ ​t​i​m​e​.​
+​ ​ ​<​a​ ​c​l​a​s​s​=​"​t​e​x​t​-​m​a​i​n​-​6​0​0​ ​d​e​c​o​r​a​t​i​o​n​-​w​h​i​t​e​ ​s​e​l​e​c​t​i​o​n​:​t​e​x​t​-​w​h​i​t​e​ ​h​o​v​e​r​:​u​n​d​e​r​l​i​n​e​"​ ​h​r​e​f​=​"​/​n​o​t​e​"​>​s​e​p​e​r​t​i​ ​i​n​i​<​/​a​>​.​ ​B​u​t​ ​d​o​n​'​t​ ​g​o​ ​t​o​o​ ​d​e​e​p​ ​:​D​<​/​s​p​a​n​>​<​/​p​>​
+​ ​ 
+	 */
+	MorePersonalMotto: string
 }
 
 export type TranslationFunctions = {
@@ -76,6 +93,23 @@ export type TranslationFunctions = {
   <p>My hobbies are surfing the internet, listening to others, writing, and plunging into the abyss of the void in search of the meaning and significance of life <span class="text-xs">(whatever that means)</span>.</p>
 	 */
 	PersonalMotto: (arg: { redacted: ReactNode }) => LocalizedString
+	/**
+	 * Show more
+	 */
+	ProfileMore: () => LocalizedString
+	/**
+	 * <p>Sometimes I like to play CTF or do algorithm problems on Hackerrank.</p>
+  <p>Like to play games, but not a gamer, favorite game genres are RPG, Open World, and FPS especially those with complex stories or multiple endings. Also like to watch movies, favorite movie genres or stories are  Horror, Sci-Fi, Mystery, and Psychological. especially those with post apocalyptic themes.</p>
+  <p>I enjoy coffee almost every day, but I'm not a coffee junkie. Also like spicy food even though it often makes my stomach hurt.</p>
+  <p>My favorite Vtuber is <a target="_blank" rel="noopener noreferrer" class="hover:underline" href="https://www.youtube.com/channel/UCMwGHR0BTZuLsmjY_NT5Pwg">Ninomae Ina&apos;nis</a>, cause she is talented, chearful, and wholesome. Also eldritch/cosmic horror concept is soooo cool.</p>
+  <p>I'm single for a fact, but I'm not an incel, because my type is a bit complex. But if I can clone myself, maybe I would marry myself \jk.</p>
+  <p>I want to be able to contribute to the Linux kernel or other Open Source software one day. Ongoing efforts are learning low level programming language (Rust) and learning to communicate better.</p>
+  <p>Also like <a href="https://en.wikipedia.org/wiki/Alternate_reality_game" target="_blank" rel="noopener noreferrer" class="hover:underline">ARG</a>, so lets mimic one. Liminal Space, Weird Core, brrrr. <span class="text-xs">
+  Lastly, there are some easter eggs on this website, maybe you can look for them if you have too much free time.
+  <a class="text-main-600 decoration-white selection:text-white hover:underline" href="/note">seperti ini</a>. But don't go too deep :D</span></p>
+  
+	 */
+	MorePersonalMotto: () => LocalizedString
 }
 
 export type Formatters = {}

@@ -124,7 +124,7 @@ const MePage: NextPage = () => {
                 onClick={openUnimportantDetail}
               >
                 <span className="mx-auto text-center text-xs underline">
-                  Tampilkan lebih banyak
+                  {LL.ProfileMore()}
                 </span>
               </button>
 
@@ -133,74 +133,10 @@ const MePage: NextPage = () => {
                 className="hidden origin-top duration-200"
               >
                 <Divider>More Personal</Divider>
-                <p>
-                  Kadang suka main CTF atau ngerjain soal-soal algoritma di
-                  Hackerrank.
-                </p>
 
-                <p>
-                  Suka main game, tapi bukan gamer, genre game favorit adalah
-                  RPG, Open World, dan FPS terutama yang ceritanya ribet atau
-                  multiple ending. Juga suka nonton film, genre film atau cerita
-                  favorit adalah Horor, Sci-Fi, Misteri, dan Psychological
-                  terutama yang bertema post apocalyptic.
-                </p>
-
-                <p>
-                  Hampir ngopi tiap hari, tapi bukan pecandu kopi. Juga suka
-                  makanan pedes meski sering bikin sakit perut.
-                </p>
-
-                <p>
-                  Vtuber favoritku{" "}
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:underline"
-                    href="https://www.youtube.com/channel/UCMwGHR0BTZuLsmjY_NT5Pwg"
-                  >
-                    Ninomae Ina&apos;nis
-                  </a>
-                  , cause she is talented, chearful, and wholesome. Also
-                  eldritch/cosmic horror concept is soooo cool.
-                </p>
-
-                <p>
-                  Masih single pastinya, tapi bukan incel, karena tipeku memang
-                  agak rumit. Tapi kalau bisa ku kloning diriku sendiri, mungkin
-                  aku akan menikah dengan diriku sendiri \jk.
-                </p>
-
-                <p>
-                  Pengen suatu saat bisa kontribusi ke Linux kernel atau
-                  software Open Source lainnya. Usaha yang sedang dilakukan
-                  adalah belajar low level programming language (Rust) dan
-                  belajar buat berkomunikasi lebih baik.
-                </p>
-
-                <p>
-                  Also Suka{" "}
-                  <a
-                    href="https://en.wikipedia.org/wiki/Alternate_reality_game"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:underline"
-                  >
-                    ARG
-                  </a>
-                  , so lets mimic one. Liminal Space, Weird Core, brrrr.{" "}
-                  <span className="text-xs">
-                    Terakhir, ada beberapa easter egg di web ini, mungkin kau
-                    bisa cari jika waktu luangmu terlalu banyak{" "}
-                    <Link
-                      className="text-main-600 decoration-white selection:text-white hover:underline"
-                      href={"/note"}
-                    >
-                      seperti ini
-                    </Link>
-                    . Tapi jangan terjun terlalu dalam :D
-                  </span>
-                </p>
+                <div
+                  dangerouslySetInnerHTML={{ __html: LL.MorePersonalMotto() }}
+                ></div>
 
                 <span className="text-center text-xs">
                   I think thats enough info for you all to social engineering

@@ -2,23 +2,48 @@ import { type NextPage } from "next";
 
 import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
-import { useContext, useEffect, useRef, useState } from "react";
+import {
+  ChangeEventHandler,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import MainNavigation from "~/components/navigation/main.navigation";
 import { signIn } from "next-auth/react";
 import Logo from "~/components/logo/logo";
 import getI18nProps from "~/i18n/getStaticPropsI18n.helper";
 import { I18nContext } from "~/i18n/i18n-react";
+import { useRouter } from "next/router";
+import { Locales } from "~/i18n/i18n-types";
+import { locales } from "~/i18n/i18n-util";
+import { loadLocaleAsync } from "~/i18n/i18n-util.async";
+import { twMerge } from "tailwind-merge";
+import Redacted from "~/components/text/redacted";
 
 export const getStaticProps = getI18nProps;
 
 const Home: NextPage = () => {
-  const { LL } = useContext(I18nContext);
+  const router = useRouter();
+  const { locale, LL, setLocale } = useContext(I18nContext);
 
   const inputRef = useRef<null | HTMLDivElement>(null);
   const [isLoginWindowVisible, setisLoginWindowVisible] = useState(false);
 
   const quoteRef = useRef<null | HTMLParagraphElement>(null);
   const quoteWordIntervalRef = useRef<null | NodeJS.Timer>(null);
+
+  const chanegLanguage = async (local: Locales) => {
+    try {
+      const locale = local;
+      localStorage.setItem("lang", locale);
+      void (await loadLocaleAsync(locale));
+      setLocale(locale);
+      void router.push({}, {}, { locale });
+    } catch (error) {
+      alert("oops");
+    }
+  };
 
   useEffect(() => {
     const ref = inputRef.current;
@@ -115,6 +140,26 @@ const Home: NextPage = () => {
 
           <div className="prose prose-sm prose-invert mt-10 px-4 text-center lg:px-0">
             <p ref={quoteRef} data-quote={LL.Quote()} />
+          </div>
+
+          <div
+            className="mt-10 flex gap-2 target:animate-bounce"
+            id="change_lang"
+          >
+            {locales.map((locale_, idx) => (
+              <>
+                <button
+                  key={locale_}
+                  type="button"
+                  className={twMerge("hover:underline")}
+                  onClick={() => void chanegLanguage(locale_)}
+                  disabled={locale_ == locale}
+                >
+                  {locale_ == locale ? <Redacted>{locale_}</Redacted> : locale_}
+                </button>
+                {idx !== locales.length - 1 && <span>|</span>}
+              </>
+            ))}
           </div>
         </main>
       </MainLayout>
