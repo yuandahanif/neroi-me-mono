@@ -5,6 +5,12 @@ const id = {
 
   Quote:
     "Hidup dalam kehampaan sembari terus berjalan mencari makna dari kehidupan",
+
+  // Navigation
+  Setting: "Pengaturan",
+  Language: "Bahasa",
+
+  // Profile
   AboutMe: "Tentangku",
   Professional: "Profesional",
   ProfessionalMotto: `<p>Halo, namaku Yuanda aku seorang web developer dengan dua tahun pengalaman yang memiliki passion terkait desain minimalis dan
@@ -138,7 +144,6 @@ const id = {
                   </span>
                 </p>`,
   Contacts: "Kontak",
-  
 } satisfies Translation;
 
 export default id;

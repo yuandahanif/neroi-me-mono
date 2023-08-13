@@ -22,7 +22,7 @@ const ComicPanel: React.FC<{
   );
 };
 
-const ArtAvatar: NextPage = () => {
+const Comic1: NextPage = () => {
   return (
     <>
       <HeadSEO />
@@ -92,4 +92,4 @@ const ArtAvatar: NextPage = () => {
   );
 };
 
-export default ArtAvatar;
+export default Comic1;

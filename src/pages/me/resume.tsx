@@ -1,6 +1,9 @@
 import { type NextPage } from "next";
 import HeadSEO from "~/components/head/headSEO";
+import getI18nProps from "~/i18n/getStaticPropsI18n.helper";
 import MainLayout from "~/layouts/main.layout";
+
+export const getStaticProps = getI18nProps;
 
 const ResumePage: NextPage = () => {
   return (

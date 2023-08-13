@@ -21,6 +21,14 @@ type RootTranslation = {
 	 */
 	Quote: string
 	/**
+	 * S​e​t​t​i​n​g
+	 */
+	Setting: string
+	/**
+	 * L​a​n​g​u​a​g​e
+	 */
+	Language: string
+	/**
 	 * A​b​o​u​t​ ​M​e
 	 */
 	AboutMe: string
@@ -72,6 +80,14 @@ export type TranslationFunctions = {
 	 * Walking inside the deep abyss of the emptiness in search of the meaning of life.
 	 */
 	Quote: () => LocalizedString
+	/**
+	 * Setting
+	 */
+	Setting: () => LocalizedString
+	/**
+	 * Language
+	 */
+	Language: () => LocalizedString
 	/**
 	 * About Me
 	 */

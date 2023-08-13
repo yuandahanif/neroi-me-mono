@@ -1,9 +1,13 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import Redacted from "~/components/text/redacted";
+import { I18nContext } from "~/i18n/i18n-react";
+import { type Locales } from "~/i18n/i18n-types";
+import { locales } from "~/i18n/i18n-util";
+import { loadLocaleAsync } from "~/i18n/i18n-util.async";
 
 const LINKS = [
   { id: "home-index", href: "/", label: "Home" },
@@ -18,7 +22,21 @@ const LINKS = [
 const MainNavigation = () => {
   const router = useRouter();
   const { status } = useSession();
+  const { locale, LL, setLocale } = useContext(I18nContext);
+
   const navigationref = useRef<HTMLDialogElement>(null);
+
+  const chanegLanguage = async (local: Locales) => {
+    try {
+      const locale = local;
+      localStorage.setItem("lang", locale);
+      void (await loadLocaleAsync(locale));
+      setLocale(locale);
+      void router.push({}, {}, { locale });
+    } catch (error) {
+      alert("oops");
+    }
+  };
 
   const openDialog = () => {
     navigationref.current?.showModal();
@@ -142,12 +160,32 @@ const MainNavigation = () => {
               </a>
             </li>
             <li>
-              <Link
-                href={"/#change_lang"}
-                className="flex justify-center gap-1 hover:underline"
-              >
-                <span>Change Language.</span>
-              </Link>
+              <hr />
+              <div className="text-center mt-2">
+                <span className="text-xs">{LL.Setting()}</span>
+              </div>
+            </li>
+            <li className="flex items-center justify-center gap-2">
+              <span className="text-sm">{LL.Language()}:</span>
+              <div className="flex w-fit gap-2">
+                {locales.map((locale_, idx) => (
+                  <div key={locale_} className="flex gap-2">
+                    <button
+                      type="button"
+                      className={twMerge("hover:underline")}
+                      onClick={() => void chanegLanguage(locale_)}
+                      disabled={locale_ == locale}
+                    >
+                      {locale_ == locale ? (
+                        <Redacted>{locale_}</Redacted>
+                      ) : (
+                        locale_
+                      )}
+                    </button>
+                    {idx !== locales.length - 1 && <span>|</span>}
+                  </div>
+                ))}
+              </div>
             </li>
           </ul>
         </dialog>

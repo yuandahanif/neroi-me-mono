@@ -9,6 +9,9 @@ import BlogCard from "~/components/card/blog.card";
 
 import { motion, type Variants } from "framer-motion";
 import { useEffect, useState } from "react";
+import getI18nProps from "~/i18n/getStaticPropsI18n.helper";
+
+export const getStaticProps = getI18nProps;
 
 const itemVariants: Variants = {
   init: { opacity: 0, y: 20, transition: { duration: 0.2 } },

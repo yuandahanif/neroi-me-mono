@@ -7,6 +7,9 @@ import Redacted from "~/components/text/redacted";
 import React from "react";
 import GalleryImage from "~/components/gallery/image";
 import Link from "next/link";
+import getI18nProps from "~/i18n/getStaticPropsI18n.helper";
+
+export const getStaticProps = getI18nProps;
 
 const images: {
   src: string;
@@ -88,11 +91,6 @@ const images: {
         description: "03-08-2023",
       },
       {
-        src: "https://media.discordapp.net/attachments/1130127766021472296/1136724705466921020/hand-sand.jpg",
-        alt: "hand-sand",
-        description: "hand",
-      },
-      {
         src: "https://media.discordapp.net/attachments/1130127766021472296/1136724707845079171/tree.jpg",
         alt: "tree",
         description: "tree",
@@ -121,13 +119,13 @@ const images: {
     slideshow: [
       {
         src: "https://media.discordapp.net/attachments/1130127766021472296/1139617780338020453/20230803_055803.png",
-        alt: "can\'t",
-        description: "can\'t",
+        alt: "can't",
+        description: "can't",
       },
       {
         src: "https://media.discordapp.net/attachments/1130127766021472296/1139617780023439390/20230802_170931.png",
-        alt: "can\'t",
-        description: "can\'t",
+        alt: "can't",
+        description: "can't",
       },
     ],
   },

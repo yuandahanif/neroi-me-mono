@@ -5,6 +5,10 @@ const en = {
   Quote:
     "Walking inside the deep abyss of the emptiness in search of the meaning of life.",
 
+  // Navigation
+  Setting: "Setting",
+  Language: "Language",
+
   // Profile
   AboutMe: "About Me",
   Professional: "Professional",

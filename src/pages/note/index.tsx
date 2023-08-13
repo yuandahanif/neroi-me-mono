@@ -8,6 +8,9 @@ import { api } from "~/utils/api";
 import Loading from "~/components/loading/loading";
 import { useEffect, useState } from "react";
 import { type Note } from "@prisma/client";
+import getI18nProps from "~/i18n/getStaticPropsI18n.helper";
+
+export const getStaticProps = getI18nProps;
 
 const AMOUNT = 10;
 
