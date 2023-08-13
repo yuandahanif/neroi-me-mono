@@ -52,28 +52,71 @@ const GalleryImage: React.FC<Props> = ({
         className="max-h-[80vh] min-h-[60vh] w-auto max-w-screen-lg overflow-auto border bg-main-600 text-white backdrop:bg-opacity-80 backdrop:backdrop-blur-sm"
       >
         {!slideshow && (
-          <Image
-            src={imageSrc}
-            alt={imageAlt}
-            className="m-auto object-contain object-bottom duration-200 ease-in-out"
-            fill
-          />
+          <>
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              className="m-auto object-contain"
+              fill
+            />
+            <div className="relative flex flex-col">
+              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
+                src:
+              </span>
+              <span className="mb-2 w-fit bg-main-300 bg-opacity-50 text-xs">
+                &quot;{imageSrc}&quot;
+              </span>
+              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
+                alt:
+              </span>
+              <span className="mb-2 w-fit bg-main-300 bg-opacity-50 text-xs">
+                &quot;{imageAlt}&quot;
+              </span>
+              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
+                description:
+              </span>
+              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
+                &quot;{description}&quot;
+              </span>
+            </div>
+          </>
         )}
 
         {slideshow && slideshow.length > 0 && (
-          <Image
-            src={slideshow[imgIndex]?.src ?? ""}
-            alt={slideshow[imgIndex]?.alt ?? ""}
-            className="object-contain object-bottom"
-            fill
-          />
-        )}
+          <>
+            <Image
+              src={slideshow[imgIndex]?.src ?? ""}
+              alt={slideshow[imgIndex]?.alt ?? ""}
+              className="object-contain object-bottom"
+              fill
+            />
 
-        {slideshow && (
-          <div className="absolute left-0 top-1/2 z-10 flex h-80 w-full -translate-y-1/2 items-center justify-between bg-opacity-20 p-8">
-            <button onClick={() => cycleSlideshow("prev")}>ba{"<"}k</button>
-            <button onClick={() => cycleSlideshow("next")}>n{">"}xt</button>
-          </div>
+            <div className="relative flex flex-col">
+              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
+                src:
+              </span>
+              <span className="mb-2 w-fit bg-main-300 bg-opacity-50 text-xs">
+                &quot;{slideshow[imgIndex]?.src ?? ""}&quot;
+              </span>
+              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
+                alt:
+              </span>
+              <span className="mb-2 w-fit bg-main-300 bg-opacity-50 text-xs">
+                &quot;{slideshow[imgIndex]?.alt ?? ""}&quot;
+              </span>
+              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
+                description:
+              </span>
+              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
+                &quot;{slideshow[imgIndex]?.description ?? ""}&quot;
+              </span>
+            </div>
+
+            <div className="absolute left-0 top-1/2 z-10 flex h-80 w-full -translate-y-1/2 items-center justify-between bg-opacity-20 p-8">
+              <button onClick={() => cycleSlideshow("prev")}>ba{"<"}k</button>
+              <button onClick={() => cycleSlideshow("next")}>n{">"}xt</button>
+            </div>
+          </>
         )}
       </dialog>
 

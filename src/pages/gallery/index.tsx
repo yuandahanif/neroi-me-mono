@@ -58,22 +58,22 @@ const images: {
   },
   {
     src: "/images/stair.jpg",
-    alt: "Lorong",
+    alt: "Jump? y/n",
     description: "Do it! - (call of the void)",
   },
   {
     src: "/images/lorong-1.jpg",
-    alt: "Lorong",
+    alt: "so dark here!",
     description: "2020, kupikir dunia akan berakhir, mehh.",
   },
   {
     src: "/images/sunset.jpg",
-    alt: "Lorong",
-    description: <Redacted>Tekan &apos;/&apos; di halaman home. </Redacted>,
+    alt: "this font is just another font. try copy paste it.",
+    description: <Redacted>Go to &apos;/note&apos;</Redacted>,
   },
   {
     src: "/images/comic/comic-1.png",
-    alt: "Entahlah",
+    alt: "Please just Don't",
     description: (
       <Link href={"/art/komik"} className="animate-pulse">
         01
@@ -87,7 +87,7 @@ const images: {
     slideshow: [
       {
         src: "https://media.discordapp.net/attachments/1130127766021472296/1136725296704397412/cover-b.jpg",
-        alt: "03-08-2023",
+        alt: "I'm using Discord as CDN",
         description: "03-08-2023",
       },
       {
@@ -114,13 +114,13 @@ const images: {
   },
   {
     src: "https://media.discordapp.net/attachments/1130127766021472296/1139617780338020453/20230803_055803.png?width=599&height=449",
-    alt: "Simulation terminated.",
-    description: "Simulation terminated.",
+    alt: "Simulation terminated",
+    description: "Simulation terminated",
     slideshow: [
       {
         src: "https://media.discordapp.net/attachments/1130127766021472296/1139617780338020453/20230803_055803.png",
-        alt: "can't",
-        description: "can't",
+        alt: "can i rest now?",
+        description: "finaly",
       },
       {
         src: "https://media.discordapp.net/attachments/1130127766021472296/1139617780023439390/20230802_170931.png",
