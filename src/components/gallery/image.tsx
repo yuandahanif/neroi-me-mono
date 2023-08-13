@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { useRef, type ReactNode, useEffect, useState } from "react";
+import { useRef, type ReactNode, useState } from "react";
+import useDialogClickOutside from "~/hooks/useDialogClickOutside";
 
 interface Props {
   imageSrc: string;
@@ -42,32 +43,7 @@ const GalleryImage: React.FC<Props> = ({
     }
   };
 
-  useEffect(() => {
-    const ref = largePreviewDialogRef.current;
-    const clickHandler = (e: MouseEvent) => {
-      const dialogDimensions = ref?.getBoundingClientRect();
-
-      if (
-        dialogDimensions &&
-        (e.clientX < dialogDimensions.left ||
-          e.clientX > dialogDimensions.right ||
-          e.clientY < dialogDimensions.top ||
-          e.clientY > dialogDimensions.bottom)
-      ) {
-        ref?.close();
-      }
-    };
-
-    if (ref) {
-      ref.addEventListener("click", clickHandler);
-    }
-
-    return () => {
-      if (ref) {
-        ref.removeEventListener("click", clickHandler);
-      }
-    };
-  });
+  useDialogClickOutside(largePreviewDialogRef);
 
   return (
     <div className="">
@@ -110,7 +86,7 @@ const GalleryImage: React.FC<Props> = ({
             title={imageAlt}
             src={imageSrc}
             alt={imageAlt}
-            className="object-contain object-bottom cursor-pointer"
+            className="cursor-pointer object-contain object-bottom"
             sizes="384px 384px"
             fill
           />

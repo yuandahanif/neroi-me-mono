@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useContext, useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import Redacted from "~/components/text/redacted";
+import useDialogClickOutside from "~/hooks/useDialogClickOutside";
 import { I18nContext } from "~/i18n/i18n-react";
 import { type Locales } from "~/i18n/i18n-types";
 import { locales } from "~/i18n/i18n-util";
@@ -42,32 +43,7 @@ const MainNavigation = () => {
     navigationref.current?.showModal();
   };
 
-  useEffect(() => {
-    const ref = navigationref.current;
-    const clickHandler = (e: MouseEvent) => {
-      const dialogDimensions = ref?.getBoundingClientRect();
-
-      if (
-        dialogDimensions &&
-        (e.clientX < dialogDimensions.left ||
-          e.clientX > dialogDimensions.right ||
-          e.clientY < dialogDimensions.top ||
-          e.clientY > dialogDimensions.bottom)
-      ) {
-        ref?.close();
-      }
-    };
-
-    if (ref) {
-      ref.addEventListener("click", clickHandler);
-    }
-
-    return () => {
-      if (ref) {
-        ref.removeEventListener("click", clickHandler);
-      }
-    };
-  });
+  useDialogClickOutside(navigationref);
 
   return (
     <div className="sticky top-0 z-40 mt-6 w-full">
@@ -161,7 +137,7 @@ const MainNavigation = () => {
             </li>
             <li>
               <hr />
-              <div className="text-center mt-2">
+              <div className="mt-2 text-center">
                 <span className="text-xs">{LL.Setting()}</span>
               </div>
             </li>
