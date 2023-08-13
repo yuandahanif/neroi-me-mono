@@ -3,12 +3,15 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 import HeadSEO from "~/components/head/headSEO";
+import getI18nProps from "~/i18n/getStaticPropsI18n.helper";
 import MainLayout from "~/layouts/main.layout";
 
-const Home: NextPage = () => {
+export const getStaticProps = getI18nProps;
+
+const NotAdmin: NextPage = () => {
   const router = useRouter();
   const { data } = useSession();
-  console.log('file: not-admin.tsx:11 ~ data:', data)
+  console.log("file: not-admin.tsx:11 ~ data:", data);
 
   const backToLanding = () => {
     void router.push("/");
@@ -56,4 +59,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default NotAdmin;

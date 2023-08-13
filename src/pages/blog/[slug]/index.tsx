@@ -1,4 +1,4 @@
-import { type NextPage } from "next";
+import { GetStaticPaths, type NextPage } from "next";
 
 import HeadSEO from "~/components/head/headSEO";
 import MainLayout from "~/layouts/main.layout";
@@ -16,6 +16,12 @@ import TriggerWarning from "~/components/trigger_warning/trigger_warning";
 import getI18nProps from "~/i18n/getStaticPropsI18n.helper";
 
 export const getStaticProps = getI18nProps;
+export const getStaticPaths: GetStaticPaths = () => {
+  return {
+    paths: [],
+    fallback: true,
+  };
+};
 
 const main_font = Lato({
   subsets: ["latin-ext"],
@@ -95,7 +101,7 @@ const BlogDetailPage: NextPage = () => {
           className={`flex grow flex-col items-center justify-start p-2 py-10`}
         >
           <h1 className="text-5xl">{"<Blog/>"}</h1>
-          <MainNavigation />
+          <MainNavigation disableLanguageSwitcher />
 
           <div
             className={`mt-10  flex flex-col gap-y-5 ${main_font.className}`}

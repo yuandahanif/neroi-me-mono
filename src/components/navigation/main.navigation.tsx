@@ -1,10 +1,9 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import Redacted from "~/components/text/redacted";
-import useDialogClickOutside from "~/hooks/useDialogClickOutside";
 import { I18nContext } from "~/i18n/i18n-react";
 import { type Locales } from "~/i18n/i18n-types";
 import { locales } from "~/i18n/i18n-util";
@@ -20,7 +19,13 @@ const LINKS = [
   { id: "me-index", href: "/me", label: "Me" },
 ];
 
-const MainNavigation = () => {
+interface Props {
+  disableLanguageSwitcher?: boolean;
+}
+
+const MainNavigation: React.FC<Props> = ({
+  disableLanguageSwitcher = false,
+}) => {
   const router = useRouter();
   const { status } = useSession();
   const { locale, LL, setLocale } = useContext(I18nContext);
@@ -40,10 +45,39 @@ const MainNavigation = () => {
   };
 
   const openDialog = () => {
+    if (navigationref.current == null) {
+      alert("oops");
+    }
     navigationref.current?.showModal();
+    console.dir(navigationref.current);
   };
 
-  useDialogClickOutside(navigationref);
+  useEffect(() => {
+    const ref = navigationref.current;
+    const clickHandler = (e: MouseEvent) => {
+      const dialogDimensions = ref?.getBoundingClientRect();
+
+      if (
+        dialogDimensions &&
+        (e.clientX < dialogDimensions.left ||
+          e.clientX > dialogDimensions.right ||
+          e.clientY < dialogDimensions.top ||
+          e.clientY > dialogDimensions.bottom)
+      ) {
+        ref?.close();
+      }
+    };
+
+    if (ref) {
+      ref.addEventListener("click", clickHandler);
+    }
+
+    return () => {
+      if (ref) {
+        ref.removeEventListener("click", clickHandler);
+      }
+    };
+  });
 
   return (
     <div className="sticky top-0 z-40 mt-6 w-full">
@@ -135,34 +169,39 @@ const MainNavigation = () => {
                 </svg>
               </a>
             </li>
-            <li>
-              <hr />
-              <div className="mt-2 text-center">
-                <span className="text-xs">{LL.Setting()}</span>
-              </div>
-            </li>
-            <li className="flex items-center justify-center gap-2">
-              <span className="text-sm">{LL.Language()}:</span>
-              <div className="flex w-fit gap-2">
-                {locales.map((locale_, idx) => (
-                  <div key={locale_} className="flex gap-2">
-                    <button
-                      type="button"
-                      className={twMerge("hover:underline")}
-                      onClick={() => void chanegLanguage(locale_)}
-                      disabled={locale_ == locale}
-                    >
-                      {locale_ == locale ? (
-                        <Redacted>{locale_}</Redacted>
-                      ) : (
-                        locale_
-                      )}
-                    </button>
-                    {idx !== locales.length - 1 && <span>|</span>}
+
+            {!disableLanguageSwitcher && (
+              <>
+                <li>
+                  <hr />
+                  <div className="mt-2 text-center">
+                    <span className="text-xs">{LL.Setting()}</span>
                   </div>
-                ))}
-              </div>
-            </li>
+                </li>
+                <li className="flex items-center justify-center gap-2">
+                  <span className="text-sm">{LL.Language()}:</span>
+                  <div className="flex w-fit gap-2">
+                    {locales.map((locale_, idx) => (
+                      <div key={locale_} className="flex gap-2">
+                        <button
+                          type="button"
+                          className={twMerge("hover:underline")}
+                          onClick={() => void chanegLanguage(locale_)}
+                          disabled={locale_ == locale}
+                        >
+                          {locale_ == locale ? (
+                            <Redacted>{locale_}</Redacted>
+                          ) : (
+                            locale_
+                          )}
+                        </button>
+                        {idx !== locales.length - 1 && <span>|</span>}
+                      </div>
+                    ))}
+                  </div>
+                </li>
+              </>
+            )}
           </ul>
         </dialog>
       </nav>

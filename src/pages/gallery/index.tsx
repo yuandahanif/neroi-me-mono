@@ -135,8 +135,7 @@ const MePage: NextPage = () => {
   return (
     <>
       <HeadSEO
-        description="Tempatku berbagi gambar acak untuk
-              kesenangan pribadi."
+        description="Tempatku berbagi gambar acak untuk kesenangan pribadi."
         title="Gallery"
       />
       <MainLayout>

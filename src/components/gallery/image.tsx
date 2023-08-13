@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { useRef, type ReactNode, useState } from "react";
-import useDialogClickOutside from "~/hooks/useDialogClickOutside";
+import { useRef, type ReactNode, useState, useEffect } from "react";
 
 interface Props {
   imageSrc: string;
@@ -42,9 +41,32 @@ const GalleryImage: React.FC<Props> = ({
       });
     }
   };
+  useEffect(() => {
+    const ref = largePreviewDialogRef.current;
+    const clickHandler = (e: MouseEvent) => {
+      const dialogDimensions = ref?.getBoundingClientRect();
 
-  useDialogClickOutside(largePreviewDialogRef);
+      if (
+        dialogDimensions &&
+        (e.clientX < dialogDimensions.left ||
+          e.clientX > dialogDimensions.right ||
+          e.clientY < dialogDimensions.top ||
+          e.clientY > dialogDimensions.bottom)
+      ) {
+        ref?.close();
+      }
+    };
 
+    if (ref) {
+      ref.addEventListener("click", clickHandler);
+    }
+
+    return () => {
+      if (ref) {
+        ref.removeEventListener("click", clickHandler);
+      }
+    };
+  });
   return (
     <div className="">
       <dialog
@@ -87,7 +109,7 @@ const GalleryImage: React.FC<Props> = ({
             <Image
               src={slideshow[imgIndex]?.src ?? ""}
               alt={slideshow[imgIndex]?.alt ?? ""}
-              className="object-contain object-bottom"
+              className="object-contain object-center"
               fill
             />
 
@@ -120,7 +142,7 @@ const GalleryImage: React.FC<Props> = ({
         )}
       </dialog>
 
-      <div className="w-full sm:w-fit">
+      <div className="w-[80vw] sm:w-fit">
         <div
           className="relative mx-auto aspect-square h-fit w-full sm:h-96 sm:w-96 "
           onClick={handleClick}
@@ -140,6 +162,7 @@ const GalleryImage: React.FC<Props> = ({
             </div>
           )}
         </div>
+
         <div className="prose prose-sm prose-invert mx-auto mt-3 text-center">
           <div>{description}</div>
         </div>
