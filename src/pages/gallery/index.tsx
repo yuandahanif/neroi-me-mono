@@ -159,6 +159,7 @@ const MePage: NextPage = () => {
           <div className="mx-auto mt-10 flex w-full flex-wrap items-end justify-evenly gap-y-8 px-2 lg:px-0">
             {images.map((image) => (
               <GalleryImage
+                className="w-full flex flex-col items-center sm:w-fit"
                 key={image.src}
                 imageSrc={image.src}
                 imageAlt={image.alt}

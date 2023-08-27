@@ -5,6 +5,7 @@ interface Props {
   imageSrc: string;
   imageAlt?: string;
   description: ReactNode;
+  className?: string;
   slideshow?: { src: string; alt?: string; description: ReactNode }[];
 }
 
@@ -13,6 +14,7 @@ const GalleryImage: React.FC<Props> = ({
   imageAlt = "",
   description,
   slideshow,
+  className,
 }) => {
   const [imgIndex, setImageIndex] = useState(0);
   const largePreviewDialogRef = useRef<HTMLDialogElement>(null);
@@ -68,7 +70,7 @@ const GalleryImage: React.FC<Props> = ({
     };
   });
   return (
-    <div className="">
+    <div className={className}>
       <dialog
         ref={largePreviewDialogRef}
         className="max-h-[80vh] min-h-[60vh] w-auto max-w-screen-lg overflow-auto border bg-main-600 text-white backdrop:bg-opacity-80 backdrop:backdrop-blur-sm"

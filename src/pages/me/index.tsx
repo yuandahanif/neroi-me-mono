@@ -23,7 +23,6 @@ const MePage: NextPage = () => {
   const { LL } = useContext(I18nContext);
 
   const profileImageRef = useRef<SVGImageElement>(null);
-  const rotateDegRef = useRef(0);
   const nonImportantDetailRef = useRef<HTMLDivElement>(null);
 
   const openUnimportantDetail = () => {
@@ -44,24 +43,6 @@ const MePage: NextPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (profileImageRef.current) {
-      profileImageRef.current.addEventListener("mouseover", () => {
-        profileImageRef.current?.animate(
-          [{ transform: `rotate(${rotateDegRef.current}deg)` }],
-          {
-            duration: 1000,
-            iterations: 1,
-            easing: "ease-in-out",
-            endDelay: 1000,
-            fill: "forwards",
-          }
-        );
-
-        rotateDegRef.current = (rotateDegRef.current + 30) % 360;
-      });
-    }
-  }, [rotateDegRef]);
 
   return (
     <>
