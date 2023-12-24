@@ -8,10 +8,10 @@ import { appRouter } from "~/server/api/root";
 // export API handler
 function handler(req: Request) {
   return fetchRequestHandler({
-    endpoint: "/api/trpc",
     req,
+    endpoint: "/api/trpc",
     router: appRouter,
-    createContext: createTRPCContext,
+    createContext: () => createTRPCContext(req),
     onError:
       env.NODE_ENV === "development"
         ? ({ path, error }) => {

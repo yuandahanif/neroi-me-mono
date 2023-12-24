@@ -1,4 +1,3 @@
-import "server-only";
 /**
  * YOU PROBABLY DON'T NEED TO EDIT THIS FILE, UNLESS:
  * 1. You want to modify request context (see Part 1).
@@ -15,7 +14,6 @@ import "server-only";
  *
  * These allow you to access things when processing a request, like the database, the session, etc.
  */
-import { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 import { getServerSession, type Session } from "next-auth";
 
 // import { getServerAuthSession } from "~/server/auth";
@@ -48,9 +46,7 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = async (opts: FetchCreateContextFnOptions) => {
-  const { req } = opts;
-
+export const createTRPCContext = async (req: Request) => {
   // Get the session from the server using the getServerSession wrapper function
   const session = await getServerSession(authOptions);
 
