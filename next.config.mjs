@@ -4,17 +4,47 @@
  */
 !process.env.SKIP_ENV_VALIDATION && (await import("./src/env.mjs"));
 
-/** @type {import("next").NextConfig} */
+/** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
   images: {
-    domains: [
-      "safebooru.org",
-      "github.com",
-      "yuandahanif.github.io",
-      "markdown-videos.vercel.app",
-      "cdn.discordapp.com",
-      "media.discordapp.net",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "safebooru.org",
+        port: "",
+        pathname: "/",
+      },
+      {
+        protocol: "https",
+        hostname: "github.com",
+        port: "",
+        pathname: "/",
+      },
+      {
+        protocol: "https",
+        hostname: "yuandahanif.github.io",
+        port: "",
+        pathname: "/",
+      },
+      {
+        protocol: "https",
+        hostname: "markdown-videos.vercel.app",
+        port: "",
+        pathname: "/",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.discordapp.com",
+        port: "",
+        pathname: "/",
+      },
+      {
+        protocol: "https",
+        hostname: "media.discordapp.net",
+        port: "",
+        pathname: "/",
+      },
     ],
   },
   /**
@@ -28,4 +58,5 @@ const config = {
     defaultLocale: "en",
   },
 };
+
 export default config;
