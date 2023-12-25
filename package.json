@@ -11,7 +11,8 @@
     "test": "jest --watch",
     "typesafe-i18n": "typesafe-i18n",
     "refactor:prepare": "./script/refactor.sh prepare",
-    "refactor:restore": "./script/refactor.sh restore"
+    "refactor:restore": "./script/refactor.sh restore",
+    "prepare": "husky install"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -70,7 +71,8 @@
     "tailwindcss": "^3.4.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
-    "server-only": "^0.0.1"
+    "server-only": "^0.0.1",
+    "husky": "^8.0.0"
   },
   "ct3aMetadata": {
     "initVersion": "7.10.3"
