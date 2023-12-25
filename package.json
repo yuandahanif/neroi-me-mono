@@ -8,7 +8,7 @@
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start",
-    "test": "jest --watch",
+    "test": "vitest",
     "typesafe-i18n": "typesafe-i18n",
     "refactor:prepare": "./script/refactor.sh prepare",
     "refactor:restore": "./script/refactor.sh restore",
@@ -48,7 +48,6 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
-    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.1.2",
     "@types/eslint": "^8.56.0",
     "@types/jest": "^29.5.11",
@@ -59,20 +58,21 @@
     "@types/react-dom": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.0.4",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
+    "husky": "^8.0.0",
+    "jsdom": "^23.0.1",
     "postcss": "^8.4.32",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.2.8",
     "prisma": "^4.16.2",
+    "server-only": "^0.0.1",
     "tailwindcss": "^3.4.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
-    "server-only": "^0.0.1",
-    "husky": "^8.0.0"
+    "vitest": "^1.1.0"
   },
   "ct3aMetadata": {
     "initVersion": "7.10.3"
