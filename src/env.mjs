@@ -5,6 +5,7 @@ import { z } from "zod";
  * built with invalid env vars.
  */
 const server = z.object({
+  DOMAIN: z.string().default("localhost.space"),
   MYSQL_USER: z.string(),
   MYSQL_PASSWORD: z.string(),
   MYSQL_ROOT_PASSWORD: z.string(),
@@ -43,6 +44,7 @@ const client = z.object({
  * @type {Record<keyof z.infer<typeof server> | keyof z.infer<typeof client>, string | undefined>}
  */
 const processEnv = {
+  DOMAIN: process.env.DOMAIN,
   MYSQL_USER: process.env.MYSQL_USER,
   MYSQL_PASSWORD: process.env.MYSQL_PASSWORD,
   MYSQL_ROOT_PASSWORD: process.env.MYSQL_ROOT_PASSWORD,
