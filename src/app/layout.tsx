@@ -3,10 +3,10 @@ import { type Viewport, type Metadata } from "next";
 import { type PropsWithChildren } from "react";
 import { getServerSession } from "next-auth";
 
-import { AnimationProvider } from "./_providers/animation-provider";
-import { TrpcProvider } from "~/app/(root)/_providers/trpc-provider";
-import { AuthProvider } from "./_providers/auth-provider";
 import { authOptions } from "~/server/auth";
+import { AuthProvider } from "~/app/_providers/auth-provider";
+import { TrpcProvider } from "~/app/_providers/trpc-provider";
+import { AnimationProvider } from "~/app/_providers/animation-provider";
 
 export const metadata: Metadata = {
   title: {
