@@ -54,4 +54,4 @@ const MyApp: AppType<{
   );
 };
 
-export default api.withTRPC(MyApp);
+// export default api.withTRPC(MyApp);

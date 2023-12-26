@@ -1,7 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# refactor
-/src/pages-old
 
 # dependencies
 /node_modules
