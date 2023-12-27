@@ -12,6 +12,7 @@ const getBaseUrl = (subdomain: string, domain: string) => {
 const SubdomainSelect: FC<PropsWithChildren<{ domain: string }>> = ({
   domain,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const linkContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -43,28 +44,49 @@ const SubdomainSelect: FC<PropsWithChildren<{ domain: string }>> = ({
     };
   }, []);
 
+  useEffect(() => {
+    const container = containerRef.current;
+
+    if (!container) return;
+    const timeout = setTimeout(() => {
+      container.classList.remove("opacity-0");
+      container.classList.add("animate-fade-in");
+    }, 150 * 40);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <div
-      className="mt-10 flex flex-col gap-3 text-center"
-      ref={linkContainerRef}
+      ref={containerRef}
+      className="relative z-20 mx-auto my-auto flex h-auto w-auto flex-col items-center justify-center border border-main-300 bg-main-600 p-10 opacity-0 duration-300"
     >
-      <Link
-        href={getBaseUrl("personal", domain)}
-        target="_self"
-        className="before:ml-3 before:mr-2 before:content-[''] has-[.selected]:animate-pulse has-[.selected]:before:ml-0 has-[.selected]:before:content-['>']"
+      <h1 className="mb-2 text-xl font-semibold">Manual Selection Required!</h1>
+      <p className="text-sm">Chose the personality preset:</p>
+
+      <div
+        className="mt-10 flex flex-col gap-3 text-center"
+        ref={linkContainerRef}
       >
-        <span className="selected">Default</span>
-      </Link>
-      <Link
-        className="before:ml-3 before:mr-2 before:content-[''] has-[.selected]:animate-pulse has-[.selected]:before:ml-0 has-[.selected]:before:content-['>']"
-        href={getBaseUrl("work", domain)}
-        target="_self"
-      >
-        <span>Profesional</span>
-      </Link>
-      <span className="cursor-default line-through before:ml-3 before:mr-2 before:content-['']">
-        Random
-      </span>
+        <Link
+          className="before:ml-3 before:mr-2 before:content-[''] has-[.selected]:animate-pulse has-[.selected]:before:ml-0 has-[.selected]:before:content-['>']"
+          href={getBaseUrl("work", domain)}
+          target="_self"
+        >
+          <span className="selected">Profesional</span>
+        </Link>
+
+        <Link
+          href={getBaseUrl("personal", domain)}
+          target="_self"
+          className="before:ml-3 before:mr-2 before:content-[''] has-[.selected]:animate-pulse has-[.selected]:before:ml-0 has-[.selected]:before:content-['>']"
+        >
+          <span>Default</span>
+        </Link>
+        <span className="cursor-default line-through before:ml-3 before:mr-2 before:content-['']">
+          Random
+        </span>
+      </div>
     </div>
   );
 };

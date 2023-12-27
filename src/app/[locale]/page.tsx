@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
 import SubdomainSelect from "~/components/landing/subdomain-select";
+import TerminalAnimation from "~/components/terminal/terminal-animation";
 import { env } from "~/env.mjs";
-
-/**
- * idea
- * - booting sequence animation
- * - keyboard navigation
- *  */
 
 export const metadata: Metadata = {
   title: "Entry Point",
@@ -15,10 +10,8 @@ export const metadata: Metadata = {
 
 export default function Pages() {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center">
-      <h1>r/Outside</h1>
-      <p>Chose the personality preset:</p>
-
+    <div className="relative flex  h-full w-full">
+      <TerminalAnimation className="absolute z-10" />
       <SubdomainSelect domain={env.DOMAIN} />
     </div>
   );
