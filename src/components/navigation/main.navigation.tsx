@@ -171,25 +171,23 @@ const MainNavigation: React.FC<Props> = ({
                 </li>
                 <li className="flex items-center justify-center gap-2">
                   <span className="text-sm">{t("Language")}:</span>
-                  <div className="mt-10 flex gap-2 target:animate-bounce">
-                    {(["id", "en"] as const).map((locale_, idx) => (
-                      <div className="flex gap-2" key={locale_}>
-                        <button
-                          type="button"
-                          className={twMerge("hover:underline")}
-                          onClick={() => void changeLocale(locale_)}
-                          disabled={locale == locale_}
-                        >
-                          {locale_ == locale ? (
-                            <Redacted>{locale}</Redacted>
-                          ) : (
-                            locale
-                          )}
-                        </button>
-                        {idx % 2 == 0 && <span>|</span>}
-                      </div>
-                    ))}
-                  </div>
+                  {(["id", "en"] as const).map((locale_, idx) => (
+                    <div className="flex gap-2" key={locale_}>
+                      <button
+                        type="button"
+                        className={twMerge("hover:underline")}
+                        onClick={() => void changeLocale(locale_)}
+                        disabled={locale == locale_}
+                      >
+                        {locale_ == locale ? (
+                          <Redacted>{locale}</Redacted>
+                        ) : (
+                          locale
+                        )}
+                      </button>
+                      {idx % 2 == 0 && <span>|</span>}
+                    </div>
+                  ))}
                 </li>
               </>
             )}
