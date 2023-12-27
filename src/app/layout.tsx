@@ -6,7 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "~/server/auth";
 import { AuthProvider } from "~/app/_providers/auth-provider";
 import { TrpcProvider } from "~/app/_providers/trpc-provider";
-import { AnimationProvider } from "~/app/_providers/animation-provider";
+import { ClientProvider } from "./_providers/client-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -78,7 +78,7 @@ export default async function PageLayout({ children }: PropsWithChildren) {
       <body>
         <AuthProvider session={session}>
           <TrpcProvider>
-            <AnimationProvider>{children}</AnimationProvider>
+            <ClientProvider>{children}</ClientProvider>
           </TrpcProvider>
         </AuthProvider>
       </body>

@@ -54,6 +54,16 @@ const config = {
         has: [
           {
             type: "host",
+            value: `work.${process.env.DOMAIN}`,
+          },
+        ],
+        destination: "/:locale/work/:path*",
+      },
+      {
+        source: "/:locale/:path*",
+        has: [
+          {
+            type: "host",
             value: `personal.${process.env.DOMAIN}`,
           },
         ],
