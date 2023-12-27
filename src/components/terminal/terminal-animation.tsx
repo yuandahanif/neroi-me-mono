@@ -54,18 +54,23 @@ const TerminalAnimation: FC<{ className?: string }> = ({ className }) => {
         pre.classList.remove("opacity-0");
         pre.classList.add("animate-fade-in");
         if (i == INIT_MESSAGES.length - 1) pre.classList.add("animate-pulse");
+        // scroll the terminal to the bottom
+        container.scrollTop += i;
       }, 1000 + 150 * i);
     });
   }, []);
 
   return (
-    <div className={twMerge("py-6 opacity-50", className)} ref={containerRef}>
+    <div
+      className={twMerge("h-full overflow-hidden py-6 opacity-50", className)}
+      ref={containerRef}
+    >
       {INIT_MESSAGES.map((message, i) => (
         <pre
           className={twMerge(
             message.includes("ERROR!") ? "text-red-500" : "",
             message.includes("COMPLETE") ? "text-green-300" : "",
-            "opacity-0"
+            "text-sm opacity-0"
           )}
           key={message}
         >

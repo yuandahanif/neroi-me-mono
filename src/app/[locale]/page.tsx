@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Pages() {
   return (
-    <div className="relative flex  h-full w-full">
+    <div className="relative flex h-full max-h-screen w-full">
       <TerminalAnimation className="absolute z-10" />
       <SubdomainSelect domain={env.DOMAIN} />
     </div>
