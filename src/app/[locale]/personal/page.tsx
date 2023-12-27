@@ -1,6 +1,6 @@
-import { getI18n } from "~/locales/server";
 import PersonalClientSection from "./_client";
 import Logo from "~/components/logo/logo";
+import MainNavigation from "~/components/navigation/main.navigation";
 
 const Home = () => {
   return (
@@ -11,7 +11,7 @@ const Home = () => {
         <Logo />
       </div>
 
-      {/* <MainNavigation /> */}
+      <MainNavigation />
 
       <PersonalClientSection />
     </main>

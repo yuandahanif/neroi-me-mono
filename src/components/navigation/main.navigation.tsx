@@ -1,13 +1,12 @@
+"use client";
+
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useContext, useEffect, useRef } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import React, { useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import Redacted from "~/components/text/redacted";
-import { I18nContext } from "~/i18n/i18n-react";
-import { type Locales } from "~/i18n/i18n-types";
-import { locales } from "~/i18n/i18n-util";
-import { loadLocaleAsync } from "~/i18n/i18n-util.async";
+import { useChangeLocale, useCurrentLocale, useI18n } from "~/locales/client";
 
 const LINKS = [
   { id: "home-index", href: "/", label: "Home" },
@@ -27,22 +26,14 @@ const MainNavigation: React.FC<Props> = ({
   disableLanguageSwitcher = false,
 }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const { status } = useSession();
-  const { locale, LL, setLocale } = useContext(I18nContext);
+
+  const t = useI18n();
+  const changeLocale = useChangeLocale();
+  const locale = useCurrentLocale();
 
   const navigationref = useRef<HTMLDialogElement>(null);
-
-  const chanegLanguage = async (local: Locales) => {
-    try {
-      const locale = local;
-      localStorage.setItem("lang", locale);
-      void (await loadLocaleAsync(locale));
-      setLocale(locale);
-      void router.push({}, {}, { locale });
-    } catch (error) {
-      alert("oops");
-    }
-  };
 
   const openDialog = () => {
     if (navigationref.current == null) {
@@ -84,7 +75,7 @@ const MainNavigation: React.FC<Props> = ({
       <nav className="flex w-full flex-wrap justify-center gap-2 px-4 py-6 text-xl backdrop-blur-lg lg:px-0">
         {LINKS.map((link, idx) => (
           <div key={link.href} className="text-sm md:text-base">
-            {router.pathname == link.href ? (
+            {pathname == link.href ? (
               <Redacted>{link.label}</Redacted>
             ) : (
               <Link href={link.href} className={twMerge(`hover:underline`)}>
@@ -175,27 +166,27 @@ const MainNavigation: React.FC<Props> = ({
                 <li>
                   <hr />
                   <div className="mt-2 text-center">
-                    <span className="text-xs">{LL.Setting()}</span>
+                    <span className="text-xs">{t("Setting")}</span>
                   </div>
                 </li>
                 <li className="flex items-center justify-center gap-2">
-                  <span className="text-sm">{LL.Language()}:</span>
-                  <div className="flex w-fit gap-2">
-                    {locales.map((locale_, idx) => (
-                      <div key={locale_} className="flex gap-2">
+                  <span className="text-sm">{t("Language")}:</span>
+                  <div className="mt-10 flex gap-2 target:animate-bounce">
+                    {(["id", "en"] as const).map((locale_, idx) => (
+                      <div className="flex gap-2" key={locale_}>
                         <button
                           type="button"
                           className={twMerge("hover:underline")}
-                          onClick={() => void chanegLanguage(locale_)}
-                          disabled={locale_ == locale}
+                          onClick={() => void changeLocale(locale_)}
+                          disabled={locale == locale_}
                         >
                           {locale_ == locale ? (
-                            <Redacted>{locale_}</Redacted>
+                            <Redacted>{locale}</Redacted>
                           ) : (
-                            locale_
+                            locale
                           )}
                         </button>
-                        {idx !== locales.length - 1 && <span>|</span>}
+                        {idx % 2 == 0 && <span>|</span>}
                       </div>
                     ))}
                   </div>
