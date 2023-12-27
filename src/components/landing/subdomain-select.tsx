@@ -19,20 +19,28 @@ const SubdomainSelect: FC<PropsWithChildren<{ domain: string }>> = ({
 
     if (!links) return;
 
-    links.forEach((link, i) => {
-      link.addEventListener("mouseenter", (e) => {
-        const target = e.target as HTMLAnchorElement;
-        const spanChild = target.querySelector("span");
-        spanChild?.classList.add("selected");
+    const mouseEnterHandler = (i: number) => (e: MouseEvent) => {
+      const target = e.target as HTMLAnchorElement;
+      const spanChild = target.querySelector("span");
+      spanChild?.classList.add("selected");
 
-        links.forEach((link, j) => {
-          if (i !== j) {
-            const spanChild = link.querySelector("span");
-            spanChild?.classList.remove("selected");
-          }
-        });
+      links.forEach((link, j) => {
+        if (i !== j) {
+          const spanChild = link.querySelector("span");
+          spanChild?.classList.remove("selected");
+        }
       });
+    };
+
+    links.forEach((link, i) => {
+      link.addEventListener("mouseenter", mouseEnterHandler(i));
     });
+
+    return () => {
+      links.forEach((link, i) => {
+        link.removeEventListener("mouseenter", mouseEnterHandler(i));
+      });
+    };
   }, []);
 
   return (
