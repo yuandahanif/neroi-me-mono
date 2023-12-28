@@ -51,7 +51,7 @@ const SubdomainSelect: FC<PropsWithChildren<{ domain: string }>> = ({
     const timeout = setTimeout(() => {
       container.classList.remove("opacity-0");
       container.classList.add("animate-fade-in");
-    }, 150 * 40);
+    }, 150 * 36);
 
     return () => clearTimeout(timeout);
   }, []);

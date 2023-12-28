@@ -8,8 +8,8 @@ const INIT_MESSAGES = [
   "[  RUNLEVEL ] Setting up Virtual Realities",
   "[   SYSTEM  ] Loading Quantum Mesh Framework",
   "[   MODULE  ] Activating Neural Synapses",
-  "[    CORE   ] Initializing Hyperdimensional Engine",
-  "[   STATUS  ] Simulation Matrix Online",
+  `[    CORE   ] Initializing Hyperdimensional Engine
+[   STATUS  ] Simulation Matrix Online`,
   "[   AWAIT   ] Quantum Entanglement Stabilized",
   "[   SYNC    ] Synchronizing Multiverse Parameters",
   "[   LOGIC   ] Quantum Superposition in Progress",
@@ -19,12 +19,12 @@ const INIT_MESSAGES = [
   "[   RETRY   ] Attempting Recovery (1 of 10)",
   "[   REPAIR  ] Neural Network Resynchronization",
   "[   RETRY   ] Attempting Recovery (2 of 10)",
-  "[   REPAIR  ] Quantum Anomaly Suppression",
-  "[   RETRY   ] Attempting Recovery (3 of 10)",
-  "[   REPAIR  ] Subconscious Emulation Calibration",
-  "[   RETRY   ] Attempting Recovery (4 of 10)",
-  "[   REPAIR  ] Psycho-Neural Circuit Optimization",
-  "[   RETRY   ] Attempting Recovery (5 of 10)",
+  `[   REPAIR  ] Quantum Anomaly Suppression
+[   RETRY   ] Attempting Recovery (3 of 10)
+[   REPAIR  ] Subconscious Emulation Calibration
+[   RETRY   ] Attempting Recovery (4 of 10)
+[   REPAIR  ] Psycho-Neural Circuit Optimization
+[   RETRY   ] Attempting Recovery (5 of 10)`,
   "[   REPAIR  ] Time-Stream Personality Reconstitution",
   "[   RETRY   ] Attempting Recovery (6 of 10)",
   "[   REPAIR  ] Exo-Cognitive Pattern Reconstruction",
@@ -54,7 +54,6 @@ const TerminalAnimation: FC<{ className?: string }> = ({ className }) => {
         pre.classList.remove("opacity-0");
         pre.classList.add("animate-fade-in");
         if (i == INIT_MESSAGES.length - 1) pre.classList.add("animate-pulse");
-        // scroll the terminal to the bottom
         container.scrollTop += i;
       }, 1000 + 150 * i);
     });
