@@ -11,11 +11,11 @@ This is my personal website, bootstrapped from the [T3 Stack](https://create.t3.
 edit your hosts file to add the following line
 
 ```txt
-127.0.0.1   work.localhost.space
-127.0.0.1   personal.localhost.space
+127.0.0.1   work.localhost
+127.0.0.1   personal.localhost
 ```
 
-now you can access the website at `work.localhost.space:3000` or `personal.localhost.space:3000`
+now you can access the website at `work.localhost:3000` or `personal.localhost:3000`
 
 ## Upcoming Experiments
 
@@ -36,6 +36,7 @@ TODO:
 
 - Migrate from page router to app router
 - ~~Migrate i18n~~
+- Migrate next-auth to authjs
 
 ## Breaking Changes
 

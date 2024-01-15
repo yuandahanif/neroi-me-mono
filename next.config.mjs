@@ -50,6 +50,10 @@ const config = {
   async rewrites() {
     return [
       {
+        source: "/api/:path*",
+        destination: "/api/:path*",
+      },
+      {
         source: "/:locale/:path*",
         has: [
           {

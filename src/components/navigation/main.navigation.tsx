@@ -175,14 +175,16 @@ const MainNavigation: React.FC<Props> = ({
                     <div className="flex gap-2" key={locale_}>
                       <button
                         type="button"
-                        className={twMerge("hover:underline")}
+                        className={twMerge(
+                          locale == locale_ ? "" : "hover:underline"
+                        )}
                         onClick={() => void changeLocale(locale_)}
                         disabled={locale == locale_}
                       >
                         {locale_ == locale ? (
                           <Redacted>{locale}</Redacted>
                         ) : (
-                          locale
+                          locale_
                         )}
                       </button>
                       {idx % 2 == 0 && <span>|</span>}
