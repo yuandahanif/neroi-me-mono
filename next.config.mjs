@@ -50,8 +50,8 @@ const config = {
   async rewrites() {
     return [
       {
-        source: "/api/:path*",
-        destination: "/api/:path*",
+        source: "/:path(api.*|static.*|.*\\..*|_next.*|favicon.ico|robots.txt|sitemap.xml|sitemap.xsl|sitemap.xsd)",
+        destination: "/:path*",
       },
       {
         source: "/:locale/:path*",
