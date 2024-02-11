@@ -81,7 +81,7 @@ const MainNavigation: React.FC<Props> = ({
                 {link.label}
               </Link>
             )}
-            {idx < LINKS.length - 1 && <span> . </span>}
+            {idx < LINKS.length - 1 && <span> &#183; </span>}
           </div>
         ))}
       </nav>
@@ -146,20 +146,22 @@ const MainNavigation: React.FC<Props> = ({
                     <span className="text-sm">{t("Language")}:</span>
                     {(["id", "en"] as const).map((locale_, idx) => (
                       <div className="flex gap-2" key={locale_}>
-                        <button
-                          type="button"
-                          className={twMerge(
-                            locale == locale_ ? "" : "hover:underline"
-                          )}
-                          onClick={() => void changeLocale(locale_)}
-                          disabled={locale == locale_}
-                        >
+                        <input
+                          className="sr-only"
+                          type="radio"
+                          id={locale_}
+                          name="locale"
+                          value={locale_}
+                          checked={locale == locale_}
+                          onChange={() => void changeLocale(locale_)}
+                        />
+                        <label htmlFor={locale_} className="cursor-pointer">
                           {locale_ == locale ? (
                             <Redacted>{locale}</Redacted>
                           ) : (
                             locale_
                           )}
-                        </button>
+                        </label>
                         {idx % 2 == 0 && <span>|</span>}
                       </div>
                     ))}
@@ -178,7 +180,7 @@ const MainNavigation: React.FC<Props> = ({
                 href="https://github.com/yuandahanif/neroi-me-mono"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex justify-center items-center gap-1 hover:underline"
+                className="flex items-center justify-center gap-1 hover:underline"
               >
                 <span>Repository</span>
                 <svg
