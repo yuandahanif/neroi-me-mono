@@ -5,6 +5,7 @@ const en = {
 
   // Navigation
   Setting: "Settings",
+  Misc: "Miscellaneous",
   Language: "Language",
 
   // Profile

@@ -6,6 +6,7 @@ const id = {
 
   // Navigation
   Setting: "Pengaturan",
+  Misc: "Lainnya",
   Language: "Bahasa",
 
   // Profile
