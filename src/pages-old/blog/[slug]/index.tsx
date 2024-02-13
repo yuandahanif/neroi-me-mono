@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import { Lato } from "next/font/google";
 import useReadTime from "~/hooks/useReadTime";
 import { twMerge } from "tailwind-merge";
-import TriggerWarning from "~/components/trigger_warning/trigger_warning";
+import TriggerWarning from "~/components/trigger_warning/trigger-warning";
 import getI18nProps from "~/i18n/getStaticPropsI18n.helper";
 
 export const getStaticProps = getI18nProps;

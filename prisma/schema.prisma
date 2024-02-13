@@ -90,9 +90,8 @@ model Note {
 }
 
 model BlogVisit {
-    id        String   @id @default(cuid())
+    id        String   @id
     blogId    String
-    ip        String
     hash      String // ip address + random cookie
     Blogs     Blog     @relation(fields: [blogId], references: [id])
     createdAt DateTime @default(now())
