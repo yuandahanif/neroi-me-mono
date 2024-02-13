@@ -1,4 +1,4 @@
-import { type Metadata, type ResolvingMetadata } from "next";
+import { type Metadata } from "next";
 import { headers } from "next/headers";
 import { Suspense } from "react";
 import { Lato } from "next/font/google";
@@ -22,10 +22,7 @@ const main_font = Lato({
   weight: ["400", "900", "700"],
 });
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
   const slug = params.slug;
 
@@ -53,15 +50,9 @@ export async function generateMetadata(
     };
   }
 
-  // optionally access and extend (rather than replace) parent metadata
-  // const previousImages = (await parent).openGraph?.images || [];
-
   return {
     title: blog.title,
     description: blog.description ?? "",
-    // openGraph: {
-    //   images: ["/some-specific-page-image.jpg", ...previousImages],
-    // },
   };
 }
 
@@ -106,7 +97,7 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
           <Code
             {...props}
             lineNumbers
-            theme={'github-dark'}
+            theme={"github-dark"}
             lang="tsx"
             className={twMerge("not-prose", props.className)}
           >

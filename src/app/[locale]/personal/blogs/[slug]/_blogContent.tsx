@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import hljs from "highlight.js";
 import { twMerge } from "tailwind-merge";
 
 import local_date from "~/utils/local_date";
@@ -44,11 +43,6 @@ const BlogContent = ({
     const contentTableSet = new Set<string>();
 
     if (ref) {
-      ref.querySelectorAll("pre.ql-syntax").forEach((el) => {
-        el.classList.add("language-typescript"); // ! is default to Typescript for now
-        hljs.highlightElement(el as HTMLElement);
-      });
-
       ref.querySelectorAll("h2").forEach((el) => {
         const id = el.textContent ?? "";
         el.setAttribute("id", `${id?.replaceAll(" ", "-")}`);
