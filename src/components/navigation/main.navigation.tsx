@@ -22,9 +22,7 @@ interface Props {
   disableLanguageSwitcher?: boolean;
 }
 
-const MainNavigation: React.FC<Props> = ({
-  disableLanguageSwitcher = false,
-}) => {
+const MainNavigation: React.FC<Props> = ({}) => {
   const router = useRouter();
   const pathname = usePathname();
   const { status } = useSession();
@@ -135,40 +133,36 @@ const MainNavigation: React.FC<Props> = ({
           className="min-h-96 w-full max-w-screen-md overflow-auto border bg-main-600 p-5 text-white backdrop:bg-opacity-80 backdrop:backdrop-blur-sm"
         >
           <ul className="flex flex-col gap-4">
-            {!disableLanguageSwitcher && (
-              <>
-                <li className="flex flex-col gap-2">
-                  <div className="mt-2 text-center">
-                    <span className="text-md font-bold">{t("Setting")}</span>
-                  </div>
+            <li className="flex flex-col gap-2">
+              <div className="mt-2 text-center">
+                <span className="text-md font-bold">{t("Setting")}</span>
+              </div>
 
-                  <div className="flex items-center justify-center gap-2">
-                    <span className="text-sm">{t("Language")}:</span>
-                    {(["id", "en"] as const).map((locale_, idx) => (
-                      <div className="flex gap-2" key={locale_}>
-                        <input
-                          className="sr-only"
-                          type="radio"
-                          id={locale_}
-                          name="locale"
-                          value={locale_}
-                          checked={locale == locale_}
-                          onChange={() => void changeLocale(locale_)}
-                        />
-                        <label htmlFor={locale_} className="cursor-pointer">
-                          {locale_ == locale ? (
-                            <Redacted>{locale}</Redacted>
-                          ) : (
-                            locale_
-                          )}
-                        </label>
-                        {idx % 2 == 0 && <span>|</span>}
-                      </div>
-                    ))}
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-sm">{t("Language")}:</span>
+                {(["id", "en"] as const).map((locale_, idx) => (
+                  <div className="flex gap-2" key={locale_}>
+                    <input
+                      className="sr-only"
+                      type="radio"
+                      id={locale_}
+                      name="locale"
+                      value={locale_}
+                      checked={locale == locale_}
+                      onChange={() => void changeLocale(locale_)}
+                    />
+                    <label htmlFor={locale_} className="cursor-pointer">
+                      {locale_ == locale ? (
+                        <Redacted>{locale}</Redacted>
+                      ) : (
+                        locale_
+                      )}
+                    </label>
+                    {idx % 2 == 0 && <span>|</span>}
                   </div>
-                </li>
-              </>
-            )}
+                ))}
+              </div>
+            </li>
 
             <li className="flex flex-col gap-2">
               <hr />

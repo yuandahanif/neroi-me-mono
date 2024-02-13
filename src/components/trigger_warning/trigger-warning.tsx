@@ -4,7 +4,6 @@ import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 
 const TriggerWarning: React.FC<{
-  onAccept?: () => void; // @deprecated
   isDefaultOpen: boolean;
 }> = ({ isDefaultOpen = false }) => {
   const dialogRef = useRef<React.ElementRef<"dialog">>(null);
@@ -30,7 +29,10 @@ const TriggerWarning: React.FC<{
           orang.
         </p>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center flex-row-reverse">
+          <Link href={"/blogs"} className="mt-3 p-px px-2 text-green-500">
+            Kembali
+          </Link>
           <button
             className="mt-3 p-px px-2 text-red-500"
             type="button"
@@ -38,9 +40,6 @@ const TriggerWarning: React.FC<{
           >
             Lanjutkan
           </button>
-          <Link href={"/blogs"} className="mt-3 p-px px-2 text-green-500">
-            Kembali
-          </Link>
         </div>
       </div>
     </dialog>

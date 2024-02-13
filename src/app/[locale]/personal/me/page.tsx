@@ -20,7 +20,7 @@ const Divider: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 
 const MePage = () => {
   return (
-    <main
+    <div
       className={`flex min-h-screen grow flex-col items-center justify-start p-2 py-10 `}
     >
       <h1 className="text-5xl">{"<Me/>"}</h1>
@@ -84,7 +84,7 @@ const MePage = () => {
           </ul>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

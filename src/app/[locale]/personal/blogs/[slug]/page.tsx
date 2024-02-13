@@ -1,4 +1,5 @@
 import { type Metadata, type ResolvingMetadata } from "next";
+import { serialize } from "next-mdx-remote/serialize";
 import { headers } from "next/headers";
 import { Suspense } from "react";
 import { Lato } from "next/font/google";
@@ -95,20 +96,22 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
     notFound();
   }
 
+  const content = await serialize(blog.content);
+
   return (
-    <main className={`flex grow flex-col items-center justify-start p-2 py-10`}>
+    <div className={`flex grow flex-col items-center justify-start p-2 py-10`}>
       <h1 className="text-5xl">{"<Blog/>"}</h1>
-      {/* <MainNavigation disableLanguageSwitcher /> */}
+      <MainNavigation />
 
       <div
-        className={`mt-10  flex flex-col gap-y-5 ${main_font.className}`}
+        className={`mt-5 flex flex-col gap-y-5 ${main_font.className}`}
         style={main_font.style}
       >
         <Suspense fallback={<Loading />} key={slug}>
-          <BlogContent blog={blog} ip={ip} />
+          <BlogContent blog={blog} content={content} ip={ip} />
         </Suspense>
       </div>
-    </main>
+    </div>
   );
 };
 

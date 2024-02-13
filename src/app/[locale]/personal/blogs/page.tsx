@@ -59,7 +59,7 @@ const BlogsPage = async ({
   });
 
   return (
-    <main
+    <div
       className={`flex min-h-screen grow flex-col items-center justify-start p-2 py-10`}
     >
       <h1 className="text-5xl">{"<Blogs/>"}</h1>
@@ -107,7 +107,7 @@ const BlogsPage = async ({
           </span>
         )}
       </div>
-    </main>
+    </div>
   );
 };
 

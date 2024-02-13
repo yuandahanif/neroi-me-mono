@@ -6,9 +6,9 @@ const source_Code_Pro = Source_Code_Pro({ subsets: ["latin", "cyrillic"] });
 const MainLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className="flex w-full bg-main-600" style={source_Code_Pro.style}>
-      <div className="mx-auto min-h-screen w-full max-w-screen-2xl grow bg-main-600 text-white">
+      <main className="mx-auto min-h-screen w-full max-w-screen-2xl grow bg-main-600 text-white">
         {children}
-      </div>
+      </main>
     </div>
   );
 };

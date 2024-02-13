@@ -10,7 +10,7 @@ const COOKIE_SECRET = {
 
 export default async function updateBlogVisitCount(blogId: string, IP: string) {
   const cookieStore = cookies();
-  const buffer = Buffer.from(IP + COOKIE_SECRET.value, "utf-8");
+  const buffer = Buffer.from(IP + COOKIE_SECRET.value + blogId, "utf-8");
 
   const visitorCookie = cookieStore.has(COOKIE_SECRET.name);
   const hashValue = buffer.toString("base64");
@@ -23,12 +23,13 @@ export default async function updateBlogVisitCount(blogId: string, IP: string) {
 
   await prisma.blogVisit.upsert({
     where: {
-      id: IP,
+      id: hashValue,
       OR: [{ hash: hashValue }],
     },
     create: {
-      id: IP,
+      id: hashValue,
       blogId,
+      ip_address: IP,
       hash: hashValue,
     },
     update: {
