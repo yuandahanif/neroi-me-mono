@@ -1,7 +1,10 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
 const Loading = () => {
   const [dots, setDots] = useState(".");
+
   useEffect(() => {
     const t = setInterval(() => {
       setDots((s) => `${s} .`);
@@ -9,6 +12,7 @@ const Loading = () => {
 
     return () => clearInterval(t);
   }, []);
+
   return <div>Loading {dots}</div>;
 };
 

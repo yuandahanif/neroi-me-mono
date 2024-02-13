@@ -83,7 +83,7 @@ dependencies:
     specifier: ^4.0.1
     version: 4.0.1
   zod:
-    specifier: ^3.22.4
+    specifier: ^3.10
     version: 3.22.4
 
 devDependencies:

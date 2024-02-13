@@ -9,14 +9,10 @@ interface Props {
   visit: number;
   createdAt: Date;
 }
-
-const BlogCard: React.FC<Props> = ({
-  createdAt,
-  slug,
-  tags,
-  title,
-  visit,
-}) => {
+/**
+ * @deprecated
+ */
+const BlogCard: React.FC<Props> = ({ createdAt, slug, tags, title, visit }) => {
   return (
     <div className=" prose prose-invert">
       <Link href={`/blog/${slug}`} className="no-underline hover:underline">

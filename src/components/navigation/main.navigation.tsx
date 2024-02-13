@@ -10,10 +10,10 @@ import { useChangeLocale, useCurrentLocale, useI18n } from "~/locales/client";
 
 const LINKS = [
   { id: "home-index", href: "/", label: "Home" },
-  { id: "blog-index", href: "/blog", label: "Blog" },
+  { id: "blog-index", href: "/blogs", label: "Blogs" },
   // { id: "note-index", href: "/note", label: "Note" },
-  { id: "project-index", href: "/project", label: "Project" },
-  { id: "lab-index", href: "/lab", label: "Lab" },
+  { id: "project-index", href: "/projects", label: "Projects" },
+  { id: "lab-index", href: "/labs", label: "Labs" },
   { id: "gallery-index", href: "/gallery", label: "Gallery" },
   { id: "me-index", href: "/me", label: "Me" },
 ];
