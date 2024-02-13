@@ -22,6 +22,10 @@ const itemVariants: Variants = {
   },
 };
 
+/**
+ * 
+ * @deprecated
+ */
 const BlogIndexPage: NextPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const blog = api.blog.getAll_withPagination.useQuery(

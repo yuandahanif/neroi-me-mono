@@ -20,8 +20,10 @@ const BlogCardContainer: React.FC<{
     slug: string;
     title: string;
     Tags: { title: string }[];
-    visit: number;
     createdAt: Date;
+    _count: {
+      BlogVisits: number;
+    };
   }[];
 }> = ({ blogs }) => {
   if (blogs.length === 0)
@@ -51,7 +53,7 @@ const BlogCardContainer: React.FC<{
         },
       }}
     >
-      {blogs?.map(({ slug, Tags, createdAt, id, title, visit }) => (
+      {blogs?.map(({ slug, Tags, createdAt, id, title, _count }) => (
         <motion.div
           className="prose prose-invert w-full"
           variants={itemVariants}
@@ -76,7 +78,7 @@ const BlogCardContainer: React.FC<{
 
           <div className="flex flex-wrap items-center gap-3">
             <div className="ml-auto flex items-center gap-1 text-sm">
-              <span>{visit}</span>
+              <span>{_count.BlogVisits}</span>
               pembaca
             </div>
             <span>|</span>

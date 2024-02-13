@@ -42,7 +42,7 @@ const BlogsPage = async ({
       title: true,
       Tags: { select: { title: true } },
       slug: true,
-      visit: true,
+      _count: { select: { BlogVisits: true } },
       createdAt: true,
       updatedAt: true,
     },
