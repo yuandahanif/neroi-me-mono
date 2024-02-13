@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import local_date from "~/utils/local_date";
-import Link from "next/link";
 
 const itemVariants: Variants = {
   init: { opacity: 0, y: 20, transition: { duration: 0.2 } },
@@ -24,18 +24,22 @@ const BlogCardContainer: React.FC<{
     createdAt: Date;
   }[];
 }> = ({ blogs }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    setIsOpen(true);
-  }, []);
+  if (blogs.length === 0)
+    return (
+      <div className="flex flex-grow items-center">
+        <span className="text-xs">
+          Tidak ada apapun disini, seperti tujuan hidupku.
+        </span>
+      </div>
+    );
 
   return (
     <motion.div
-      className="flex flex-col gap-y-8 px-2 lg:px-0"
-      initial={false}
-      animate={isOpen ? "show" : "init"}
+      className="flex flex-grow flex-col gap-y-8 px-2 lg:px-0"
+      initial={"init"}
+      animate={["init", "show"]}
       variants={{
+        init: {},
         show: {
           transition: {
             type: "spring",
@@ -53,7 +57,10 @@ const BlogCardContainer: React.FC<{
           variants={itemVariants}
           key={id}
         >
-          <Link href={`/blogs/${slug}`} className="no-underline hover:underline">
+          <Link
+            href={`/blogs/${slug}`}
+            className="no-underline hover:underline"
+          >
             <span className="prose-md line-clamp-2 font-semibold md:prose-2xl">
               {title}
             </span>

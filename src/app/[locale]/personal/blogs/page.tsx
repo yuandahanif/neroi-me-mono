@@ -72,7 +72,7 @@ const BlogsPage = async ({
         </h3>
       </div>
 
-      <div className="prose prose-invert mt-10 flex">
+      <div className="prose prose-invert mt-10 flex flex-grow">
         <Suspense fallback={<Loading />} key={page}>
           <BlogCardContainer blogs={blogs} />
         </Suspense>
