@@ -1,5 +1,4 @@
 import { type Metadata, type ResolvingMetadata } from "next";
-import { serialize } from "next-mdx-remote/serialize";
 import { headers } from "next/headers";
 import { Suspense } from "react";
 import { Lato } from "next/font/google";
@@ -9,6 +8,9 @@ import Loading from "~/components/loading/loading";
 import MainNavigation from "~/components/navigation/main.navigation";
 import { notFound } from "next/navigation";
 import BlogContent from "./_blogContent";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { Code } from "bright";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   params: { slug: string };
@@ -96,7 +98,24 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
     notFound();
   }
 
-  const content = await serialize(blog.content);
+  const Content = (
+    <MDXRemote
+      source={blog.content}
+      components={{
+        pre: (props) => (
+          <Code
+            {...props}
+            lineNumbers
+            theme={'github-dark'}
+            lang="tsx"
+            className={twMerge("not-prose", props.className)}
+          >
+            {props.children}
+          </Code>
+        ),
+      }}
+    />
+  );
 
   return (
     <div className={`flex grow flex-col items-center justify-start p-2 py-10`}>
@@ -108,7 +127,9 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
         style={main_font.style}
       >
         <Suspense fallback={<Loading />} key={slug}>
-          <BlogContent blog={blog} content={content} ip={ip} />
+          <BlogContent blog={blog} ip={ip}>
+            {Content}
+          </BlogContent>
         </Suspense>
       </div>
     </div>

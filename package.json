@@ -26,6 +26,7 @@
     "@trpc/react-query": "^10.44.1",
     "@trpc/server": "^10.44.1",
     "@vercel/analytics": "^1.1.1",
+    "bright": "^0.8.4",
     "chart.js": "^4.4.1",
     "framer-motion": "^10.16.16",
     "highlight.js": "^11.9.0",

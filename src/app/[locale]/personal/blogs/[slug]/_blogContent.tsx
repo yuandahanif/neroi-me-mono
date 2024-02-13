@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { MDXRemoteSerializeResult } from "next-mdx-remote/rsc";
-import { MDXRemote } from "next-mdx-remote";
 import hljs from "highlight.js";
 import { twMerge } from "tailwind-merge";
 
@@ -11,7 +9,11 @@ import useReadTime from "~/hooks/useReadTime";
 import TriggerWarning from "~/components/trigger_warning/trigger-warning";
 import updateBlogVisitCount from "./_updateBlogVisitCountAction";
 
-const BlogContent: React.FC<{
+const BlogContent = ({
+  blog,
+  ip,
+  children,
+}: React.PropsWithChildren<{
   blog: {
     id: string;
     title: string;
@@ -21,11 +23,7 @@ const BlogContent: React.FC<{
     _count: { BlogVisits: number };
   };
   ip: string;
-  content: MDXRemoteSerializeResult<
-    Record<string, unknown>,
-    Record<string, unknown>
-  >;
-}> = ({ blog, ip, content }) => {
+}>) => {
   const isRestrictedContent =
     blog?.Tags.findIndex((tag) => tag.title == "NSFW") > -1;
 
@@ -59,7 +57,7 @@ const BlogContent: React.FC<{
 
       setTableOfContent(contentTableSet);
     }
-  }, [content]);
+  }, []);
 
   return (
     <>
@@ -80,9 +78,9 @@ const BlogContent: React.FC<{
 
             <div
               ref={articleRef}
-              className="blog-content prose-md prose prose-invert w-full prose-h2:text-lg prose-pre:rounded-sm prose-pre:bg-main-400"
+              className="blog-content prose-md prose prose-invert w-full prose-h2:text-lg prose-pre:rounded-sm prose-pre:bg-main-400 prose-pre:px-2"
             >
-              <MDXRemote {...content} />
+              {children}
             </div>
           </div>
 
