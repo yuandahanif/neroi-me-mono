@@ -64,7 +64,7 @@ const TerminalAnimation: FC<{ className?: string }> = ({ className }) => {
       className={twMerge("h-full overflow-hidden py-6 opacity-50", className)}
       ref={containerRef}
     >
-      {INIT_MESSAGES.map((message, i) => (
+      {INIT_MESSAGES.map((message) => (
         <pre
           className={twMerge(
             message.includes("ERROR!") ? "text-red-500" : "",

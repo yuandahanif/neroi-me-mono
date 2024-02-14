@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useQuill } from "react-quilljs";
 import Quill from "quill";
-import hljs from "highlight.js";
 
 import "quill/dist/quill.snow.css";
 
@@ -10,9 +9,6 @@ interface Props {
   onChange: (value: string) => void;
 }
 
-hljs.configure({
-  languages: ["language-typescript", "javascript", "ruby", "python", "rust"],
-});
 function imageHandler(this: { [x: string]: any; image: () => void }) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
   const range = this.quill.getSelection();
@@ -44,11 +40,7 @@ const Editor: React.FC<Props> = ({ onChange, defaultValue }) => {
     ],
 
     modules: {
-      syntax: {
-        highlight: (text: string) => {
-          return hljs.highlightAuto(text).value;
-        },
-      },
+      syntax: {},
       toolbar: {
         handlers: {
           image: imageHandler,
