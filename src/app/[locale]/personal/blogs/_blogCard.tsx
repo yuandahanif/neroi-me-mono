@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import local_date from "~/utils/local_date";
+import { Skeleton } from "~/components/ui/skeleton";
 
 const itemVariants: Variants = {
   init: { opacity: 0, y: 20, transition: { duration: 0.2 } },
@@ -12,6 +13,22 @@ const itemVariants: Variants = {
     y: 0,
     transition: { type: "spring", stiffness: 300, damping: 24 },
   },
+};
+
+const BlogCardSkeleton: React.FC = () => {
+  return (
+    <div className="flex w-full flex-grow flex-col gap-2">
+      <Skeleton className="h-[2em] w-full" />
+      <div className="flex gap-2">
+        {[1, 2, 3].map((_) => (
+          <Skeleton key={_} className="h-[1.5em] w-[3em]" />
+        ))}
+      </div>
+      <div className="flex justify-end">
+        <Skeleton className="h-[1em] w-1/3" />
+      </div>
+    </div>
+  );
 };
 
 const BlogCardContainer: React.FC<{
@@ -54,11 +71,7 @@ const BlogCardContainer: React.FC<{
       }}
     >
       {blogs?.map(({ slug, Tags, createdAt, id, title, _count }) => (
-        <motion.div
-          className="w-full"
-          variants={itemVariants}
-          key={id}
-        >
+        <motion.div className="w-full" variants={itemVariants} key={id}>
           <Link
             href={`/blogs/${slug}`}
             className="no-underline hover:underline"
@@ -90,4 +103,4 @@ const BlogCardContainer: React.FC<{
   );
 };
 
-export default BlogCardContainer;
+export { BlogCardContainer, BlogCardSkeleton };

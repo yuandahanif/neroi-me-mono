@@ -1,12 +1,52 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
 
 import local_date from "~/utils/local_date";
 import useReadTime from "~/hooks/useReadTime";
 import TriggerWarning from "~/components/trigger_warning/trigger-warning";
 import updateBlogVisitCount from "./_updateBlogVisitCountAction";
+import { Skeleton } from "~/components/ui/skeleton";
+
+const BlogContentSkeleton: React.FC = () => {
+  return (
+    <>
+      <div className="flex w-fit flex-grow flex-col-reverse items-center justify-center sm:flex-row sm:items-start">
+        <div className="w-fit rounded-md border border-main-300 p-2 sm:p-6">
+          <div
+            style={{ maxWidth: "65ch" }}
+            className="flex w-[65ch] flex-grow flex-col gap-3 "
+          >
+            <Skeleton className="mb-10 h-10 w-full" />
+            <Skeleton className="h-72 w-full" />
+            <Skeleton className="h-14 w-full" />
+            <Skeleton className="h-20 w-full" />
+          </div>
+
+          <div className="mt-3 flex w-full flex-wrap items-center justify-stretch gap-3">
+            {[1, 2, 3].map((_) => (
+              <Skeleton key={_} className="h-[1.5em] w-[3em]" />
+            ))}
+
+            <Skeleton className="ml-auto h-[1em] w-[3em]" />
+          </div>
+        </div>
+
+        <div className="sticky top-16 h-fit p-4">
+          <h2 className="mb-2 inline-flex text-lg font-semibold">
+            Daftar isi:
+          </h2>
+
+          <div className="flex flex-col gap-3">
+            {[1, 2, 3, 4].map((ctn) => (
+              <Skeleton className="h-[1.5em] w-40" key={ctn} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 const BlogContent = ({
   blog,
@@ -123,7 +163,7 @@ const BlogContent = ({
             Daftar isi:
           </h2>
 
-          <ul className={twMerge("h-fit", isRestrictedContent && "blur-sm")}>
+          <ul className="h-fit">
             {[...tableOfContent.values()].map((ctn) => (
               <li key={ctn} className="list-inside list-disc">
                 <a
@@ -141,4 +181,4 @@ const BlogContent = ({
   );
 };
 
-export default BlogContent;
+export { BlogContent, BlogContentSkeleton };

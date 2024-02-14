@@ -2,7 +2,7 @@ import { type Metadata } from "next";
 import MainNavigation from "~/components/navigation/main.navigation";
 import Loading from "~/components/loading/loading";
 import { Suspense } from "react";
-import BlogCardContainer from "./_blogCard";
+import { BlogCardContainer, BlogCardSkeleton } from "./_blogCard";
 import { prisma } from "~/server/db";
 import Link from "next/link";
 import { z } from "zod";
@@ -73,7 +73,16 @@ const BlogsPage = async ({
       </div>
 
       <div className="prose prose-invert mt-10 flex flex-grow">
-        <Suspense fallback={<Loading />} key={page}>
+        <Suspense
+          fallback={
+            <div className="flex flex-grow flex-col gap-y-8 px-2 lg:px-0">
+              {[1, 2, 3, 4, 5].map((_) => (
+                <BlogCardSkeleton key={_} />
+              ))}
+            </div>
+          }
+          key={page}
+        >
           <BlogCardContainer blogs={blogs} />
         </Suspense>
       </div>

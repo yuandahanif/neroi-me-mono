@@ -7,7 +7,7 @@ import { prisma } from "~/server/db";
 import Loading from "~/components/loading/loading";
 import MainNavigation from "~/components/navigation/main.navigation";
 import { notFound } from "next/navigation";
-import BlogContent from "./_blogContent";
+import { BlogContent, BlogContentSkeleton } from "./_blogContent";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Code } from "bright";
 import { twMerge } from "tailwind-merge";
@@ -114,10 +114,10 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
       <MainNavigation />
 
       <div
-        className={`mt-5 flex flex-col gap-y-5 ${main_font.className}`}
+        className={`mt-5 flex w-full flex-grow flex-col items-center justify-center gap-y-5 ${main_font.className}`}
         style={main_font.style}
       >
-        <Suspense fallback={<Loading />} key={slug}>
+        <Suspense fallback={<BlogContentSkeleton />} key={slug}>
           <BlogContent blog={blog} ip={ip}>
             {Content}
           </BlogContent>
