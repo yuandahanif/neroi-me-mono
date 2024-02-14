@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="flex h-screen w-full items-center justify-center bg-main-600 text-white">
+    <div className="flex h-screen w-full items-center justify-center text-white">
       <div className="absolute bottom-0 left-0 right-0 flex justify-center">
         <Image
           src="/images/tenta/tenta-2.png"

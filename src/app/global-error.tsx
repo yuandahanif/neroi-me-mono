@@ -11,13 +11,18 @@ export default function GlobalError({
   reset: () => void;
 }) {
   return (
-    <html>
+    <html className="dark">
       <body>
-        <button onClick={() => reset()}>Try again</button>
-        <div className="flex w-full bg-main-600" style={source_Code_Pro.style}>
-          <div className="mx-auto flex min-h-screen w-full max-w-screen-2xl grow flex-col bg-main-600 text-white">
-            <h2>Something went wrong!</h2>
-            {error.message}
+        <div className="flex min-h-screen items-center justify-center">
+          <button onClick={() => reset()}>Try again</button>
+          <div
+            className="flex w-full"
+            style={source_Code_Pro.style}
+          >
+            <div className="mx-auto flex min-h-screen w-full max-w-screen-2xl grow flex-col text-white">
+              <h2>Something went wrong!</h2>
+              {error.message}
+            </div>
           </div>
         </div>
       </body>

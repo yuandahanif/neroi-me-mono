@@ -13,7 +13,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
       initial="hidden"
       animate="enter"
       transition={{ type: "linear" }}
-      className="mx-auto flex min-h-screen w-full max-w-screen-2xl grow flex-col bg-main-600 text-white"
+      className="mx-auto flex min-h-screen w-full max-w-screen-2xl grow flex-col text-white"
     >
       {children}
     </motion.main>

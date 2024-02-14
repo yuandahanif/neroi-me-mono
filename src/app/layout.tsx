@@ -6,6 +6,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "~/server/auth";
 import { AuthProvider } from "~/app/_providers/auth-provider";
 import { ClientProvider } from "./_providers/client-provider";
+import { cn } from "~/lib/utils";
+import { Source_Code_Pro } from "next/font/google";
 
 export const metadata: Metadata = {
   title: {
@@ -70,11 +72,16 @@ export const viewport: Viewport = {
   themeColor: "#171717",
 };
 
+const source_Code_Pro = Source_Code_Pro({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-scp",
+});
+
 export default async function PageLayout({ children }: PropsWithChildren) {
   const session = await getServerSession(authOptions);
   return (
-    <html>
-      <body>
+    <html className="dark">
+      <body className={cn("font-sans antialiased", source_Code_Pro.variable)}>
         <AuthProvider session={session}>
           <ClientProvider>{children}</ClientProvider>
         </AuthProvider>

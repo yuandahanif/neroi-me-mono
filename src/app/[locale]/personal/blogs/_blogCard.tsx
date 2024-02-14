@@ -55,7 +55,7 @@ const BlogCardContainer: React.FC<{
     >
       {blogs?.map(({ slug, Tags, createdAt, id, title, _count }) => (
         <motion.div
-          className="prose prose-invert w-full"
+          className="w-full"
           variants={itemVariants}
           key={id}
         >

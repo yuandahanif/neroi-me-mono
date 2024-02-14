@@ -58,7 +58,7 @@ const BlogContent = ({
       <TriggerWarning isDefaultOpen={isRestrictedContent} />
       <div className="flex flex-col-reverse sm:flex-row">
         <div className="w-auto">
-          <div className="z-20 w-fit rounded-md border border-main-300 bg-main-600 p-2 sm:mx-auto sm:p-6">
+          <div className="z-20 w-fit rounded-md border border-main-300 p-2 sm:mx-auto sm:p-6">
             <div className="prose prose-2xl prose-invert mb-10 flex h-auto w-fit max-w-[600px]">
               <h1 className="text-2xl font-semibold leading-10 sm:text-3xl">
                 {blog.isDraft && (
