@@ -1,44 +1,78 @@
+"use client";
+
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import React, { useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import Redacted from "~/components/text/redacted";
-import useOnClickOutside from "~/hooks/useClickOutside";
 
 const LINKS = [
-  { id: "home-index", href: "/dashboard", label: "Home" },
-  { id: "blog-index", href: "/dashboard/blog", label: "Blog" },
-  { id: "note-index", href: "/dashboard/note", label: "Note" },
+  { id: "home-index", href: "/admin", label: "Home" },
+  { id: "blog-index", href: "/admin/blog", label: "Blogs" },
+  { id: "note-index", href: "/admin/note", label: "Notes" },
 ];
 
 const AdminNavigation = () => {
   const router = useRouter();
-  const navigationref = useRef<null | HTMLDivElement>(null);
-  const [isNavVisible, setIsNavVisible] = useState(false);
+  const pathname = usePathname();
 
-  useOnClickOutside(navigationref, () => {
-    setIsNavVisible(false);
+  const navigationref = useRef<HTMLDialogElement>(null);
+
+  const openDialog = () => {
+    if (navigationref.current == null) {
+      alert("oops");
+    }
+    navigationref.current?.showModal();
+  };
+
+  useEffect(() => {
+    const ref = navigationref.current;
+    const clickHandler = (e: MouseEvent) => {
+      const dialogDimensions = ref?.getBoundingClientRect();
+
+      if (
+        dialogDimensions &&
+        (e.clientX < dialogDimensions.left ||
+          e.clientX > dialogDimensions.right ||
+          e.clientY < dialogDimensions.top ||
+          e.clientY > dialogDimensions.bottom)
+      ) {
+        ref?.close();
+      }
+    };
+
+    if (ref) {
+      ref.addEventListener("click", clickHandler);
+    }
+
+    return () => {
+      if (ref) {
+        ref.removeEventListener("click", clickHandler);
+      }
+    };
   });
 
   return (
     <div className="mt-8 flex gap-x-2 text-xl">
-      {LINKS.map((link, idx) => (
-        <div key={link.href} className="text-sm md:text-base">
-          {router.asPath == link.href ? (
-            <Redacted> {link.label}</Redacted>
-          ) : (
-            <Link href={link.href} className={twMerge(`hover:underline`)}>
-              {link.label}
-            </Link>
-          )}
-          {idx < LINKS.length - 1 && <span> . </span>}
-        </div>
-      ))}
+      <nav className="flex w-full flex-wrap justify-center gap-2 px-4 py-6 text-xl backdrop-blur-lg lg:px-0">
+        {LINKS.map((link, idx) => (
+          <div key={link.href} className="text-sm md:text-base">
+            {pathname == link.href ? (
+              <Redacted>{link.label}</Redacted>
+            ) : (
+              <Link href={link.href} className={twMerge(`hover:underline`)}>
+                {link.label}
+              </Link>
+            )}
+            {idx < LINKS.length - 1 && <span> &#183; </span>}
+          </div>
+        ))}
+      </nav>
 
       <nav>
         <div className="fixed bottom-10 right-10 z-30 flex flex-col items-center justify-center gap-2">
-          <button type="button" onClick={() => setIsNavVisible((s) => !s)}>
+          <button type="button" onClick={openDialog} title="navigation">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -56,39 +90,28 @@ const AdminNavigation = () => {
           </button>
         </div>
 
-        {isNavVisible && (
-          <>
-            <div className="fixed  left-0 top-0 z-40 h-full w-full bg-main-600 bg-opacity-80 backdrop-blur-sm"></div>
-            <div
-              ref={navigationref}
-              className="min-h-96 fixed left-1/2 top-1/2 z-50 m-auto w-full max-w-screen-md -translate-x-1/2 -translate-y-1/2 overflow-auto border bg-main-600 p-5"
-            >
-              <span className="inline-flex w-full justify-center text-center">
-                Navigasi
-              </span>
-
-              <div className="mt-2 flex w-full border-t pt-5">
-                <ul className="flex w-full flex-col items-center justify-center">
-                  <li>
-                    <Link href={"/"}>
-                      <span>Home</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        void signOut();
-                      }}
-                    >
-                      Logout
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </>
-        )}
+        <dialog
+          ref={navigationref}
+          className="w-full max-w-screen-md overflow-auto border bg-main-600 p-5 text-white backdrop:bg-opacity-80 backdrop:backdrop-blur-sm"
+        >
+          <ul className="flex w-full flex-col items-center justify-center gap-4">
+            <li>
+              <Link href={"/"} target="_self">
+                <span>Home</span>
+              </Link>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={() => {
+                  void signOut();
+                }}
+              >
+                Logout
+              </button>
+            </li>
+          </ul>
+        </dialog>
       </nav>
     </div>
   );

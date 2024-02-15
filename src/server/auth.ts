@@ -1,7 +1,13 @@
 import {
   type DefaultSession,
-  type AuthOptions,
+  getServerSession,
+  type NextAuthOptions,
 } from "next-auth";
+import type {
+  GetServerSidePropsContext,
+  NextApiRequest,
+  NextApiResponse,
+} from "next";
 
 import DiscordProvider from "next-auth/providers/discord";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
@@ -36,7 +42,7 @@ declare module "next-auth" {
  *
  * @see https://next-auth.js.org/configuration/options
  */
-export const authOptions: AuthOptions = {
+export const authOptions = {
   callbacks: {
     session: ({ session, user }) => ({
       ...session,
@@ -63,4 +69,14 @@ export const authOptions: AuthOptions = {
      * @see https://next-auth.js.org/providers/github
      */
   ],
-};
+} satisfies NextAuthOptions;
+
+// Use it in server contexts
+export function auth(
+  ...args:
+    | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
+    | [NextApiRequest, NextApiResponse]
+    | []
+) {
+  return getServerSession(...args, authOptions);
+}
