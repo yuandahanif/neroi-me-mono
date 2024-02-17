@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
 import { type PropsWithChildren, type FC } from "react";
+import { redirect } from "next/navigation";
 import { auth } from "~/server/auth";
 
 const MainLayout: FC<PropsWithChildren> = async ({ children }) => {

@@ -134,7 +134,7 @@ const AboutMeMoreSection: NextPage = () => {
         className="mx-auto text-center"
         onClick={openUnimportantDetail}
       >
-        <span className="mx-auto text-center text-xs underline">Show more</span>
+        <span className="mx-auto text-center text-xs underline">Show</span>
       </button>
     </div>
   );

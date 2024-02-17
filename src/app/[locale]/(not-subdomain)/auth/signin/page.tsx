@@ -1,12 +1,11 @@
 import { getProviders } from "next-auth/react";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "~/server/auth";
+import { auth } from "~/server/auth";
 import SignInButton from "./_signInButton";
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 
 export default async function SignIn() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   // If the user is already logged in, redirect.
   // Note: Make sure not to redirect to the same page

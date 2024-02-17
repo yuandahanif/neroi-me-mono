@@ -9,8 +9,8 @@ import Redacted from "~/components/text/redacted";
 
 const LINKS = [
   { id: "home-index", href: "/admin", label: "Home" },
-  { id: "blog-index", href: "/admin/blog", label: "Blogs" },
-  { id: "note-index", href: "/admin/note", label: "Notes" },
+  { id: "blog-index", href: "/admin/blogs", label: "Blogs" },
+  { id: "note-index", href: "/admin/notes", label: "Notes" },
 ];
 
 const AdminNavigation = () => {
