@@ -1,34 +1,34 @@
 "use client";
 import { type NextPage } from "next";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import Redacted from "~/components/text/redacted";
 
 const AboutMeMoreSection: NextPage = () => {
   const nonImportantDetailRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState<number>(0);
 
-  const openUnimportantDetail = () => {
+  const toggleDetail = () => {
     if (nonImportantDetailRef.current) {
-      nonImportantDetailRef.current.classList.toggle("hidden");
-      nonImportantDetailRef.current.animate(
-        [
-          { transform: "scaleY(0.5)", opacity: 0 },
-          { transform: "scaleY(1)", opacity: 1 },
-        ],
-        {
-          duration: 400,
-          iterations: 1,
-          easing: "ease-in-out",
-          fill: "forwards",
-        }
-      );
+      const isContentVisible =
+        nonImportantDetailRef.current.ariaHidden != "true";
+      const contentHeight = nonImportantDetailRef.current.scrollHeight;
+
+      setHeight(isContentVisible ? 0 : contentHeight);
+      nonImportantDetailRef.current.ariaHidden = isContentVisible
+        ? "true"
+        : "false";
     }
   };
 
   return (
     <div className="flex flex-col">
-      <div
+      <motion.div
+        className="relative overflow-hidden"
         ref={nonImportantDetailRef}
-        className="hidden origin-top duration-200"
+        aria-hidden="true"
+        animate={{ height }}
+        transition={{ ease: "linear" }}
       >
         <p>
           Hello and welcome to my world, my name is{" "}
@@ -127,12 +127,12 @@ const AboutMeMoreSection: NextPage = () => {
             . But don&apos;t go too deep :D
           </span>
         </p>
-      </div>
+      </motion.div>
 
       <button
         type="button"
         className="mx-auto text-center"
-        onClick={openUnimportantDetail}
+        onClick={toggleDetail}
       >
         <span className="mx-auto text-center text-xs underline">Show</span>
       </button>

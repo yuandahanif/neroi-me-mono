@@ -1,6 +1,5 @@
 import { type Metadata } from "next";
 import MainNavigation from "~/components/navigation/main.navigation";
-import Loading from "~/components/loading/loading";
 import { Suspense } from "react";
 import { BlogCardContainer, BlogCardSkeleton } from "./_blogCard";
 import { prisma } from "~/server/db";
@@ -35,7 +34,7 @@ const BlogsPage = async ({
 
   const skip = page ? (Number(page) - 1) * amount : 0;
 
-  const blogs = await prisma.blog.findMany({
+  const blogs = prisma.blog.findMany({
     orderBy: { createdAt: "desc" },
     select: {
       id: true,
@@ -83,7 +82,7 @@ const BlogsPage = async ({
           }
           key={page}
         >
-          <BlogCardContainer blogs={blogs} />
+          <BlogCardContainer blogs={await blogs} />
         </Suspense>
       </div>
 
@@ -100,6 +99,7 @@ const BlogsPage = async ({
             Previous
           </span>
         )}
+
         {isNextPageExist > 0 ? (
           <Link
             href={`?page=${validate.success ? page + 1 : 2}`}
