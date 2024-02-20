@@ -24,6 +24,7 @@ While it's certainly still a library that can be sprinkled into any webpage, the
     slug: "react-change",
     title: "Why react is change, and its better",
     visit: 100,
+    description: "React changed how developers build for the web",
   },
   {
     content: `<p>React changed how developers build for the web, popularizing breaking down UI into reusable components and emphasizing incremental adoption.
@@ -32,6 +33,7 @@ While it's certainly still a library that can be sprinkled into any webpage, the
     slug: "react-evolving",
     title: "Why react is change, and its better 2",
     visit: 100,
+    description: "React changed how developers build for the web",
   },
 ];
 

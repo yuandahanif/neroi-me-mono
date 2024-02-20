@@ -20,6 +20,7 @@ const config = {
   },
   plugins: ["@typescript-eslint"],
   extends: ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  ignorePatterns: ["src/pages-old/*"],
   rules: {
     "@typescript-eslint/consistent-type-imports": [
       "warn",

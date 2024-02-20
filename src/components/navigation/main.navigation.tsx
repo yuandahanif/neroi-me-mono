@@ -1,21 +1,20 @@
+"use client";
+
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useContext, useEffect, useRef } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import React, { useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import Redacted from "~/components/text/redacted";
-import { I18nContext } from "~/i18n/i18n-react";
-import { type Locales } from "~/i18n/i18n-types";
-import { locales } from "~/i18n/i18n-util";
-import { loadLocaleAsync } from "~/i18n/i18n-util.async";
+import { useChangeLocale, useCurrentLocale, useI18n } from "~/locales/client";
 
 const LINKS = [
   { id: "home-index", href: "/", label: "Home" },
-  { id: "blog-index", href: "/blog", label: "Blog" },
+  { id: "blog-index", href: "/blogs", label: "Blogs" },
   // { id: "note-index", href: "/note", label: "Note" },
+  { id: "project-index", href: "/projects", label: "Projects" },
+  { id: "lab-index", href: "/labs", label: "Labs" },
   { id: "gallery-index", href: "/gallery", label: "Gallery" },
-  { id: "project-index", href: "/project", label: "Projects" },
-  { id: "lab-index", href: "/lab", label: "Labs" },
   { id: "me-index", href: "/me", label: "Me" },
 ];
 
@@ -23,33 +22,22 @@ interface Props {
   disableLanguageSwitcher?: boolean;
 }
 
-const MainNavigation: React.FC<Props> = ({
-  disableLanguageSwitcher = false,
-}) => {
+const MainNavigation: React.FC<Props> = ({}) => {
   const router = useRouter();
+  const pathname = usePathname();
   const { status } = useSession();
-  const { locale, LL, setLocale } = useContext(I18nContext);
+
+  const t = useI18n();
+  const changeLocale = useChangeLocale();
+  const locale = useCurrentLocale();
 
   const navigationref = useRef<HTMLDialogElement>(null);
-
-  const chanegLanguage = async (local: Locales) => {
-    try {
-      const locale = local;
-      localStorage.setItem("lang", locale);
-      void (await loadLocaleAsync(locale));
-      setLocale(locale);
-      void router.push({}, {}, { locale });
-    } catch (error) {
-      alert("oops");
-    }
-  };
 
   const openDialog = () => {
     if (navigationref.current == null) {
       alert("oops");
     }
     navigationref.current?.showModal();
-    console.dir(navigationref.current);
   };
 
   useEffect(() => {
@@ -84,14 +72,14 @@ const MainNavigation: React.FC<Props> = ({
       <nav className="flex w-full flex-wrap justify-center gap-2 px-4 py-6 text-xl backdrop-blur-lg lg:px-0">
         {LINKS.map((link, idx) => (
           <div key={link.href} className="text-sm md:text-base">
-            {router.pathname == link.href ? (
+            {pathname == link.href ? (
               <Redacted>{link.label}</Redacted>
             ) : (
               <Link href={link.href} className={twMerge(`hover:underline`)}>
                 {link.label}
               </Link>
             )}
-            {idx < LINKS.length - 1 && <span> . </span>}
+            {idx < LINKS.length - 1 && <span> &#183; </span>}
           </div>
         ))}
       </nav>
@@ -145,21 +133,57 @@ const MainNavigation: React.FC<Props> = ({
           className="min-h-96 w-full max-w-screen-md overflow-auto border bg-main-600 p-5 text-white backdrop:bg-opacity-80 backdrop:backdrop-blur-sm"
         >
           <ul className="flex flex-col gap-4">
-            <li>
+            <li className="flex flex-col gap-2">
+              <div className="mt-2 text-center">
+                <span className="text-md font-bold">{t("Setting")}</span>
+              </div>
+
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-sm">{t("Language")}:</span>
+                {(["id", "en"] as const).map((locale_, idx) => (
+                  <div className="flex gap-2" key={locale_}>
+                    <input
+                      className="sr-only"
+                      type="radio"
+                      id={locale_}
+                      name="locale"
+                      value={locale_}
+                      checked={locale == locale_}
+                      onChange={() => void changeLocale(locale_)}
+                    />
+                    <label htmlFor={locale_} className="cursor-pointer">
+                      {locale_ == locale ? (
+                        <Redacted>{locale}</Redacted>
+                      ) : (
+                        locale_
+                      )}
+                    </label>
+                    {idx % 2 == 0 && <span>|</span>}
+                  </div>
+                ))}
+              </div>
+            </li>
+
+            <li className="flex flex-col gap-2">
+              <hr />
+              <div className="mt-2 text-center">
+                <span className="text-md font-bold">{t("Misc")}</span>
+              </div>
+
               <a
                 href="https://github.com/yuandahanif/neroi-me-mono"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex justify-center gap-1 hover:underline"
+                className="flex items-center justify-center gap-1 hover:underline"
               >
-                <span>View source code</span>
+                <span>Repository</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.2}
                   stroke="currentColor"
-                  className="h-4 w-4"
+                  className="h-3 w-3"
                 >
                   <path
                     strokeLinecap="round"
@@ -169,39 +193,6 @@ const MainNavigation: React.FC<Props> = ({
                 </svg>
               </a>
             </li>
-
-            {!disableLanguageSwitcher && (
-              <>
-                <li>
-                  <hr />
-                  <div className="mt-2 text-center">
-                    <span className="text-xs">{LL.Setting()}</span>
-                  </div>
-                </li>
-                <li className="flex items-center justify-center gap-2">
-                  <span className="text-sm">{LL.Language()}:</span>
-                  <div className="flex w-fit gap-2">
-                    {locales.map((locale_, idx) => (
-                      <div key={locale_} className="flex gap-2">
-                        <button
-                          type="button"
-                          className={twMerge("hover:underline")}
-                          onClick={() => void chanegLanguage(locale_)}
-                          disabled={locale_ == locale}
-                        >
-                          {locale_ == locale ? (
-                            <Redacted>{locale_}</Redacted>
-                          ) : (
-                            locale_
-                          )}
-                        </button>
-                        {idx !== locales.length - 1 && <span>|</span>}
-                      </div>
-                    ))}
-                  </div>
-                </li>
-              </>
-            )}
           </ul>
         </dialog>
       </nav>

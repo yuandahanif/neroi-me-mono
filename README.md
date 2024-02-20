@@ -1,28 +1,43 @@
-# Create T3 App
+# Neroi-me
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+This is my personal website, bootstrapped from the [T3 Stack](https://create.t3.gg/). This repo also serve perpose as a ground zero for my web development learning and experimentation with cuting edge web technologies(so this project will be a mess).
 
-## What's next? How do I make an app with this?
+## Resources
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+[Can I redirect from a subdomain to a subpath?](https://vercel.com/guides/can-i-redirect-from-a-subdomain-to-a-subpath#configuring-a-rewrite-with-'has'-field)
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Before you start
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+edit your hosts file to add the following line
 
-## Learn More
+```txt
+127.0.0.1   work.localhost
+127.0.0.1   personal.localhost
+```
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+now you can access the website at `work.localhost:3000` or `personal.localhost:3000`
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## Upcoming Experiments
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+- ~~git hooks~~
+- ~~Subdomain routing~~
+- Testing ??? (maybe)
 
-## How do I deploy this?
+## Refactor
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+Curently refactoring this porject to use subdomain routing so the web can be split into different sections (mainly work and personal) and migrate from page router to app router.
+
+Note to self:
+
+- To start refactoring first run `pnpm refactor:prepare` (so pages and app router won't conflict)
+- after refactoring run `pnpm refactor:restore`(run this before commiting) maybe add a precommit hook to do this automatically.
+
+TODO:
+
+- Migrate from page router to app router
+- ~~Migrate i18n~~
+- Migrate next-auth to authjs
+
+## Breaking Changes
+
+- ~~i18n~~
