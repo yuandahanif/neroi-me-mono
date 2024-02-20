@@ -63,40 +63,42 @@ const AdminBlogsPage = async ({
       <h1 className="text-5xl">{"<Blogs/>"}</h1>
       <AdminNavigation />
 
-      <div className="prose prose-invert mt-10 flex flex-grow">
-        <div className="flex flex-grow flex-col gap-y-8 px-2 lg:px-0">
-          {blogs?.map(({ slug, Tags, createdAt, id, title, _count }) => (
-            <div className="w-full" key={id}>
-              <Link
-                href={`/admin/blogs/${slug}`}
-                className="no-underline hover:underline"
-              >
-                <span className="prose-md line-clamp-2 font-semibold md:prose-2xl">
-                  {title}
-                </span>
-              </Link>
+      <div className="mt-10">
+        <Link href="/admin/blogs/create" className="hover:underline">Tambah</Link>
+      </div>
 
-              <div className="flex flex-wrap items-center gap-3">
-                {Tags.map((tag) => (
-                  <span key={tag.title} className="mt-3 bg-main-300 p-px px-2">
-                    {tag.title}
-                  </span>
-                ))}
-              </div>
+      <div className="prose prose-invert mt-10 flex flex-grow flex-col gap-y-8 px-2 lg:px-0">
+        {blogs?.map(({ slug, Tags, createdAt, id, title, _count }) => (
+          <div className="w-full" key={id}>
+            <Link
+              href={`/admin/blogs/${slug}`}
+              className="no-underline hover:underline"
+            >
+              <span className="prose-md line-clamp-2 font-semibold md:prose-2xl">
+                {title}
+              </span>
+            </Link>
 
-              <div className="flex flex-wrap items-center gap-3">
-                <div className="ml-auto flex items-center gap-1 text-sm">
-                  <span>{_count.BlogVisits}</span>
-                  pembaca
-                </div>
-                <span>|</span>
-                <span className="inline-flex text-sm">
-                  {local_date(createdAt)}
+            <div className="flex flex-wrap items-center gap-3">
+              {Tags.map((tag) => (
+                <span key={tag.title} className="mt-3 bg-main-300 p-px px-2">
+                  {tag.title}
                 </span>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="ml-auto flex items-center gap-1 text-sm">
+                <span>{_count.BlogVisits}</span>
+                pembaca
+              </div>
+              <span>|</span>
+              <span className="inline-flex text-sm">
+                {local_date(createdAt)}
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className="mt-10 flex items-center gap-4">
