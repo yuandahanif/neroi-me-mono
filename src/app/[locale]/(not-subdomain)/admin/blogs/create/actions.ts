@@ -10,13 +10,24 @@ export const createBlogSchema = z.object({
 });
 
 export default async function createBlogAction(formData: FormData) {
-  const rawFormData = {
-    title: formData.get("title"),
-    content: formData.get("content"),
-    tags: formData.get("tags"),
-  };
-  console.log("Action ~ rawFormData:", rawFormData);
+  try {
+    const rawFormData = {
+      title: formData.get("title"),
+      content: formData.get("content"),
+      tags: formData.get("tags"),
+    };
+    console.log("Action ~ rawFormData:", rawFormData);
 
-  // mutate data
-  // revalidate cache
+    const data = createBlogSchema.parse(rawFormData);
+
+    const tags = data.tags.map((tag) => ({ id: tag }));
+    const ret = await prisma.blog.findMany();
+
+    return ret;
+
+    // mutate data
+    // revalidate cache
+  } catch (error) {
+    throw error;
+  }
 }

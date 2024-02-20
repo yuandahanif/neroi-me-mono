@@ -49,7 +49,6 @@ export const blogRouter = createTRPCRouter({
           title: true,
           Tags: { select: { title: true } },
           slug: true,
-          visit: true,
           createdAt: true,
           updatedAt: true,
           isDraft: true,
@@ -94,7 +93,7 @@ export const blogRouter = createTRPCRouter({
     )
     .mutation(({ ctx, input }) => {
       return ctx.prisma.blog.update({
-        data: { visit: { increment: 1 } },
+        data: {},
         where: { id: input.id },
       });
     }),
@@ -102,7 +101,7 @@ export const blogRouter = createTRPCRouter({
   getBlogVisitorStatistic: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.blog.findMany({
       take: 10,
-      orderBy: { visit: "desc" },
+      orderBy: {},
     });
   }),
 

@@ -1,5 +1,3 @@
-"use client";
-
 import { Code } from "bright";
 import { type MDXRemoteProps } from "next-mdx-remote/rsc";
 import { twMerge } from "tailwind-merge";
