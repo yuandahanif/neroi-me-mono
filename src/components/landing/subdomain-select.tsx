@@ -5,7 +5,7 @@ import { useRef, type FC, type PropsWithChildren, useEffect } from "react";
 
 const getBaseUrl = (subdomain: string, domain: string) => {
   if (process.env.VERCEL_PRIMARY_DOMAIN)
-    return `https://${subdomain}${process.env.VERCEL_PRIMARY_DOMAIN}`;
+    return `https://${subdomain}.${process.env.VERCEL_PRIMARY_DOMAIN}`;
   return `http://${subdomain}.${domain}:${process.env.PORT ?? 3000}`;
 };
 
