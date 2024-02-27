@@ -73,6 +73,7 @@ const BlogCardContainer: React.FC<{
       {blogs?.map(({ slug, Tags, createdAt, id, title, _count }) => (
         <motion.div className="w-full" variants={itemVariants} key={id}>
           <Link
+            prefetch={false}
             href={`/blogs/${slug}`}
             className="no-underline hover:underline"
           >

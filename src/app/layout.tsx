@@ -2,6 +2,7 @@ import { type Viewport, type Metadata } from "next";
 
 import { type PropsWithChildren } from "react";
 import { getServerSession } from "next-auth";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { authOptions } from "~/server/auth";
 import { AuthProvider } from "~/app/_providers/auth-provider";
@@ -85,6 +86,7 @@ export default async function PageLayout({ children }: PropsWithChildren) {
         <AuthProvider session={session}>
           <ClientProvider>{children}</ClientProvider>
         </AuthProvider>
+        <SpeedInsights />
       </body>
     </html>
   );

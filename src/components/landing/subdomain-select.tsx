@@ -3,14 +3,17 @@
 import Link from "next/link";
 import { useRef, type FC, type PropsWithChildren, useEffect } from "react";
 
-const getBaseUrl = (subdomain: string, domain: string) => {
-  if (process.env.VERCEL_URL) return `https://${subdomain}.${domain}`;
-  return `http://${subdomain}.${domain}:${process.env.PORT ?? 3000}`;
+const getBaseUrl = (
+  subdomain: string,
+  domain: string,
+  isProduction: boolean
+) => {
+  return `${isProduction ? "http" : "http"}://${subdomain}.${domain}`;
 };
 
-const SubdomainSelect: FC<PropsWithChildren<{ domain: string }>> = ({
-  domain,
-}) => {
+const SubdomainSelect: FC<
+  PropsWithChildren<{ domain: string; isProduction: boolean }>
+> = ({ domain, isProduction }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const linkContainerRef = useRef<HTMLDivElement>(null);
 
@@ -68,16 +71,18 @@ const SubdomainSelect: FC<PropsWithChildren<{ domain: string }>> = ({
         ref={linkContainerRef}
       >
         <Link
-          className="before:ml-3 before:mr-2 before:content-[''] has-[.selected]:animate-pulse has-[.selected]:before:ml-0 has-[.selected]:before:content-['>']"
-          href={getBaseUrl("work", domain)}
+          prefetch={false}
           target="_self"
+          href={getBaseUrl("work", domain, isProduction)}
+          className="before:ml-3 before:mr-2 before:content-[''] has-[.selected]:animate-pulse has-[.selected]:before:ml-0 has-[.selected]:before:content-['>']"
         >
           <span className="selected">Profesional</span>
         </Link>
 
         <Link
-          href={getBaseUrl("personal", domain)}
+          prefetch={false}
           target="_self"
+          href={getBaseUrl("personal", domain, isProduction)}
           className="before:ml-3 before:mr-2 before:content-[''] has-[.selected]:animate-pulse has-[.selected]:before:ml-0 has-[.selected]:before:content-['>']"
         >
           <span>Default</span>
