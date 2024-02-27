@@ -47,10 +47,15 @@ const config = {
       },
     ],
   },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   async rewrites() {
     return [
       {
-        source: "/:path(api.*|static.*|.*\\..*|_next.*|favicon.ico|robots.txt|sitemap.xml|sitemap.xsl|sitemap.xsd)",
+        source: "/:path(api.*|static.*|_next.*|favicon.ico|robots.txt|sitemap.xml|sitemap.xsl|sitemap.xsd)",
         destination: "/:path*",
       },
       {
