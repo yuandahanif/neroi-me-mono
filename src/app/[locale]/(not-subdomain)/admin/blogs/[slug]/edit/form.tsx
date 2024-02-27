@@ -1,7 +1,6 @@
 "use client";
 
 import { Suspense, useState, useTransition } from "react";
-import createBlogAction from "./actions";
 import { Textarea } from "~/components/ui/textarea";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
@@ -14,16 +13,22 @@ import MDXClientPreview from "~/components/blog/MDXClientPreview.blog";
 
 const Select = dynamic(() => import("react-select"), { ssr: false });
 
-const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
-  tags,
-}) => {
+const EditBlogForm = ({
+  blog,
+}: React.PropsWithChildren<{
+  blog: {
+    id: string;
+    title: string;
+    Tags: { title: string }[];
+    createdAt: Date;
+    isDraft?: boolean | null;
+    _count: { BlogVisits: number };
+  };
+}>) => {
   const [isPending, startTransition] = useTransition();
   const [isPreviewTab, setPreviewTab] = useState<boolean>(false);
   const [mdxContent, setMdxContent] = useState<MDXRemoteProps | null>(null);
   const [content, setContent] = useState<string>("");
-  const [selectedTags, setSelectedTags] = useState<
-    { value: string; label: string }[]
-  >([]);
 
   const getPreview = async () => {
     try {
@@ -54,14 +59,9 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    formData.append(
-      "tags",
-      JSON.stringify(selectedTags.map((tag) => tag.value))
-    );
-    formData.append("content", content);
 
     startTransition(() => {
-      void createBlogAction(formData);
+      // void createBlogAction(formData);
     });
   };
 
@@ -74,6 +74,7 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
           id="blog-title"
           name="title"
           placeholder="Title"
+          defaultValue={blog.title}
           required
         />
       </div>
@@ -82,14 +83,9 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
         <Label htmlFor="blog-tags">Tags</Label>
         <Select
           id="blog-tags"
+          name="tags"
           required
           isMulti
-          options={
-            tags.map((tag) => ({ value: tag.id, label: tag.title })) ?? []
-          }
-          onChange={(selected) => {
-            return setSelectedTags(selected as typeof selectedTags);
-          }}
           theme={(theme) => ({
             ...theme,
             borderRadius: 2,
@@ -97,10 +93,6 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
               ...theme.colors,
               primary25: "#f35959",
               primary: "black",
-              neutral0: "rgb(39, 39, 42)", // select background
-              neutral90: "rgb(39, 39, 42)", // popup background
-              neutral80: "rgb(39, 39, 42)", // text
-              neutral20: "rgb(39, 39, 42)", // border
             },
           })}
         />
@@ -123,7 +115,7 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
           <p className="text-xs">This blog post is not ready to publish yet?</p>
         </div>
 
-        <Switch id="blog-draft" name="blog-is-draft" />
+        <Switch id="blog-draft" name="blog-draft" />
       </div>
 
       <div className="space-y-3">
@@ -176,4 +168,4 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
   );
 };
 
-export default CreateBlogForm;
+export default EditBlogForm;

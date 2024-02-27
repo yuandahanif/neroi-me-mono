@@ -2,8 +2,10 @@ import { type Metadata } from "next";
 import { prisma } from "~/server/db";
 import Link from "next/link";
 import { z } from "zod";
-import local_date from "~/utils/local_date";
+import local_date from "~/lib/local_date";
 import AdminNavigation from "~/components/navigation/admin.navigation";
+import { Button } from "~/components/ui/button";
+import { cn } from "~/lib/utils";
 
 export const metadata: Metadata = {
   title: "Blogs",
@@ -41,20 +43,21 @@ const AdminBlogsPage = async ({
       Tags: { select: { title: true } },
       slug: true,
       _count: { select: { BlogVisits: true } },
+      isDraft: true,
       createdAt: true,
       updatedAt: true,
     },
-    where: { isDraft: false },
     take: validate.success ? Number(amount) : DEFAULT_AMOUNT,
     skip: validate.success ? skip : 0,
   });
 
   const isNextPageExist = await prisma.blog.count({
     orderBy: { createdAt: "desc" },
-    where: { isDraft: false },
     take: 1,
     skip: validate.success ? skip + Number(amount) : DEFAULT_AMOUNT,
   });
+
+  const countBlogs = await prisma.blog.count({});
 
   return (
     <div
@@ -63,19 +66,28 @@ const AdminBlogsPage = async ({
       <h1 className="text-5xl">{"<Blogs/>"}</h1>
       <AdminNavigation />
 
-      <div className="mt-10">
-        <Link href="/admin/blogs/create" className="hover:underline">Tambah</Link>
+      <div className="z-20 mt-10 box-content flex w-full max-w-[65ch] items-center rounded-md border border-main-300 p-3 sm:mx-auto">
+        <p className="text-sm">Total post: {countBlogs}</p>
+
+        <Link href={`/admin/blogs/create`} className="ml-auto">
+          <Button type="button" variant="outline">
+            Tambah
+          </Button>
+        </Link>
       </div>
 
       <div className="prose prose-invert mt-10 flex flex-grow flex-col gap-y-8 px-2 lg:px-0">
-        {blogs?.map(({ slug, Tags, createdAt, id, title, _count }) => (
+        {blogs?.map(({ slug, Tags, createdAt, id, title, _count, isDraft }) => (
           <div className="w-full" key={id}>
             <Link
               href={`/admin/blogs/${slug}`}
-              className="no-underline hover:underline"
+              className={cn(
+                "no-underline hover:underline",
+                isDraft && "opacity-50"
+              )}
             >
               <span className="prose-md line-clamp-2 font-semibold md:prose-2xl">
-                {title}
+                {isDraft ? "[DRAFT]" : ""} {title}
               </span>
             </Link>
 

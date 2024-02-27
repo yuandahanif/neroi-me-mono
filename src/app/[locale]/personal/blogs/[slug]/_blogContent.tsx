@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-import local_date from "~/utils/local_date";
+import local_date from "~/lib/local_date";
 import useReadTime from "~/hooks/useReadTime";
 import TriggerWarning from "~/components/trigger_warning/trigger-warning";
 import updateBlogVisitCount from "./_updateBlogVisitCountAction";

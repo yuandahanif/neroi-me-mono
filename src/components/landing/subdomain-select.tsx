@@ -8,7 +8,7 @@ const getBaseUrl = (
   domain: string,
   isProduction: boolean
 ) => {
-  return `${isProduction ? "http" : "http"}://${subdomain}.${domain}`;
+  return `${isProduction ? "https" : "http"}://${subdomain}.${domain}`;
 };
 
 const SubdomainSelect: FC<

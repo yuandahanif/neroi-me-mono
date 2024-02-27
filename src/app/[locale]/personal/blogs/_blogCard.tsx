@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
-import local_date from "~/utils/local_date";
+import local_date from "~/lib/local_date";
 import { Skeleton } from "~/components/ui/skeleton";
 
 const itemVariants: Variants = {

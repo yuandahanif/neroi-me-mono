@@ -1,23 +1,18 @@
 import { type Metadata } from "next";
 import { headers } from "next/headers";
 import { Suspense } from "react";
-import { Lato } from "next/font/google";
 import { prisma } from "~/server/db";
 
 import MainNavigation from "~/components/navigation/main.navigation";
 import { notFound } from "next/navigation";
 import { BlogContent, BlogContentSkeleton } from "./_blogContent";
 import MDXViewer from "~/components/blog/MDXContent.blog";
+import mainBlogContentFont from "~/components/font/mainBlogContent.font";
 
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
-
-const main_font = Lato({
-  subsets: ["latin-ext"],
-  weight: ["400", "900", "700"],
-});
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
@@ -94,8 +89,8 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
       <MainNavigation />
 
       <div
-        className={`mt-5 flex w-full flex-grow flex-col items-center justify-center gap-y-5 ${main_font.className}`}
-        style={main_font.style}
+        className={`mt-5 flex w-full flex-grow flex-col items-center justify-start gap-y-5 ${mainBlogContentFont.className}`}
+        style={mainBlogContentFont.style}
       >
         <Suspense fallback={<BlogContentSkeleton />} key={slug}>
           <BlogContent blog={blog} ip={ip}>

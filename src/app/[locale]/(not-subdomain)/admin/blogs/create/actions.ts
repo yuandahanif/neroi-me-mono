@@ -1,32 +1,51 @@
 "use server";
 
 import z from "zod";
+import slugify from "slugify";
 import { prisma } from "~/server/db";
+import { redirect } from "next/navigation";
 
-export const createBlogSchema = z.object({
+const createBlogSchema = z.object({
   title: z.string(),
   content: z.string(),
   tags: z.array(z.string()),
+  description: z.string(),
+  isDraft: z.string(),
 });
 
 export default async function createBlogAction(formData: FormData) {
   try {
+    const rawTags = JSON.parse(
+      formData.get("tags")?.toString() || "[]"
+    ) as string[];
+
     const rawFormData = {
-      title: formData.get("title"),
-      content: formData.get("content"),
-      tags: formData.get("tags"),
+      title: formData.get("title")?.toString(),
+      content: formData.get("content")?.toString(),
+      description: formData.get("description")?.toString(),
+      isDraft: formData.get("blog-is-draft")?.toString(),
+      tags: rawTags,
     };
-    console.log("Action ~ rawFormData:", rawFormData);
 
     const data = createBlogSchema.parse(rawFormData);
 
-    const tags = data.tags.map((tag) => ({ id: tag }));
-    const ret = await prisma.blog.findMany();
+    const ret = await prisma.blog.create({
+      data: {
+        slug: slugify(data.title, { lower: true, strict: true, trim: true }),
+        title: data.title,
+        content: data.content,
+        description: data.description,
+        isDraft: data.isDraft === "on",
+        Tags: {
+          connectOrCreate: data.tags.map((tag) => ({
+            where: { id: tag },
+            create: { title: tag },
+          })),
+        },
+      },
+    });
 
-    return ret;
-
-    // mutate data
-    // revalidate cache
+    redirect(`/admin/blogs/${ret.slug}`);
   } catch (error) {
     throw error;
   }
