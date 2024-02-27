@@ -8,11 +8,16 @@ export const metadata: Metadata = {
   description: "-",
 };
 
+const isProduction = env.NODE_ENV === "production";
+
 export default function Pages() {
   return (
     <div className="relative flex h-full max-h-screen w-full grow">
       <TerminalAnimation className="absolute z-10" />
-      <SubdomainSelect domain={env.DOMAIN} />
+      <SubdomainSelect
+        domain={env.NEXT_PUBLIC_DOMAIN}
+        isProduction={isProduction}
+      />
     </div>
   );
 }
