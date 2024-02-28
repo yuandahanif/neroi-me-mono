@@ -37,11 +37,6 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
     },
   });
 
-  const latestVisit = await prisma.blogVisit.findFirst({
-    where: { blogId: blog?.id },
-    orderBy: { createdAt: "desc" },
-  });
-
   if (!blog) {
     notFound();
   }
@@ -53,16 +48,24 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
       <h1 className="text-5xl">{"<Blog/>"}</h1>
       <AdminNavigation />
 
-      <div className="z-20 box-content flex items-center w-full max-w-[65ch] rounded-md border border-main-300 p-3 sm:mx-auto">
-        <p className="text-sm">
+      <div className="z-20 box-content flex w-full max-w-[65ch] items-center rounded-md border border-main-300 p-3 sm:mx-auto">
+        <p className="text-xs">
           Terakhir diubah: {local_date(blog?.updatedAt ?? new Date())}
         </p>
 
-        <Link href={`/admin/blogs/${slug}/edit`} className="ml-auto">
-          <Button type="button" variant="outline">
-            Edit
-          </Button>
-        </Link>
+        <div className="ml-auto flex gap-2">
+          <Link href={`/admin/blogs/${slug}/edit`}>
+            <Button type="button" variant="outline">
+              Edit
+            </Button>
+          </Link>
+
+          <form action="" method="post">
+            <Button type="submit" variant="destructive" name="delete">
+              Delete
+            </Button>
+          </form>
+        </div>
       </div>
 
       <div

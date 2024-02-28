@@ -1,22 +1,22 @@
 "use client";
 
 import { Suspense, useState, useTransition } from "react";
-import createBlogAction from "./actions";
+import createBlogAction from "./create";
 import { Textarea } from "~/components/ui/textarea";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Switch } from "~/components/ui/switch";
 import { Button } from "~/components/ui/button";
 import { EyeOpenIcon } from "@radix-ui/react-icons";
-import dynamic from "next/dynamic";
 import { type MDXRemoteProps } from "next-mdx-remote";
 import MDXClientPreview from "~/components/blog/MDXClientPreview.blog";
-
-const Select = dynamic(() => import("react-select"), { ssr: false });
+import { useToast } from "~/components/ui/use-toast";
+import Select from "~/components/form/select";
 
 const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
   tags,
 }) => {
+  const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
   const [isPreviewTab, setPreviewTab] = useState<boolean>(false);
   const [mdxContent, setMdxContent] = useState<MDXRemoteProps | null>(null);
@@ -27,14 +27,18 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
 
   const getPreview = async () => {
     try {
-      const response = await fetch("/admin/blogs/create/preview", {
+      const response = await fetch("/admin/blogs/preview", {
         method: "POST",
         body: content,
       });
       const json = (await response.json()) as unknown;
       setMdxContent(json as MDXRemoteProps);
     } catch (error) {
-      alert("An error occurred while trying to preview the content.");
+      toast({
+        variant: "destructive",
+        title: "Preview error!",
+        description: "An error occurred while trying to preview the content.",
+      });
     }
   };
 
@@ -60,8 +64,16 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
     );
     formData.append("content", content);
 
-    startTransition(() => {
-      void createBlogAction(formData);
+    startTransition(async () => {
+      try {
+        await createBlogAction(formData);
+      } catch (error) {
+        toast({
+          variant: "destructive",
+          title: "Create error!",
+          description: "An error occurred while trying to create the content.",
+        });
+      }
     });
   };
 
@@ -90,19 +102,6 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
           onChange={(selected) => {
             return setSelectedTags(selected as typeof selectedTags);
           }}
-          theme={(theme) => ({
-            ...theme,
-            borderRadius: 2,
-            colors: {
-              ...theme.colors,
-              primary25: "#f35959",
-              primary: "black",
-              neutral0: "rgb(39, 39, 42)", // select background
-              neutral90: "rgb(39, 39, 42)", // popup background
-              neutral80: "rgb(39, 39, 42)", // text
-              neutral20: "rgb(39, 39, 42)", // border
-            },
-          })}
         />
       </div>
 

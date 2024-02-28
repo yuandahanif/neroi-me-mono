@@ -43,11 +43,7 @@ const AdminBlogContent = ({
         <div className="z-20 w-fit rounded-md border border-main-300 p-2 sm:mx-auto sm:p-6">
           <div className="prose prose-2xl prose-invert mb-10 flex h-auto w-fit max-w-[600px]">
             <h1 className="text-2xl font-semibold leading-10 sm:text-3xl">
-              {blog.isDraft && (
-                <span className="my-auto mr-2 inline-flex bg-red-400 px-2 py-1 text-lg">
-                  Draft
-                </span>
-              )}
+              {blog.isDraft && `[DRAFT] `}
               {blog?.title}
             </h1>
           </div>

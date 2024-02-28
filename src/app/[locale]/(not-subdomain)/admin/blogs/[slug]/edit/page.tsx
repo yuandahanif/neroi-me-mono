@@ -25,13 +25,16 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
       id: true,
       title: true,
       content: true,
-      Tags: { select: { title: true } },
+      Tags: { select: { title: true, id: true } },
       createdAt: true,
       updatedAt: true,
       isDraft: true,
+      description: true,
       _count: { select: { BlogVisits: true } },
     },
   });
+
+  const tags = await prisma.tag.findMany({});
 
   if (!blog) {
     notFound();
@@ -46,7 +49,7 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
         className={`mt-5 flex w-full flex-grow justify-center ${mainBlogContentFont.className}`}
         style={mainBlogContentFont.style}
       >
-        <EditBlogForm blog={blog} />
+        <EditBlogForm blog={blog} tags={tags} />
       </div>
     </div>
   );
