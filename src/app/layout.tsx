@@ -9,6 +9,7 @@ import { AuthProvider } from "~/app/_providers/auth-provider";
 import { ClientProvider } from "./_providers/client-provider";
 import { cn } from "~/lib/utils";
 import { Source_Code_Pro } from "next/font/google";
+import { Toaster } from "~/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: {
@@ -85,6 +86,7 @@ export default async function PageLayout({ children }: PropsWithChildren) {
       <body className={cn("font-sans antialiased", source_Code_Pro.variable)}>
         <AuthProvider session={session}>
           <ClientProvider>{children}</ClientProvider>
+          <Toaster />
         </AuthProvider>
         <SpeedInsights />
       </body>

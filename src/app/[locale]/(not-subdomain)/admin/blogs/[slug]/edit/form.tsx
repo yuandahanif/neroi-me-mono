@@ -1,7 +1,6 @@
 "use client";
 
 import { Suspense, useState, useTransition } from "react";
-import createBlogAction from "./create";
 import { Textarea } from "~/components/ui/textarea";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
@@ -10,20 +9,38 @@ import { Button } from "~/components/ui/button";
 import { EyeOpenIcon } from "@radix-ui/react-icons";
 import { type MDXRemoteProps } from "next-mdx-remote";
 import MDXClientPreview from "~/components/blog/MDXClientPreview.blog";
-import { useToast } from "~/components/ui/use-toast";
 import Select from "~/components/form/select";
+import updateBlogAction from "./update";
 
-const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
+const EditBlogForm = ({
+  blog,
   tags,
-}) => {
-  const { toast } = useToast();
+}: React.PropsWithChildren<{
+  tags: { id: string; title: string }[];
+  blog: {
+    content: string;
+    id: string;
+    title: string;
+    description: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    isDraft: boolean | null;
+    Tags: {
+      title: string;
+      id: string;
+    }[];
+    _count: {
+      BlogVisits: number;
+    };
+  };
+}>) => {
   const [isPending, startTransition] = useTransition();
   const [isPreviewTab, setPreviewTab] = useState<boolean>(false);
   const [mdxContent, setMdxContent] = useState<MDXRemoteProps | null>(null);
-  const [content, setContent] = useState<string>("");
+  const [content, setContent] = useState<string>(() => blog.content);
   const [selectedTags, setSelectedTags] = useState<
     { value: string; label: string }[]
-  >([]);
+  >(() => blog.Tags.map((tag) => ({ value: tag.id, label: tag.title })));
 
   const getPreview = async () => {
     try {
@@ -34,11 +51,7 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
       const json = (await response.json()) as unknown;
       setMdxContent(json as MDXRemoteProps);
     } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Preview error!",
-        description: "An error occurred while trying to preview the content.",
-      });
+      alert("An error occurred while trying to preview the content.");
     }
   };
 
@@ -58,22 +71,15 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    formData.append("id", blog.id);
     formData.append(
       "tags",
       JSON.stringify(selectedTags.map((tag) => tag.value))
     );
     formData.append("content", content);
 
-    startTransition(async () => {
-      try {
-        await createBlogAction(formData);
-      } catch (error) {
-        toast({
-          variant: "destructive",
-          title: "Create error!",
-          description: "An error occurred while trying to create the content.",
-        });
-      }
+    startTransition(() => {
+      void updateBlogAction(formData);
     });
   };
 
@@ -86,6 +92,7 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
           id="blog-title"
           name="title"
           placeholder="Title"
+          defaultValue={blog.title}
           required
         />
       </div>
@@ -96,6 +103,7 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
           id="blog-tags"
           required
           isMulti
+          value={selectedTags}
           options={
             tags.map((tag) => ({ value: tag.id, label: tag.title })) ?? []
           }
@@ -109,6 +117,7 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
         <Label htmlFor="blog-description">Meta Description</Label>
         <Textarea
           required
+          defaultValue={blog.description ?? ""}
           name="description"
           id="blog-description"
           placeholder="Description"
@@ -122,7 +131,11 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
           <p className="text-xs">This blog post is not ready to publish yet?</p>
         </div>
 
-        <Switch id="blog-draft" name="blog-is-draft" />
+        <Switch
+          id="blog-draft"
+          name="blog-is-draft"
+          defaultChecked={blog.isDraft ?? false}
+        />
       </div>
 
       <div className="space-y-3">
@@ -153,8 +166,8 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
                   id="blog-content"
                   placeholder="Content"
                   rows={20}
-                  value={content}
                   required
+                  value={content}
                   onChange={(e) => setContent(e.target.value)}
                 />
               </div>
@@ -169,10 +182,10 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
         aria-disabled={isPending}
         className="ml-auto"
       >
-        Create
+        Edit
       </Button>
     </form>
   );
 };
 
-export default CreateBlogForm;
+export default EditBlogForm;
