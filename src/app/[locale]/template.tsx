@@ -8,7 +8,7 @@ const variants = {
 
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
-    <motion.main
+    <motion.div
       variants={variants}
       initial="hidden"
       animate="enter"
@@ -16,6 +16,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
       className="mx-auto flex min-h-screen w-full max-w-screen-2xl grow flex-col text-white"
     >
       {children}
-    </motion.main>
+    </motion.div>
   );
 }

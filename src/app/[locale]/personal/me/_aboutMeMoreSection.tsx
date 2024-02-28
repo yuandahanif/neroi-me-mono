@@ -134,7 +134,9 @@ const AboutMeMoreSection: NextPage = () => {
         className="mx-auto text-center"
         onClick={toggleDetail}
       >
-        <span className="mx-auto text-center text-xs underline">Show</span>
+        <span className="mx-auto text-center text-xs underline">
+          {height == 0 ? "Show" : "Hide"}
+        </span>
       </button>
     </div>
   );

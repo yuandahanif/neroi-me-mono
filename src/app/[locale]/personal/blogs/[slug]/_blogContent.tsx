@@ -107,7 +107,7 @@ const BlogContent = ({
 
             <div
               ref={articleRef}
-              className="blog-content prose-md prose prose-invert w-full prose-h2:text-lg prose-pre:rounded-sm prose-pre:bg-main-400 prose-pre:px-2"
+              className="blog-content prose prose-sm prose-invert w-full sm:prose-base prose-h2:text-lg prose-pre:rounded-sm prose-pre:bg-main-400 prose-pre:px-2"
             >
               {children}
             </div>
@@ -115,16 +115,21 @@ const BlogContent = ({
 
           <div className="flex flex-wrap items-center justify-center gap-3">
             {blog?.Tags.map((tag) => (
-              <span key={tag.title} className="mt-3 bg-main-300 p-px px-2">
+              <span
+                key={tag.title}
+                className="mt-3 bg-main-300 p-px px-2 text-xs sm:text-base"
+              >
                 {tag.title}
               </span>
             ))}
 
-            <span className="ml-auto text-sm">waktu baca {readTime} Menit</span>
+            <span className="ml-auto text-xs sm:text-sm">
+              waktu baca {readTime} Menit
+            </span>
           </div>
 
-          <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
-            <div className="text-sm">
+          <div className="mt-5 flex flex-wrap items-center gap-3 text-xs sm:text-sm">
+            <p>
               Ada saran atau koreksi? Kontak saya di{" "}
               <a
                 href="http://discordapp.com/users/378907976267726859"
@@ -135,30 +140,31 @@ const BlogContent = ({
                 Discord
               </a>
               .
-            </div>
+            </p>
 
-            <div className="ml-auto flex items-center gap-1 ">
-              <span>{blog?._count.BlogVisits}</span>
-              pembaca
+            <div className="flex flex-wrap items-center gap-x-3 text-xs sm:text-sm">
+              <span className="inline-flex items-center gap-1 sm:ml-auto">
+                {blog._count.BlogVisits} pembaca
+              </span>
+              <span className="inline-flex">
+                {" "}
+                | {local_date(blog.createdAt)}
+              </span>
             </div>
-            <span>|</span>
-            <span className="inline-flex">
-              {local_date(blog?.createdAt || new Date())}
-            </span>
           </div>
         </div>
 
         <div
-          className="sticky top-16 h-fit p-4"
+          className="mb-5 h-fit p-2 sm:sticky sm:top-16 sm:mb-0 sm:p-4"
           style={{
             display: tableOfContent.size > 0 ? "block" : "none",
           }}
         >
-          <h2 className="mb-2 inline-flex text-lg font-semibold">
+          <h2 className="mb-2 inline-flex text-base font-semibold sm:text-lg">
             Daftar isi:
           </h2>
 
-          <ul className="h-fit">
+          <ul className="h-fit text-sm sm:text-base">
             {[...tableOfContent.values()].map((ctn) => (
               <li key={ctn} className="list-inside list-disc">
                 <a

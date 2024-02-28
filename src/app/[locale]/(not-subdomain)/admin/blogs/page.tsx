@@ -66,7 +66,7 @@ const AdminBlogsPage = async ({
       <h1 className="text-5xl">{"<Blogs/>"}</h1>
       <AdminNavigation />
 
-      <div className="z-20 mt-10 box-content flex w-full max-w-[65ch] items-center rounded-md border border-main-300 p-3 sm:mx-auto">
+      <div className="z-20 mt-10 box-content flex w-full max-w-prose items-center rounded-md border border-main-300 p-3 sm:mx-auto">
         <p className="text-sm">Total post: {countBlogs}</p>
 
         <Link href={`/admin/blogs/create`} className="ml-auto">

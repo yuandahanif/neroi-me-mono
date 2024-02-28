@@ -47,7 +47,7 @@ const BlogActionComponent: React.FC<{
   };
 
   return (
-    <div className="z-20 box-content flex w-full max-w-[65ch] items-center rounded-md border border-main-300 p-3 sm:mx-auto">
+    <div className="z-20 box-content flex w-full max-w-prose items-center rounded-md border border-main-300 p-3 sm:mx-auto">
       <p className="text-xs">
         Terakhir diubah: {local_date(updatedAt ?? new Date())}
       </p>

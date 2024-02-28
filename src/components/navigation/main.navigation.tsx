@@ -85,7 +85,7 @@ const MainNavigation: React.FC<Props> = ({}) => {
       </nav>
 
       <nav>
-        <div className="fixed bottom-10 right-10 z-30 flex flex-col items-center justify-center gap-2">
+        <div className="fixed bottom-5 right-5 z-30 flex flex-col items-center justify-center gap-2 sm:bottom-10 sm:right-10">
           {status == "authenticated" && (
             <button
               type="button"

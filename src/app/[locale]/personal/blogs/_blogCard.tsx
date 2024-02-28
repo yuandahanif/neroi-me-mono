@@ -82,21 +82,22 @@ const BlogCardContainer: React.FC<{
             </span>
           </Link>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="mb-2 flex flex-wrap items-center gap-3">
             {Tags.map((tag) => (
-              <span key={tag.title} className="mt-3 bg-main-300 p-px px-2">
+              <span
+                key={tag.title}
+                className="mt-3 bg-main-300 p-px px-2 text-xs sm:text-base"
+              >
                 {tag.title}
               </span>
             ))}
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="ml-auto flex items-center gap-1 text-sm">
-              <span>{_count.BlogVisits}</span>
-              pembaca
-            </div>
-            <span>|</span>
-            <span className="inline-flex text-sm">{local_date(createdAt)}</span>
+          <div className="flex flex-wrap items-center gap-x-3 text-xs sm:text-sm">
+            <span className="inline-flex items-center gap-1 sm:ml-auto">
+              {_count.BlogVisits} pembaca
+            </span>
+            <span className="inline-flex"> | {local_date(createdAt)}</span>
           </div>
         </motion.div>
       ))}

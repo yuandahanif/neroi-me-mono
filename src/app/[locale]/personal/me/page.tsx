@@ -20,17 +20,20 @@ const Divider: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
 const MePage = () => {
   return (
     <div
-      className={`flex min-h-screen grow flex-col items-center justify-start p-2 py-10 `}
+      className={`flex min-h-screen grow flex-col items-center justify-start py-10 `}
     >
       <h1 className="text-5xl">{"<Me/>"}</h1>
       <MainNavigation />
 
-      <div className="prose prose-invert mt-10 lg:prose-lg">
+      <div className="prose prose-sm prose-invert mt-10 px-2 md:prose-base lg:prose-lg">
         <h3 className="text-center" id="tentangku">
           About Me
         </h3>
 
-        <div className="relative mx-auto mb-10 h-96 md:w-auto" title="silly me">
+        <div
+          className="relative mx-auto mb-10 h-96 p-5 sm:p-0 md:w-auto"
+          title="silly me"
+        >
           <svg className="h-full w-full" aria-label="silly me">
             <image
               xlinkHref="/images/me.png"
@@ -91,7 +94,7 @@ const MePage = () => {
         <AboutMeMoreSection />
       </div>
 
-      <div className="mt-10" id="contact">
+      <div className="mt-10 px-2" id="contact">
         <h3 className="text-center">Contacts</h3>
         <div className="mt-5">
           <ul className="flex flex-wrap justify-center gap-5">
