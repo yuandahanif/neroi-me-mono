@@ -27,14 +27,7 @@ const components: MDXRemoteProps["components"] = {
       {...props}
     />
   ),
-  img: (props) => (
-    <MdxImg
-      alt={props?.alt ?? "paceholder"}
-      src={
-        "https://safebooru.org//images/4590/8b9eaceb49800bb4e832f15ed7d14db3513a3215.png"
-      }
-    />
-  ),
+  img: (props) => <MdxImg alt={props?.alt ?? "paceholder"} src={props?.src} />,
 };
 
 export { components };
