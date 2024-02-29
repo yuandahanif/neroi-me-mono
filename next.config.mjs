@@ -8,42 +8,42 @@
 const config = {
   reactStrictMode: true,
   images: {
+    formats: ["image/avif", "image/webp", 'image/webp'],
     remotePatterns: [
       {
         protocol: "https",
         hostname: "safebooru.org",
         port: "",
-        pathname: "/",
       },
       {
         protocol: "https",
         hostname: "github.com",
         port: "",
-        pathname: "/",
       },
       {
         protocol: "https",
         hostname: "yuandahanif.github.io",
         port: "",
-        pathname: "/",
       },
       {
         protocol: "https",
         hostname: "markdown-videos.vercel.app",
         port: "",
-        pathname: "/",
       },
       {
         protocol: "https",
         hostname: "cdn.discordapp.com",
         port: "",
-        pathname: "/",
       },
       {
         protocol: "https",
         hostname: "media.discordapp.net",
         port: "",
-        pathname: "/",
+      },
+      {
+        protocol: "https",
+        hostname: "placehold.co",
+        port: "",
       },
     ],
   },

@@ -81,8 +81,6 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
     notFound();
   }
 
-  const Content = <MDXViewer content={blog.content} />;
-
   return (
     <div className={`flex grow flex-col items-center justify-start py-10`}>
       <h1 className="text-5xl">{"<Blog/>"}</h1>
@@ -94,7 +92,7 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
       >
         <Suspense fallback={<BlogContentSkeleton />} key={slug}>
           <BlogContent blog={blog} ip={ip}>
-            {Content}
+            <MDXViewer content={blog.content} />
           </BlogContent>
         </Suspense>
       </div>
