@@ -36,8 +36,7 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Preview error!",
-        description: "An error occurred while trying to preview the content.",
+        title: "Preview gagal!",
       });
     }
   };
@@ -67,11 +66,15 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
     startTransition(async () => {
       try {
         await createBlogAction(formData);
+
+        toast({
+          variant: "default",
+          title: "Buat blog berhasil!",
+        });
       } catch (error) {
         toast({
           variant: "destructive",
-          title: "Create error!",
-          description: "An error occurred while trying to create the content.",
+          title: "Buat blog gagal!",
         });
       }
     });

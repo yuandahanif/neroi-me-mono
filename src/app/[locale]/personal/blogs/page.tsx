@@ -59,19 +59,19 @@ const BlogsPage = async ({
 
   return (
     <div
-      className={`flex min-h-screen grow flex-col items-center justify-start p-2 py-10`}
+      className={`flex min-h-screen grow flex-col items-center justify-start py-10`}
     >
       <h1 className="text-5xl">{"<Blogs/>"}</h1>
       <MainNavigation />
 
-      <div className="prose prose-invert mt-10 lg:prose-sm">
-        <h3 className="text-center">
+      <div className="prose prose-invert mt-10">
+        <h3 className="text-center text-sm sm:text-xl">
           Selamat datang di blog, tempatku berbagi apa yang ada di dalam
           kepalaku.
         </h3>
       </div>
 
-      <div className="prose prose-invert mt-10 flex flex-grow">
+      <div className="prose prose-invert mt-10 flex flex-grow px-1 sm:px-2">
         <Suspense
           fallback={
             <div className="flex flex-grow flex-col gap-y-8 px-2 lg:px-0">

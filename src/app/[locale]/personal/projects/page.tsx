@@ -24,19 +24,19 @@ const ProjectsPage = () => {
   const index = Math.floor(Math.random() * (randomText.length - 1));
   return (
     <div
-      className={`flex min-h-screen grow flex-col items-center justify-start p-2 py-10`}
+      className={`flex min-h-screen grow flex-col items-center justify-start py-10`}
     >
       <h1 className="text-5xl">{"<Projects/>"}</h1>
       <MainNavigation />
 
-      <div className="prose prose-invert mt-10 lg:prose-sm">
+      <div className="prose prose-invert mt-10 px-2 lg:prose-sm">
         {/* <h3 className="text-center">
           Selamat datang di project, disini berisi project yang sedang atau
           sudah selesai ku kerjakan dan yang sekiranya boleh ku tampilkan.
         </h3> */}
       </div>
 
-      <div className="prose prose-invert mt-10 flex grow">
+      <div className="prose prose-invert mt-10 flex grow px-2">
         <div className="flex flex-grow flex-col items-center justify-center">
           <div className="mt-auto flex flex-col items-center">
             <pre className={`text-md mb-2 text-green-500`}>

@@ -81,20 +81,18 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
     notFound();
   }
 
-  const Content = <MDXViewer content={blog.content} />;
-
   return (
-    <div className={`flex grow flex-col items-center justify-start p-2 py-10`}>
+    <div className={`flex grow flex-col items-center justify-start py-10`}>
       <h1 className="text-5xl">{"<Blog/>"}</h1>
       <MainNavigation />
 
       <div
-        className={`mt-5 flex w-full flex-grow flex-col items-center justify-start gap-y-5 ${mainBlogContentFont.className}`}
+        className={`my-10 mt-5 flex w-full flex-grow flex-col items-center justify-start gap-y-5 px-2 ${mainBlogContentFont.className}`}
         style={mainBlogContentFont.style}
       >
         <Suspense fallback={<BlogContentSkeleton />} key={slug}>
           <BlogContent blog={blog} ip={ip}>
-            {Content}
+            <MDXViewer content={blog.content} />
           </BlogContent>
         </Suspense>
       </div>

@@ -1,6 +1,4 @@
-import { type MutableRefObject } from "react";
-
-const useReadTime = (ref: MutableRefObject<HTMLDivElement | null>) => {
+const useReadTime = (ref: React.RefObject<HTMLElement>) => {
   if (ref.current) {
     const text = ref.current.innerText;
     const wpm = 225;

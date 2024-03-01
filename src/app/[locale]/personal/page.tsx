@@ -3,12 +3,12 @@ import MainNavigation from "~/components/navigation/main.navigation";
 
 const Home = () => {
   return (
-    <main
+    <div
       className={`flex min-h-screen grow flex-col items-center justify-center`}
     >
       <MainNavigation />
       <PersonalClientSection />
-    </main>
+    </div>
   );
 };
 

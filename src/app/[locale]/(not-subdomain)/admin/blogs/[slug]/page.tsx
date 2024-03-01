@@ -6,9 +6,7 @@ import { AdminBlogContent } from "./_adminBlogContent";
 import AdminNavigation from "~/components/navigation/admin.navigation";
 import MDXViewer from "~/components/blog/MDXContent.blog";
 import mainBlogContentFont from "~/components/font/mainBlogContent.font";
-import { Button } from "~/components/ui/button";
-import Link from "next/link";
-import local_date from "~/lib/local_date";
+import BlogActionComponent from "./_actionComponent";
 
 type Props = {
   params: { slug: string };
@@ -48,25 +46,11 @@ const BlogDetailPage: React.FC<Props> = async ({ params }) => {
       <h1 className="text-5xl">{"<Blog/>"}</h1>
       <AdminNavigation />
 
-      <div className="z-20 box-content flex w-full max-w-[65ch] items-center rounded-md border border-main-300 p-3 sm:mx-auto">
-        <p className="text-xs">
-          Terakhir diubah: {local_date(blog?.updatedAt ?? new Date())}
-        </p>
-
-        <div className="ml-auto flex gap-2">
-          <Link href={`/admin/blogs/${slug}/edit`}>
-            <Button type="button" variant="outline">
-              Edit
-            </Button>
-          </Link>
-
-          <form action="" method="post">
-            <Button type="submit" variant="destructive" name="delete">
-              Delete
-            </Button>
-          </form>
-        </div>
-      </div>
+      <BlogActionComponent
+        slug={slug}
+        updatedAt={blog?.updatedAt ?? new Date()}
+        id={blog.id}
+      />
 
       <div
         className={`mt-5 flex w-full flex-grow flex-col items-center justify-start gap-y-5 ${mainBlogContentFont.className}`}

@@ -66,7 +66,7 @@ const BlogContent = ({
   const isRestrictedContent =
     blog?.Tags.findIndex((tag) => tag.title == "NSFW") > -1;
 
-  const articleRef = useRef<HTMLDivElement>(null);
+  const articleRef = useRef<React.ElementRef<"article">>(null);
   const [tableOfContent, setTableOfContent] = useState(new Set<string>());
   const readTime = useReadTime(articleRef);
 
@@ -95,75 +95,65 @@ const BlogContent = ({
 
   return (
     <>
+      {/* {children} */}
       <TriggerWarning isDefaultOpen={isRestrictedContent} />
-      <div className="flex flex-col-reverse sm:flex-row">
-        <div className="w-auto">
-          <div className="z-20 w-fit rounded-md border border-main-300 p-2 sm:mx-auto sm:p-6">
-            <div className="prose prose-2xl prose-invert mb-10 flex h-auto w-fit max-w-[600px]">
-              <h1 className="text-2xl font-semibold leading-10 sm:text-3xl">
-                {blog.isDraft && (
-                  <span className="my-auto mr-2 inline-flex bg-red-400 px-2 py-1 text-lg">
-                    Draft
-                  </span>
-                )}
-                {blog?.title}
-              </h1>
-            </div>
 
-            <div
-              ref={articleRef}
-              className="blog-content prose-md prose prose-invert w-full prose-h2:text-lg prose-pre:rounded-sm prose-pre:bg-main-400 prose-pre:px-2"
-            >
-              {children}
-            </div>
-          </div>
+      <section className="relative flex w-full flex-grow flex-col-reverse items-center sm:flex-row sm:items-start sm:justify-center">
+        <article
+          ref={articleRef}
+          className="blog-content prose
+        prose-sm prose-invert relative flex w-full flex-grow flex-col sm:prose-base prose-h2:text-lg"
+        >
+          <h1 className="text-2xl font-semibold leading-10 sm:text-3xl">
+            {blog?.title}
+          </h1>
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          {children}
+
+          <div className="not-prose flex flex-wrap items-center justify-start gap-3 border-t border-main-300">
             {blog?.Tags.map((tag) => (
-              <span key={tag.title} className="mt-3 bg-main-300 p-px px-2">
+              <span
+                key={tag.title}
+                className="mt-3 bg-main-300 p-px px-2 text-xs sm:text-base"
+              >
                 {tag.title}
               </span>
             ))}
-
-            <span className="ml-auto text-sm">waktu baca {readTime} Menit</span>
           </div>
 
-          <div className="mt-5 flex flex-wrap items-center gap-3 text-sm">
-            <div className="text-sm">
+          <div className="not-prose mt-5 flex flex-wrap items-center justify-end gap-y-3 text-xs sm:text-sm">
+            <p className="not-prose inline-flex flex-wrap items-center justify-end gap-1 gap-x-3 text-xs sm:text-sm">
+              <span> waktu baca {readTime} Menit </span>|
+              <span> {blog._count.BlogVisits} pembaca </span>|
+              <span> {local_date(blog.createdAt)} </span>
+            </p>
+
+            <p className="not-prose">
               Ada saran atau koreksi? Kontak saya di{" "}
               <a
                 href="http://discordapp.com/users/378907976267726859"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline"
+                className="not-prose underline"
               >
                 Discord
               </a>
               .
-            </div>
-
-            <div className="ml-auto flex items-center gap-1 ">
-              <span>{blog?._count.BlogVisits}</span>
-              pembaca
-            </div>
-            <span>|</span>
-            <span className="inline-flex">
-              {local_date(blog?.createdAt || new Date())}
-            </span>
+            </p>
           </div>
-        </div>
+        </article>
 
         <div
-          className="sticky top-16 h-fit p-4"
+          className="mb-5 h-fit p-2 sm:sticky sm:top-16 sm:mb-0 sm:p-4"
           style={{
             display: tableOfContent.size > 0 ? "block" : "none",
           }}
         >
-          <h2 className="mb-2 inline-flex text-lg font-semibold">
+          <h2 className="mb-2 inline-flex text-base font-semibold sm:text-lg">
             Daftar isi:
           </h2>
 
-          <ul className="h-fit">
+          <ul className="h-fit text-sm sm:text-base">
             {[...tableOfContent.values()].map((ctn) => (
               <li key={ctn} className="list-inside list-disc">
                 <a
@@ -176,7 +166,7 @@ const BlogContent = ({
             ))}
           </ul>
         </div>
-      </div>
+      </section>
     </>
   );
 };
