@@ -76,7 +76,7 @@ const BlogContent = ({
     }
 
     void updateVisitCount();
-  }, []);
+  }, [blog.id, ip]);
 
   useEffect(() => {
     const ref = articleRef.current;
