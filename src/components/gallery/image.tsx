@@ -1,48 +1,38 @@
+"use client";
+
 import Image from "next/image";
 import { useRef, type ReactNode, useState, useEffect } from "react";
+import { Button } from "../ui/button";
 
-interface Props {
-  imageSrc: string;
-  imageAlt?: string;
-  description: ReactNode;
+type Props = (typeof Image)["defaultProps"] & {
+  description: string;
   className?: string;
-  slideshow?: { src: string; alt?: string; description: ReactNode }[];
-}
+};
 
 const GalleryImage: React.FC<Props> = ({
-  imageSrc,
-  imageAlt = "",
+  src,
+  alt,
   description,
-  slideshow,
   className,
 }) => {
-  const [imgIndex, setImageIndex] = useState(0);
   const largePreviewDialogRef = useRef<HTMLDialogElement>(null);
 
-  const handleClick = () => {
-    setImageIndex(0);
+  const openLargePreview = () => {
+    if (largePreviewDialogRef.current == null) {
+      alert("oops");
+    }
+
     largePreviewDialogRef.current?.showModal();
   };
 
-  const cycleSlideshow = (dir: "next" | "prev") => {
-    if (slideshow && slideshow.length > 0) {
-      setImageIndex((s) => {
-        if (dir == "next") {
-          s += 1;
-          if (s > slideshow.length - 1) {
-            s = 0;
-          }
-        } else {
-          s -= 1;
-          if (s < 0) {
-            s = slideshow.length - 1;
-          }
-        }
-
-        return s;
-      });
+  const closeLargePreview = () => {
+    if (largePreviewDialogRef.current == null) {
+      alert("oops");
     }
+
+    largePreviewDialogRef.current?.close();
   };
+
   useEffect(() => {
     const ref = largePreviewDialogRef.current;
     const clickHandler = (e: MouseEvent) => {
@@ -69,104 +59,63 @@ const GalleryImage: React.FC<Props> = ({
       }
     };
   });
+
   return (
-    <div className={className}>
+    <div className="group relative w-[80vw] sm:w-fit">
       <dialog
         ref={largePreviewDialogRef}
-        className="max-h-[80vh] min-h-[60vh] w-auto max-w-screen-lg overflow-auto border bg-main-600 text-white backdrop:bg-opacity-80 backdrop:backdrop-blur-sm"
+        className="z-auto h-full w-full max-w-screen-lg overflow-auto border bg-main-600 p-5 text-white backdrop:bg-opacity-80 backdrop:backdrop-blur-sm sm:h-4/5"
       >
-        {!slideshow && (
-          <>
+        <figure className="relative flex h-4/5 w-full flex-col items-center justify-center gap-y-2 sm:h-full">
+          <figcaption className="text-center text-xs opacity-50">
+            {alt}
+          </figcaption>
+
+          <div className="not-prose relative flex h-full w-full flex-grow">
             <Image
-              src={imageSrc}
-              alt={imageAlt}
-              className="m-auto object-contain"
+              title={alt}
+              src={String(src)}
+              alt={String(alt)}
+              className="not-prose h-auto w-full object-contain object-center"
+              sizes="384px 384px"
               fill
             />
-            <div className="relative flex flex-col">
-              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
-                src:
-              </span>
-              <span className="mb-2 w-fit bg-main-300 bg-opacity-50 text-xs">
-                &quot;{imageSrc}&quot;
-              </span>
-              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
-                alt:
-              </span>
-              <span className="mb-2 w-fit bg-main-300 bg-opacity-50 text-xs">
-                &quot;{imageAlt}&quot;
-              </span>
-              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
-                description:
-              </span>
-              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
-                &quot;{description}&quot;
-              </span>
-            </div>
-          </>
-        )}
+          </div>
+        </figure>
 
-        {slideshow && slideshow.length > 0 && (
-          <>
-            <Image
-              src={slideshow[imgIndex]?.src ?? ""}
-              alt={slideshow[imgIndex]?.alt ?? ""}
-              className="object-contain object-center"
-              fill
-            />
+        <div className="flex flex-col items-center">
+          <div className="prose prose-invert mx-auto inline-flex w-full flex-wrap bg-gradient-to-t from-main-600 to-transparent py-3 text-justify text-xs">
+            <p className="">{description}</p>
+            <span className="ml-auto mt-2">20/12/2025</span>
+          </div>
 
-            <div className="relative flex flex-col">
-              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
-                src:
-              </span>
-              <span className="mb-2 w-fit bg-main-300 bg-opacity-50 text-xs">
-                &quot;{slideshow[imgIndex]?.src ?? ""}&quot;
-              </span>
-              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
-                alt:
-              </span>
-              <span className="mb-2 w-fit bg-main-300 bg-opacity-50 text-xs">
-                &quot;{slideshow[imgIndex]?.alt ?? ""}&quot;
-              </span>
-              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
-                description:
-              </span>
-              <span className="w-fit bg-main-300 bg-opacity-50 text-xs">
-                &quot;{slideshow[imgIndex]?.description ?? ""}&quot;
-              </span>
-            </div>
-
-            <div className="absolute left-0 top-1/2 z-10 flex h-80 w-full -translate-y-1/2 items-center justify-between bg-opacity-20 p-8">
-              <button onClick={() => cycleSlideshow("prev")}>ba{"<"}k</button>
-              <button onClick={() => cycleSlideshow("next")}>n{">"}xt</button>
-            </div>
-          </>
-        )}
+          <Button
+            variant="link"
+            title="close"
+            type="button"
+            className="mx-auto w-fit"
+            onClick={closeLargePreview}
+          >
+            close
+          </Button>
+        </div>
       </dialog>
 
-      <div className="w-[80vw] sm:w-fit">
-        <div
-          className="relative mx-auto aspect-square h-fit w-full sm:h-96 sm:w-96 "
-          onClick={handleClick}
-        >
-          <Image
-            title={imageAlt}
-            src={imageSrc}
-            alt={imageAlt}
-            className="cursor-pointer object-contain object-bottom"
-            sizes="384px 384px"
-            fill
-          />
+      <div
+        className="relative mx-auto aspect-square h-fit w-full overflow-hidden sm:h-96 sm:w-96"
+        onClick={openLargePreview}
+      >
+        <Image
+          title={alt}
+          src={String(src)}
+          alt={String(alt)}
+          className="cursor-pointer object-cover object-center duration-500 ease-in-out group-hover:scale-105"
+          sizes="384px 384px"
+          fill
+        />
 
-          {slideshow && (
-            <div className="absolute inset-0 m-auto flex h-fit w-fit translate-y-20 flex-col items-center justify-center bg-main-600 bg-opacity-70 p-1">
-              <button type="button">(Slides)</button>
-            </div>
-          )}
-        </div>
-
-        <div className="prose prose-sm prose-invert mx-auto mt-3 text-center">
-          <div>{description}</div>
+        <div className="absolute bottom-0 mx-auto inline-flex w-full flex-wrap bg-gradient-to-t from-main-600 to-transparent p-3 text-left text-xs">
+          <p className="line-clamp-2 w-full">{description}</p>
         </div>
       </div>
     </div>

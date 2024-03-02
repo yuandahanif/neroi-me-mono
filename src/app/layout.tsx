@@ -83,7 +83,7 @@ export default async function PageLayout({ children }: PropsWithChildren) {
   const session = await getServerSession(authOptions);
   return (
     <html className="dark">
-      <body className={cn("font-sans antialiased", source_Code_Pro.variable)}>
+      <body className={cn("font-sans antialiased [&:has(dialog[open])]:overflow-hidden", source_Code_Pro.variable)}>
         <AuthProvider session={session}>
           <ClientProvider>{children}</ClientProvider>
           <Toaster />

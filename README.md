@@ -1,6 +1,6 @@
 # Neroi-me
 
-This is my personal website, bootstrapped from the [T3 Stack](https://create.t3.gg/). This repo also serve perpose as a ground zero for my web development learning and experimentation with cuting edge web technologies(so this project will be a mess).
+This is my personal website, bootstraped from the [T3 Stack](https://create.t3.gg/). This repo also serve perpose as a ground zero for my web development learning and experimentation with cuting edge web technologies(so this project will be a mess).
 
 ## Resources
 
@@ -34,7 +34,7 @@ Note to self:
 
 TODO:
 
-- Migrate from page router to app router
+- ~~Migrate from page router to app router~~
 - ~~Migrate i18n~~
 - Migrate next-auth to authjs
 
