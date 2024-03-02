@@ -2,7 +2,7 @@
 
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import Redacted from "~/components/text/redacted";
@@ -14,7 +14,6 @@ const LINKS = [
 ];
 
 const AdminNavigation = () => {
-  const router = useRouter();
   const pathname = usePathname();
 
   const navigationref = useRef<HTMLDialogElement>(null);
