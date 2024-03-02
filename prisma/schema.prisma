@@ -110,3 +110,14 @@ model BlogToTag {
     @@index([B], map: "_BlogToTag_B_index")
     @@map("_BlogToTag")
 }
+
+model Media {
+    id          String   @id @default(cuid())
+    url         String
+    type        String
+    description String?  @db.Text
+    alt         String?
+    title       String?
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
