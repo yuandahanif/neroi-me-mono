@@ -10,6 +10,7 @@ const mediaSchema = z.object({
   alt: z.string(),
   description: z.string(),
   isNsfw: z.string().optional(),
+  isPubliclyVisible: z.string().optional(),
   url: z.string(),
 });
 
@@ -20,6 +21,7 @@ export default async function updateMedia(formData: FormData) {
       alt: formData.get("alt")?.toString(),
       description: formData.get("description")?.toString(),
       isNsfw: formData.get("is-nfsw")?.toString(),
+      isPubliclyVisible: formData.get("is-publicly-visible")?.toString(),
       url: formData.get("url")?.toString(),
     });
 
@@ -30,6 +32,7 @@ export default async function updateMedia(formData: FormData) {
       data: {
         title: data.title,
         isNsfw: data.isNsfw == "on",
+        visibility: data.isPubliclyVisible == "on" ? "PUBLIC" : "PRIVATE",
         alt: data.alt,
         description: data.description,
       },

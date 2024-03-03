@@ -91,6 +91,7 @@ export default function MediaUploadForm({
           const formData = new FormData(event.currentTarget);
           formData.append("url", media.url);
 
+          console.log("startTransition ~ formData:", formData);
           await updateMedia(formData);
 
           setOpen(false);
@@ -227,7 +228,7 @@ export default function MediaUploadForm({
             <div
               className={cn(
                 "grid grid-cols-4 items-center gap-4",
-                isEditForm ? "hidden" : ""
+                isEditForm ? "invisible hidden" : ""
               )}
             >
               <Input
@@ -236,7 +237,7 @@ export default function MediaUploadForm({
                 id="media"
                 name="media"
                 type="file"
-                disabled={isPending || !!blob}
+                disabled={isPending || !!blob || isEditForm}
                 accept="image/*, video/*"
                 className="col-span-3 file:text-white"
                 onChange={(event) => {
@@ -320,6 +321,19 @@ export default function MediaUploadForm({
                 name="is-nfsw"
                 className="col-span-3"
                 defaultChecked={media?.isNsfw ?? false}
+              />
+            </div>
+
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="isPubliclyVisible" className="text-left">
+                Publicly visible
+              </Label>
+
+              <Switch
+                id="isPubliclyVisible"
+                name="is-publicly-visible"
+                className="col-span-3"
+                defaultChecked={media?.visibility == "PUBLIC"}
               />
             </div>
 
