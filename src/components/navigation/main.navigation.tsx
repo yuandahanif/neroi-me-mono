@@ -14,7 +14,7 @@ const LINKS = [
   // { id: "note-index", href: "/note", label: "Note" },
   { id: "project-index", href: "/projects", label: "Projects" },
   { id: "lab-index", href: "/labs", label: "Labs" },
-  { id: "gallery-index", href: "/gallery", label: "Gallery" },
+  { id: "media-index", href: "/media", label: "Media" },
   { id: "me-index", href: "/me", label: "Me" },
 ];
 

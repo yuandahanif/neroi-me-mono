@@ -10,6 +10,7 @@ import Redacted from "~/components/text/redacted";
 const LINKS = [
   { id: "home-index", href: "/admin", label: "Home" },
   { id: "blog-index", href: "/admin/blogs", label: "Blogs" },
+  { id: "media-index", href: "/admin/media", label: "Media" },
   { id: "note-index", href: "/admin/notes", label: "Notes" },
 ];
 
