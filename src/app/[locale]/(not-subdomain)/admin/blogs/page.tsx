@@ -66,7 +66,7 @@ const AdminBlogsPage = async ({
       <h1 className="text-5xl">{"<Blogs/>"}</h1>
       <AdminNavigation />
 
-      <div className="z-20 mt-10 box-content flex w-full max-w-prose items-center rounded-md border border-main-300 p-3 sm:mx-auto">
+      <div className="z-20 mt-10 box-border flex w-full max-w-prose items-center rounded-md border border-main-300 p-3 sm:mx-auto">
         <p className="text-sm">Total post: {countBlogs}</p>
 
         <Link href={`/admin/blogs/create`} className="ml-auto">
@@ -76,7 +76,7 @@ const AdminBlogsPage = async ({
         </Link>
       </div>
 
-      <div className="prose prose-invert mx-auto mt-10 box-content flex w-full max-w-prose flex-grow flex-col items-center gap-y-8">
+      <div className="prose prose-invert mx-auto mt-10 box-border flex w-full max-w-prose flex-grow flex-col items-center gap-y-8">
         {blogs?.map(({ slug, Tags, createdAt, id, title, _count, isDraft }) => (
           <div className="w-full" key={id}>
             <Link

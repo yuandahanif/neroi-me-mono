@@ -1,22 +1,12 @@
 import { type Metadata } from "next";
 import { prisma } from "~/server/db";
 import { z } from "zod";
-import local_date from "~/lib/local_date";
 import AdminNavigation from "~/components/navigation/admin.navigation";
-import { cookies } from "next/headers";
 
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "~/components/ui/table";
 import MediaUploadForm from "./uploadAction";
-import { COOKIE_MEDIA_NAME } from "./_constMedia";
-import { PutBlobResult } from "@vercel/blob";
+import { DataTable } from "~/components/ui/data-table";
+import { Suspense } from "react";
+import { mediaColumns } from "./columns";
 
 export const metadata: Metadata = {
   title: "Media",
@@ -36,11 +26,6 @@ const AdminMediaPage = async ({
 }: {
   searchParams: { page?: number; amount?: number };
 }) => {
-  const cookie_value = cookies().get(COOKIE_MEDIA_NAME)?.value;
-  const pendingMedia = cookie_value
-    ? (JSON.parse(cookie_value) as PutBlobResult)
-    : undefined;
-
   const validate = searchParamSchema.safeParse(searchParams);
   let { amount = DEFAULT_AMOUNT, page = 1 } = searchParams;
 
@@ -51,7 +36,7 @@ const AdminMediaPage = async ({
 
   const skip = page ? (Number(page) - 1) * amount : 0;
 
-  const medias = await prisma.media.findMany({
+  const medias = prisma.media.findMany({
     orderBy: { createdAt: "desc" },
   });
 
@@ -61,7 +46,7 @@ const AdminMediaPage = async ({
     skip: validate.success ? skip + Number(amount) : DEFAULT_AMOUNT,
   });
 
-  const countMedia = await prisma.media.count({});
+  const countMedia = await prisma.media.count();
 
   return (
     <div
@@ -70,33 +55,17 @@ const AdminMediaPage = async ({
       <h1 className="text-5xl">{"<Media/>"}</h1>
       <AdminNavigation />
 
-      <div className="z-20 mx-auto mt-10 box-content flex w-full max-w-prose items-center rounded-sm border border-main-300 p-3">
+      <div className="z-20 mx-auto mt-10 box-border flex w-full max-w-prose items-center rounded-sm border border-main-300 p-3">
         <p className="text-sm">Total media: {countMedia}</p>
 
-        <MediaUploadForm className="ml-auto" pendingMedia={pendingMedia} />
+        <MediaUploadForm className="ml-auto" />
       </div>
 
-      <div className="mx-auto mt-5 box-content flex w-full max-w-prose items-center rounded-sm border border-main-300 p-3">
+      <div className="mx-auto mt-5 box-border flex w-full max-w-prose">
         <div className="w-full">
-          <Table>
-            <TableCaption>A list of your recent invoices.</TableCaption>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[100px]">Invoice</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Method</TableHead>
-                <TableHead className="text-right">Amount</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow>
-                <TableCell className="font-medium">INV001</TableCell>
-                <TableCell>Paid</TableCell>
-                <TableCell>Credit Card</TableCell>
-                <TableCell className="text-right">$250.00</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
+          <Suspense fallback={<div>Loading...</div>}>
+            <DataTable columns={mediaColumns} data={await medias} />
+          </Suspense>
         </div>
       </div>
     </div>

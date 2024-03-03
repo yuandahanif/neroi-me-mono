@@ -4,8 +4,6 @@ import "server-only";
 import z from "zod";
 import { prisma } from "~/server/db";
 import { revalidatePath } from "next/cache";
-import { cookies } from "next/headers";
-import { COOKIE_MEDIA_NAME } from "../_constMedia";
 
 const mediaSchema = z.object({
   title: z.string(),
@@ -19,7 +17,7 @@ export default async function updateMedia(formData: FormData) {
   try {
     const data = mediaSchema.parse({
       title: formData.get("title")?.toString(),
-      content: formData.get("alt")?.toString(),
+      alt: formData.get("alt")?.toString(),
       description: formData.get("description")?.toString(),
       isNsfw: formData.get("is-nfsw")?.toString(),
       url: formData.get("url")?.toString(),
@@ -31,13 +29,11 @@ export default async function updateMedia(formData: FormData) {
       },
       data: {
         title: data.title,
-        isNsfw: false,
-        alt: "",
+        isNsfw: data.isNsfw == "on",
+        alt: data.alt,
         description: data.description,
       },
     });
-
-    cookies().delete(COOKIE_MEDIA_NAME);
 
     revalidatePath(`/admin/media`);
   } catch (error) {

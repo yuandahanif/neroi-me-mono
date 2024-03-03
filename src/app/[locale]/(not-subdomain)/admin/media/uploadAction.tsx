@@ -4,6 +4,7 @@
 import { type PutBlobResult } from "@vercel/blob";
 import { upload } from "@vercel/blob/client";
 import { useState, useTransition, useEffect } from "react";
+import { type Media } from "@prisma/client";
 import Image from "next/image";
 
 import { Button } from "~/components/ui/button";
@@ -25,17 +26,18 @@ import { Switch } from "~/components/ui/switch";
 import { toast } from "~/components/ui/use-toast";
 import { PATHNAME_MEDIA } from "./_constMedia";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import updateMedia from "./upload/update";
 
 export default function MediaUploadForm({
   className,
-  pendingMedia,
+  media,
   defaultDialogOpen,
 }: {
   className?: string;
-  pendingMedia?: PutBlobResult;
+  media?: Media;
   defaultDialogOpen?: boolean;
 }) {
-  const isUploadProcessIncomplete = pendingMedia !== undefined;
+  const isEditForm = media !== undefined;
   const [isPending, startTransition] = useTransition();
 
   const [previewFile, setPreviewFile] = useState<File | null>(null);
@@ -79,6 +81,37 @@ export default function MediaUploadForm({
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (isEditForm) {
+      startTransition(async () => {
+        try {
+          if (!media) {
+            throw new Error("Malformed media object");
+          }
+
+          const formData = new FormData(event.currentTarget);
+          formData.append("url", media.url);
+
+          await updateMedia(formData);
+
+          setOpen(false);
+
+          toast({
+            variant: "default",
+            title: "Media berhasil diubah",
+          });
+        } catch (error) {
+          console.error("Error updating file", error);
+          toast({
+            variant: "destructive",
+            title: "Gagal mengubah media",
+            description: String(error),
+          });
+        }
+      });
+
+      return;
+    }
+
     startTransition(async () => {
       try {
         if (!blob) {
@@ -88,10 +121,7 @@ export default function MediaUploadForm({
         const formData = new FormData(event.currentTarget);
         formData.append("url", blob.url);
 
-        await fetch("/admin/media/upload/update", {
-          method: "POST",
-          body: formData,
-        });
+        await updateMedia(formData);
 
         setPreviewFile(null);
         setBlob(null);
@@ -112,12 +142,6 @@ export default function MediaUploadForm({
     });
   };
 
-  useEffect(() => {
-    if (pendingMedia) {
-      setBlob(pendingMedia);
-    }
-  }, [pendingMedia]);
-
   return (
     <div className={cn(className)}>
       <Dialog
@@ -126,23 +150,29 @@ export default function MediaUploadForm({
         onOpenChange={setOpen}
       >
         <DialogTrigger asChild>
-          <Button variant="outline">Unggah Media</Button>
+          <Button variant="outline">
+            {isEditForm ? "Edit" : "Unggah Media"}
+          </Button>
         </DialogTrigger>
         <DialogContent className="max-h-[95dvh] max-w-full overflow-y-auto sm:max-w-screen-md">
-          <form onSubmit={onSubmit} className="grid gap-4 py-4">
-            <DialogHeader>
-              <DialogTitle>Unggah Media</DialogTitle>
-              <DialogDescription>Unggah media baru.</DialogDescription>
-            </DialogHeader>
+          <DialogHeader>
+            <DialogTitle>
+              {isEditForm ? "Edit Media" : "Unggah Media"}
+            </DialogTitle>
+            <DialogDescription></DialogDescription>
+          </DialogHeader>
 
+          <form onSubmit={onSubmit} className="grid gap-4 py-4">
             <div className="flex h-32 w-full items-center justify-center rounded-sm border border-input sm:h-96">
               {previewFile && (
-                <figure className="relative flex h-5/6 w-full flex-col items-center gap-y-2 text-xs text-white ">
-                  <img
-                    src={URL.createObjectURL(previewFile)}
-                    alt="preview"
-                    className="h-full w-full object-contain object-center"
-                  />
+                <figure className="relative flex h-full w-full flex-col items-center justify-center gap-y-2 text-xs text-white ">
+                  <div className="relative h-[90%] w-full">
+                    <img
+                      src={URL.createObjectURL(previewFile)}
+                      alt="preview"
+                      className="h-full w-full object-contain object-center"
+                    />
+                  </div>
 
                   <figcaption>
                     {(previewFile.size / (1024 * 1024)).toFixed(2)} MB
@@ -151,8 +181,8 @@ export default function MediaUploadForm({
               )}
 
               {blob && (
-                <figure className="relative flex h-5/6 w-full flex-col items-center gap-y-2 text-xs">
-                  <div className="relative h-full w-full">
+                <figure className="relative flex h-full w-full flex-col items-center justify-center gap-y-2 text-xs">
+                  <div className="relative h-[90%] w-full">
                     <Image
                       src={blob.url}
                       alt={blob.pathname}
@@ -167,7 +197,7 @@ export default function MediaUploadForm({
                 </figure>
               )}
 
-              {!blob && !previewFile && (
+              {!blob && !previewFile && !isEditForm && (
                 <Label
                   htmlFor="media"
                   className="my-auto cursor-pointer text-center text-white"
@@ -175,16 +205,38 @@ export default function MediaUploadForm({
                   Pilih media untuk diunggah
                 </Label>
               )}
+
+              {isEditForm && (
+                <figure className="relative flex h-5/6 w-full flex-col items-center gap-y-2 text-xs">
+                  <div className="relative h-full w-full">
+                    <Image
+                      src={media.url}
+                      alt={media?.alt ?? "no alt"}
+                      className="h-full w-full object-contain object-center"
+                      fill
+                    />
+                  </div>
+
+                  <figcaption className="line-clamp-1">
+                    {media.title}
+                  </figcaption>
+                </figure>
+              )}
             </div>
 
-            <div className="grid grid-cols-4 items-center gap-4">
+            <div
+              className={cn(
+                "grid grid-cols-4 items-center gap-4",
+                isEditForm ? "hidden" : ""
+              )}
+            >
               <Input
                 required
                 aria-label="media"
                 id="media"
                 name="media"
                 type="file"
-                disabled={isPending || isUploadProcessIncomplete || !!blob}
+                disabled={isPending || !!blob}
                 accept="image/*, video/*"
                 className="col-span-3 file:text-white"
                 onChange={(event) => {
@@ -195,9 +247,7 @@ export default function MediaUploadForm({
               <Button
                 type="button"
                 onClick={onUpload}
-                disabled={
-                  isPending || isUploadProcessIncomplete || !previewFile
-                }
+                disabled={isPending || !previewFile}
                 variant="outline"
               >
                 <ReloadIcon
@@ -222,7 +272,8 @@ export default function MediaUploadForm({
                 className="col-span-3"
                 placeholder="Judul"
                 type="text"
-                required
+                defaultValue={media?.title ?? ""}
+                required={!isEditForm}
               />
             </div>
 
@@ -238,7 +289,8 @@ export default function MediaUploadForm({
                 rows={5}
                 autoComplete="off"
                 name="description"
-                required
+                defaultValue={media?.description ?? ""}
+                required={!isEditForm}
               />
             </div>
 
@@ -253,6 +305,7 @@ export default function MediaUploadForm({
                 autoComplete="off"
                 className="col-span-3"
                 placeholder="Alt"
+                defaultValue={media?.alt ?? ""}
                 type="text"
               />
             </div>
@@ -262,19 +315,24 @@ export default function MediaUploadForm({
                 NSFW
               </Label>
 
-              <Switch id="isNfsw" name="isNfsw" className="col-span-3" />
+              <Switch
+                id="isNfsw"
+                name="is-nfsw"
+                className="col-span-3"
+                defaultChecked={media?.isNsfw ?? false}
+              />
             </div>
 
             <DialogFooter>
               <Button
                 type="submit"
-                disabled={blob?.url == undefined || isPending}
+                disabled={(blob?.url == undefined && !isEditForm) || isPending}
                 variant={"outline"}
               >
                 <ReloadIcon
                   className={cn(
                     "mr-2 hidden h-4 w-4 animate-spin",
-                    isPending && !previewFile ? "block" : ""
+                    isPending && (!previewFile || isEditForm) ? "block" : ""
                   )}
                 />
                 Simpan
