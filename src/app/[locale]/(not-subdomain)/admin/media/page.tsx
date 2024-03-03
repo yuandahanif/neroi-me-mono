@@ -1,11 +1,9 @@
 import { type Metadata } from "next";
 import { prisma } from "~/server/db";
-import Link from "next/link";
 import { z } from "zod";
 import local_date from "~/lib/local_date";
 import AdminNavigation from "~/components/navigation/admin.navigation";
-import { Button } from "~/components/ui/button";
-import { cn } from "~/lib/utils";
+import { cookies } from "next/headers";
 
 import {
   Table,
@@ -16,6 +14,9 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
+import MediaUploadForm from "./uploadAction";
+import { COOKIE_MEDIA_NAME } from "./_constMedia";
+import { PutBlobResult } from "@vercel/blob";
 
 export const metadata: Metadata = {
   title: "Media",
@@ -35,6 +36,11 @@ const AdminMediaPage = async ({
 }: {
   searchParams: { page?: number; amount?: number };
 }) => {
+  const cookie_value = cookies().get(COOKIE_MEDIA_NAME)?.value;
+  const pendingMedia = cookie_value
+    ? (JSON.parse(cookie_value) as PutBlobResult)
+    : undefined;
+
   const validate = searchParamSchema.safeParse(searchParams);
   let { amount = DEFAULT_AMOUNT, page = 1 } = searchParams;
 
@@ -64,17 +70,13 @@ const AdminMediaPage = async ({
       <h1 className="text-5xl">{"<Media/>"}</h1>
       <AdminNavigation />
 
-      <div className="z-20 mt-10 box-content flex w-full max-w-prose items-center rounded-md border border-main-300 p-3 sm:mx-auto">
+      <div className="z-20 mx-auto mt-10 box-content flex w-full max-w-prose items-center rounded-sm border border-main-300 p-3">
         <p className="text-sm">Total media: {countMedia}</p>
 
-        <Link href={`/admin/blogs/create`} className="ml-auto">
-          <Button type="button" variant="outline">
-            Tambah
-          </Button>
-        </Link>
+        <MediaUploadForm className="ml-auto" pendingMedia={pendingMedia} />
       </div>
 
-      <div className="mt-10 flex max-w-prose flex-grow w-full flex-col gap-y-8 px-2 lg:px-0">
+      <div className="mx-auto mt-5 box-content flex w-full max-w-prose items-center rounded-sm border border-main-300 p-3">
         <div className="w-full">
           <Table>
             <TableCaption>A list of your recent invoices.</TableCaption>

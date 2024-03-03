@@ -76,7 +76,7 @@ const AdminBlogsPage = async ({
         </Link>
       </div>
 
-      <div className="prose prose-invert mt-10 flex flex-grow flex-col gap-y-8 px-2 lg:px-0">
+      <div className="prose prose-invert mx-auto mt-10 box-content flex w-full max-w-prose flex-grow flex-col items-center gap-y-8">
         {blogs?.map(({ slug, Tags, createdAt, id, title, _count, isDraft }) => (
           <div className="w-full" key={id}>
             <Link

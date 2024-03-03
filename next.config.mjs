@@ -45,6 +45,11 @@ const config = {
         hostname: "placehold.co",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+        port: "",
+      },
     ],
   },
   logging: {
