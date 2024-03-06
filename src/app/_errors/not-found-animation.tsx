@@ -3,7 +3,11 @@
 import { Handlee } from "next/font/google";
 import { motion } from "framer-motion";
 
-const main_font = Handlee({ weight: ["400"], subsets: ["latin"] });
+const main_font = Handlee({
+  weight: ["400"],
+  subsets: ["latin"],
+  preload: true,
+});
 
 export default function NotFoundAnimation() {
   return (

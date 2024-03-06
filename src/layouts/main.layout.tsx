@@ -1,7 +1,10 @@
 import { type ReactNode } from "react";
 
 import { Source_Code_Pro } from "next/font/google";
-const source_Code_Pro = Source_Code_Pro({ subsets: ["latin", "cyrillic"] });
+const source_Code_Pro = Source_Code_Pro({
+  subsets: ["latin", "cyrillic"],
+  preload: true,
+});
 
 interface Props {
   children: ReactNode;
