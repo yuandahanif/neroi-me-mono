@@ -3,7 +3,7 @@ import { prisma } from "~/server/db";
 import { z } from "zod";
 import AdminNavigation from "~/components/navigation/admin.navigation";
 
-import MediaUploadForm from "./uploadAction";
+import MediaUploadForm from "./form";
 import { DataTable } from "~/components/ui/data-table";
 import { Suspense } from "react";
 import { mediaColumns } from "./columns";

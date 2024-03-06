@@ -11,7 +11,7 @@ const mediaSchema = z.object({
   description: z.string(),
   isNsfw: z.string().optional(),
   isPubliclyVisible: z.string().optional(),
-  url: z.string(),
+  key: z.string(),
 });
 
 export default async function updateMedia(formData: FormData) {
@@ -22,12 +22,12 @@ export default async function updateMedia(formData: FormData) {
       description: formData.get("description")?.toString(),
       isNsfw: formData.get("is-nfsw")?.toString(),
       isPubliclyVisible: formData.get("is-publicly-visible")?.toString(),
-      url: formData.get("url")?.toString(),
+      key: formData.get("key")?.toString(),
     });
 
     await prisma.media.update({
       where: {
-        url: data.url,
+        key: data.key,
       },
       data: {
         title: data.title,

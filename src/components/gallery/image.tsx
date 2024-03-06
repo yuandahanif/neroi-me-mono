@@ -5,6 +5,7 @@ import { EyeOpenIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 import { Button } from "~/components/ui/button";
+import getMediaUrl from "~/lib/getMediaUrl";
 import local_date from "~/lib/local_date";
 import { cn } from "~/lib/utils";
 
@@ -16,7 +17,7 @@ type Props = (typeof Image)["defaultProps"] & {
 };
 
 const GalleryImage: React.FC<Props> = ({
-  image: { title, url, alt, description, isNsfw, createdAt },
+  image: { title, key, alt, description, isNsfw, createdAt },
   className,
 }) => {
   const largePreviewDialogRef = useRef<HTMLDialogElement>(null);
@@ -77,7 +78,7 @@ const GalleryImage: React.FC<Props> = ({
           <div className="not-prose relative flex h-4/5 w-full flex-grow overflow-y-hidden">
             <Image
               onContextMenu={(e) => e.preventDefault()}
-              src={url}
+              src={getMediaUrl(key)}
               alt={String(alt)}
               className={cn(
                 "not-prose h-auto w-auto object-contain object-center",
@@ -133,7 +134,7 @@ const GalleryImage: React.FC<Props> = ({
       >
         <Image
           onContextMenu={(e) => e.preventDefault()}
-          src={url}
+          src={getMediaUrl(key)}
           alt={String(alt)}
           className={cn(
             "cursor-pointer object-cover object-center ",

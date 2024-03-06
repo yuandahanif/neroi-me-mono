@@ -1,9 +1,7 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { type PutBlobResult } from "@vercel/blob";
-import { upload } from "@vercel/blob/client";
-import { useState, useTransition, useEffect } from "react";
+import { useState, useTransition } from "react";
 import { type Media } from "@prisma/client";
 import Image from "next/image";
 
@@ -20,29 +18,31 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~/components/ui/dialog";
+
 import { cn } from "~/lib/utils";
 import { Textarea } from "~/components/ui/textarea";
 import { Switch } from "~/components/ui/switch";
 import { toast } from "~/components/ui/use-toast";
-import { PATHNAME_MEDIA } from "./_constMedia";
 import { ReloadIcon } from "@radix-ui/react-icons";
-import updateMedia from "./upload/update";
+import updateMedia from "./actions/update";
+import uploadMedia from "./actions/upload";
+import getMediaUrl from "~/lib/getMediaUrl";
 
 export default function MediaUploadForm({
   className,
   media,
   defaultDialogOpen,
 }: {
-  className?: string;
   media?: Media;
+  className?: string;
   defaultDialogOpen?: boolean;
 }) {
   const isEditForm = media !== undefined;
   const [isPending, startTransition] = useTransition();
 
-  const [previewFile, setPreviewFile] = useState<File | null>(null);
-  const [blob, setBlob] = useState<PutBlobResult | null>(null);
   const [open, setOpen] = useState(false);
+  const [previewFile, setPreviewFile] = useState<File | null>(null);
+  const [blob, setBlob] = useState<Media | null>(null);
 
   const onUpload = () => {
     startTransition(async () => {
@@ -50,17 +50,12 @@ export default function MediaUploadForm({
         if (!previewFile) {
           throw new Error("No file selected");
         }
+        const form = new FormData();
+        form.append("file", previewFile);
 
-        const newBlob = await upload(
-          PATHNAME_MEDIA + previewFile.name,
-          previewFile,
-          {
-            access: "public",
-            handleUploadUrl: "/admin/media/upload",
-          }
-        );
+        const newMedia = await uploadMedia(form);
 
-        setBlob(newBlob);
+        setBlob(newMedia);
         setPreviewFile(null);
 
         toast({
@@ -71,7 +66,7 @@ export default function MediaUploadForm({
         console.error("Error uploading file", error);
         toast({
           variant: "destructive",
-          title: "Gagal mengunggah media",
+          title: "Media gagal diunggah",
           description: String(error),
         });
       }
@@ -89,9 +84,8 @@ export default function MediaUploadForm({
           }
 
           const formData = new FormData(event.currentTarget);
-          formData.append("url", media.url);
+          formData.append("key", media?.key);
 
-          console.log("startTransition ~ formData:", formData);
           await updateMedia(formData);
 
           setOpen(false);
@@ -104,7 +98,7 @@ export default function MediaUploadForm({
           console.error("Error updating file", error);
           toast({
             variant: "destructive",
-            title: "Gagal mengubah media",
+            title: "Media gagal diubah",
             description: String(error),
           });
         }
@@ -120,7 +114,7 @@ export default function MediaUploadForm({
         }
 
         const formData = new FormData(event.currentTarget);
-        formData.append("url", blob.url);
+        formData.append("key", blob?.key);
 
         await updateMedia(formData);
 
@@ -136,7 +130,7 @@ export default function MediaUploadForm({
         console.error("Error uploading file", error);
         toast({
           variant: "destructive",
-          title: "Gagal mengunggah media",
+          title: "Media gagal disimpan",
           description: String(error),
         });
       }
@@ -185,16 +179,14 @@ export default function MediaUploadForm({
                 <figure className="relative flex h-full w-full flex-col items-center justify-center gap-y-2 text-xs">
                   <div className="relative h-[90%] w-full">
                     <Image
-                      src={blob.url}
-                      alt={blob.pathname}
+                      src={getMediaUrl(String(blob?.key))}
+                      alt={"no alt"}
                       className="h-full w-full object-contain object-center"
                       fill
                     />
                   </div>
 
-                  <figcaption className="line-clamp-1">
-                    {blob.pathname}
-                  </figcaption>
+                  <figcaption className="line-clamp-1">{blob.key}</figcaption>
                 </figure>
               )}
 
@@ -211,7 +203,7 @@ export default function MediaUploadForm({
                 <figure className="relative flex h-5/6 w-full flex-col items-center gap-y-2 text-xs">
                   <div className="relative h-full w-full">
                     <Image
-                      src={media.url}
+                      src={getMediaUrl(String(media?.key))}
                       alt={media?.alt ?? "no alt"}
                       className="h-full w-full object-contain object-center"
                       fill
@@ -340,7 +332,7 @@ export default function MediaUploadForm({
             <DialogFooter>
               <Button
                 type="submit"
-                disabled={(blob?.url == undefined && !isEditForm) || isPending}
+                disabled={(blob?.key == undefined && !isEditForm) || isPending}
                 variant={"outline"}
               >
                 <ReloadIcon
