@@ -77,13 +77,19 @@ export const viewport: Viewport = {
 const source_Code_Pro = Source_Code_Pro({
   subsets: ["latin", "cyrillic"],
   variable: "--font-scp",
+  preload: true,
 });
 
 export default async function PageLayout({ children }: PropsWithChildren) {
   const session = await getServerSession(authOptions);
   return (
     <html className="dark">
-      <body className={cn("font-sans antialiased [&:has(dialog[open])]:overflow-hidden", source_Code_Pro.variable)}>
+      <body
+        className={cn(
+          "font-sans antialiased [&:has(dialog[open])]:overflow-hidden",
+          source_Code_Pro.variable
+        )}
+      >
         <AuthProvider session={session}>
           <ClientProvider>{children}</ClientProvider>
           <Toaster />

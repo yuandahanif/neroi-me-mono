@@ -16,9 +16,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "~/components/ui/dialog";
-import MediaUploadForm from "./uploadAction";
-import { EyeNoneIcon, EyeOpenIcon, TrashIcon } from "@radix-ui/react-icons";
-import { deleteMediaAction } from "./upload/delete";
+import MediaUploadForm from "./form";
+import {
+  EyeClosedIcon,
+  EyeNoneIcon,
+  EyeOpenIcon,
+  TrashIcon,
+} from "@radix-ui/react-icons";
+import { deleteMediaAction } from "./actions/delete";
+import getMediaUrl from "~/lib/getMediaUrl";
 
 export const mediaColumns: ColumnDef<Media>[] = [
   {
@@ -27,14 +33,34 @@ export const mediaColumns: ColumnDef<Media>[] = [
   },
   {
     accessorKey: "isNsfw",
-    id: "id",
     header: "NSFW",
     cell: ({ row }) => {
       const isNsfw = row.original.isNsfw;
 
       return (
         <div className="mx-auto inline-flex h-full w-full justify-center text-center font-medium">
-          {isNsfw ? <EyeNoneIcon className="text-red-400" /> : <EyeOpenIcon />}
+          {isNsfw ? (
+            <EyeClosedIcon className="text-red-400" />
+          ) : (
+            <EyeOpenIcon />
+          )}
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "visibility",
+    header: "Visibilitas",
+    cell: ({ row }) => {
+      const isPubliclyVisible = row.original.visibility == "PUBLIC";
+
+      return (
+        <div className="mx-auto inline-flex h-full w-full justify-center text-center font-medium">
+          {isPubliclyVisible ? (
+            <EyeOpenIcon />
+          ) : (
+            <EyeNoneIcon className="text-red-400" />
+          )}
         </div>
       );
     },
@@ -52,7 +78,6 @@ export const mediaColumns: ColumnDef<Media>[] = [
     },
   },
   {
-    id: "id",
     accessorKey: "url",
     header: "Detail",
     cell: ({ row }) => {
@@ -84,7 +109,7 @@ export const mediaColumns: ColumnDef<Media>[] = [
                 <figure className="relative flex h-full w-full flex-col items-center justify-center gap-y-2 text-xs">
                   <div className="relative h-[90%] w-full">
                     <Image
-                      src={media.url}
+                      src={getMediaUrl(String(media?.key))}
                       alt={media?.alt ?? "no alt"}
                       className="h-full w-full object-contain object-center"
                       fill
@@ -109,7 +134,7 @@ export const mediaColumns: ColumnDef<Media>[] = [
                     variant="destructive"
                     type="button"
                     onClick={() => {
-                      void deleteMediaAction(media.url);
+                      void deleteMediaAction(media.key);
                     }}
                   >
                     <TrashIcon className={"mr-2 h-4 w-4"} />

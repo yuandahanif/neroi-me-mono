@@ -3,7 +3,10 @@ import { Source_Code_Pro } from "next/font/google";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
-const source_Code_Pro = Source_Code_Pro({ subsets: ["latin", "cyrillic"] });
+const source_Code_Pro = Source_Code_Pro({
+  subsets: ["latin", "cyrillic"],
+  preload: true,
+});
 interface Props {
   children: ReactNode;
   title?: string;

@@ -125,7 +125,13 @@ const BlogContent = ({
             <p className="not-prose inline-flex flex-wrap items-center justify-end gap-1 gap-x-3 text-xs sm:text-sm">
               <span> waktu baca {readTime} Menit </span>|
               <span> {blog._count.BlogVisits} pembaca </span>|
-              <span> {local_date(blog.createdAt)} </span>
+              <span>
+                {" "}
+                {local_date(blog.createdAt, {
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                })}{" "}
+              </span>
             </p>
 
             <p className="not-prose">

@@ -97,7 +97,14 @@ const BlogCardContainer: React.FC<{
             <span className="inline-flex items-center gap-1 sm:ml-auto">
               {_count.BlogVisits} pembaca
             </span>
-            <span className="inline-flex"> | {local_date(createdAt)}</span>
+            <span className="inline-flex">
+              {" "}
+              |{" "}
+              {local_date(createdAt, {
+                dateStyle: "medium",
+                timeStyle: "short",
+              })}
+            </span>
           </div>
         </motion.div>
       ))}

@@ -1,9 +1,12 @@
 import { Redacted_Script } from "next/font/google";
-import { type ReactNode } from "react";
 
-const redacted = Redacted_Script({ subsets: ["latin"], weight: "400" });
+const redacted = Redacted_Script({
+  subsets: ["latin"],
+  weight: "400",
+  preload: true,
+});
 
-const Redacted: React.FC<{ children: ReactNode }> = ({ children }) => {
+const Redacted: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <span className={redacted.className}>{children}</span>;
 };
 

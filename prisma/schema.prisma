@@ -109,7 +109,7 @@ enum MediaVisibility {
 
 model Media {
     id          String           @id @default(cuid())
-    url         String           @unique
+    key         String           @unique
     type        String
     description String?          @db.Text
     alt         String?

@@ -106,7 +106,10 @@ const AdminBlogsPage = async ({
               </div>
               <span>|</span>
               <span className="inline-flex text-sm">
-                {local_date(createdAt)}
+                {local_date(createdAt, {
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                })}
               </span>
             </div>
           </div>

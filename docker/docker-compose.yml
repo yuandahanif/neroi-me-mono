@@ -8,4 +8,4 @@ services:
     env_file:
       - ../.env
     volumes:
-      - ./dump-neroi-me-202312241958.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./dump-neroi-me-202403061249.sql:/docker-entrypoint-initdb.d/init.sql
