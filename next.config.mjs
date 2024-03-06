@@ -50,6 +50,11 @@ const config = {
         hostname: "*.public.blob.vercel-storage.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "*.workers.dev",
+        port: "",
+      },
     ],
   },
   logging: {

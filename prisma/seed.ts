@@ -38,9 +38,9 @@ While it's certainly still a library that can be sprinkled into any webpage, the
 ];
 
 async function main() {
-  await prisma.note.createMany({ data: NOTES });
-  await prisma.tag.createMany({ data: TAGS });
-  await prisma.blog.createMany({ data: BLOGS });
+  // await prisma.note.createMany({ data: NOTES });
+  // await prisma.tag.createMany({ data: TAGS });
+  // await prisma.blog.createMany({ data: BLOGS });
 }
 
 main()
