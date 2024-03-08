@@ -55,6 +55,11 @@ const config = {
         hostname: "*.workers.dev",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "*.tenor.com",
+        port: "",
+      },
     ],
   },
   logging: {

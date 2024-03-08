@@ -26,10 +26,27 @@ import {
 import { deleteMediaAction } from "./actions/delete";
 import getMediaUrl from "~/lib/getMediaUrl";
 
+const copyToClipboard = (text: string) => {
+  void navigator.clipboard.writeText(text);
+};
+
 export const mediaColumns: ColumnDef<Media>[] = [
   {
     accessorKey: "title",
     header: "Judul",
+    cell: ({ row }) => {
+      const title = row.original.title;
+      const key = row.original.key;
+
+      return (
+        <span
+          className="cursor-copy font-medium"
+          onClick={() => copyToClipboard(getMediaUrl(String(key)))}
+        >
+          {title}
+        </span>
+      );
+    },
   },
   {
     accessorKey: "isNsfw",

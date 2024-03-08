@@ -1,22 +1,7 @@
-import { Code } from "bright";
 import { type MDXRemoteProps } from "next-mdx-remote/rsc";
-import { cn } from "~/lib/utils";
 import MdxImg from "./MDXClientComponent";
 
 const components: MDXRemoteProps["components"] = {
-  pre: (props) => (
-    <Code
-      lineNumbers
-      // theme={"github-dark"}
-      lang="tsx"
-      style={{ width: "100%" }}
-      // {...props}
-      extensions={[]}
-      className={cn("not-prose relative text-xs sm:text-sm", props.className)}
-    >
-      {props.children}
-    </Code>
-  ),
   ul: (props) => <ul className="list-outside list-disc" {...props} />,
   li: (props) => <li className="text-balance" {...props} />,
   a: (props) => (

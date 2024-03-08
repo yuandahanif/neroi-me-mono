@@ -1,5 +1,6 @@
 "use client";
 
+import { components } from "./MDXConfig";
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote";
 import { twMerge } from "tailwind-merge";
 
@@ -8,6 +9,7 @@ const MDXClientPreview = ({ source }: { source: MDXRemoteProps }) => {
     <MDXRemote
       {...source}
       components={{
+        ...components,
         pre: (props) => (
           <pre>
             <span># ignore this; this is placeholder style</span>

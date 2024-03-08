@@ -11,6 +11,7 @@ import { type MDXRemoteProps } from "next-mdx-remote";
 import MDXClientPreview from "~/components/blog/MDXClientPreview.blog";
 import Select from "~/components/form/select";
 import updateBlogAction from "./update";
+import { toast } from "~/components/ui/use-toast";
 
 const EditBlogForm = ({
   blog,
@@ -48,10 +49,17 @@ const EditBlogForm = ({
         method: "POST",
         body: content,
       });
+
       const json = (await response.json()) as unknown;
       setMdxContent(json as MDXRemoteProps);
     } catch (error) {
-      alert("An error occurred while trying to preview the content.");
+      toast({
+        title: "Error!",
+        variant: "destructive",
+        description:
+          "An error occurred while trying to preview the content." +
+          JSON.stringify(error),
+      });
     }
   };
 
@@ -59,11 +67,11 @@ const EditBlogForm = ({
     e.preventDefault();
 
     startTransition(() => {
-      setPreviewTab((s) => {
-        if (!s) {
+      setPreviewTab((prev) => {
+        if (!prev) {
           void getPreview();
         }
-        return !s;
+        return !prev;
       });
     });
   };
@@ -156,7 +164,11 @@ const EditBlogForm = ({
           <div className="flex flex-grow justify-center">
             {isPreviewTab ? (
               <div className="blog-content prose-md prose prose-invert w-full rounded-md border p-3 prose-h2:text-lg prose-pre:rounded-sm prose-pre:bg-main-400 prose-pre:px-2">
-                {mdxContent != null && <MDXClientPreview source={mdxContent} />}
+                {mdxContent != null && (
+                  <>
+                    <MDXClientPreview source={mdxContent} />
+                  </>
+                )}
               </div>
             ) : (
               <div className="blog-content prose-md prose prose-invert w-full prose-h2:text-lg prose-pre:rounded-sm prose-pre:bg-main-400 prose-pre:px-2">
