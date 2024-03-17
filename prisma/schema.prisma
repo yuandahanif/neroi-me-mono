@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-    provider          = "mysql"
+    provider          = "postgresql"
     url               = env("DATABASE_URL")
     shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
     relationMode      = "prisma"
@@ -102,22 +102,22 @@ model BlogVisit {
     @@index([blogId])
 }
 
-enum MediaVisibility {
+enum Media_visibility {
     PUBLIC
     PRIVATE
 }
 
 model Media {
-    id          String           @id @default(cuid())
-    key         String           @unique
+    id          String            @id @default(cuid())
+    key         String            @unique
     type        String
-    description String?          @db.Text
+    description String?           @db.Text
     alt         String?
     title       String?
-    isNsfw      Boolean?         @default(false)
-    visibility  MediaVisibility? @default(PUBLIC)
-    createdAt   DateTime         @default(now())
-    updatedAt   DateTime         @updatedAt
+    isNsfw      Boolean?          @default(false)
+    visibility  Media_visibility? @default(PUBLIC)
+    createdAt   DateTime          @default(now())
+    updatedAt   DateTime          @updatedAt
 }
 
 model BlogToTag {

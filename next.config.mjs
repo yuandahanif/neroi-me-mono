@@ -78,10 +78,10 @@ const config = {
         has: [
           {
             type: "host",
-            value: `work.${process.env.DOMAIN}`,
+            value: `business.${process.env.DOMAIN}`,
           },
         ],
-        destination: "/:locale/work/:path*",
+        destination: "/:locale/business/:path*",
       },
       {
         source: "/:locale/:path*",
