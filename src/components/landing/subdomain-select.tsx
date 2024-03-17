@@ -73,7 +73,7 @@ const SubdomainSelect: FC<
         <Link
           prefetch={false}
           target="_self"
-          href={getBaseUrl("work", domain, isProduction)}
+          href={getBaseUrl("business", domain, isProduction)}
           className="before:ml-3 before:mr-2 before:content-[''] has-[.selected]:animate-pulse has-[.selected]:before:ml-0 has-[.selected]:before:content-['>']"
         >
           <span className="selected">Profesional</span>

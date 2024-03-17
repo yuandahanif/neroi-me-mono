@@ -31,8 +31,6 @@ model Account {
 
     @@unique([provider, providerAccountId])
     @@index([userId])
-
-    @@map("accounts")
 }
 
 model Session {
@@ -43,7 +41,6 @@ model Session {
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@index([userId])
-    @@map("sessions")
 }
 
 model User {
@@ -63,7 +60,6 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
-    @@map("verificationtokens")
 }
 
 model Blog {
@@ -106,22 +102,22 @@ model BlogVisit {
     @@index([blogId])
 }
 
-enum MediaVisibility {
+enum Media_visibility {
     PUBLIC
     PRIVATE
 }
 
 model Media {
-    id          String           @id @default(cuid())
-    key         String           @unique
+    id          String            @id @default(cuid())
+    key         String            @unique
     type        String
-    description String?          @db.Text
+    description String?           @db.Text
     alt         String?
     title       String?
-    isNsfw      Boolean?         @default(false)
-    visibility  MediaVisibility? @default(PUBLIC)
-    createdAt   DateTime         @default(now())
-    updatedAt   DateTime         @updatedAt
+    isNsfw      Boolean?          @default(false)
+    visibility  Media_visibility? @default(PUBLIC)
+    createdAt   DateTime          @default(now())
+    updatedAt   DateTime          @updatedAt
 }
 
 model BlogToTag {
