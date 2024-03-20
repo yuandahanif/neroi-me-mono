@@ -1,4 +1,5 @@
 import { Comic_Neue } from "next/font/google";
+import Link from "next/link";
 
 const comic = Comic_Neue({
   weight: "400",
@@ -12,14 +13,7 @@ const Home = () => {
     <div
       className={`flex min-h-screen grow flex-col items-center justify-center`}
     >
-      <div className="prose prose-invert text-center">
-        <h1 className="text-3xl">I&apos;ve no life outside work!</h1>
-
-        <p>
-          Not that i have high productivity or anything, but i do have a lot of
-          fun doing it.
-        </p>
-
+      <div className="max-w-prose">
         <blockquote className="mt-10 text-justify" style={comic.style}>
           &quot;I may not have been sure about what really did interest me, but
           I was absolutely sure about what didn&apos;t.&quot;
@@ -29,8 +23,26 @@ const Home = () => {
         </blockquote>
       </div>
 
-      <div className="mt-28">
-        <p>other comming soon...</p>
+      <div className="mt-28  text-center">
+        <h2 className="text-lg font-semibold">Some of my thoughts:</h2>
+
+        <ul className="mt-5">
+          <li>
+            <Link href="articles/impostor" className="hover:underline">
+              /on impostor syndrome/
+            </Link>
+          </li>
+
+          <li>
+            <span className="text-muted-foreground line-through">
+              /on ethics in software development/
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div className="mt-10 text-xs">
+        <p>other are comming soon...</p>
       </div>
     </div>
   );
