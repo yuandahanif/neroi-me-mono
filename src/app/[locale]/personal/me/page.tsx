@@ -1,7 +1,10 @@
 import { type Metadata } from "next";
 
 import MainNavigation from "~/components/navigation/main.navigation";
-import AboutMeMoreSection from "./_aboutMeMoreSection";
+import AboutMeV1 from "./_aboutMeV1";
+import Link from "next/link";
+import AboutMeV2 from "./_aboutMeV2";
+import AboutMeGift from "./_gift";
 
 export const metadata: Metadata = {
   title: "Me",
@@ -41,57 +44,77 @@ const MePage = () => {
             ></image>
           </svg>
         </div>
+        <Divider>v3</Divider>
 
-        <Divider>v2</Divider>
         <div className="mx-auto text-justify">
+          <section>
+            Halo, selamat datang di antah berantah. Sebelumnya selamat, dirimu
+            telah menemukan gubuk vertual tempat seorang self proclaim
+            optimistic nihilist tinggal. Tolong, terimalah hadiah sederhana{" "}
+            <AboutMeGift>ini</AboutMeGift> dariku.
+          </section>
+
           <p>
-            Hello, and welcome to the abyss of my existence. You&apos;ve
-            stumbled upon the <b>virtual dwelling</b> of a self-professed
-            optimistic nihilist who finds joy in the paradoxes of life and has a
-            peculiar penchant for both philosophy and tech.
+            Perkenalkan, namaku Yuanda, seekor kucing abadi yang sedang
+            menjalani krisis seperempat masa kehidupan. Paradoks? abadi dengan
+            seperempat masa kehidupan? definisi abadi disini bukan berarti aku
+            tidak bisa mati, tapi aku bisa memilih kapan aku akan pergi dari
+            sini.
           </p>
 
           <p>
-            Chronically online doesn&apos;t even begin to cover{" "}
-            <b>my relationship with the internet</b>. It&apos;s more like
-            we&apos;re in a co-dependent union, bordering on unhealthy
-            obsession. But let&apos;s not fret over my questionable lifestyle
-            choices. I mean, who needs sunlight and physical interaction when
-            you have the radiant glow of your screen and countless Reddit
-            threads at 3 am?
+            Aku ingin bercerita sedikit soal diriku di halaman ini, jadi tolong
+            bersabar dan maaf atas apa yang ingin kusampaikan.{" "}
+            <span className="text-sm">
+              Sebenarnya ini iterasai ke-3 dari halaman ini, jika kau mau
+              melihat seperti apa diriku berubah, ada tombol untuk versi
+              sebelumnya di bagian bawah halaman ini (spoiler: tidak banyak).
+            </span>
           </p>
 
           <p>
-            Stimulating my mind with <b>existential dread</b> is my idea of a
-            riveted evening - you know, because nothing screams
-            &apos;comfort&apos; like pumping my anxiety meat with caffeine while
-            contemplating our insignificance in the vast cosmic horror we call
-            the universe.
+            Seperti orang pada umumnya aku punya{" "}
+            <span className="italic">interest</span> dan juga hobi. Salah satu
+            bidang yang kutekuni adalah teknologi, namun lebih mengarah ke
+            bagian perangkat lunak. Ketertarikan lain yang kumiliki adalah
+            Jejepangan, Psikologi, dan Filsafat. Beberapa hobiku yang sebagian
+            besar masih terkait dengan ketertarikan yang kumiliki antara lain:
+            hal-hal soal Jejepangan, mengotak-atik software, menulis, dan
+            <span className="italic"> cosplay</span>.
           </p>
 
           <p>
-            Ah, yes! <b>My mental health!</b> It&apos;s a lot like
-            Schrodinger&apos;s cat - both alive and dead until one musters the
-            courage (or desperation) to open the box. Newton&apos;s Law of
-            Emotion perhaps? For every bout of joy, there is an equal and
-            opposite existential crisis. It&apos;s a fun ride really, like a
-            roller coaster designed by Dali and Escher. You never know where you
-            are - upside down, inside out, or if you&apos;ve been morphing into
-            a clock the whole time.
+            Selain itu aku juga menyukai hal-hal berbau misteri, terutama
+            internet misteri seperti ARG(
+            <span className="italic">Alternate Reality Game</span>), crepypasta,
+            dan analog horror. Hal ini juga yang menjadi tema dari website ini,
+            aku ingin membuat tempat ini memiliki suasana internet misteri dan
+            berkesan tua. Selain tempat ini, aku juga memiliki beberapa tempat
+            lain di internet, bahkan di <span className="italic">deep web</span>
+            (situs <span className="italic">onion</span>). Jadi jika kalian
+            menemukan diriku di internet, jangan sungkan untuk menyapa (akan
+            kutinggalkan semua yang kumiliki di section kontak). Sejujurnya,
+            mungkin tidak akan mudah untuk menemukan mereka, karena manurutku
+            mereka seperti orang yang benar-benar berbeda dari diriku.
           </p>
 
           <p>
-            But I digress. I do have a soft spot for the human experience and
-            the importance of human connection. I believe that understanding and
-            empathizing with each other is crucial to our{" "}
-            <b>survival as a species</b>. It&apos;s the only way we can hope to
-            navigate the labyrinth of life and find some semblance of meaning in
-            the chaos.
+            Terakhir, aku akan bercerita hal buruk soal diriku,
+            <span className="text-sm">
+              {" "}
+              (karena aku mempercayai kalian, wahai orang asing di internet)
+            </span>
+            . Aku memiliki kesulitan dalam interaksi sosial, aku hampir selalu
+            melakukan semua hal sendiri, dan sekarang kemampuan bersosialisasi
+            ku adalah nol besar.
           </p>
         </div>
 
+        <Divider>v2</Divider>
+        <AboutMeV2 />
+
         <Divider>v1</Divider>
-        <AboutMeMoreSection />
+        <AboutMeV1 />
       </div>
 
       <div className="mt-10 px-2" id="contact">
@@ -114,6 +137,38 @@ const MePage = () => {
                 className="cursor-default opacity-50"
               >
                 Reddit
+              </a>
+            </li>
+            <li>
+              <a
+                href="#message-me-if-you-found-me"
+                className="cursor-default opacity-50"
+              >
+                Instagram
+              </a>
+            </li>
+            <li>
+              <a
+                href="#message-me-if-you-found-me"
+                className="cursor-default opacity-50"
+              >
+                BlueSky
+              </a>
+            </li>
+            <li>
+              <a
+                href="#message-me-if-you-found-me"
+                className="cursor-default opacity-50"
+              >
+                Shrine
+              </a>
+            </li>
+            <li>
+              <a
+                href="#message-me-if-you-found-me"
+                className="cursor-default opacity-50"
+              >
+                Onion
               </a>
             </li>
           </ul>

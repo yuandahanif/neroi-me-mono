@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Redacted from "~/components/text/redacted";
 
-const AboutMeMoreSection: NextPage = () => {
+const AboutMeV1: NextPage = () => {
   const nonImportantDetailRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number>(0);
 
@@ -142,4 +142,4 @@ const AboutMeMoreSection: NextPage = () => {
   );
 };
 
-export default AboutMeMoreSection;
+export default AboutMeV1;
