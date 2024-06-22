@@ -24,7 +24,7 @@ const Home = () => {
       </div>
 
       <div className="mt-28  text-center">
-        <h2 className="text-lg font-semibold">Some of my thoughts:</h2>
+        <h2 className="text-lg font-semibold">Some of my <span className="line-through">thoughts</span> joke:</h2>
 
         <ul className="mt-5">
           <li>
@@ -35,7 +35,13 @@ const Home = () => {
 
           <li>
             <span className="text-muted-foreground line-through">
-              /on ethics in software development/
+              /on AI and Developer/
+            </span>
+          </li>
+
+          <li>
+            <span className="text-muted-foreground line-through">
+              /on social media/
             </span>
           </li>
         </ul>
