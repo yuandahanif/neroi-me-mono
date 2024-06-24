@@ -6,5 +6,9 @@ services:
     env_file:
       - ../.env
     shm_size: 256mb
-    volumes:
-      - ./dump-neroi-me-202403111229.sql:/docker-entrypoint-initdb.d/init.sql
+    # volumes:
+    #   - ./dump-neroi-me-202403111229.sql:/docker-entrypoint-initdb.d/init.sql
+
+networks:
+  default:
+    name: "network-neroi-me"
