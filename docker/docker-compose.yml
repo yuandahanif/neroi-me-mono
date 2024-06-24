@@ -1,11 +1,10 @@
-version: '3.8'
-
 services:
   neroi-db:
-    image: mysql:latest
+    image: postgres:16
     ports:
-      - 3306:3306
+      - 5432:5432
     env_file:
       - ../.env
+    shm_size: 256mb
     volumes:
-      - ./dump-neroi-me-202403061249.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./dump-neroi-me-202403111229.sql:/docker-entrypoint-initdb.d/init.sql
