@@ -24,32 +24,108 @@ const ProjectsPage = () => {
   const index = Math.floor(Math.random() * (randomText.length - 1));
   return (
     <div
-      className={`flex min-h-screen grow flex-col items-center justify-start py-10`}
+      className={`flex max-h-svh grow flex-col items-center justify-start py-10`}
     >
       <h1 className="text-5xl">{"<Projects/>"}</h1>
       <MainNavigation />
 
-      <div className="prose prose-invert mt-10 px-2 lg:prose-sm">
-        {/* <h3 className="text-center">
+      <div className="flex h-full w-full max-w-screen-lg flex-grow flex-col gap-4">
+        <h3 className="text-center">
           Selamat datang di project, disini berisi project yang sedang atau
           sudah selesai ku kerjakan dan yang sekiranya boleh ku tampilkan.
-        </h3> */}
-      </div>
+        </h3>
 
-      <div className="prose prose-invert mt-10 flex grow px-2">
-        <div className="flex flex-grow flex-col items-center justify-center">
-          <div className="mt-auto flex flex-col items-center">
-            <pre className={`text-md mb-2 text-green-500`}>
-              {randomText[index]}
-            </pre>
-            <span>
-              {index + 1}/{randomText.length}
-            </span>
+        <div className="flex h-full w-full flex-grow gap-2">
+          <div className="flex w-full max-w-xs flex-col overflow-auto border border-white">
+            <h3 className="p-1">list project</h3>
+            <div>
+              <ul className="p-1">
+                <li className="sticky top-0 bg-main-600 py-2">ongoing</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+                <li>project 1</li>
+                <li>project 2</li>
+                <li>project 3</li>
+                <li>project 4</li>
+                <li>project 5</li>
+              </ul>
+            </div>
           </div>
 
-          <h4 className="mt-auto text-xs">
-            loading . . . loading . . . i&apos;m working on it.
-          </h4>
+          <div className="flex h-auto w-full flex-grow flex-col border border-white p-1">
+            detail project
+            <div>
+              <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Dolores magnam in ut facilis iure veniam asperiores quae
+                quisquam aspernatur laborum, rerum libero, sapiente eaque quasi
+                sequi, nesciunt praesentium eum hic!
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

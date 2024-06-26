@@ -2,7 +2,6 @@ import { type Metadata } from "next";
 
 import MainNavigation from "~/components/navigation/main.navigation";
 import AboutMeV1 from "./_aboutMeV1";
-import Link from "next/link";
 import AboutMeV2 from "./_aboutMeV2";
 import AboutMeGift from "./_gift";
 

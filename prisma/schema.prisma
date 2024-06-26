@@ -118,6 +118,10 @@ model Media {
     visibility  Media_visibility? @default(PUBLIC)
     createdAt   DateTime          @default(now())
     updatedAt   DateTime          @updatedAt
+    Project     Project?          @relation(fields: [projectId], references: [id])
+    projectId   String?
+
+    @@index([projectId])
 }
 
 model BlogToTag {
@@ -127,4 +131,22 @@ model BlogToTag {
     @@unique([A, B], map: "_BlogToTag_AB_unique")
     @@index([B], map: "_BlogToTag_B_index")
     @@map("_BlogToTag")
+}
+
+enum Project_status {
+    FUTURE
+    ONGOING
+    DONE
+    ABANDONED
+}
+
+model Project {
+    id          String          @id @default(cuid())
+    title       String
+    description String?         @db.Text
+    url         String?
+    media       Media[]
+    status      Project_status? @default(FUTURE)
+    createdAt   DateTime        @default(now())
+    updatedAt   DateTime        @updatedAt
 }
