@@ -42,7 +42,7 @@ const config = {
       },
       {
         protocol: "https",
-        hostname: "placehold.co",
+        hostname: "via.placeholder.com",
         port: "",
       },
       {
