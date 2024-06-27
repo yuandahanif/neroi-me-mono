@@ -1,6 +1,5 @@
 "use client";
 
-import { type Media } from "@prisma/client";
 import { EyeOpenIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
@@ -13,11 +12,22 @@ type Props = (typeof Image)["defaultProps"] & {
   className?: string;
   title?: string;
   isNsfw?: boolean;
-  image: Media;
+  image: {
+    title: string;
+    alt: string;
+    description: string;
+    isNsfw: boolean;
+    createdAt: Date;
+    file: {
+      id: string;
+      key: string;
+      type: string;
+    }[];
+  };
 };
 
 const GalleryImage: React.FC<Props> = ({
-  image: { title, key, alt, description, isNsfw, createdAt },
+  image: { title, file, alt, description, isNsfw, createdAt },
   className,
 }) => {
   const largePreviewDialogRef = useRef<HTMLDialogElement>(null);
@@ -68,6 +78,10 @@ const GalleryImage: React.FC<Props> = ({
     };
   });
 
+  if (file.length == 0) {
+    return null;
+  }
+
   return (
     <div className="group relative w-[80vw] sm:w-fit">
       <dialog
@@ -78,7 +92,7 @@ const GalleryImage: React.FC<Props> = ({
           <div className="not-prose relative flex h-4/5 w-full flex-grow overflow-y-hidden">
             <Image
               onContextMenu={(e) => e.preventDefault()}
-              src={getMediaUrl(key)}
+              src={getMediaUrl(file[0]!.key)}
               alt={String(alt)}
               className={cn(
                 "not-prose h-auto w-auto object-contain object-center",
@@ -134,7 +148,7 @@ const GalleryImage: React.FC<Props> = ({
       >
         <Image
           onContextMenu={(e) => e.preventDefault()}
-          src={getMediaUrl(key)}
+          src={getMediaUrl(file[0]!.key)}
           alt={String(alt)}
           className={cn(
             "cursor-pointer object-cover object-center ",

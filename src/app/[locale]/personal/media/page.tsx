@@ -6,6 +6,7 @@ import { getI18n } from "~/locales/server";
 import { prisma } from "~/server/db";
 import ImageGallery from "./imageGallery";
 import { Skeleton } from "~/components/ui/skeleton";
+import Image from "~/components/gallery/image";
 
 export const metadata: Metadata = {
   title: "Media",
@@ -32,6 +33,7 @@ const MediaPage: React.FC = async () => {
   const images = prisma.media.findMany({
     orderBy: { createdAt: "desc" },
     where: { visibility: "PUBLIC" },
+    include: { File: true },
   });
 
   return (
@@ -47,7 +49,23 @@ const MediaPage: React.FC = async () => {
 
       <div className="mx-auto mt-10 flex w-full flex-wrap items-end justify-center gap-1">
         <Suspense fallback={<GallerySkeleton />}>
-          <ImageGallery images={await images} />
+          {(await images).map(
+            (img) =>
+              img.File.length != 0 && (
+                <Image
+                  key={img.id}
+                  image={{
+                    alt: img.alt ?? "no alt",
+                    createdAt: img.createdAt,
+                    description: img.description ?? "",
+                    isNsfw: img.isNsfw ?? false,
+                    title: img.title ?? "",
+                    file: img?.File ?? [],
+                  }}
+                  alt="image"
+                />
+              )
+          )}
         </Suspense>
       </div>
     </div>

@@ -3,9 +3,9 @@ generator client {
 }
 
 datasource db {
-    provider          = "postgresql"
-    url               = env("DATABASE_URL")
-    relationMode      = "prisma"
+    provider     = "postgresql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
 }
 
 enum ROLE {
@@ -118,15 +118,6 @@ model Media {
     File        File[]
 }
 
-model BlogToTag {
-    A String
-    B String
-
-    @@unique([A, B], map: "_BlogToTag_AB_unique")
-    @@index([B], map: "_BlogToTag_B_index")
-    @@map("_BlogToTag")
-}
-
 enum Project_status {
     FUTURE
     ONGOING
@@ -153,22 +144,4 @@ model File {
     updatedAt DateTime  @updatedAt
     Media     Media[]
     Project   Project[]
-}
-
-model MediaToFile {
-    Media String
-    File  String
-
-    @@unique([Media, File], map: "_MediaToFile_AB_unique")
-    @@index([File], map: "_MediaToFile_B_index")
-    @@map("_MediaToFile")
-}
-
-model ProjectToFile {
-    Project String
-    File    String
-
-    @@unique([Project, File], map: "_ProjectToFile_AB_unique")
-    @@index([File], map: "_ProjectToFile_B_index")
-    @@map("_ProjectToFile")
 }
