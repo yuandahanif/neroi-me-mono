@@ -5,7 +5,6 @@ generator client {
 datasource db {
     provider          = "postgresql"
     url               = env("DATABASE_URL")
-    shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
     relationMode      = "prisma"
 }
 
@@ -109,8 +108,6 @@ enum Media_visibility {
 
 model Media {
     id          String            @id @default(cuid())
-    key         String            @unique
-    type        String
     description String?           @db.Text
     alt         String?
     title       String?
@@ -118,10 +115,7 @@ model Media {
     visibility  Media_visibility? @default(PUBLIC)
     createdAt   DateTime          @default(now())
     updatedAt   DateTime          @updatedAt
-    Project     Project?          @relation(fields: [projectId], references: [id])
-    projectId   String?
-
-    @@index([projectId])
+    File        File[]
 }
 
 model BlogToTag {
@@ -145,8 +139,36 @@ model Project {
     title       String
     description String?         @db.Text
     url         String?
-    media       Media[]
     status      Project_status? @default(FUTURE)
     createdAt   DateTime        @default(now())
     updatedAt   DateTime        @updatedAt
+    File        File[]
+}
+
+model File {
+    id        String    @id @default(cuid())
+    key       String    @unique
+    type      String
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    Media     Media[]
+    Project   Project[]
+}
+
+model MediaToFile {
+    Media String
+    File  String
+
+    @@unique([Media, File], map: "_MediaToFile_AB_unique")
+    @@index([File], map: "_MediaToFile_B_index")
+    @@map("_MediaToFile")
+}
+
+model ProjectToFile {
+    Project String
+    File    String
+
+    @@unique([Project, File], map: "_ProjectToFile_AB_unique")
+    @@index([File], map: "_ProjectToFile_B_index")
+    @@map("_ProjectToFile")
 }

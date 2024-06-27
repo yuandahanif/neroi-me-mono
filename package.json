@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "NODE_OPTIONS='--inspect' next dev",
+    "dev": "next dev",
+    "dev:inspect": "NODE_OPTIONS='--inspect' next dev",
     "dev:staging": "dotenvx run --env-file=.env.staging.local -- next dev -p 3883",
     "postinstall": "prisma generate",
     "lint": "next lint",

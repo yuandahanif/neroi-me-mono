@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import MainNavigation from "~/components/navigation/main.navigation";
+import ScrollToProject from "./_scrollToProject";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -9,21 +10,7 @@ export const metadata: Metadata = {
     "Some of my projects, experiments, and things that I've been working on.",
 };
 
-const randomText = [
-  "[Object object]",
-  "Sepi sekali disini, seperti kehidupanku.",
-  "Kosongnyaaa, seperti didalam hatiku.",
-  "No thoughts, head empty.",
-  "if (projects.length === 0) return;",
-  `> "i'll do astelfo cosplay for u"\n> refuse to elaborate\n> last online 1 years ago\n> u/asobi-tea__`.trim(),
-  "I miss the feeling of loving someone.",
-  "People scare me.",
-  "I miss my manic episodes.",
-  `So, with sadness in my heart\nFeel the best thing I could do\nIs end it all and leave forever`,
-];
-
 const ProjectsPage = () => {
-  const index = Math.floor(Math.random() * (randomText.length - 1));
   return (
     <div
       className={`flex max-h-svh grow flex-col items-center justify-start py-10`}
@@ -38,6 +25,8 @@ const ProjectsPage = () => {
             mungkin menarik untuk diceritakan.
           </h3>
         </div>
+
+        <ScrollToProject />
 
         <div className="flex h-full w-full flex-grow gap-2 pb-5">
           <div className="flex w-full max-w-xs flex-col overflow-auto border border-white">
