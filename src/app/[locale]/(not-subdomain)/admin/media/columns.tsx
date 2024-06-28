@@ -1,6 +1,6 @@
 "use client";
 
-import { File, type Media } from "@prisma/client";
+import { type File, type Media } from "@prisma/client";
 import { type ColumnDef } from "@tanstack/react-table";
 import local_date from "~/lib/local_date";
 import Image from "next/image";

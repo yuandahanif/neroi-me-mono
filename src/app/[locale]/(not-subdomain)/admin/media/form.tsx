@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useState, useTransition } from "react";
-import { File, type Media } from "@prisma/client";
+import { type File, type Media } from "@prisma/client";
 import Image from "next/image";
 
 import { Button } from "~/components/ui/button";
@@ -12,7 +12,6 @@ import { Label } from "~/components/ui/label";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,

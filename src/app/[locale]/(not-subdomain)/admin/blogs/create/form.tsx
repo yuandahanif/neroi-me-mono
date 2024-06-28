@@ -12,6 +12,7 @@ import { type MDXRemoteProps } from "next-mdx-remote";
 import MDXClientPreview from "~/components/blog/MDXClientPreview.blog";
 import { useToast } from "~/components/ui/use-toast";
 import Select from "~/components/form/select";
+import { redirect } from "next/navigation";
 
 const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
   tags,
@@ -65,12 +66,14 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
 
     startTransition(async () => {
       try {
-        await createBlogAction(formData);
+        const blog = await createBlogAction(formData);
 
         toast({
           variant: "default",
           title: "Buat blog berhasil!",
         });
+
+        redirect(`/admin/blogs/${blog.slug}`);
       } catch (error) {
         toast({
           variant: "destructive",

@@ -46,7 +46,7 @@ export default async function createBlogAction(formData: FormData) {
       },
     });
 
-    redirect(`/admin/blogs/${ret.slug}`);
+    return ret;
   } catch (error) {
     throw error;
   }
