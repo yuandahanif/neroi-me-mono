@@ -4,7 +4,6 @@ import React, { Suspense } from "react";
 import MainNavigation from "~/components/navigation/main.navigation";
 import { getI18n } from "~/locales/server";
 import { prisma } from "~/server/db";
-import ImageGallery from "./imageGallery";
 import { Skeleton } from "~/components/ui/skeleton";
 import Image from "~/components/gallery/image";
 

@@ -36,8 +36,9 @@ const AdminMediaPage = async ({
 
   const skip = page ? (Number(page) - 1) * amount : 0;
 
-  const medias = prisma.media.findMany({
+  const media = prisma.media.findMany({
     orderBy: { createdAt: "desc" },
+    include: { File: true },
   });
 
   const isNextPageExist = await prisma.media.count({
@@ -64,7 +65,7 @@ const AdminMediaPage = async ({
       <div className="mx-auto mt-5 box-border flex w-full max-w-prose">
         <div className="w-full">
           <Suspense fallback={<div>Loading...</div>}>
-            <DataTable columns={mediaColumns} data={await medias} />
+            <DataTable columns={mediaColumns} data={await media} />
           </Suspense>
         </div>
       </div>

@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import { useState, useTransition } from "react";
-import { type Media } from "@prisma/client";
+import { File, type Media } from "@prisma/client";
 import Image from "next/image";
 
 import { Button } from "~/components/ui/button";
@@ -33,7 +33,7 @@ export default function MediaUploadForm({
   media,
   defaultDialogOpen,
 }: {
-  media?: Media;
+  media?: Media & { File: File[] };
   className?: string;
   defaultDialogOpen?: boolean;
 }) {
@@ -41,8 +41,8 @@ export default function MediaUploadForm({
   const [isPending, startTransition] = useTransition();
 
   const [open, setOpen] = useState(false);
-  const [previewFile, setPreviewFile] = useState<File | null>(null);
-  const [blob, setBlob] = useState<Media | null>(null);
+  const [previewFile, setPreviewFile] = useState<Blob | null>(null);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
   const onUpload = () => {
     startTransition(async () => {
@@ -53,9 +53,9 @@ export default function MediaUploadForm({
         const form = new FormData();
         form.append("file", previewFile);
 
-        const newMedia = await uploadMedia(form);
+        const file = await uploadMedia(form);
 
-        setBlob(newMedia);
+        setUploadedFile(file);
         setPreviewFile(null);
 
         toast({
@@ -84,7 +84,7 @@ export default function MediaUploadForm({
           }
 
           const formData = new FormData(event.currentTarget);
-          formData.append("key", media?.key);
+          formData.append("id", media?.id);
 
           await updateMedia(formData);
 
@@ -109,17 +109,17 @@ export default function MediaUploadForm({
 
     startTransition(async () => {
       try {
-        if (!blob) {
+        if (!uploadedFile) {
           throw new Error("No file uploaded");
         }
 
         const formData = new FormData(event.currentTarget);
-        formData.append("key", blob?.key);
+        formData.append("file_key", uploadedFile?.key);
 
         await updateMedia(formData);
 
         setPreviewFile(null);
-        setBlob(null);
+        setUploadedFile(null);
         setOpen(false);
 
         toast({
@@ -154,7 +154,6 @@ export default function MediaUploadForm({
             <DialogTitle>
               {isEditForm ? "Edit Media" : "Unggah Media"}
             </DialogTitle>
-            <DialogDescription></DialogDescription>
           </DialogHeader>
 
           <form onSubmit={onSubmit} className="grid gap-4 py-4">
@@ -175,22 +174,24 @@ export default function MediaUploadForm({
                 </figure>
               )}
 
-              {blob && (
+              {uploadedFile && (
                 <figure className="relative flex h-full w-full flex-col items-center justify-center gap-y-2 text-xs">
                   <div className="relative h-[90%] w-full">
                     <Image
-                      src={getMediaUrl(String(blob?.key))}
+                      src={getMediaUrl(String(uploadedFile?.key))}
                       alt={"no alt"}
                       className="h-full w-full object-contain object-center"
                       fill
                     />
                   </div>
 
-                  <figcaption className="line-clamp-1">{blob.key}</figcaption>
+                  <figcaption className="line-clamp-1">
+                    {uploadedFile.key}
+                  </figcaption>
                 </figure>
               )}
 
-              {!blob && !previewFile && !isEditForm && (
+              {!uploadedFile && !previewFile && !isEditForm && (
                 <Label
                   htmlFor="media"
                   className="my-auto cursor-pointer text-center text-white"
@@ -203,7 +204,7 @@ export default function MediaUploadForm({
                 <figure className="relative flex h-5/6 w-full flex-col items-center gap-y-2 text-xs">
                   <div className="relative h-full w-full">
                     <Image
-                      src={getMediaUrl(String(media?.key))}
+                      src={getMediaUrl(String(media.File?.[0]?.key))}
                       alt={media?.alt ?? "no alt"}
                       className="h-full w-full object-contain object-center"
                       fill
@@ -229,7 +230,7 @@ export default function MediaUploadForm({
                 id="media"
                 name="media"
                 type="file"
-                disabled={isPending || !!blob || isEditForm}
+                disabled={isPending || !!uploadedFile || isEditForm}
                 accept="image/*, video/*"
                 className="col-span-3 file:text-white"
                 onChange={(event) => {
@@ -246,7 +247,7 @@ export default function MediaUploadForm({
                 <ReloadIcon
                   className={cn(
                     "mr-2 hidden h-4 w-4 animate-spin",
-                    isPending && !blob ? "block" : ""
+                    isPending && !uploadedFile ? "block" : ""
                   )}
                 />
                 Unggah
@@ -332,7 +333,9 @@ export default function MediaUploadForm({
             <DialogFooter>
               <Button
                 type="submit"
-                disabled={(blob?.key == undefined && !isEditForm) || isPending}
+                disabled={
+                  (uploadedFile?.key == undefined && !isEditForm) || isPending
+                }
                 variant={"outline"}
               >
                 <ReloadIcon

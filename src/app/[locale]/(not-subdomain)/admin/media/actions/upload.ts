@@ -52,14 +52,14 @@ export default async function uploadMedia(form: FormData) {
 
     await S3.send(command);
 
-    const media = await prisma.media.create({
+    const file_create = await prisma.file.create({
       data: {
         key: Key,
         type: ContentType,
       },
     });
 
-    return media;
+    return file_create;
   } catch (error) {
     throw error;
   }

@@ -1,6 +1,6 @@
 "use client";
 
-import { type Media } from "@prisma/client";
+import { File, type Media } from "@prisma/client";
 import { type ColumnDef } from "@tanstack/react-table";
 import local_date from "~/lib/local_date";
 import Image from "next/image";
@@ -30,13 +30,13 @@ const copyToClipboard = (text: string) => {
   void navigator.clipboard.writeText(text);
 };
 
-export const mediaColumns: ColumnDef<Media>[] = [
+export const mediaColumns: ColumnDef<Media & { File: File[] }>[] = [
   {
     accessorKey: "title",
     header: "Judul",
     cell: ({ row }) => {
       const title = row.original.title;
-      const key = row.original.key;
+      const key = String(row.original.File[0]?.key);
 
       return (
         <span
@@ -99,6 +99,7 @@ export const mediaColumns: ColumnDef<Media>[] = [
     header: "Detail",
     cell: ({ row }) => {
       const media = row.original;
+      const key = String(media.File[0]?.key);
 
       return (
         <div className="inline-flex w-fit gap-x-5">
@@ -126,7 +127,7 @@ export const mediaColumns: ColumnDef<Media>[] = [
                 <figure className="relative flex h-full w-full flex-col items-center justify-center gap-y-2 text-xs">
                   <div className="relative h-[90%] w-full">
                     <Image
-                      src={getMediaUrl(String(media?.key))}
+                      src={getMediaUrl(String(key))}
                       alt={media?.alt ?? "no alt"}
                       className="h-full w-full object-contain object-center"
                       fill
@@ -151,7 +152,7 @@ export const mediaColumns: ColumnDef<Media>[] = [
                     variant="destructive"
                     type="button"
                     onClick={() => {
-                      void deleteMediaAction(media.key);
+                      void deleteMediaAction(key);
                     }}
                   >
                     <TrashIcon className={"mr-2 h-4 w-4"} />
