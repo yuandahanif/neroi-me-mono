@@ -1,3 +1,5 @@
+name: neroi-me-mono
+
 services:
   neroi-db:
     image: postgres:16
