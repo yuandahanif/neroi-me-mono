@@ -5,9 +5,9 @@ import { z } from "zod";
  * built with invalid env vars.
  */
 const server = z.object({
-  POSTGRES_USER: z.string(),
-  POSTGRES_PASSWORD: z.string(),
-  POSTGRES_DB: z.string(),
+  MYSQL_ALLOW_EMPTY_PASSWORD: z.string(),
+  MYSQL_ROOT_PASSWORD: z.string(),
+  MYSQL_DATABASE: z.string(),
   DATABASE_URL: z.string().url(),
   SHADOW_DATABASE_URL: z.string().nullable(),
   NODE_ENV: z.enum(["development", "test", "production"]),
@@ -51,9 +51,9 @@ const client = z.object({
  */
 const processEnv = {
   NEXT_PUBLIC_DOMAIN: process.env.NEXT_PUBLIC_DOMAIN,
-  POSTGRES_USER: process.env.POSTGRES_USER,
-  POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
-  POSTGRES_DB: process.env.POSTGRES_DB,
+  MYSQL_ALLOW_EMPTY_PASSWORD: process.env.MYSQL_ALLOW_EMPTY_PASSWORD,
+  MYSQL_ROOT_PASSWORD: process.env.MYSQL_ROOT_PASSWORD,
+  MYSQL_DATABASE: process.env.MYSQL_DATABASE,
   DATABASE_URL: process.env.DATABASE_URL,
   SHADOW_DATABASE_URL: process.env.SHADOW_DATABASE_URL,
   NODE_ENV: process.env.NODE_ENV,

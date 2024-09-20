@@ -2,12 +2,12 @@ name: neroi-me-mono
 
 services:
   neroi-db:
-    image: postgres:16
+    image: mysql:9.0
+    restart: always
     ports:
-      - 5432:5432
+      - 3306:3306
     env_file:
       - ../.env
-    shm_size: 256mb
     # volumes:
     #   - ./dump-neroi-me-202403111229.sql:/docker-entrypoint-initdb.d/init.sql
 

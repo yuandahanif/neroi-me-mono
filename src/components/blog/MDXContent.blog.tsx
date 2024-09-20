@@ -6,11 +6,13 @@ import MdxCode from "./MDXServerComponent";
 
 const MDXViewer = ({ content }: { content: MDXRemoteProps["source"] }) => {
   return (
-    <MDXRemote
-      source={content}
-      options={{ mdxOptions: { remarkPlugins: [remarkUnwrapImages] } }}
-      components={{ ...components, pre: (props) => <MdxCode {...props} /> }}
-    />
+    <div className="text-justify">
+      <MDXRemote
+        source={content}
+        options={{ mdxOptions: { remarkPlugins: [remarkUnwrapImages] } }}
+        components={{ ...components, pre: (props) => <MdxCode {...props} /> }}
+      />
+    </div>
   );
 };
 

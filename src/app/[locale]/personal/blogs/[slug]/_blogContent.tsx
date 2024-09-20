@@ -95,7 +95,6 @@ const BlogContent = ({
 
   return (
     <>
-      {/* {children} */}
       <TriggerWarning isDefaultOpen={isRestrictedContent} />
 
       <section className="relative flex w-full flex-grow flex-col-reverse items-center sm:flex-row sm:items-start sm:justify-center">

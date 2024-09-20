@@ -4,7 +4,6 @@ import "server-only";
 import z from "zod";
 import slugify from "slugify";
 import { prisma } from "~/server/db";
-import { redirect } from "next/navigation";
 
 const createBlogSchema = z.object({
   title: z.string(),
