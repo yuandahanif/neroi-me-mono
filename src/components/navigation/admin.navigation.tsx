@@ -1,17 +1,17 @@
 "use client";
 
 import { signOut } from "next-auth/react";
-import Link from "next/link";
+import Link from 'next/link'
 import { usePathname } from "next/navigation";
 import React, { useEffect, useRef } from "react";
-import { twMerge } from "tailwind-merge";
 import Redacted from "~/components/text/redacted";
 
 const LINKS = [
   { id: "home-index", href: "/admin", label: "Home" },
-  { id: "blog-index", href: "/admin/blogs", label: "Blogs" },
+  { id: "blog-index", href: "/admin/blogs", label: "Blog" },
   { id: "media-index", href: "/admin/media", label: "Media" },
-  { id: "note-index", href: "/admin/notes", label: "Notes" },
+  { id: "project-index", href: "/admin/projects", label: "Project" },
+  { id: "note-index", href: "/admin/notes", label: "Note" },
 ];
 
 const AdminNavigation = () => {
@@ -61,7 +61,7 @@ const AdminNavigation = () => {
             {pathname == link.href ? (
               <Redacted>{link.label}</Redacted>
             ) : (
-              <Link href={link.href} className={twMerge(`hover:underline`)}>
+              <Link href={link.href} className={`hover:underline`}>
                 {link.label}
               </Link>
             )}

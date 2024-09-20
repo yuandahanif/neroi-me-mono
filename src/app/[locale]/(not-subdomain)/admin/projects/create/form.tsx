@@ -13,18 +13,17 @@ import MDXClientPreview from "~/components/blog/MDXClientPreview.blog";
 import { useToast } from "~/components/ui/use-toast";
 import Select from "~/components/form/select";
 import { redirect } from "next/navigation";
+import { project_status_label_kv } from "~/data/project_status_enum";
 
-const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
-  tags,
-}) => {
+const CreateProjectForm: React.FC<{
+  tags: { id: string; title: string }[];
+}> = ({ tags }) => {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
   const [isPreviewTab, setPreviewTab] = useState<boolean>(false);
   const [mdxContent, setMdxContent] = useState<MDXRemoteProps | null>(null);
   const [content, setContent] = useState<string>("");
-  const [selectedTags, setSelectedTags] = useState<
-    { value: string; label: string }[]
-  >([]);
+  const [selectedStatus, setSelectedStatus] = useState<string | null>();
 
   const getPreview = async () => {
     try {
@@ -58,10 +57,10 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    formData.append(
-      "tags",
-      JSON.stringify(selectedTags.map((tag) => tag.value))
-    );
+    // formData.append(
+    //   "tags",
+    //   JSON.stringify(selectedStatus.map((tag) => tag.value))
+    // );
     formData.append("content", content);
 
     startTransition(async () => {
@@ -73,7 +72,7 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
           title: "Buat blog berhasil!",
         });
 
-        redirect(`/admin/blogs/${blog.slug}`);
+        redirect(`/admin/blogs/`);
       } catch (error) {
         toast({
           variant: "destructive",
@@ -97,16 +96,15 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
       </div>
 
       <div className="space-y-3">
-        <Label htmlFor="blog-tags">Tags</Label>
+        <Label htmlFor="project-status">Status</Label>
         <Select
-          id="blog-tags"
+          options={project_status_label_kv}
+          id="project-status"
+          isMulti={false}
           required
-          isMulti
-          options={
-            tags.map((tag) => ({ value: tag.id, label: tag.title })) ?? []
-          }
+          value={selectedStatus}
           onChange={(selected) => {
-            return setSelectedTags(selected as typeof selectedTags);
+            setSelectedStatus(selected as string);
           }}
         />
       </div>
@@ -141,7 +139,7 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
             type="button"
             onClick={togglePreview}
           >
-            <EyeOpenIcon className="mr-2 h-4 w-4" /> Tinjau
+            <EyeOpenIcon className="mr-2 h-4 w-4" /> Preview
           </Button>
         </div>
 
@@ -175,10 +173,10 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
         aria-disabled={isPending}
         className="ml-auto"
       >
-        Buat
+        Create
       </Button>
     </form>
   );
 };
 
-export default CreateBlogForm;
+export default CreateProjectForm;
