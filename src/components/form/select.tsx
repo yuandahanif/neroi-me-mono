@@ -20,7 +20,11 @@ const Select = (props: (typeof ReactSelect)["defaultProps"]) => {
               : isFocused
               ? "hsl(0 0% 9%)"
               : "hsl(0 0% 3.9%)",
-            color: isDisabled ? "hsl(0 0% 9%)" : isSelected ? "hsl(0 0% 80%)" : "hsl(0 0% 98%)",
+            color: isDisabled
+              ? "hsl(0 0% 9%)"
+              : isSelected
+              ? "hsl(0 0% 80%)"
+              : "hsl(0 0% 98%)",
             cursor: isDisabled ? "not-allowed" : "default",
 
             ":active": {
@@ -33,17 +37,24 @@ const Select = (props: (typeof ReactSelect)["defaultProps"]) => {
             },
           };
         },
-        multiValue: (styles, { data }) => {
+        singleValue: (styles) => {
+          return {
+            ...styles,
+            backgroundColor: "hsl(0 0% 3.9%)",
+            color: "hsl(0 0% 98%)",
+          };
+        },
+        multiValue: (styles) => {
           return {
             ...styles,
             backgroundColor: "hsl(0 0% 98%)",
           };
         },
-        multiValueLabel: (styles, { data }) => ({
+        multiValueLabel: (styles) => ({
           ...styles,
           color: "hsl(0 0% 14.9%)",
         }),
-        multiValueRemove: (styles, { data }) => ({
+        multiValueRemove: (styles) => ({
           ...styles,
           color: "hsl(0 62.8% 30.6%)",
           ":hover": {
@@ -51,6 +62,7 @@ const Select = (props: (typeof ReactSelect)["defaultProps"]) => {
             color: "hsl(0 62.8% 30.6%)",
           },
         }),
+
         control: (styles) => ({ ...styles, backgroundColor: "hsl(0 0% 3.9%)" }),
       }}
       // control: (styles) => ({ ...styles, backgroundColor: "white" }),
