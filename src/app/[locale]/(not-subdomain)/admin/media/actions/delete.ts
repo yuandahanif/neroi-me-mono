@@ -18,7 +18,7 @@ export async function deleteMediaAction(key: string) {
 
     await prisma.media.delete({
       where: {
-        key: key,
+        id: key,
       },
     });
 
