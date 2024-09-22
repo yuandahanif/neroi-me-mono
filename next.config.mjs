@@ -67,34 +67,6 @@ const config = {
       fullUrl: true,
     },
   },
-  async rewrites() {
-    return [
-      {
-        source: "/:path(api.*|static.*|_next.*|favicon.ico|robots.txt|sitemap.xml|sitemap.xsl|sitemap.xsd)",
-        destination: "/:path*",
-      },
-      {
-        source: "/:locale/:path*",
-        has: [
-          {
-            type: "host",
-            value: `business.${process.env.DOMAIN}`,
-          },
-        ],
-        destination: "/:locale/business/:path*",
-      },
-      {
-        source: "/:locale/:path*",
-        has: [
-          {
-            type: "host",
-            value: `personal.${process.env.DOMAIN}`,
-          },
-        ],
-        destination: "/:locale/personal/:path*",
-      },
-    ];
-  },
 };
 
 export default config;

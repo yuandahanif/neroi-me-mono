@@ -1,4 +1,5 @@
 import { type Viewport, type Metadata } from "next";
+import Script from "next/script";
 
 import { type PropsWithChildren } from "react";
 import { getServerSession } from "next-auth";
@@ -8,6 +9,7 @@ import { authOptions } from "~/server/auth";
 import { AuthProvider } from "~/app/_providers/auth-provider";
 import { ClientProvider } from "./_providers/client-provider";
 import { cn } from "~/lib/utils";
+import { env } from "~/env.mjs";
 import { Source_Code_Pro } from "next/font/google";
 import { Toaster } from "~/components/ui/toaster";
 
@@ -84,6 +86,12 @@ export default async function PageLayout({ children }: PropsWithChildren) {
   const session = await getServerSession(authOptions);
   return (
     <html className="dark">
+      <head>
+        <Script
+          src="https://umami.neroi.space/script.js"
+          data-website-id={env.NEXT_PUBLIC_UMAMI_ID}
+        />
+      </head>
       <body
         className={cn(
           "font-sans antialiased [&:has(dialog[open])]:overflow-hidden",
