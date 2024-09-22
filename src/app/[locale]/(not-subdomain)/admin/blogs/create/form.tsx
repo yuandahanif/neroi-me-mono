@@ -67,13 +67,12 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
     startTransition(async () => {
       try {
         const blog = await createBlogAction(formData);
+        console.log("startTransition ~ blog:", blog);
 
         toast({
           variant: "default",
           title: "Buat blog berhasil!",
         });
-
-        redirect(`/admin/blogs/${blog.slug}`);
       } catch (error) {
         toast({
           variant: "destructive",

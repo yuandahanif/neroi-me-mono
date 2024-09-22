@@ -4,6 +4,7 @@ import "server-only";
 import z from "zod";
 import slugify from "slugify";
 import { prisma } from "~/server/db";
+import { redirect } from "next/navigation";
 
 const createBlogSchema = z.object({
   title: z.string(),
@@ -29,23 +30,23 @@ export default async function createBlogAction(formData: FormData) {
 
     const data = createBlogSchema.parse(rawFormData);
 
+    const slug = slugify(data.title, { lower: true, strict: true, trim: true });
+    console.log(slug);
+
     const ret = await prisma.blog.create({
       data: {
-        slug: slugify(data.title, { lower: true, strict: true, trim: true }),
+        slug,
         title: data.title,
         content: data.content,
         description: data.description,
         isDraft: data.isDraft === "on",
         Tags: {
-          connectOrCreate: data.tags.map((tag) => ({
-            where: { id: tag },
-            create: { title: tag },
-          })),
+          connect: data.tags.map((tag) => ({ id: tag })),
         },
       },
     });
 
-    return ret;
+    return redirect(`/admin/blogs/${slug}`)
   } catch (error) {
     throw error;
   }
