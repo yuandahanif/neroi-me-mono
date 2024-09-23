@@ -2,48 +2,47 @@
 import "server-only";
 
 import z from "zod";
-import slugify from "slugify";
 import { prisma } from "~/server/db";
 import { Project_status } from "@prisma/client";
-import { project_status_label } from "~/data/project_status_enum";
+import { redirect } from "next/navigation";
 
 const createProjectScheme = z.object({
   title: z.string(),
-  content: z.string(),
-  tags: z.array(z.string()),
+  status: z.string(),
+  files: z.array(z.string()),
   description: z.string(),
-  isDraft: z.string().optional(),
+  url: z.string(),
 });
 
 export default async function createProjectAction(formData: FormData) {
   try {
-    const rawTags = JSON.parse(
-      formData.get("tags")?.toString() || "[]"
+    const files = JSON.parse(
+      formData.get("files")?.toString() || "[]"
     ) as string[];
 
     const rawFormData = {
       title: formData.get("title")?.toString(),
-      content: formData.get("content")?.toString(),
+      status: formData.get("status")?.toString(),
       description: formData.get("description")?.toString(),
-      isDraft: formData.get("blog-is-draft")?.toString(),
-      tags: rawTags,
+      url: formData.get("url")?.toString(),
+      files: files,
     };
 
     const data = createProjectScheme.parse(rawFormData);
 
-    const status_label = project_status_label.FUTURE;
-
-    const ret = await prisma.project.create({
+    await prisma.project.create({
       data: {
-        title: "",
-        description: "",
-        status: Project_status.FUTURE,
-        File: { connect: { id: "" } },
-        url: "",
+        title: data.title,
+        description: data.description,
+        status: data.status as Project_status,
+        url: data.url,
+        File: {
+          connect: data.files.map((id) => ({ id })),
+        },
       },
     });
 
-    return ret;
+    return redirect(`/admin/projects`);
   } catch (error) {
     throw error;
   }

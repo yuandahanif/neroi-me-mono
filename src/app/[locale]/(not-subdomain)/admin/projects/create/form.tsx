@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useQuery } from "@tanstack/react-query";
 import createProjectAction from "./create";
 import { Textarea } from "~/components/ui/textarea";
 import { Input } from "~/components/ui/input";
@@ -8,13 +9,11 @@ import { Label } from "~/components/ui/label";
 import { Button } from "~/components/ui/button";
 import { useToast } from "~/components/ui/use-toast";
 import Select from "~/components/form/select";
-import { redirect } from "next/navigation";
 import { project_status_label_kv } from "~/data/project_status_enum";
 import {
   type MediaParamType,
   MediaPicker,
 } from "~/components/form/_mediaPicker";
-import { useQuery } from "@tanstack/react-query";
 
 export const getMedia = async () => {
   try {
@@ -23,7 +22,6 @@ export const getMedia = async () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         return data;
       });
   } catch (error) {
@@ -34,7 +32,6 @@ export const getMedia = async () => {
 const CreateProjectForm: React.FC<{}> = ({}) => {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
-  const [content, setContent] = useState<string>("");
   const [selectedStatus, setSelectedStatus] = useState<string | null>();
 
   const [selectedImage, setSelectedImage] = useState<MediaParamType[]>([]);
@@ -47,26 +44,27 @@ const CreateProjectForm: React.FC<{}> = ({}) => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    formData.append("tags", JSON.stringify(selectedImage.map((tag) => tag.id)));
-    formData.append("content", content);
+    formData.append(
+      "files",
+      JSON.stringify(selectedImage.map((tag) => tag.id))
+    );
 
-    // startTransition(async () => {
-    //   try {
-    //     const blog = await createProjectAction(formData);
+    startTransition(async () => {
+      try {
+        await createProjectAction(formData);
+        toast({
+          variant: "default",
+          title: "Buat project berhasil!",
+        });
+      } catch (error) {
+        console.log(error);
 
-    //     toast({
-    //       variant: "default",
-    //       title: "Buat blog berhasil!",
-    //     });
-
-    //     redirect(`/admin/blogs/`);
-    //   } catch (error) {
-    //     toast({
-    //       variant: "destructive",
-    //       title: "Buat blog gagal!",
-    //     });
-    //   }
-    // });
+        toast({
+          variant: "destructive",
+          title: "Buat project gagal!",
+        });
+      }
+    });
   };
 
   return (
@@ -87,6 +85,7 @@ const CreateProjectForm: React.FC<{}> = ({}) => {
         <Select
           options={project_status_label_kv}
           id="project-status"
+          name="status"
           isMulti={false}
           required
           value={selectedStatus}
@@ -114,7 +113,7 @@ const CreateProjectForm: React.FC<{}> = ({}) => {
         <Input
           type="url"
           id="project-url"
-          name="URL"
+          name="url"
           placeholder="url"
           required
           autoComplete="project-url"

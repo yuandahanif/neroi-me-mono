@@ -11,9 +11,12 @@ export default async function deleteFileAction(id: string) {
   try {
     const data = deleteFileSchema.parse({ id });
 
-    const res = await prisma.file.delete({
+    await prisma.file.delete({
       where: {
         id: data.id,
+        Project: {
+          none: {},
+        },
       },
     });
 
