@@ -12,7 +12,20 @@ export const metadata: Metadata = {
 };
 
 const ProjectDetailPage: React.FC = async () => {
-  const tags = await prisma.tag.findMany({});
+  const media = prisma.media.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: {
+      File: {
+        select: {
+          id: true,
+          key: true,
+        },
+      },
+    },
+  });
+
   return (
     <div className={`flex grow flex-col items-center justify-start p-2 py-10`}>
       <h1 className="text-5xl">{"<Project/>"}</h1>
@@ -23,7 +36,7 @@ const ProjectDetailPage: React.FC = async () => {
         style={mainBlogContentFont.style}
       >
         <Suspense fallback={<div>Loading...</div>}>
-          <CreateBlogForm tags={tags} />
+          <CreateBlogForm media={await media} />
         </Suspense>
       </div>
     </div>

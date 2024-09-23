@@ -12,7 +12,6 @@ import { type MDXRemoteProps } from "next-mdx-remote";
 import MDXClientPreview from "~/components/blog/MDXClientPreview.blog";
 import { useToast } from "~/components/ui/use-toast";
 import Select from "~/components/form/select";
-import { redirect } from "next/navigation";
 
 const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
   tags,
@@ -66,8 +65,7 @@ const CreateBlogForm: React.FC<{ tags: { id: string; title: string }[] }> = ({
 
     startTransition(async () => {
       try {
-        const blog = await createBlogAction(formData);
-        console.log("startTransition ~ blog:", blog);
+        await createBlogAction(formData);
 
         toast({
           variant: "default",

@@ -90,7 +90,7 @@ const MainNavigation: React.FC<Props> = ({}) => {
             <button
               type="button"
               onClick={() => {
-                void router.push("/dashboard");
+                void router.push("/admin");
               }}
             >
               <svg
