@@ -12,16 +12,13 @@ export const metadata: Metadata = {
 };
 
 const ProjectDetailPage: React.FC = async () => {
-  const media = prisma.media.findMany({
+  const media = prisma.file.findMany({
     orderBy: {
       createdAt: "desc",
     },
-    include: {
-      File: {
-        select: {
-          id: true,
-          key: true,
-        },
+    where: {
+      Media: {
+        none: {},
       },
     },
   });

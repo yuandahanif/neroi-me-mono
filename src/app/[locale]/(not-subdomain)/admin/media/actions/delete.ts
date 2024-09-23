@@ -8,7 +8,13 @@ import { prisma } from "~/server/db";
 import S3 from "~/server/s3";
 import { env } from "~/env.mjs";
 
-export async function deleteMediaAction(key: string) {
+export async function deleteMediaAction({
+  file_key: key,
+  media_id: id,
+}: {
+  media_id: string;
+  file_key: string;
+}) {
   try {
     await auth();
 
@@ -18,7 +24,10 @@ export async function deleteMediaAction(key: string) {
 
     await prisma.media.delete({
       where: {
-        id: key,
+        id,
+      },
+      include: {
+        File: true,
       },
     });
 

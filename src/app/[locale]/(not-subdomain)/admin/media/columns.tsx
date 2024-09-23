@@ -25,9 +25,26 @@ import {
 } from "@radix-ui/react-icons";
 import { deleteMediaAction } from "./actions/delete";
 import getMediaUrl from "~/lib/getMediaUrl";
+import { toast } from "~/components/ui/use-toast";
 
 const copyToClipboard = (text: string) => {
   void navigator.clipboard.writeText(text);
+};
+
+const deleteMedia = async (key: string, id: string) => {
+  try {
+    await deleteMediaAction({ file_key: key, media_id: id });
+    toast({
+      variant: "default",
+      title: "Hapus media berhasil!",
+    });
+  } catch (error) {
+    toast({
+      variant: "destructive",
+      title: "Hapus media gagal!",
+    });
+    throw error;
+  }
 };
 
 export const mediaColumns: ColumnDef<Media & { File: File[] }>[] = [
@@ -152,7 +169,7 @@ export const mediaColumns: ColumnDef<Media & { File: File[] }>[] = [
                     variant="destructive"
                     type="button"
                     onClick={() => {
-                      void deleteMediaAction(key);
+                      void deleteMedia(key, media.id);
                     }}
                   >
                     <TrashIcon className={"mr-2 h-4 w-4"} />

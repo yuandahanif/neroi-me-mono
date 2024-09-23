@@ -1,12 +1,11 @@
 "use client";
 
 import { Suspense, useState, useTransition } from "react";
-import createBlogAction from "./create";
+import createProjectAction from "./create";
 import { Textarea } from "~/components/ui/textarea";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Button } from "~/components/ui/button";
-import { type MDXRemoteProps } from "next-mdx-remote";
 import { useToast } from "~/components/ui/use-toast";
 import Select from "~/components/form/select";
 import { redirect } from "next/navigation";
@@ -29,29 +28,26 @@ const CreateProjectForm: React.FC<{
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    // formData.append(
-    //   "tags",
-    //   JSON.stringify(selectedStatus.map((tag) => tag.value))
-    // );
+    formData.append("tags", JSON.stringify(selectedImage.map((tag) => tag.id)));
     formData.append("content", content);
 
-    startTransition(async () => {
-      try {
-        const blog = await createBlogAction(formData);
+    // startTransition(async () => {
+    //   try {
+    //     const blog = await createProjectAction(formData);
 
-        toast({
-          variant: "default",
-          title: "Buat blog berhasil!",
-        });
+    //     toast({
+    //       variant: "default",
+    //       title: "Buat blog berhasil!",
+    //     });
 
-        redirect(`/admin/blogs/`);
-      } catch (error) {
-        toast({
-          variant: "destructive",
-          title: "Buat blog gagal!",
-        });
-      }
-    });
+    //     redirect(`/admin/blogs/`);
+    //   } catch (error) {
+    //     toast({
+    //       variant: "destructive",
+    //       title: "Buat blog gagal!",
+    //     });
+    //   }
+    // });
   };
 
   return (
@@ -81,7 +77,7 @@ const CreateProjectForm: React.FC<{
         />
       </div>
 
-      <MediaPicker media={media} />
+      <MediaPicker media={media} onChange={setSelectedImage} />
 
       <div className="space-y-3">
         <Label htmlFor="project-description">Project Description</Label>

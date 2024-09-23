@@ -7,7 +7,7 @@ import { prisma } from "~/server/db";
 import { Project_status } from "@prisma/client";
 import { project_status_label } from "~/data/project_status_enum";
 
-const createBlogSchema = z.object({
+const createProjectScheme = z.object({
   title: z.string(),
   content: z.string(),
   tags: z.array(z.string()),
@@ -29,7 +29,7 @@ export default async function createProjectAction(formData: FormData) {
       tags: rawTags,
     };
 
-    const data = createBlogSchema.parse(rawFormData);
+    const data = createProjectScheme.parse(rawFormData);
 
     const status_label = project_status_label.FUTURE;
 

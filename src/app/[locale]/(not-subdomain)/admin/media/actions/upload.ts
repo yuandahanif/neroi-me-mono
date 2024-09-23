@@ -38,7 +38,10 @@ export default async function uploadMedia(form: FormData) {
     const fileName = matches[1] ?? "";
     const extension = matches[2] ?? "";
 
-    const Key = `${PATHNAME_MEDIA}${fileName}-${uuid}.${extension}`;
+    const Key = `${PATHNAME_MEDIA}${fileName.replaceAll(
+      " ",
+      "_"
+    )}-${uuid}.${extension}`;
     const Body = (await file.arrayBuffer()) as Buffer;
     const ContentType = file.type;
 
