@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { type Media_visibility } from "@prisma/client";
 import { Button } from "~/components/ui/button";
 import {
   Dialog,
@@ -16,7 +15,7 @@ import {
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { Label } from "~/components/ui/label";
 import { ScrollArea, ScrollBar } from "~/components/ui/scroll-area";
-import { env } from "~/env.mjs";
+import { env } from "~/env";
 import { startTransition, useState } from "react";
 import { toast } from "~/components/ui/use-toast";
 import { Input } from "~/components/ui/input";
@@ -34,7 +33,7 @@ import {
   AlertDialogTrigger,
 } from "~/components/ui/alert-dialog";
 import deleteFileAction from "~/app/[locale]/(not-subdomain)/admin/projects/create/_deleteFile";
-import { revalidatePath } from "next/cache";
+import { useQueryClient } from "@tanstack/react-query";
 
 export type MediaParamType = {
   id: string;
@@ -51,6 +50,7 @@ export function MediaPicker({
   media: MediaParamType[];
   onChange?: (media: MediaParamType[]) => void;
 }) {
+  const queryClient = useQueryClient();
   const [selectedMedia, setSelectedMedia] = useState<Set<MediaParamType>>(
     new Set()
   );
@@ -67,6 +67,7 @@ export function MediaPicker({
 
         await uploadMedia(form);
 
+        queryClient.invalidateQueries({ queryKey: ["project/file"] });
         toast({
           variant: "default",
           title: "Media berhasil diunggah",
@@ -87,6 +88,7 @@ export function MediaPicker({
       try {
         await deleteFileAction(id);
 
+        queryClient.invalidateQueries({ queryKey: ["project/file"] });
         toast({
           variant: "default",
           title: "Hapus gambar berhasil!",

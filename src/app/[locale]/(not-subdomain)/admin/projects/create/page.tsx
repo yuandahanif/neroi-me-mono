@@ -1,7 +1,12 @@
 import { type Metadata } from "next";
 
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 import AdminNavigation from "~/components/navigation/admin.navigation";
-import CreateBlogForm from "./form";
+import CreateBlogForm, { getMedia } from "./form";
 import mainBlogContentFont from "~/components/font/mainBlogContent.font";
 import { prisma } from "~/server/db";
 import { Suspense } from "react";
@@ -12,15 +17,11 @@ export const metadata: Metadata = {
 };
 
 const ProjectDetailPage: React.FC = async () => {
-  const media = prisma.file.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-    where: {
-      Media: {
-        none: {},
-      },
-    },
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["project/file"],
+    queryFn: getMedia,
   });
 
   return (
@@ -33,7 +34,9 @@ const ProjectDetailPage: React.FC = async () => {
         style={mainBlogContentFont.style}
       >
         <Suspense fallback={<div>Loading...</div>}>
-          <CreateBlogForm media={await media} />
+          <HydrationBoundary state={dehydrate(queryClient)}>
+            <CreateBlogForm />
+          </HydrationBoundary>
         </Suspense>
       </div>
     </div>

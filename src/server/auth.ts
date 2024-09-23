@@ -11,7 +11,7 @@ import type {
 
 import DiscordProvider from "next-auth/providers/discord";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { env } from "~/env.mjs";
+import { env } from "~/env";
 import { prisma } from "~/server/db";
 
 type USER_ROLE = "ADMIN" | "USER";

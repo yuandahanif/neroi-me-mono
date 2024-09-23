@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import createProjectAction from "./create";
 import { Textarea } from "~/components/ui/textarea";
 import { Input } from "~/components/ui/input";
@@ -14,16 +14,35 @@ import {
   type MediaParamType,
   MediaPicker,
 } from "~/components/form/_mediaPicker";
+import { useQuery } from "@tanstack/react-query";
 
-const CreateProjectForm: React.FC<{
-  media: MediaParamType[];
-}> = ({ media }) => {
+export const getMedia = async () => {
+  try {
+    return await fetch("create/file")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        return data;
+      });
+  } catch (error) {
+    throw new Error("Failed to fetch media");
+  }
+};
+
+const CreateProjectForm: React.FC<{}> = ({}) => {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
   const [content, setContent] = useState<string>("");
   const [selectedStatus, setSelectedStatus] = useState<string | null>();
 
   const [selectedImage, setSelectedImage] = useState<MediaParamType[]>([]);
+
+  const { data: media } = useQuery({
+    queryKey: ["project/file"],
+    queryFn: () => getMedia(),
+  });
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -77,7 +96,7 @@ const CreateProjectForm: React.FC<{
         />
       </div>
 
-      <MediaPicker media={media} onChange={setSelectedImage} />
+      {media && <MediaPicker media={media} onChange={setSelectedImage} />}
 
       <div className="space-y-3">
         <Label htmlFor="project-description">Project Description</Label>

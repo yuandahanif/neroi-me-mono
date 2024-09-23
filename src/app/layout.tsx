@@ -9,9 +9,10 @@ import { authOptions } from "~/server/auth";
 import { AuthProvider } from "~/app/_providers/auth-provider";
 import { ClientProvider } from "./_providers/client-provider";
 import { cn } from "~/lib/utils";
-import { env } from "~/env.mjs";
+import { env } from "~/env";
 import { Source_Code_Pro } from "next/font/google";
 import { Toaster } from "~/components/ui/toaster";
+import QueryProviders from "./_providers/react-query-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -99,7 +100,9 @@ export default async function PageLayout({ children }: PropsWithChildren) {
         )}
       >
         <AuthProvider session={session}>
-          <ClientProvider>{children}</ClientProvider>
+          <QueryProviders>
+            <ClientProvider>{children}</ClientProvider>
+          </QueryProviders>
           <Toaster />
         </AuthProvider>
         <SpeedInsights />
