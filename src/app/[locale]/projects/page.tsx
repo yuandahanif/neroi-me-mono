@@ -4,6 +4,11 @@ import Link from "next/link";
 import MainNavigation from "~/components/navigation/main.navigation";
 import ScrollToProject from "./_scrollToProject";
 import { ProjectListContainer } from "./_projectList";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -12,12 +17,11 @@ export const metadata: Metadata = {
 };
 
 const ProjectsPage = async () => {
-  const projects = prisma.project.findMany({
-    orderBy: { updatedAt: "desc" },
-    select: {
-      id: true,
-      title: true,
-    },
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["projects"],
+    queryFn: () => fetch("/api/projects"),
   });
 
   return (
@@ -37,7 +41,9 @@ const ProjectsPage = async () => {
 
         <ScrollToProject />
 
-        <ProjectListContainer projects={await projects} />
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <ProjectListContainer />
+        </HydrationBoundary>
       </div>
     </div>
   );

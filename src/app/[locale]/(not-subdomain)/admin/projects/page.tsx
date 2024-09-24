@@ -2,11 +2,9 @@ import { type Metadata } from "next";
 import { prisma } from "~/server/db";
 import Link from "next/link";
 import { z } from "zod";
-import local_date from "~/lib/local_date";
 import AdminNavigation from "~/components/navigation/admin.navigation";
 import { Button } from "~/components/ui/button";
-import { cn } from "~/lib/utils";
-import { Project_status } from "@prisma/client";
+import { ProjectDetailContainer } from "./_projectDetail";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -74,73 +72,8 @@ const AdminProjectsPage = async ({
         </Link>
       </div>
 
-      <div className="prose prose-invert mx-auto mt-10 box-border flex w-full max-w-prose flex-grow flex-col items-center gap-y-8">
-        {projects?.map(({ id, title, status, createdAt, updatedAt }) => (
-          <div className="w-full" key={id}>
-            <Link
-              href={`/admin/projects/${id}`}
-              className={cn(
-                "no-underline hover:underline",
-                status == Project_status.ABANDONED && "opacity-50"
-              )}
-            >
-              <span className="prose-md line-clamp-2 font-semibold md:prose-2xl">
-                {status == Project_status.ABANDONED ? "[DRAFT]" : ""} {title}
-              </span>
-            </Link>
-
-            <div className="flex flex-wrap items-center gap-3">
-              {/* <div className="ml-auto flex items-center gap-1 text-sm">
-                <span>{_count.BlogVisits}</span>
-                pembaca
-              </div> */}
-              <span>|</span>
-              <span className="inline-flex text-sm">
-                {local_date(updatedAt, {
-                  dateStyle: "medium",
-                  timeStyle: "short",
-                })}
-              </span>
-              <span className="inline-flex text-sm">
-                {local_date(createdAt, {
-                  dateStyle: "medium",
-                  timeStyle: "short",
-                })}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-10 flex items-center gap-4">
-        {page && page > 1 ? (
-          <Link href={`?page=${Number(page) - 1}`} className="mt-10">
-            Previous
-          </Link>
-        ) : (
-          <span
-            aria-disabled
-            className="mt-10 cursor-default line-through opacity-50"
-          >
-            Previous
-          </span>
-        )}
-
-        {isNextPageExist > 0 ? (
-          <Link
-            href={`?page=${validate.success ? page + 1 : 2}`}
-            className="ml-auto mt-10"
-          >
-            Next
-          </Link>
-        ) : (
-          <span
-            aria-disabled
-            className="ml-auto mt-10 cursor-default line-through opacity-50"
-          >
-            Next
-          </span>
-        )}
+      <div className="mt-8 flex h-full w-full max-w-screen-lg flex-grow flex-col">
+        <ProjectDetailContainer projects={projects} />
       </div>
     </div>
   );

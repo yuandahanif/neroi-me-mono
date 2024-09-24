@@ -6,6 +6,10 @@ import local_date from "~/lib/local_date";
 import { Skeleton } from "~/components/ui/skeleton";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { $Enums } from "@prisma/client";
+import { env } from "~/env";
+import { cn } from "~/lib/utils";
 
 const ProjectListSkeleton: React.FC = () => {
   return (
@@ -23,28 +27,69 @@ const ProjectListSkeleton: React.FC = () => {
   );
 };
 
-const ProjectListContainer: React.FC<{
-  projects: {
+const ProjectListContainer: React.FC<{}> = () => {
+  const searchParam = useSearchParams();
+  const projectId = searchParam.get("projectId");
+
+  const { data: projects } = useQuery<
+    {
+      id: string;
+      title: string;
+    }[]
+  >({
+    queryKey: ["projects"],
+    queryFn: () =>
+      fetch("/api/projects")
+        .then((res) => res.json())
+        .then((data) => data),
+  });
+
+  const { data: projectsById } = useQuery<{
     id: string;
     title: string;
-  }[];
-}> = ({ projects }) => {
-  const searchParam = useSearchParams();
+    description: string | null;
+    url: string | null;
+    status: $Enums.Project_status | null;
+    createdAt: Date;
+    updatedAt: Date;
+    File: {
+      id: string;
+      key: string;
+      type: string;
+      createdAt: Date;
+      updatedAt: Date;
+    }[];
+  }>({
+    queryKey: ["projects", projectId],
+    queryFn: () =>
+      fetch(`/api/projects?projectId=${projectId}`)
+        .then((res) => res.json())
+        .then((data) => data),
+    enabled: !!projectId,
+  });
+
+  console.log(searchParam.get("projectId"));
 
   return (
     <div className="flex h-full w-full flex-grow gap-2 pb-5">
       <div className="flex w-full max-w-xs flex-col overflow-auto border border-white">
         <ul className="h-full p-1">
           {/* <li className="sticky top-0 bg-main-600 py-2">ongoing</li> */}
-          {projects.map((project) => (
-            <li key={project.id}>
-              <Link href={`/projects?projestId=${project.id}`}>
+          {projects?.map((project) => (
+            <li
+              key={project.id}
+              className={cn(
+                project.id == projectId ? "font-semibold underline" : "",
+                "line-clamp-1 text-md"
+              )}
+            >
+              <Link href={`/projects?projectId=${project.id}`}>
                 {project.title}
               </Link>
             </li>
           ))}
 
-          {projects.length === 0 && (
+          {projects?.length === 0 && (
             <li className="flex h-full w-full flex-grow items-center justify-center">
               <span className="text-xs">
                 Belum ada project untuk ditampilkan.
@@ -55,7 +100,7 @@ const ProjectListContainer: React.FC<{
       </div>
 
       <div className="flex h-auto w-full flex-grow flex-col overflow-auto border border-white p-2">
-        {searchParam.has("projectId") ? (
+        {!!projectsById ? (
           <section className="">
             <div className="prose prose-invert">
               <h2
@@ -65,17 +110,17 @@ const ProjectListContainer: React.FC<{
                     "linear-gradient(180deg, transparent 80%, #0000ff 0%)",
                 }}
               >
-                Project name Lorem ipsum dolor,
+                {projectsById.title}
               </h2>
             </div>
 
             <hr className="my-4" />
 
-            <div className="my-5 flex flex-wrap gap-2 overflow-auto pb-2">
-              {[1, 2, 3, 4, 5].map((v) => (
+            <div className="my-5 flex flex-wrap items-start gap-2 overflow-auto pb-2">
+              {projectsById.File.map((v) => (
                 <Image
-                  key={v}
-                  src="https://via.placeholder.com/150"
+                  key={v.id}
+                  src={`${env.NEXT_PUBLIC_CLOUDFLARE_WORKER_ENDPOINT}/${v.key}`}
                   alt="project"
                   className="rounded-sm object-contain"
                   width={160}
@@ -88,20 +133,27 @@ const ProjectListContainer: React.FC<{
               <div>
                 <a
                   className="text-blue-500 hover:underline"
-                  href="http://example.com"
+                  href={projectsById.url ?? "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Tautan
+                  tautan
                 </a>
               </div>
 
               <div className="prose prose-invert ml-auto flex gap-5">
                 <h4 className="inline-block font-bold">
-                  Status: <span className="font-normal">Ongoing</span>
+                  Status:{" "}
+                  <span className="font-normal">{projectsById.status}</span>
                 </h4>
                 <h4 className="inline-block font-bold">
-                  Dibuat: <span className="font-normal">21 Juni 2024</span>
+                  Dibuat:{" "}
+                  <span className="font-normal">
+                    {local_date(projectsById.createdAt, {
+                      timeStyle: "short",
+                      dateStyle: "short",
+                    })}
+                  </span>
                 </h4>
               </div>
             </div>
@@ -110,33 +162,12 @@ const ProjectListContainer: React.FC<{
 
             <div className="prose prose-invert">
               <h4>Deskripsi</h4>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Dolores magnam in ut facilis iure veniam asperiores quae
-                quisquam aspernatur laborum, rerum libero, sapiente eaque quasi
-                sequi, nesciunt praesentium eum hic! Lorem ipsum dolor, sit amet
-                consectetur adipisicing elit. Dolores magnam in ut facilis iure
-                veniam asperiores quae quisquam aspernatur laborum, rerum
-                libero, sapiente eaque quasi sequi, nesciunt praesentium eum
-                hic! Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Dolores magnam in ut facilis iure veniam asperiores quae
-                quisquam aspernatur laborum, rerum libero, sapiente eaque quasi
-                sequi, nesciunt praesentium eum hic! Lorem ipsum dolor, sit amet
-                consectetur adipisicing elit. Dolores magnam in ut facilis iure
-                veniam asperiores quae quisquam aspernatur laborum, rerum
-                libero, sapiente eaque quasi sequi, nesciunt praesentium eum
-                hic! Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Dolores magnam in ut facilis iure veniam asperiores quae
-                quisquam aspernatur laborum, rerum libero, sapiente eaque quasi
-                sequi, nesciunt praesentium eum hic!
-              </p>
+              <p>{projectsById.description}</p>
             </div>
           </section>
         ) : (
           <div className="flex h-full w-full flex-grow items-center justify-center">
-            <span className="text-xs">
-              Belum ada project untuk ditampilkan.
-            </span>
+            <span className="text-xs">Pilih project di sebelah kiri.</span>
           </div>
         )}
       </div>
