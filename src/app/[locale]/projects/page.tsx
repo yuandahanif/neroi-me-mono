@@ -1,6 +1,4 @@
 import { type Metadata } from "next";
-import { prisma } from "~/server/db";
-import Link from "next/link";
 import MainNavigation from "~/components/navigation/main.navigation";
 import ScrollToProject from "./_scrollToProject";
 import { ProjectListContainer } from "./_projectList";

@@ -4,7 +4,12 @@ import Link from "next/link";
 import { z } from "zod";
 import AdminNavigation from "~/components/navigation/admin.navigation";
 import { Button } from "~/components/ui/button";
-import { ProjectDetailContainer } from "./_projectDetail";
+import { ProjectListContainer } from "./_projectList";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -24,36 +29,13 @@ const AdminProjectsPage = async ({
 }: {
   searchParams: { page?: number; amount?: number };
 }) => {
-  const validate = searchParamSchema.safeParse(searchParams);
-  let { amount = DEFAULT_AMOUNT, page = 1 } = searchParams;
-
-  if (validate.success) {
-    amount = validate.data.amount ?? DEFAULT_AMOUNT;
-    page = validate.data.page ?? 1;
-  }
-
-  const skip = page ? (Number(page) - 1) * amount : 0;
-
-  const projects = await prisma.project.findMany({
-    orderBy: { createdAt: "desc" },
-    select: {
-      id: true,
-      title: true,
-      status: true,
-      createdAt: true,
-      updatedAt: true,
-    },
-    take: validate.success ? Number(amount) : DEFAULT_AMOUNT,
-    skip: validate.success ? skip : 0,
-  });
-
-  const isNextPageExist = await prisma.project.count({
-    orderBy: { createdAt: "desc" },
-    take: 1,
-    skip: validate.success ? skip + Number(amount) : DEFAULT_AMOUNT,
-  });
-
+  const queryClient = new QueryClient();
   const countProject = await prisma.project.count({});
+
+  await queryClient.prefetchQuery({
+    queryKey: ["projects"],
+    queryFn: () => fetch("/api/projects"),
+  });
 
   return (
     <div
@@ -73,7 +55,9 @@ const AdminProjectsPage = async ({
       </div>
 
       <div className="mt-8 flex h-full w-full max-w-screen-lg flex-grow flex-col">
-        <ProjectDetailContainer projects={projects} />
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <ProjectListContainer />
+        </HydrationBoundary>
       </div>
     </div>
   );

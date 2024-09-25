@@ -1,4 +1,6 @@
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
+import { authOptions } from "~/server/auth";
 import { prisma } from "~/server/db";
 
 export async function GET(request: NextRequest) {
@@ -45,6 +47,36 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         error: "Failed to fetch projects",
+      },
+      {
+        status: 500,
+      }
+    );
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    await getServerSession(authOptions);
+    const id = request.nextUrl.searchParams.get("projectId") ?? "";
+    await prisma.project.delete({
+      where: {
+        id,
+      },
+    });
+
+    return NextResponse.json(
+      {
+        message: "Project deleted",
+      },
+      {
+        status: 200,
+      }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: "Failed to delete project",
       },
       {
         status: 500,

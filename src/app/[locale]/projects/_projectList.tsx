@@ -124,7 +124,7 @@ const ProjectListContainer: React.FC<{}> = () => {
             <hr className="my-4" />
 
             <div className="my-5 flex flex-wrap items-start gap-2 overflow-auto pb-2">
-              {projectsById.File.map((v) => (
+              {projectsById.File?.map((v) => (
                 <Image
                   key={v.id}
                   src={`${env.NEXT_PUBLIC_CLOUDFLARE_WORKER_ENDPOINT}/${v.key}`}
