@@ -13,15 +13,22 @@ import { cn } from "~/lib/utils";
 
 const ProjectListSkeleton: React.FC = () => {
   return (
-    <div className="flex w-full flex-grow flex-col gap-2">
-      <Skeleton className="h-[2em] w-full" />
+    <div className="flex w-full flex-grow flex-col gap-2 p-2">
+      <Skeleton className="h-[3em] w-full" />
+
+      <hr className="my-4" />
+
       <div className="flex gap-2">
-        {[1, 2, 3].map((_) => (
-          <Skeleton key={_} className="h-[1.5em] w-[3em]" />
+        {[1, 2, 3].map((id) => (
+          <Skeleton key={id} className="h-[10em] w-[10em]" />
         ))}
       </div>
-      <div className="flex justify-end">
-        <Skeleton className="h-[1em] w-1/3" />
+
+      <hr className="my-4" />
+
+      <div className="flex grow flex-col justify-end gap-2">
+        <Skeleton className="h-[1em] w-1/6" />
+        <Skeleton className="h-full w-full" />
       </div>
     </div>
   );
@@ -44,7 +51,7 @@ const ProjectListContainer: React.FC<{}> = () => {
         .then((data) => data),
   });
 
-  const { data: projectsById } = useQuery<{
+  const { data: projectsById, isLoading } = useQuery<{
     id: string;
     title: string;
     description: string | null;
@@ -80,7 +87,7 @@ const ProjectListContainer: React.FC<{}> = () => {
               key={project.id}
               className={cn(
                 project.id == projectId ? "font-semibold underline" : "",
-                "line-clamp-1 text-md"
+                "text-md line-clamp-1"
               )}
             >
               <Link href={`/projects?projectId=${project.id}`}>
@@ -165,6 +172,8 @@ const ProjectListContainer: React.FC<{}> = () => {
               <p>{projectsById.description}</p>
             </div>
           </section>
+        ) : isLoading ? (
+          <ProjectListSkeleton />
         ) : (
           <div className="flex h-full w-full flex-grow items-center justify-center">
             <span className="text-xs">Pilih project di sebelah kiri.</span>
@@ -175,4 +184,4 @@ const ProjectListContainer: React.FC<{}> = () => {
   );
 };
 
-export { ProjectListContainer, ProjectListSkeleton };
+export { ProjectListContainer };
