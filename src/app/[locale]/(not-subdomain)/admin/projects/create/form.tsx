@@ -22,14 +22,14 @@ export const getMedia = async () => {
         return res.json();
       })
       .then((data) => {
-        return data;
+        return data as MediaParamType[];
       });
   } catch (error) {
     throw new Error("Failed to fetch media");
   }
 };
 
-const CreateProjectForm: React.FC<{}> = ({}) => {
+const CreateProjectForm: React.FC = ({}) => {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
   const [selectedStatus, setSelectedStatus] = useState<string | null>();

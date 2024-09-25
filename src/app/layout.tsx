@@ -9,7 +9,7 @@ import { authOptions } from "~/server/auth";
 import { AuthProvider } from "~/app/_providers/auth-provider";
 import { ClientProvider } from "./_providers/client-provider";
 import { cn } from "~/lib/utils";
-import { env } from "~/env";
+import { env } from "~/env.mjs";
 import { Source_Code_Pro } from "next/font/google";
 import { Toaster } from "~/components/ui/toaster";
 import QueryProviders from "./_providers/react-query-provider";

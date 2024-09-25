@@ -7,8 +7,8 @@ import { Skeleton } from "~/components/ui/skeleton";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { $Enums } from "@prisma/client";
-import { env } from "~/env";
+import { type $Enums } from "@prisma/client";
+import { env } from "~/env.mjs";
 import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
 import {
@@ -47,23 +47,42 @@ const ProjectListSkeleton: React.FC = () => {
   );
 };
 
-const ProjectListContainer: React.FC<{}> = () => {
+type ProjectListResponse = {
+  id: string;
+  title: string;
+}[];
+
+type projectByIdResponse = {
+  id: string;
+  title: string;
+  description: string | null;
+  url: string | null;
+  status: $Enums.Project_status | null;
+  createdAt: Date;
+  updatedAt: Date;
+  File: {
+    id: string;
+    key: string;
+    type: string;
+    createdAt: Date;
+    updatedAt: Date;
+  }[];
+};
+
+const ProjectListContainer: React.FC = () => {
   const queryClient = useQueryClient();
   const searchParam = useSearchParams();
   const router = useRouter();
   const projectId = searchParam.get("projectId");
 
   const { data: projects } = useQuery<
-    {
-      id: string;
-      title: string;
-    }[]
+  ProjectListResponse
   >({
     queryKey: ["projects"],
     queryFn: () =>
       fetch("/api/projects")
         .then((res) => res.json())
-        .then((data) => data),
+        .then((data) => data as ProjectListResponse),
   });
 
   const deleteProjectMutation = useMutation({
@@ -77,40 +96,25 @@ const ProjectListContainer: React.FC<{}> = () => {
         title: "Hapus project berhasil!",
       });
       router.replace("/admin/projects");
-      queryClient.invalidateQueries({ queryKey: ["projects"] });
-      queryClient.invalidateQueries({ queryKey: ["projects", projectId] });
+      void queryClient.invalidateQueries({ queryKey: ["projects"] });
+      void queryClient.invalidateQueries({ queryKey: ["projects", projectId] });
     },
     onError: () => {
       toast({
         variant: "destructive",
         title: "Hapus project gagal!",
       });
-      queryClient.invalidateQueries({ queryKey: ["projects"] });
-      queryClient.invalidateQueries({ queryKey: ["projects", projectId] });
+      void queryClient.invalidateQueries({ queryKey: ["projects"] });
+      void queryClient.invalidateQueries({ queryKey: ["projects", projectId] });
     },
   });
 
-  const { data: projectsById, isLoading } = useQuery<{
-    id: string;
-    title: string;
-    description: string | null;
-    url: string | null;
-    status: $Enums.Project_status | null;
-    createdAt: Date;
-    updatedAt: Date;
-    File: {
-      id: string;
-      key: string;
-      type: string;
-      createdAt: Date;
-      updatedAt: Date;
-    }[];
-  }>({
+  const { data: projectsById, isLoading } = useQuery<projectByIdResponse>({
     queryKey: ["projects", projectId],
     queryFn: () =>
-      fetch(`/api/projects?projectId=${projectId}`)
+      fetch(`/api/projects?projectId=${projectId ?? ""}`)
         .then((res) => res.json())
-        .then((data) => data),
+        .then((data) => data as projectByIdResponse),
     enabled: !!projectId,
   });
 

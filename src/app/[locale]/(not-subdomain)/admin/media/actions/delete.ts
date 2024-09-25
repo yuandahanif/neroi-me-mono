@@ -6,7 +6,7 @@ import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { auth } from "~/server/auth";
 import { prisma } from "~/server/db";
 import S3 from "~/server/s3";
-import { env } from "~/env";
+import { env } from "~/env.mjs";
 
 export async function deleteMediaAction({
   file_key: key,

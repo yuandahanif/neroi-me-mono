@@ -24,7 +24,7 @@ const config = {
   extends: [
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
-    '"plugin:@tanstack/eslint-plugin-query/recommended"',
+    "plugin:@tanstack/eslint-plugin-query/recommended",
   ],
   ignorePatterns: ["src/pages-old/*"],
   rules: {

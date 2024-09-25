@@ -23,7 +23,6 @@ export const env = createEnv({
     // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
     DISCORD_CLIENT_ID: z.string(),
     DISCORD_CLIENT_SECRET: z.string(),
-    NEXT_PUBLIC_UMAMI_ID: z.string(),
     CLOUDFLARE_R2_ACCOUNT_ID: z.string(),
     CLOUDFLARE_R2_ACCESS_KEY_ID: z.string(),
     CLOUDFLARE_R2_SECRET_ACCESS_KEY: z.string(),
@@ -31,20 +30,34 @@ export const env = createEnv({
     CLOUDFLARE_R2_URL: z.string().optional(),
     CLOUDFLARE_R2_BUCKET: z.string(),
   },
+
   client: {
+    NEXT_PUBLIC_UMAMI_ID: z.string(),
     NEXT_PUBLIC_DOMAIN: z.string().default("localhost"),
     NEXT_PUBLIC_CLOUDFLARE_WORKER_ENDPOINT: z.string(),
   },
-  // If you're using Next.js < 13.4.4, you'll need to specify the runtimeEnv manually
-  // runtimeEnv: {
-  //   DATABASE_URL: process.env.DATABASE_URL,
-  //   OPEN_AI_API_KEY: process.env.OPEN_AI_API_KEY,
-  //   NEXT_PUBLIC_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_PUBLISHABLE_KEY,
-  // },
-  // For Next.js >= 13.4.4, you only need to destructure client variables:
-  experimental__runtimeEnv: {
+
+  runtimeEnv: {
     NEXT_PUBLIC_UMAMI_ID: process.env.NEXT_PUBLIC_UMAMI_ID,
     NEXT_PUBLIC_CLOUDFLARE_WORKER_ENDPOINT:
       process.env.NEXT_PUBLIC_CLOUDFLARE_WORKER_ENDPOINT,
+    DATABASE_URL: process.env.DATABASE_URL,
+    SHADOW_DATABASE_URL: process.env.SHADOW_DATABASE_URL,
+    MYSQL_ALLOW_EMPTY_PASSWORD: process.env.MYSQL_ALLOW_EMPTY_PASSWORD,
+    MYSQL_ROOT_PASSWORD: process.env.MYSQL_ROOT_PASSWORD,
+    MYSQL_DATABASE: process.env.MYSQL_DATABASE,
+    NODE_ENV: process.env.NODE_ENV,
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
+    DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
+    CLOUDFLARE_R2_ACCOUNT_ID: process.env.CLOUDFLARE_R2_ACCOUNT_ID,
+    CLOUDFLARE_R2_ACCESS_KEY_ID: process.env.CLOUDFLARE_R2_ACCESS_KEY_ID,
+    CLOUDFLARE_R2_SECRET_ACCESS_KEY:
+      process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY,
+    CLOUDFLARE_R2_TOKEN_VALUE: process.env.CLOUDFLARE_R2_TOKEN_VALUE,
+    CLOUDFLARE_R2_URL: process.env.CLOUDFLARE_R2_URL,
+    CLOUDFLARE_R2_BUCKET: process.env.CLOUDFLARE_R2_BUCKET,
+    NEXT_PUBLIC_DOMAIN: process.env.NEXT_PUBLIC_DOMAIN,
   },
 });

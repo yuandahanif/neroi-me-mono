@@ -5,7 +5,7 @@ import { PutObjectCommand } from "@aws-sdk/client-s3";
 
 import { prisma } from "~/server/db";
 import S3 from "~/server/s3";
-import { env } from "~/env";
+import { env } from "~/env.mjs";
 import { PATHNAME_MEDIA } from "../_constMedia";
 
 const allowedContentTypes = [

@@ -15,7 +15,7 @@ import {
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { Label } from "~/components/ui/label";
 import { ScrollArea, ScrollBar } from "~/components/ui/scroll-area";
-import { env } from "~/env";
+import { env } from "~/env.mjs";
 import { startTransition, useState } from "react";
 import { toast } from "~/components/ui/use-toast";
 import { Input } from "~/components/ui/input";
@@ -67,7 +67,7 @@ export function MediaPicker({
 
         await uploadMedia(form);
 
-        queryClient.invalidateQueries({ queryKey: ["project/file"] });
+        void queryClient.invalidateQueries({ queryKey: ["project/file"] });
         toast({
           variant: "default",
           title: "Media berhasil diunggah",
@@ -88,7 +88,8 @@ export function MediaPicker({
       try {
         await deleteFileAction(id);
 
-        queryClient.invalidateQueries({ queryKey: ["project/file"] });
+        void queryClient.invalidateQueries({ queryKey: ["project/file"] });
+
         toast({
           variant: "default",
           title: "Hapus gambar berhasil!",

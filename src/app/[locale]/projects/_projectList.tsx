@@ -7,8 +7,8 @@ import { Skeleton } from "~/components/ui/skeleton";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { $Enums } from "@prisma/client";
-import { env } from "~/env";
+import { type $Enums } from "@prisma/client";
+import { env } from "~/env.mjs";
 import { cn } from "~/lib/utils";
 
 const ProjectListSkeleton: React.FC = () => {
@@ -34,44 +34,46 @@ const ProjectListSkeleton: React.FC = () => {
   );
 };
 
-const ProjectListContainer: React.FC<{}> = () => {
+type ProjectListResponse = {
+  id: string;
+  title: string;
+}[];
+
+type projectByIdResponse = {
+  id: string;
+  title: string;
+  description: string | null;
+  url: string | null;
+  status: $Enums.Project_status | null;
+  createdAt: Date;
+  updatedAt: Date;
+  File: {
+    id: string;
+    key: string;
+    type: string;
+    createdAt: Date;
+    updatedAt: Date;
+  }[];
+};
+
+const ProjectListContainer: React.FC = () => {
   const searchParam = useSearchParams();
   const projectId = searchParam.get("projectId");
 
-  const { data: projects } = useQuery<
-    {
-      id: string;
-      title: string;
-    }[]
-  >({
+  const { data: projects } = useQuery<ProjectListResponse>({
     queryKey: ["projects"],
     queryFn: () =>
       fetch("/api/projects")
         .then((res) => res.json())
-        .then((data) => data),
+        .then((data) => data as ProjectListResponse),
   });
 
-  const { data: projectsById, isLoading } = useQuery<{
-    id: string;
-    title: string;
-    description: string | null;
-    url: string | null;
-    status: $Enums.Project_status | null;
-    createdAt: Date;
-    updatedAt: Date;
-    File: {
-      id: string;
-      key: string;
-      type: string;
-      createdAt: Date;
-      updatedAt: Date;
-    }[];
-  }>({
+  const { data: projectsById, isLoading } = useQuery<projectByIdResponse>({
     queryKey: ["projects", projectId],
     queryFn: () =>
-      fetch(`/api/projects?projectId=${projectId}`)
+      fetch(`/api/projects?projectId=${projectId ?? ""}`)
         .then((res) => res.json())
-        .then((data) => data),
+        .then((data) => data as projectByIdResponse),
     enabled: !!projectId,
   });
 
